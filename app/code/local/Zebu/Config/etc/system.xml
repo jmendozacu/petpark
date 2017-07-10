@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <zebu_config translate="label" module="zebu_config">
+            <label>Zebu</label>
+            <sort_order>0</sort_order>
+        </zebu_config>
+    </tabs>
+    <sections>
+        <zebu_config translate="label" module="zebu_config">
+            <label>Zebu modules</label>
+            <tab>zebu_config</tab>
+            <sort_order>0</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>            
+            <groups>
+                <zebu_modules translate="label">
+                    <label>Zebu modules - License Keys</label>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </zebu_modules>
+            </groups>
+        </zebu_config>
+    </sections>
+</config>

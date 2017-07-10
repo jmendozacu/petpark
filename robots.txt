@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow: /admin/
+Disallow: /catalogsearch/
+
+Sitemap: https://www.petpark.sk/sitemap.xml

@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Module developed by NoStress Commerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@nostresscommerce.cz so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future. If you have special needs for this module, please
+ * contact us at info@nostresscommerce.cz for more information.
+ *
+ * @category    Nostress
+ * @package     Nostress_Gpwebpay
+ * @copyright   Copyright (c) 2012 NoStress Commerce (http://www.nostresscommerce.cz)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <menu>
+		<sales>
+			<children>
+				<nostress_gpwebpay_transactions translate="title" module="nostress_gpwebpay">
+					<title>GPWebPay Transactions</title>
+					<action>nostress_gpwebpay/transactions</action>
+					<sort_order>75</sort_order>
+				</nostress_gpwebpay_transactions>
+			</children>
+		</sales>
+    </menu>
+    <acl>
+	    <resources>
+		    <admin>
+			    <children>
+				    <sales>
+					    <children>
+						    <nostress_gpwebpay_transactions translate="title" module="nostress_gpwebpay">
+							    <title>GPWebPay Transactions</title>
+							    <sort_order>75</sort_order>
+						    </nostress_gpwebpay_transactions>
+					    </children>
+				    </sales>
+				    <system>
+						<children>
+							<config>
+								<children>
+									<nostress_modules translate="title" module="nostress_gpwebpay">
+										<title>Nostress Modules</title>
+										<sort_order>61</sort_order>
+									</nostress_modules>
+								</children>
+							</config>
+						</children>
+					</system>
+			    </children>
+		    </admin>
+	    </resources>
+    </acl>
+    
+    <!--<acl>
+        <resources>
+            <admin>
+                <children>
+                    <sales translate="title" module="sales">
+                        <title>Sales</title>
+                        <children>
+                            <order translate="title">
+                                <title>Orders</title>
+                                <children>
+                                    <actions translate="title">
+                                        <title>Actions</title>
+                                        <children>
+                                            <create translate="title"><title>Create</title></create>
+                                            <view translate="title"><title>View</title></view>
+                                            <email translate="title"><title>Send Order Email</title></email>
+                                            <reorder translate="title"><title>Reorder</title></reorder>
+                                            <edit translate="title"><title>Edit</title></edit>
+                                            <cancel translate="title"><title>Cancel</title></cancel>
+                                            <review_payment translate="title"><title>Accept or Deny Payment</title></review_payment>
+                                            <capture translate="title"><title>Capture</title></capture>
+                                            <invoice translate="title"><title>Invoice</title></invoice>
+                                            <creditmemo translate="title"><title>Creditmemo</title></creditmemo>
+                                            <hold translate="title"><title>Hold</title></hold>
+                                            <unhold translate="title"><title>Unhold</title></unhold>
+                                            <ship translate="title"><title>Ship</title></ship>
+                                            <comment translate="title"><title>Comment</title></comment>
+                                            <reorder translate="title"><title>Reorder</title></reorder>
+                                            <emails translate="title"><title>Send Sales Emails</title></emails>
+                                        </children>
+                                    </actions>
+                                </children>
+                                <sort_order>10</sort_order>
+                            </order>
+                        </children>
+                    </sales>
+                    <system>
+                        <children>
+                            <order_statuses>
+                                <title>Order Statuses</title>
+                                <sort_order>15</sort_order>
+                            </order_statuses>
+                            <config>
+                                <children>
+                                    <sales translate="title">
+                                        <title>Sales Section</title>
+                                        <sort_order>60</sort_order>
+                                    </sales>
+                                    <sales_email translate="title">
+                                        <title>Sales Emails Section</title>
+                                        <sort_order>65</sort_order>
+                                    </sales_email>
+                                    <sales_pdf translate="title">
+                                        <title>PDF Print-outs</title>
+                                        <sort_order>66</sort_order>
+                                    </sales_pdf>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+   </acl>-->
+</config>

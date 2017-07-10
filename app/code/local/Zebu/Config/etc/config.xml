@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Zebu_Config>
+			<version>1.0.0</version>
+		</Zebu_Config>
+	</modules>
+    <frontend>
+    	<layout>
+      	<updates>
+      	 <config module="zebu_config">
+   			  <file>zebu_config.xml</file>
+   			 </config>
+    		</updates>
+    	</layout>
+    </frontend>
+    <adminhtml>
+      <translate>
+          <modules>
+              <zebu_config>
+                  <files>
+                      <default>Zebu_Config.csv</default>
+                  </files>
+              </zebu_config>
+          </modules>
+      </translate>    
+    </adminhtml>
+    <global>
+      <blocks>		
+            <zebu_config>
+                <class>Zebu_Config_Block</class>
+            </zebu_config>
+      </blocks> 
+  		<helpers>
+  			<zebu_config>
+  				<class>Zebu_Config_Helper</class>
+  			</zebu_config>
+		  </helpers>    
+    </global>
+</config>

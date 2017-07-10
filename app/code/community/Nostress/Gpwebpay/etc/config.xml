@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Module developed by NoStress Commerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@nostresscommerce.cz so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future. If you have special needs for this module, please
+ * contact us at info@nostresscommerce.cz for more information.
+ *
+ * @category    Nostress
+ * @package     Nostress_Gpwebpay
+ * @copyright   Copyright (c) 2012 NoStress Commerce (http://www.nostresscommerce.cz)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+	<modules>
+		<Nostress_Gpwebpay>
+			<version>6.0.0.2</version>
+		</Nostress_Gpwebpay>
+	</modules>
+	
+	<global>
+		<models>
+			<nostress_gpwebpay>
+				<class>Nostress_Gpwebpay_Model</class>
+				<resourceModel>nostress_gpwebpay_resource</resourceModel>
+			</nostress_gpwebpay>
+			<sales>
+				<rewrite>
+					<order>Nostress_Gpwebpay_Model_Order</order>
+				</rewrite>
+			</sales>
+			<core>
+				<rewrite>
+					<email_template_mailer>Nostress_Gpwebpay_Model_Email_Template_Mailer</email_template_mailer>
+				</rewrite>
+			</core>
+			<nostress_gpwebpay_entity>
+				<class>Nostress_Gpwebpay_Model_Entity</class>
+				<entities>
+					<transactions>
+						<table>nostress_gpwebpay_transactions</table>
+					</transactions>
+				</entities>
+			</nostress_gpwebpay_entity>
+			<nostress_gpwebpay_resource>
+				<class>Nostress_Gpwebpay_Model_Resource</class>
+				<entities>
+					<transactions>
+						<table>nostress_gpwebpay_flat_transactions</table>
+					</transactions>
+					<transactions_grid>
+						<table>nostress_gpwebpay_flat_transactions_grid</table>
+					</transactions_grid>
+					<transactions_status_history>
+						<table>nostress_gpwebpay_flat_transactions_status_history</table>
+					</transactions_status_history>
+					<transactions_status>
+						<table>nostress_gpwebpay_transactions_status</table>
+					</transactions_status>
+					<transactions_status_state>
+						<table>nostress_gpwebpay_transactions_status_state</table>
+					</transactions_status_state>
+					<transactions_status_label>
+						<table>nostress_gpwebpay_transactions_status_label</table>
+					</transactions_status_label>
+					<nostress_gpwebpay>
+						<table>nostress_gpwebpay</table>
+					</nostress_gpwebpay>
+					<nostress_gpwebpay_log>
+						<table>nostress_gpwebpay_log</table>
+					</nostress_gpwebpay_log>
+				</entities>
+			</nostress_gpwebpay_resource>
+		</models>
+		
+		<helpers>
+			<nostress_gpwebpay>
+				<class>Nostress_Gpwebpay_Helper</class>
+			</nostress_gpwebpay>
+		</helpers>
+		
+		<resources>
+			<gpwebpay_setup>
+				<setup>
+					<module>Nostress_Gpwebpay</module>
+					<class>Nostress_Gpwebpay_Model_Resource_Setup</class>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</gpwebpay_setup>
+			<nostress_gpwebpay_setup>
+				<setup>
+					<module>Nostress_Gpwebpay</module>
+					<class>Nostress_Gpwebpay_Model_Resource_Setup</class>
+				</setup>
+			</nostress_gpwebpay_setup>
+			<nostress_gpwebpay_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</nostress_gpwebpay_write>
+			<nostress_gpwebpay_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</nostress_gpwebpay_read>
+		</resources>
+		
+		<blocks>
+			<nostress_gpwebpay>
+				<class>Nostress_Gpwebpay_Block</class>
+			</nostress_gpwebpay>
+		</blocks>
+		
+		<transactions>
+			<statuses>
+				<approved translate="label">
+					<label>Authorized</label>
+				</approved>
+				<approve_reversed translate="label">
+					<label>Reversed</label>
+				</approve_reversed>
+				<created translate="label">
+					<label>Not completed (Created)</label>
+				</created>
+				<credited_batch_closed translate="label">
+					<label>Credited (Closed)</label>
+				</credited_batch_closed>
+				<credited_batch_opened translate="label">
+					<label>Credited (Opened)</label>
+				</credited_batch_opened>
+				<declined translate="label">
+					<label>Declined</label>
+				</declined>
+				<deleted translate="label">
+					<label>Deleted</label>
+				</deleted>
+				<deposit_batch_closed translate="label">
+					<label>Processed</label>
+				</deposit_batch_closed>
+				<deposit_batch_opened translate="label">
+					<label>Payed</label>
+				</deposit_batch_opened>
+				<order_closed translate="label">
+					<label>Closed</label>
+				</order_closed>
+				<pending translate="label">
+					<label>Not completed (Pending)</label>
+				</pending>
+				<requested translate="label">
+					<label>Not completed (Requested)</label>
+				</requested>
+				<unapproved translate="label">
+					<label>Not authorized</label>
+				</unapproved>
+			</statuses>
+			<states>
+				<approved translate="label">
+					<label>Authorized</label>
+					<statuses>
+						<approved default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</approved>
+				<approve_reversed translate="label">
+					<label>Reversed</label>
+					<statuses>
+						<approve_reversed default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</approve_reversed>
+				<created translate="label">
+					<label>Not completed (Created)</label>
+					<statuses>
+						<created default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</created>
+				<credited_batch_closed translate="label">
+					<label>Credited (Closed)</label>
+					<statuses>
+						<credited_batch_closed default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</credited_batch_closed>
+				<credited_batch_opened translate="label">
+					<label>Credited (Opened)</label>
+					<statuses>
+						<credited_batch_opened default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</credited_batch_opened>
+				<declined translate="label">
+					<label>Declined</label>
+					<statuses>
+						<declined default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</declined>
+				<deleted translate="label">
+					<label>Deleted</label>
+					<statuses>
+						<deleted default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</deleted>
+				<deposit_batch_closed translate="label">
+					<label>Processed</label>
+					<statuses>
+						<deposit_batch_closed default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</deposit_batch_closed>
+				<deposit_batch_opened translate="label">
+					<label>Payed</label>
+					<statuses>
+						<deposit_batch_opened default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</deposit_batch_opened>
+				<order_closed translate="label">
+					<label>Closed</label>
+					<statuses>
+						<order_closed default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</order_closed>
+				<pending translate="label">
+					<label>Not completed (Pending)</label>
+					<statuses>
+						<pending default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</pending>
+				<requested translate="label">
+					<label>Not completed (Requested)</label>
+					<statuses>
+						<requested default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</requested>
+				<unapproved translate="label">
+					<label>Not authorized</label>
+					<statuses>
+						<unapproved default="1"/>
+					</statuses>
+					<visible_on_front>1</visible_on_front>
+				</unapproved>
+			</states>
+		</transactions>
+	</global>
+	
+	<default>
+		<payment>
+			<gpwebpay>
+				<active>0</active>
+				<model>nostress_gpwebpay/abstract</model>
+				<transactions_status>1</transactions_status>
+				<title>GPWebPay</title>
+				<allowspecific>0</allowspecific>
+			</gpwebpay>
+		</payment>
+	</default>
+	
+	<frontend>
+		<routers>
+			<gpwebpay>
+				<use>standard</use>
+				<args>
+					<module>Nostress_Gpwebpay</module>
+					<frontName>gpwebpay</frontName>
+				</args>
+			</gpwebpay>
+		</routers>       
+		<translate>
+			<modules>
+				<Nostress_Gpwebpay>
+					<files>
+						<default>Nostress_Gpwebpay.csv</default>
+					</files>
+				</Nostress_Gpwebpay>
+			</modules>
+		</translate>
+		<layout>
+			<updates>
+				<nostress_gpwebpay module="Nostress_Gpwebpay">
+					<file>nostress_gpwebpay.xml</file>
+				</nostress_gpwebpay>
+			</updates>
+		</layout>
+	</frontend> 
+	
+	<adminhtml>
+		<translate>
+			<modules>
+				<Nostress_Gpwebpay>
+					<files>
+						<default>Nostress_Gpwebpay.csv</default>
+					</files>
+				</Nostress_Gpwebpay>
+			</modules>
+		</translate>
+		<layout>
+			<updates>
+				<nostress_gpwebpay>
+					<file>nostress_gpwebpay.xml</file>
+				</nostress_gpwebpay>
+			</updates>
+		</layout>
+	</adminhtml>
+	
+	<admin>
+		<routers>
+			<nostress_gpwebpay>
+				<use>admin</use>
+				<args>
+					<module>Nostress_Gpwebpay</module>
+					<frontName>nostress_gpwebpay</frontName>
+				</args>
+			</nostress_gpwebpay>
+			<adminhtml>
+				<args>
+					<modules>
+						<nostress_gpwebpay after="Mage_Adminhtml">Nostress_Gpwebpay</nostress_gpwebpay>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+</config>

@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Module developed by NoStress Commerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@nostresscommerce.cz so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future. If you have special needs for this module, please
+ * contact us at info@nostresscommerce.cz for more information.
+ *
+ * @category    Nostress
+ * @package     Nostress_Gpwebpay
+ * @copyright   Copyright (c) 2012 NoStress Commerce (http://www.nostresscommerce.cz)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+	<tabs>
+		<nostress_modules translate="label" module="nostress_gpwebpay">
+			<label>NoStress Modules</label>
+			<sort_order>555</sort_order>
+		</nostress_modules>
+	</tabs>
+	<sections>  
+		<nostress_modules translate="label" module="nostress_gpwebpay">
+			<class>separator-top</class>
+			<label>NoStress Modules</label>
+			<tab>nostress_modules</tab>
+			<sort_order>130</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>                
+				<nostress_dashboard translate="label">
+					<label>Dashboard</label>
+					<sort_order>0</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<header translate="label">
+							<frontend_model>nostress_gpwebpay/version_header</frontend_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</header>
+							<gpwebpay translate="label">
+							<frontend_model>nostress_gpwebpay/version_version</frontend_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</gpwebpay>
+						<footer translate="label">
+							<frontend_model>nostress_gpwebpay/version_footer</frontend_model>
+							<sort_order>99</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</footer>
+					</fields>
+				</nostress_dashboard>
+			</groups>
+		</nostress_modules>
+		<payment>
+			<groups>
+				<gpwebpay translate="label" module="payment">
+					<label>GPWebPay</label>
+					<comment>
+						<![CDATA[
+						<br />
+						<div class="custom-options">
+							<div class="box">
+								<p class="grand-total"><br /><strong>Použití platební brány GPWebPay</strong></p>
+								<p>Platební brána GPWebPay umožňuje přijímat online platby kreditními kartami. Právě používáte verzi 5.0 tohoto platebního modulu, která obsahuje následující funkce:</p>
+								<p>- můžete zvolit, zda se platba má pouze autorizovat (<i>Authorization</i>) nebo přijmout (<i>Deposit</i>)</p>
+								<p>Certifikáty nahrajte do složky <i>/var/gpwebpay/[secret_folder]/</i>. Věnujte prosím zvýšenou pozornost nastavení přístupových práv a souboru .htaccess v této složce.</p>
+								<p>Pokud máte problémy se zprovozněním této platební brány, kontaktujte nás na <a href="mailto:info@nostresscommerce.cz">info@nostresscommerce.cz</a>. Více informací o modulu najdete na  <a href="http://www.nostresscommerce.cz/nase-sluzby-a-produkty/moduly-pro-magento/platebni-modul-pro-gpwebpay.html" target="_blank">webu NoStress Commerce</a>.</p>
+							</div>
+						</div>
+						]]>
+					</comment>
+					<frontend_model>nostress_gpwebpay/version_element</frontend_model>					
+					<frontend_type>text</frontend_type>
+					<sort_order>0</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<active translate="label">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</active>
+						<title translate="label">
+							<label>Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</title>
+						<payaction translate="label">
+							<label>Method</label>
+							<comment>Authorization or Deposit.</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>nostress_gpwebpay/config_payaction</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</payaction>
+						<!--<automatic translate="label">
+							<label>Automatic handling of orders</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<comment>If enabled, then invoice is automatically created</comment>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</automatic>-->
+						<!-- 
+						<invoice translate="label">
+							<label>Auto-generated invoice</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<comment>For method mTRANSFER Pro only!</comment>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</invoice>
+						
+						<customer_group_access translate="label">
+							<label>Customer Group Access</label>
+							<frontend_type>select</frontend_type>
+							<source_model>nostress_mbank/config_customergroupaccess</source_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</customer_group_access>
+						<customer_group translate="label">
+							<label>Customer Group</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_customer_group</source_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</customer_group>-->
+						<merchantnumber translate="label">
+							<label>Merchant Number</label>
+							<comment>Merchant Number is provided by GPWebPay.</comment>
+							<frontend_type>text</frontend_type>
+							<frontend_class>validate-digits</frontend_class>
+							<backend_model>nostress_gpwebpay/verify_merchantnumber</backend_model>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</merchantnumber>
+						<private translate="label">
+							<label>Merchant Private Certificate</label>
+							<comment>E.g. nostress_private.pem</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</private>
+						<public translate="label">
+							<label>GPWebPay Public Certificate</label>
+							<comment>E.g. gpwebpay_public.pem</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</public>
+						<privatepass translate="label">
+							<label>Merchant Private Certificate Password</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</privatepass>
+						<folder translate="label">
+							<label>Secret Folder for storing certificates</label>
+							<comment>E.g. bla123</comment>
+							<frontend_type>text</frontend_type>
+							<frontend_class>validate-alphanum</frontend_class>
+							<backend_model>nostress_gpwebpay/verify_folder</backend_model> 
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</folder>
+						<orderurl translate="label">
+							<label>GPWebPay New Order URL</label>
+							<comment>See GPWebPay agreement</comment>
+							<frontend_type>text</frontend_type>
+							<frontend_class>validate-url</frontend_class>
+							<backend_model>nostress_gpwebpay/verify_url</backend_model>
+							<sort_order>13</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</orderurl>
+						<sandbox translate="label">
+							<label>Sandbox mode</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</sandbox>
+						<!--
+						<soapurl translate="label">
+							<label>GPWebPay SOAP URL</label>
+							<comment>E.g.: FIXME</comment>
+							<frontend_type>text</frontend_type>
+							<frontend_class>validate-url</frontend_class>
+							<backend_model>nostress_gpwebpay/verify_url</backend_model>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</soapurl>
+						<order_status translate="label">
+							<label>New order status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status</source_model>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</order_status>-->
+						<sort_order translate="label">
+							<label>Sort order</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>16</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</sort_order>
+						<allowspecific translate="label">
+							<label>Payment from applicable countries</label>
+							<frontend_type>allowspecific</frontend_type>
+							<sort_order>17</sort_order>
+							<source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</allowspecific>
+						<specificcountry translate="label">
+							<label>Payment from Specific countries</label>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>18</sort_order>
+							<source_model>adminhtml/system_config_source_country</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</specificcountry>
+						<customtext translate="label">
+							<label>Custom text</label>
+							<comment>Visible on frontend when customer selects this payment method.</comment>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>42</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</customtext>
+						<temp_shutdown translate="label">
+							<label>Temporary shutdown</label>
+							<frontend_model>nostress_gpwebpay/adminhtml_tempshutdown</frontend_model>
+							<backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Date is in MM/DD/YYYY format</comment>
+						</temp_shutdown>
+					</fields>
+				</gpwebpay>
+			</groups>
+		</payment>
+	</sections>
+</config>

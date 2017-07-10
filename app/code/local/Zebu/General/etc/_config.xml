@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Zebu_General>
+      <version>0.1.0</version>
+    </Zebu_General>
+  </modules>
+  <global>
+    <helpers>
+      <general>
+        <class>Zebu_General_Helper</class>
+      </general>
+    </helpers>
+  </global>
+  <frontend>
+    <events>
+      <core_block_abstract_to_html_before> <!-- identifier of the event we want to catch -->
+        <observers>
+          <core_block_abstract_to_html_before_handler> <!-- identifier of the event handler -->
+            <type>singleton</type> <!-- class method call type; valid are model, object and singleton -->
+            <class>Zebu_General_Model_Observer</class> <!-- observers class alias -->
+            <method>addGroupClass</method>  <!-- observer's method to be called -->
+            <args></args> <!-- additional arguments passed to observer -->
+          </core_block_abstract_to_html_before_handler>
+        </observers>
+      </core_block_abstract_to_html_before>
+    </events>  
+  </frontend>
+</config> 

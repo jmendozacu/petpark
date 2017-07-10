@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<config>
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addCss">
+                <name>connector/config.css</name>
+            </action>
+        </reference>
+    </adminhtml_system_config_edit>
+    <adminhtml_email_dashboard_index>
+        <reference name="head">
+            <action method="addCss">
+                <name>connector/dashboard.css</name>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="ddg_automation/adminhtml_dashboard_switcher" name="store_switcher" as="store_switcher"/>
+            <block type="ddg_automation/adminhtml_dashboard_tabs" name="tabs" as="ddg_tabs"/>
+        </reference>
+        <reference name="content">
+            <block type="adminhtml/widget_container"/>
+        </reference>
+    </adminhtml_email_dashboard_index>
+    <adminhtml_email_importer_index>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_importer" name="ddg_importer_index"/>
+        </reference>
+    </adminhtml_email_importer_index>
+    <adminhtml_email_order_index>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_order" name="ddg_order_index"/>
+        </reference>
+    </adminhtml_email_order_index>
+    <adminhtml_email_quote_index>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_quote" name="ddg_quote_index"/>
+        </reference>
+    </adminhtml_email_quote_index>
+    <adminhtml_email_review_index>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_review" name="ddg_review_index"/>
+        </reference>
+    </adminhtml_email_review_index>
+    <adminhtml_email_studio_index>
+        <reference name="content">
+            <block type="core/text" name="connector_iframe" as="connector_iframe"/>
+        </reference>
+    </adminhtml_email_studio_index>
+    <adminhtml_email_contact_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>email_contact/email_connector_contact</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_contact" name="ddg_automation">
+                <block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher">
+                    <action method="setUseConfirm">
+                        <params>0</params>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </adminhtml_email_contact_index>
+    <adminhtml_email_wishlist_index>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_wishlist" name="ddg_automation_wishlist"/>
+        </reference>
+    </adminhtml_email_wishlist_index>
+    <adminhtml_email_contact_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="ddg_automation/adminhtml_contact_grid" name="contact_grid"/>
+        </block>
+    </adminhtml_email_contact_grid>
+    <adminhtml_email_campaign_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>email_contact/email_connector_campaign</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_campaign" name="email_campaign">
+                <block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher">
+                    <action method="setUseConfirm">
+                        <params>0</params>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </adminhtml_email_campaign_index>
+    <adminhtml_email_campaign_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="ddg_automation/adminhtml_campaign_grid" name="campaign_grid"/>
+        </block>
+    </adminhtml_email_campaign_grid>
+    <adminhtml_email_automation_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>email_contact/email_connector_automation</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_automation" name="ddg_automation">
+                <block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher">
+                    <action method="setUseConfirm">
+                        <params>0</params>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </adminhtml_email_automation_index>
+    <adminhtml_email_automation_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="ddg_automation/adminhtml_automation_grid" name="automation_grid"/>
+        </block>
+    </adminhtml_email_automation_grid>
+    <adminhtml_email_automation_edit>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>email_contact/email_connector_automation</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_automation_edit" name="ddg_automation">
+                <block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher">
+                    <action method="setUseConfirm">
+                        <params>0</params>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </adminhtml_email_automation_edit>
+    <adminhtml_email_catalog_index>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_catalog" name="catalog_grid"/>
+        </reference>
+    </adminhtml_email_catalog_index>
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>connector/selector.js</script>
+            </action>
+            <action method="addJs">
+                <script>connector/jquery-1.10.1.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>connector/jquery.fancybox.pack.js</script>
+            </action>
+            <action method="addCss">
+                <name>connector/fancybox/jquery.fancybox.css</name>
+            </action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="ddg_automation/adminhtml_system_installation" name="ddg.adminhtml.installation"
+                   template="connector/beacon.phtml">
+            </block>
+        </reference>
+    </adminhtml_system_config_edit>
+    <default>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_system_appcues" name="ddg-appcues-admin"
+                   template="connector/appcues.phtml"/>
+        </reference>
+    </default>
+    <adminhtml_email_rules_index>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_rules" name="ddg_rules"/>
+        </reference>
+    </adminhtml_email_rules_index>
+    <adminhtml_email_rules_edit>
+        <reference name="left">
+            <block type="ddg_automation/adminhtml_rules_edit_tabs" name="ddg_rules_tabs">
+                <block type="ddg_automation/adminhtml_rules_edit_tab_main" name="ddg_rule_edit_tab_main"/>
+                <block type="ddg_automation/adminhtml_rules_edit_tab_conditions" name="ddg_rule_edit_tab_conditions"/>
+                <action method="addTab">
+                    <name>main_section</name>
+                    <block>ddg_rule_edit_tab_main</block>
+                </action>
+                <action method="addTab">
+                    <name>conditions_section</name>
+                    <block>ddg_rule_edit_tab_conditions</block>
+                </action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="ddg_automation/adminhtml_rules_edit" name="ddg_rule_edit"/>
+        </reference>
+    </adminhtml_email_rules_edit>
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <action method="addTab">
+                <name>connector.campaign.stats</name>
+                <block>ddg_automation/adminhtml_customer_tab</block>
+            </action>
+        </reference>
+    </adminhtml_customer_edit>
+</config>

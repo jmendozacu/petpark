@@ -1,0 +1,89 @@
+<!--@subject StayUnique.sk – Expedícia objednávky č. {{var order.increment_id}} @-->
+
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"htmlescape var=$order.getCustomerName()":"Customer Name",
+"var order.increment_id":"Order Id",
+"var order.getStatusLabel()":"Order Status",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var comment":"Order Comment",
+"var store.getFrontendName()":"Store Name"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+<tr>
+    <td align="center" valign="top" style="padding:20px 0 20px 0">
+        <!-- [ header starts here] -->
+        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+<!--            <tr>
+                <td valign="top"><a href="{{store url=""}}"><img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></td>
+            </tr>-->
+            <!-- [ middle starts here] -->
+<!--            <tr>
+                <td valign="top">
+                    <h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Vážený zákazník,</h1>
+                    <p style="font-size:12px; line-height:16px; margin:0 0 10px 0;">
+                        Vaša objednávka číslo: {{var order.increment_id}} zmenila stav na: <br/>
+                        <strong>{{var order.getStatusLabel()}}</strong>.
+                    </p>
+                    <p style="font-size:12px; line-height:16px; margin:0 0 10px 0;">Stav Vašej objednávky môžete sledovať po <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">prihlásenie</a>.</p>
+                    <p style="font-size:12px; line-height:16px; margin:0 0 10px 0;">{{var comment}}</p>
+                    <p style="font-size:12px; line-height:16px; margin:0;">
+                        Ak budete mať akékoľvek otázky neváhajte nás kontaktovať na e-mail
+                        <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> alebo volajte na číslo: <span class="nobr">{{config path='general/store_information/phone'}}</span>.
+
+                    </p>
+                </td>
+            </tr>-->
+            <tr>
+                <td valign="top">
+                    <p>
+                        Dobrý deň,
+                    </p>
+                    <p style="font-size:12px; line-height:16px; margin:0 0 10px 0;">
+                        Vaša objednávka na www.STAYUNIQUE.sk, bola <strong>vyexpedovaná a zásielka predaná doručovateľskej spoločnosti.</strong>
+                    </p>
+                    <p style="font-size:12px; line-height:16px; margin:0 0 10px 0;">
+                        <u>Číslo Vašej zásielky:</u> <strong>{{var shipment_id}}</strong><br />
+                        <u>Očakávané doručenie:</u> <strong>do 3 Prac. dní (Slovenská pošta)</strong><br />
+                        <u>UPOZORNENIE:</u>  Zásielky odoslané Slovenskou Poštou na DOBIERKU sú uložené na pošte <strong>IBA 7 DNÍ!</strong><br />
+                        <u>Sledovať Vašu zásielku môžete na:</u> http://tandt.posta.sk/
+                    </p>
+                    <p style="font-size:12px; line-height:16px; margin:0;">
+                        V prípade otázok alebo zmien nás prosíme kontaktujte:<br />
+                        <a href="mailto:obchod@stayunique.sk">obchod@stayunique.sk</a>,  +421 911 523 823 , po-pi 09,00 – 17,00
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="font-size:12px; line-height:16px; margin:0 0 10px 0;">Ďakujeme za prejavenú dôveru.</p>    
+                    <p style="font-size:12px; line-height:16px; margin:0;">Váš STAYUNIQUE.sk</p>
+                    <p style="font-size:12px; line-height:16px; margin:0 0 10px 0;"><a href="{{store url=""}}"><img src="{{skin url="images/stayunique.png" _area='frontend'}}" alt="{{var store.getFrontendName()}}"  style="margin-bottom:10px;" border="0"/></a></p>
+                    <p style="font-size:12px; font-weight: bold; line-height:16px; margin:0;">StayUnique, s.r.o.</p>
+                    <p style="font-size:12px; font-weight: normal; line-height:16px; margin:0 0 10px 0;">Javorová 3A, 900 23 Viničné</p>
+                    <p style="font-size:12px; line-height:16px; margin:0 0 10px 0;">IČO  47 707 402<br />
+                       DIČ 202 408 666 9 (nie sme platitelia DPH)<br />
+                       Bankové spojenie: ČSOB, 401 967 49 19/7500 
+                    </p>
+                    <p style="font-size:12px; font-weight: bold; line-height:16px; margin:0;">Zákaznický servis: </p>
+                    <p style="font-size:12px; font-weight: normal; line-height:16px; margin:0;">Po-Pia: 09:00 - 17:00, +421 911 523 823<br />
+                       <a href="mailto:obchod@stayunique.sk">obchod@stayunique.sk</a>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center;"><center><p style="font-size:12px; margin:0;">Ďakujeme, <strong>{{var store.getFrontendName()}}</strong></p></center></td>
+            </tr>
+        </table>
+    </td>
+</tr>
+</table>
+</div>
+</body>

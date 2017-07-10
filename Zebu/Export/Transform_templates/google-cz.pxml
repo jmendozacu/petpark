@@ -1,0 +1,34 @@
+<?php include_once dirname(__FILE__).'/functions2.php';
+$product->load($product->getId());
+ ?>
+
+    <item>
+        <g:id><?php echo $product->getSku();?></g:id>
+        <title><?php echo short($product->getName(), 70); ?></title>
+        <description><?php echo short($product->getDescription(),512); ?></description>
+        <!--<g:google_product_category><?php echo getGoogleCategory($product); ?></g:google_product_category>-->
+
+        <?php foreach(Zebu_Mage_ProductHelper::get_category_max_pathes_array(join(',',$product->getCategoryIds()),' | ',0) as $cat){ ?>
+        <g:google_product_category><?php echo htmlspecialchars($cat); ?></g:google_product_category>
+        <g:product_type><?php echo htmlspecialchars($cat); ?></g:product_type>
+        <?php break; } ?>
+
+        <link><?php echo $product->getProductUrl() /*Mage::app()->getStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$product->getUrlPath();*/ ?></link>
+	<img><?php echo $product->getImage(); ?></img>
+        <?php if (!preg_match('~^(no_selection)?$~',$product->getImage())) : ?> 
+        <g:image_link><?php echo Mage::app()->getStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'media/catalog/product'.$product->getImage() ?></g:image_link>
+        <?php endif; ?>
+        <g:condition>new</g:condition>
+
+        <?php if(Mage::getModel('cataloginventory/stock_item')->loadByProduct($product)->getQty() > 0 ) : ?>
+        <g:availability>in stock</g:availability>
+        <?php else: ?>
+        <g:availability>available for order</g:availability>
+        <?php endif;?>
+        <g:price><?php echo getProductPrice($product); ?></g:price>
+        <g:brand><?php echo $product->getAttributeText('manufacturer'); ?></g:brand>
+        <?php if(trim($product->getEan()) != "") { ?>
+        <g:gtin><?php echo $product->getEan(); ?></g:gtin>
+        <?php } ?>
+        <g:mpn><?php echo $product->getSku(); ?></g:mpn>
+    </item>

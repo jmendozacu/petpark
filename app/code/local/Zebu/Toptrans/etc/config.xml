@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+
+    <Zebu_Toptrans>
+      <version>1.0.0</version>
+    </Zebu_Toptrans>
+
+  </modules>
+
+  <global>
+      
+    <models> <!-- model -->
+      <Zebu_Toptrans>
+        <class>Zebu_Toptrans_Model</class>
+      </Zebu_Toptrans>
+    </models>
+
+    <resources> <!-- Zdroje -->
+
+            <!-- Instalace -->
+            
+      <zebu_toptrans_setup>
+        <setup>
+          <module>Zebu_Toptrans</module>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </zebu_toptrans_setup>
+            
+            <!-- Zapis -->
+            
+      <zebu_toptrans_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </zebu_toptrans_write>
+
+            <!-- Cteni -->
+      <zebu_toptrans_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </zebu_toptrans_read>
+    </resources>
+  </global>
+    
+    <!-- nastaveni prekladu modulu -->
+    
+  <adminhtml> <!-- aplikace administratora -->
+    <translate>
+      <modules>
+        <Zebu_Toptrans>
+          <files>
+            <default>Zebu_toptrans.csv</default>
+          </files>
+        </Zebu_Toptrans>
+      </modules>
+    </translate>
+  </adminhtml>
+    
+  <frontend> <!-- aplikace uzivatele -->
+    <translate>
+      <modules>
+        <Zebu_Toptrans>
+          <files>
+            <default>Zebu_toptrans.csv</default>
+          </files>
+        </Zebu_Toptrans>
+      </modules>
+    </translate>
+  </frontend>
+
+  <default>
+    <carriers>
+          
+      <toptrans>
+        <active>0</active>
+        <sallowspecific>0</sallowspecific>
+        <model>Zebu_Toptrans/Transport_package</model>
+        <name>Způsob dodání</name>
+        <price>50</price>
+        <title>Způsob dodání</title>
+        <type>I</type>
+        <specificerrmsg>Tato dodací metoda není dostupná.</specificerrmsg>
+        <handling_type>F</handling_type>
+      </toptrans>
+
+    </carriers>
+  </default>
+</config>

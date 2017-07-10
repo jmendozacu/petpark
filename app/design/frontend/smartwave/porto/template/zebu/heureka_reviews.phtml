@@ -1,0 +1,109 @@
+<?php /* ?>
+<div class="container" style="margin-top: 30px; font-size: 14px">
+  <div class="row">
+                  <div class="col-sm-3">
+                <div class="content">
+<div id="showHeurekaBadgeHere-12"></div><script type="text/javascript">
+//<![CDATA[
+var _hwq = _hwq || [];
+    _hwq.push(['setKey', 'F00740BEDA74CF570830389EDD17AF82']);_hwq.push(['showWidget', '12', '17644', 'PetPark.sk', 'petpark-sk']);(function() {
+    var ho = document.createElement('script'); ho.type = 'text/javascript'; ho.async = true;
+    ho.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.heureka.sk/direct/i/gjs.php?n=wdgt&sak=F00740BEDA74CF570830389EDD17AF82';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ho, s);
+})();
+//]]>
+</script>
+      </div>
+      </div>          
+              <?php foreach(Zebu_HeurekaReviews::getEshopReviews(3) as $review): ?>
+                <div class="col-sm-3" style="margin-top:10px">
+                <div class="content">
+                  <?php
+                  echo '<p>'; 
+                  echo $review['summary'];
+                  if (!empty($review['pros'])){
+                      echo ' '.$review['pros'];
+                  }
+                  if (!empty($review['cons'])){
+                      echo ' Slabiny: '.$review['cons'];
+                  }
+                  echo '</p>';
+                   echo '<p style="font-style:italic; margin-top:10px">'.$review['name'].' '.Mage::helper('core')->formatDate($review['unix_timestamp'], 'medium', false).'</p>';
+                   echo '<div class="review-ratings"><div class="rating-box" style="margin:auto;"><div class="rating" style="width:'.(100*$review['total_rating']/5).'%"></div></div></div>';
+                   ?>                    
+                </div>
+                </div>
+                <?php endforeach; ?>
+
+  </div>
+</div>
+<?php */ ?>
+
+<div class="container" style="margin-top: 30px; font-size: 14px">
+  <h2 class="filter-title"><span class="content"><strong>Recenzie zákazníkov</strong></span></h2>
+<div class="row">
+
+                      <div class="col-sm-4">
+                <div class="content">
+<div id="showHeurekaBadgeHere-11"></div><script type="text/javascript">
+//<![CDATA[
+var _hwq = _hwq || [];
+    _hwq.push(['setKey', 'F00740BEDA74CF570830389EDD17AF82']);_hwq.push(['showWidget', '11', '17644', 'PetPark.sk', 'petpark-sk']);(function() {
+    var ho = document.createElement('script'); ho.type = 'text/javascript'; ho.async = true;
+    ho.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.heureka.sk/direct/i/gjs.php?n=wdgt&sak=F00740BEDA74CF570830389EDD17AF82';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ho, s);
+})();
+//]]>
+</script>
+      </div>
+      </div>
+          
+    <div class="col-sm-8">
+        <div id="testimonials-slider-demo-7" class="owl-carousel owl-theme">
+        
+        <?php foreach(Zebu_HeurekaReviews::getEshopReviews(10) as $review): ?>
+                <div class="item">
+                <blockquote class="testimonial">
+                  <?php
+                  echo '<p>'; 
+                  echo rtrim($review['summary'],'.').'.';
+                  if (!empty($review['pros'])){
+                      echo ' '.rtrim($review['pros'],'.').'.';
+                  }
+                  if (!empty($review['cons'])){
+                      echo ' Slabiny: '.$review['cons'];
+                  }
+                  echo '</p>';
+                   //echo '<p style="font-style:italic; margin-top:10px">'.$review['name'].' '.Mage::helper('core')->formatDate($review['unix_timestamp'], 'medium', false).'</p>';
+                   echo '<div class="review-ratings"><div class="rating-box" style="margin:auto;"><div class="rating" style="width:'.(100*$review['total_rating']/5).'%"></div></div></div>';
+                   ?>                    
+                </blockquote>
+                <div class="testimonial-arrow-down"></div>
+                <div class="testimonial-author">
+                    <p><strong><?php echo empty($review['name']) ? 'anonym' : $review['name']; ?></strong><span><?php echo Mage::helper('core')->formatDate($review['unix_timestamp'], 'medium', false); ?></span></p>
+                </div>
+                </div>
+                <?php endforeach; ?>
+
+        </div>
+        <script type="text/javascript">
+        jQuery(function($){
+            $("#testimonials-slider-demo-7").owlCarousel({
+                lazyLoad: true,
+                responsiveRefreshRate: 50,
+                slideSpeed: 500,
+                paginationSpeed: 500,
+                scrollPerPage: true,
+                stopOnHover: true,
+                rewindNav: true,
+                rewindSpeed: 600,
+                pagination: true,
+                navigation: false,
+                autoPlay: true,
+                singleItem: true
+            });
+        });
+        </script>
+    </div>
+</div>
+</div>

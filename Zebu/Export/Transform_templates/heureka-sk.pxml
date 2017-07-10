@@ -1,0 +1,81 @@
+<?php include_once dirname(__FILE__).'/functions2.php'; ?>
+    <?php 
+    $name = $product->getName();
+    $zname = $product->getData('nazev_seznam');
+    $ean = $product->getData('ean');
+    ?>
+    <SHOPITEM>
+            <ITEM_ID><?php echo $product->getSku(); ?></ITEM_ID>
+            <PRODUCT><![CDATA[<?php echo $product->getName(); ?>]]></PRODUCT>
+            <PRODUCTNAME><![CDATA[<?php echo $product->getProductname() ? $product->getProductname() : $product->getName(); ?>]]></PRODUCTNAME>
+            <?php if($ean != '') : ?>
+            <EAN><?php echo $ean; ?></EAN>
+            <?php endif; ?>
+            <DESCRIPTION><![CDATA[<?php echo strip_tags($product->getDescription()); ?>]]></DESCRIPTION>
+            <URL><?php echo /*Mage::app()->getStore()->getBaseUrl().*/Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$product->getUrlPath(); ?></URL>
+            <ITEM_TYPE>new</ITEM_TYPE>
+            <?php if (!preg_match('~^(no_selection)?$~',$product->getImage())) : ?> 
+              <IMGURL><?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'media/catalog/product'.$product->getImage() ?></IMGURL>
+            <?php endif; ?>
+            <MANUFACTURER><![CDATA[<?php echo $product->getAttributeText('manufacturer') ?>]]></MANUFACTURER>
+            <?php if(Mage::getModel('cataloginventory/stock_item')->loadByProduct($product)->getQty() > 0 ) : ?>
+            <DELIVERY_DATE>0</DELIVERY_DATE>
+            <?php else: ?>
+                <?php 
+                    /*$avail = 3;
+                    $pa = $product->getAvailability();
+                    switch($pa) {
+                        case 3710 : $avail = 10; break;
+                        case 3709 : $avail = 14; break;
+                        case 3703 : $avail = 3; break;
+                        case 3702 : $avail = 5; break;
+                        case 5536 : $avail = 28; break;
+                        case 3704 : $avail = 7; break;
+                        case 3708 : $avail = 1; break;
+
+                        case 3711 : $avail = ''; break;
+                        case 4213 : $avail = ''; break;
+                        case 3706 : $avail = ''; break;
+                        case 3707 : $avail = ''; break;
+                        case 3705 : $avail = ''; break;
+                    }*/
+                    $avail = 3;
+                    $pa = $product->getAttributeText('availability');
+                    switch ($pa) {
+                        case 'Skladem' : $avail = 0;
+                            break;
+                        case 'Do týdne': $avail = 7;
+                            break;
+                        case 'Na dotaz' : $avail = -1;
+                            break;
+                        default: $avail = -1;
+                            break;
+                    }
+                ?>
+                <DELIVERY_DATE><?php echo $avail; ?></DELIVERY_DATE>
+            <?php endif;?>
+            <?php /* ?>
+            <?php
+                $shipping = Mage::helper('transportservice')->getProductShipping($product->getId(), true);
+                $dob = Mage::getStoreConfig('payment/phoenix_cashondelivery/inlandcosts');
+                ?>
+            <?php if(false):?>
+            <DELIVERY>
+                <DELIVERY_ID>CESKA_POSTA_NA_POSTU</DELIVERY_ID>
+                <DELIVERY_PRICE><?php echo $shipping?></DELIVERY_PRICE>
+                <DELIVERY_PRICE_COD><?php echo ($shipping + $dob); ?></DELIVERY_PRICE_COD>
+            </DELIVERY>
+            <?php endif; ?>
+            <DELIVERY>
+                <DELIVERY_ID>TOPTRANS</DELIVERY_ID>
+                <DELIVERY_PRICE><?php echo $shipping; ?></DELIVERY_PRICE>
+                <DELIVERY_PRICE_COD><?php echo ($shipping + $dob); ?></DELIVERY_PRICE_COD>
+            </DELIVERY>
+             <?php */ ?>
+            <PRICE_VAT><?php echo getProductPrice($product, false); ?></PRICE_VAT>
+<?php /* foreach(Zebu_Mage_ProductHelper::get_category_max_pathes_array(join(',',$product->getCategoryIds()),' | ',0) as $cat){?>
+            <?php if(htmlspecialchars($cat) != 'Výprodej') : ?>
+            <CATEGORYTEXT><?php echo htmlspecialchars($cat) ?></CATEGORYTEXT>
+            <?php endif; ?>
+<?php }*/ ?>
+    </SHOPITEM>

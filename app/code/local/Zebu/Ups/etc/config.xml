@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+
+    <Zebu_Ups>
+      <version>1.0.0</version>
+    </Zebu_Ups>
+
+  </modules>
+
+  <global>
+      
+    <models> <!-- model -->
+      <Zebu_Ups>
+        <class>Zebu_Ups_Model</class>
+      </Zebu_Ups>
+    </models>
+
+    <resources> <!-- Zdroje -->
+
+            <!-- Instalace -->
+            
+      <zebu_ups_setup>
+        <setup>
+          <module>Zebu_Ups</module>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </zebu_ups_setup>
+            
+            <!-- Zapis -->
+            
+      <zebu_ups_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </zebu_ups_write>
+
+            <!-- Cteni -->
+      <zebu_ups_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </zebu_ups_read>
+    </resources>
+  </global>
+    
+    <!-- nastaveni prekladu modulu -->
+    
+  <adminhtml> <!-- aplikace administratora -->
+    <translate>
+      <modules>
+        <Zebu_Ups>
+          <files>
+            <default>Zebu_ups.csv</default>
+          </files>
+        </Zebu_Ups>
+      </modules>
+    </translate>
+  </adminhtml>
+    
+  <frontend> <!-- aplikace uzivatele -->
+    <translate>
+      <modules>
+        <Zebu_Ups>
+          <files>
+            <default>Zebu_ups.csv</default>
+          </files>
+        </Zebu_Ups>
+      </modules>
+    </translate>
+  </frontend>
+
+  <default>
+    <carriers>
+          
+      <zebu_ups>
+        <active>0</active>
+        <sallowspecific>0</sallowspecific>
+        <model>Zebu_Ups/Transport_package</model>
+        <name>Kurier Toptrans, UPS</name>
+        <price>2.75</price>
+        <cod_fee>0.72</cod_fee>
+        <freeshipping_from>60</freeshipping_from>
+        <title>doručenie na adresu</title>
+        <type>O</type>
+        <specificerrmsg>Tato dodací metoda není dostupná.</specificerrmsg>
+        <handling_type>F</handling_type>
+      </zebu_ups>
+
+    </carriers>
+  </default>
+</config>

@@ -1,0 +1,10 @@
+app/etc/local.xml
+nbproject
+.idea
+sitemap.xml
+var/heurekask-overeno.log
+.DS_Store
+*.cache
+
+var
+media

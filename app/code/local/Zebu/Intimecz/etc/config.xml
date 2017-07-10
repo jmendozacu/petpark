@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+
+    <Zebu_Intimecz>
+      <version>1.0.0</version>
+    </Zebu_Intimecz>
+
+  </modules>
+
+  <global>
+      
+    <models> <!-- model -->
+      <Zebu_Intimecz>
+        <class>Zebu_Intimecz_Model</class>
+      </Zebu_Intimecz>
+    </models>
+
+    <resources> <!-- Zdroje -->
+
+            <!-- Instalace -->
+            
+      <zebu_intimecz_setup>
+        <setup>
+          <module>Zebu_Intimecz</module>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </zebu_intimecz_setup>
+            
+            <!-- Zapis -->
+            
+      <zebu_intimecz_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </zebu_intimecz_write>
+
+            <!-- Cteni -->
+      <zebu_intimecz_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </zebu_intimecz_read>
+    </resources>
+  </global>
+    
+    <!-- nastaveni prekladu modulu -->
+    
+  <adminhtml> <!-- aplikace administratora -->
+    <translate>
+      <modules>
+        <Zebu_Intimecz>
+          <files>
+            <default>Zebu_intimecz.csv</default>
+          </files>
+        </Zebu_Intimecz>
+      </modules>
+    </translate>
+  </adminhtml>
+    
+  <frontend> <!-- aplikace uzivatele -->
+    <translate>
+      <modules>
+        <Zebu_Intimecz>
+          <files>
+            <default>Zebu_intimecz.csv</default>
+          </files>
+        </Zebu_Intimecz>
+      </modules>
+    </translate>
+  </frontend>
+
+  <default>
+    <carriers>
+          
+      <intimecz>
+        <active>0</active>
+        <sallowspecific>0</sallowspecific>
+        <model>Zebu_Intimecz/Transport_package</model>
+        <name>Maďarská pošta | doručenie na adresu</name>
+        <price>4.25</price>
+        <title>Maďarská pošta | doručenie na adresu</title>
+        <type>O</type>
+        <freeshipping_from>100</freeshipping_from>
+        <specificerrmsg>Tato dodací metoda není dostupná.</specificerrmsg>
+        <handling_type>F</handling_type>
+      </intimecz>
+
+    </carriers>
+  </default>
+</config>

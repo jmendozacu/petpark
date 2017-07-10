@@ -1,0 +1,67 @@
+{* This is a comment block
+
+Use vars: {{var var_name}}
+*}<!--@subject Finacná operácia bola neúspešná @-->
+<!--@vars
+{"var reason":"Transaction Failed Reason",
+"var checkoutType":"Checkout Type",
+"var customerEmail":"Customer Email",
+"var customer":"Customer Name",
+"var items":"Shopping Cart Items",
+"var total":"Total",
+"var billingAddress.format('html')":"Billing Address",
+"var shippingAddress.format('html')":"Shipping Address",
+"var shippingMethod":"Shipping Method",
+"var paymentMethod":"Payment Method",
+"var dateAndTime":"Date and Time of Transaction"}
+@-->
+
+<table>
+    <thead>
+        <tr>
+            <th>Fina&#269;n&aacute; oper&aacute;cia bola ne&uacute;spe&scaron;n&aacute;.</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                    <b>D&ocirc;vod</b><br />
+                    {{var reason}}
+                </p>
+                <p>
+                    <b>Checkout Type</b><br />
+                    {{var checkoutType}}
+                </p>
+                <p>
+                    <b>Z&aacute;kazn&iacute;k:</b><br />
+                    <a href="mailto:{{var customerEmail}}">{{var customer}}</a> &lt;{{var customerEmail}}&gt;
+                </p>
+                <p>
+                    <b>Polo&#382;ky</b><br />
+                    {{var items}}
+                </p>
+                <p>
+                    <b>Celkom:</b><br />
+                    {{var total}}
+                </p>
+                <p>
+                    <b>Faktura&#269;n&eacute; &uacute;daje:</b><br />
+                    {{var billingAddress.format('html')}}                </p>
+                <p>
+                    <b>Prepravn&eacute; inform&aacute;cie:</b><br />
+                    {{var shippingAddress.format('html')}}                </p>
+                <p>
+                    <b>Sp&ocirc;sob dopravy:</b><br />
+                    {{var shippingMethod}}                </p>
+                <p>
+                    <b>Platov&aacute; met&oacute;da:</b><br />
+                    {{var paymentMethod}}                </p>
+          <p>
+                    <b>D&aacute;tum a &#269;as:</b><br />
+                    {{var dateAndTime}}
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Zebu_General>
+      <version>0.1.0</version>
+    </Zebu_General>
+  </modules>
+  <global>
+    <helpers>
+      <general>
+        <class>Zebu_General_Helper</class>
+      </general>
+    </helpers>
+    <events>
+        <cataloginventory_stock_item_save_commit_after>
+            <observers>
+                <genmato_stockupdate>
+                    <class>Zebu_General_Model_Observer</class>
+                    <method>catalogInventorySave</method>
+                </genmato_stockupdate>
+            </observers>
+        </cataloginventory_stock_item_save_commit_after>
+        <sales_model_service_quote_submit_after>
+            <observers>
+                <genmato_stockupdate>
+                    <class>Zebu_General_Model_Observer</class>
+                    <method>subtractQuoteInventory</method>
+                </genmato_stockupdate>
+            </observers>
+        </sales_model_service_quote_submit_after>
+        <sales_model_service_quote_submit_failure>
+            <observers>
+                <genmato_stockupdate>
+                    <class>Zebu_General_Model_Observer</class>
+                    <method>revertQuoteInventory</method>
+                </genmato_stockupdate>
+            </observers>
+        </sales_model_service_quote_submit_failure>
+        <sales_order_item_cancel>
+            <observers>
+                <genmato_stockupdate>
+                    <class>Zebu_General_Model_Observer</class>
+                    <method>cancelOrderItem</method>
+                </genmato_stockupdate>
+            </observers>
+        </sales_order_item_cancel>
+        <sales_order_creditmemo_save_after>
+            <observers>
+                <genmato_stockupdate>
+                    <class>Zebu_General_Model_Observer</class>
+                    <method>refundOrderInventory</method>
+                </genmato_stockupdate>
+            </observers>
+        </sales_order_creditmemo_save_after>
+    </events>    
+  </global>
+  <frontend>
+    <events>
+      <core_block_abstract_to_html_before> <!-- identifier of the event we want to catch -->
+        <observers>
+          <core_block_abstract_to_html_before_handler> <!-- identifier of the event handler -->
+            <type>singleton</type> <!-- class method call type; valid are model, object and singleton -->
+            <class>Zebu_General_Model_Observer</class> <!-- observers class alias -->
+            <method>addGroupClass</method>  <!-- observer's method to be called -->
+            <args></args> <!-- additional arguments passed to observer -->
+          </core_block_abstract_to_html_before_handler>
+        </observers>
+      </core_block_abstract_to_html_before>
+    </events>  
+  </frontend>
+</config> 

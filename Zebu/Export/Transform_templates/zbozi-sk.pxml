@@ -1,0 +1,36 @@
+<?php include_once dirname(__FILE__).'/functions2.php'; ?>
+    <?php
+    $name = $product->getData('nazev_seznam');
+    if(trim($name) == "") {
+        $name = $product->getName();
+    }
+    ?>
+    <SHOPITEM>
+            <PRODUCT><?php echo short($name, 64); ?></PRODUCT>
+            <PRODUCTNO><?php echo $product->getSku() ?></PRODUCTNO>
+            <DESCRIPTION><?php echo short($product->getDescription(),512); ?></DESCRIPTION>
+            <URL><?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$product->getUrlPath(); ?></URL>
+            <ITEM_TYPE>new</ITEM_TYPE>
+            <?php if (!preg_match('~^(no_selection)?$~',$product->getImage())) : ?> 
+              <IMGURL><?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'media/catalog/product'.$product->getImage() ?></IMGURL>
+            <?php endif; ?>
+            <MANUFACTURER><?php echo $product->getAttributeText('manufacturer') ?></MANUFACTURER>
+            <?php if(Mage::getModel('cataloginventory/stock_item')->loadByProduct($product)->getQty() > 0) : ?>
+            <DELIVERY_DATE>0</DELIVERY_DATE>
+            <?php else: ?>
+                <DELIVERY_DATE>3</DELIVERY_DATE>
+            <?php endif;?>
+            <PRICE_VAT><?php echo getProductPrice($product, false); ?></PRICE_VAT>
+            <?php foreach(Zebu_Mage_ProductHelper::get_category_max_pathes_array(join(',',$product->getCategoryIds()),' | ',0) as $cat){?>
+            <?php if(htmlspecialchars($cat) != 'Výprodej') : ?>
+                <CATEGORYTEXT><?php echo htmlspecialchars($cat) ?></CATEGORYTEXT>
+            <?php endif; ?>
+            <?php } ?>
+            <?php 
+                /*if(count(Mage::helper('zebutik')->getProductGift($product->getId())) > 0) {
+                    echo "<EXTRA_MESSAGE>free_gift</EXTRA_MESSAGE>";
+                } elseif(Mage::helper('transportservice')->getProductShipping($product->getId(), true) <= 0) {
+                    echo "<EXTRA_MESSAGE>free_delivery</EXTRA_MESSAGE>";
+                }*/
+            ?>
+    </SHOPITEM>

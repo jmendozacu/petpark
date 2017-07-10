@@ -1,0 +1,141 @@
+Action,Akcia
+Add Category,Pridať kategóriu
+Add Comment,Pridať komentár
+Add Post,Pridať aktualitu
+Advanced Options,Pokročilé nastavenia
+Advanced Post Options,Pokročilé nastavenia aktualít
+"If enabled, all comments appear immediately without admin approval.",Všetky komentáre sa objavia okamžite baz nutnosti ich schválení administrátorom.
+Approve,schváliť
+Are you sure?,Ste si istý?
+Auto Approve Comments,Automaticky schváliť komentáre
+Blog,aktuality
+Blog Comment Manager,Správca komentárov aktualít
+Blog Manager,Správca aktualít
+Blog Post Manager,Správca príspevkov aktualít
+Blog Post Options,Možnosti príspevkov aktualít
+Blog Settings,nastavenie aktualít
+Blog Title,titulok aktualít
+Categories,kategórie
+Category,kategórie
+Category does not exist,kategória neexistuje
+Category Information,Informácie o kategórii
+Category Manager,Správca kategórií
+Change status,zmeniť stav
+click here,kliknite sem
+Comment,komentár
+Comment Information,Informácie o poznámkach
+Comment was approved,Komentár bol schválený
+Comment was successfully deleted,Komentár bol úspešne zmazaný
+Comment was successfully saved,Komentár bol úspešne uložený
+Comment was unapproved,Komentár bol zamietnutý
+Comments,Komentáre
+Comments are not enabled.,Komentáre nie sú povolené.
+Comments will appear immediately without the need for approval by admin.,Komentáre sa objavia okamžite bez nutnosti ich schválení administrátorom.
+Content,obsah
+Created,vytvorený
+Delete,zmazať
+Delete Category,zmazať kategóriu
+Delete Comment,zmazať komentár
+Delete Post,zmazať aktualitu
+Description,popis
+Disabled,zakázaný
+Email Address,E-mailová adresa
+Edit,upraviť
+Edit Category '%s',Upraviť kategóriu '%s'
+Edit Comment By '%s',Upraviť komentár od '%s'
+Edit Post '%s',Upraviť aktualitu '%s'
+eg: YYYY-MM-DD HH:MM:SS Leave blank to use current date,napr .: RRRR-MM-DD HH: MM: SS. Pre použitie aktuálneho dátumu nevypĺňajte.
+Email,E-mail
+Email Sender,Odosielateľ e-mailu
+Email Template,Šablóna e-mailu
+Enable Blog RSS Feed,Povoliť RSS kanál aktualít
+Enable Comments,povoliť komentáre
+Enable Footer Link,Povoliť odkaz v pätičke
+Enable Left Menu,Povoliť ľavé menu
+Enable Right Menu,Povoliť pravé menu
+Enable Top Link,Povoliť odkaz v hlavičke
+Enabled,povolený
+Frequency,opakovanie
+Go to Home Page,Na hlavnú stránku
+Google Sitemap,Google Sitemap
+Hidden,skrytý
+Home,domov
+ID,ID
+Identifier,identifikátor
+Keywords,Kľúčové slová
+Leave blank to use current user name,Pre použitie mena aktuálneho užívateľa nechajte prázdne
+Logged in Auto Approve Comments,Automaticky schváliť komentáre prihlásených užívateľov
+Login Required to Comment,Pre pridanie komentára sa musíte prihlásiť
+Manage Categories,Správca kategórií
+Manage Comments,Správca komentárov
+Manage Posts,Správca aktualít
+Manage Products,Správca produktov
+Menus and Links,Menu a odkazy
+Meta Data,meta dáta
+Meta Description,meta popis
+Meta Keywords,Meta kľúčové slová
+Name,meno
+No Posts in this Category.,V tejto kategórii nie sú žiadne aktuality.
+Number of characters in a post to be displayed before it is truncated and the Read More link is added. 0 for unlimited.,Počet znakov príspevku pred jeho skrátením a pridaním odkazu 'Viac'. 0 pre neobmedzený počet znakov.
+Number of post to display in the RSS feed.,Počet aktualít zobrazených v RSS kanáli.
+Only comments added by logged in users will be approved automatically,Iba komentáre prihlásených užívateľov budú automaticky schválené
+Page Layout,vzhľad stránky
+Please select categories,Vyberte prosím kategórie
+Please select comment(s),Vyberte prosím komentár (e)
+Please select post(s),Vyberte prosím aktualitu (y)
+Post was successfully deleted,Aktualita bola úspešne zmazaná
+Post does not exist,aktualita neexistuje
+Post Identifier already exist.,Identifikátor aktuality už existuje.
+Post Identifier cannot consist only of numbers.,Identifikátor aktuality nemôže obsahovať len čísla.
+Post information,Informácie o aktualite
+Post was successfully deleted,Aktualita bola úspešne zmazaná
+Post was successfully saved,Aktualita bola úspešne uložená
+Posted By,Pridal
+Posted in,Uverejnené v kategórii
+Poster,autor
+Posts per Page,Aktualít na stránku
+Priority,priorita
+Read More,viac
+Recent Posts,Najnovšie aktuality
+"Relative to current skin directory, e.g. images/rsslogo.jpg","Relatívne k adresáru súčasného vzhľadu, napr. 'Images / rsslogo.jpg'."
+Return to,Späť na
+Return to ,Späť na
+Route to Blog,Cesta k aktualitám
+RSS Feed,RSS kanál
+RSS Feed Image,Obrázok RSS kanála
+RSS Posts to Show,Počet aktualít v RSS kanáli
+Save Category,Uložiť kategórii
+Save Comment,Uložiť komentár
+Save Post,Uložiť aktualitu
+Show Bookmarks in Lists,Ukázať záložky v zozname
+Show Bookmarks in Posts,Ukázať záložky v aktualitách
+Show Breadcrumbs,Ukázať Breadcrumbs
+Sort Order,poradie zoradenia
+Status,stav
+Store View,pohľad obchodu
+Submit Comment,Odoslať komentár
+Summary Character Count,Počet znakov súhrnu
+The number of recent post to be displayed in the menu. 0 to disable.,Počet najnovších aktualít zobrazovaných v menu. 0 pre vypnutie menu.
+The number of posts displayed per page. Set 0 to disable pagination.,Počet aktualít zobrazených na stránke. 0 pre vypnutie stránkovanie.
+Title,Názov
+to log in,prihlásiť sa
+Total of %d comment(s) were successfully approved,Celkom% d komentárov bolo úspešne schválené
+Total of %d comment(s) were successfully unapproved,Celkom% d komentárov bolo úspešne zamietnuté
+Total of %d comments(s) were successfully deleted,Celkom% d komentárov bolo úspešne vymazané
+Total of %d record(s) were successfully deleted,Celkom% d záznamov bolo úspešne vymazané
+Total of %d record(s) were successfully updated,Celkom% d záznamov bolo úspešne aktualizované
+Unable to find category to save,Nemožno nájsť kategórii na uloženie
+Unable to find comment to save,Nemožno nájsť komentár k uloženiu
+Unable to find post to save,Nemožno nájsť aktualitu k uloženiu
+"Unable to submit your comment. Please, try again later",Váš komentár sa nedá odoslať. Skúste to prosím neskôr.
+Unapprove,zamietnuť
+Updated,Aktualizované
+User,Užívateľ
+You must be logged in to comment.,Pre pridanie komentára musíte byť prihlásený.
+You must be logged in to post a comment.,Pre pridanie komentára musíte byť prihlásený.
+Your comment has been submitted and is awaiting approval.,Váš komentár bol odoslaný a čaká na schválenie.
+Your comment has been submitted.,Váš komentár bol odoslaný.
+"Must NOT contain any slashes. ""news"" makes the blog accessible from domain.com/news. Leave blank for default value.","napr. ""novinky"" sprístupní blog na adrese 'domena.cz/novinky'. Nesmie obsahovať žiadne lomítka. Nechajte prázdne pre východiskovú hodnotu 'blog'."
+< Newer Posts,& Laque; novšie aktuality
+Older Posts >,Staršie aktuality & raquo;
+Posts,aktuality 

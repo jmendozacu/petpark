@@ -1,0 +1,154 @@
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<?php if($meta_title=$this->getMetaTitle()): ?>
+<title><?php echo htmlspecialchars($meta_title) ?></title>
+<?php else: ?>
+<title><?php echo $this->getTitle() ?></title>
+<?php endif; ?>
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<?php
+    $theme = Mage::helper('porto');
+    $charSubset = '&subset=latin';
+    $d = $theme->getCfgSectionDesign();
+    $s = $theme->getCfgSectionSettings();
+	if(!isset($s['general']['disable_responsive']) || (isset($s['general']['disable_responsive']) && !$s['general']['disable_responsive'])){
+?>	
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<?php
+	}
+?>
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+
+<?php //Include Google fonts character subsets (such as extended latin, cyrillic)
+    if (isset($d['font']['primary_char_latin_ext']) && $d['font']['primary_char_latin_ext']==1 )
+        $charSubset .= ',latin-ext';
+    if (isset($d['font']['custom_char_subset']) && $d['font']['custom_char_subset'])
+        $charSubset .= ','.$d['font']['custom_char_subset'];
+    $font_sizes = "%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic";
+?>
+<?php if ($d['font']['custom'] && $d['font']['primary_font_family_group'] == 'google'): ?>
+<link rel="stylesheet" href='//fonts.googleapis.com/css?family=<?php echo str_replace(' ', '+', $d['font']['primary_font_family']).$font_sizes; echo $charSubset; ?>' type='text/css' />
+<?php else: ?>
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic&amp;v1&amp;subset=latin%2Clatin-ext" type="text/css" media="screen"/>
+<?php endif;?>
+<link href='//fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'/>
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof dailydealTimeCountersCategory == 'undefined') {
+	var dailydealTimeCountersCategory = new Array();
+	var i = 0;
+}
+//]]>
+</script>
+<!--<?php echo "Porto Magento Theme: v".Mage::getConfig()->getModuleConfig("Smartwave_Porto")->version; ?>-->
+
+<!-- Default - petpark.sk -->
+<?php if (Mage::app()->getStore()->getCode()=='default'){ ?>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
+    Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-10175077-1', 'auto');
+    ga('require', 'displayfeatures');
+    ga('require', 'linkid', 'linkid.js')
+    ga('send', 'pageview');
+
+</script>
+<?php } ?>
+
+<!-- CZ - petpark.cz -->
+<?php if (Mage::app()->getStore()->getCode()=='cz'){ ?>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-10175077-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- Retargetingový kód -->
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var seznam_retargeting_id = 45071;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//c.imedia.cz/js/retargeting.js"></script>
+
+<?php } ?>
+
+
+
+
+<script>
+        
+var dm_insight_id ='DM-547635-01';
+(function(w,d,u,t,o,c){w['dmtrackingobjectname']=o;c=d.createElement(t);c.async=1;c.src=u;t=d.getElementsByTagName 
+        (t)[0];t.parentNode.insertBefore(c,t);w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments);}; 
+        })(window, document, '//webinsight.s3.amazonaws.com/js/_dmptv4.js', 'script', 'dmPt');
+        window.dmPt('track'); 
+<?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+    window.dmPt('identify', '<?php echo Mage::getSingleton('customer/session')->getCustomer()->getEmail(); ?>');
+<?php else: 
+      $customerEmail = Mage::getModel('core/cookie')->get('zb_customer_email');
+      if ($customerEmail): ?>
+        window.dmPt('identify', '<?php echo $customerEmail; ?>');
+      <?php endif; ?>
+<?php endif; ?>
+                 
+</script>
+
+<?php if (Mage::app()->getStore()->getCode()=='default'){ ?>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter42861494 = new Ya.Metrika({
+                    id:42861494,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/42861494" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<?php } ?>
+
+<?php //if(Mage::getBlockSingleton('page/html_header')->getIsHomePage()):
+
+$routeName = Mage::app()->getRequest()->getRouteName(); 
+$identifier = Mage::getSingleton('cms/page')->getIdentifier();
+ 
+if($routeName == 'cms' && $identifier == 'porto_home_5_petpark_cz'): ?>
+
+  <meta name="google-site-verification" content="5oyzaPw1-Fxb0ga5ZmWwvEao_Xpt6w7nozH3CKS3lyk" />
+<?php endif; ?> 

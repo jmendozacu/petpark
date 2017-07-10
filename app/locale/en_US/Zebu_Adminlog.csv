@@ -1,0 +1,11 @@
+"Activity log","Activity log"
+"Http user agent","Http user agent"
+"Server address","Server address"
+"Remote address","Remote address"
+"Access date","Access date"
+Controller,Controller
+Action,Action
+Subject,Subject
+"User ID","User ID"
+"Clean logs after days","Clean logs after days"	
+"How many days to keep admin action logs. An empty value means to keep logs forever (no cleaning).","How many days to keep admin action logs. An empty value means to keep logs forever (no cleaning)."

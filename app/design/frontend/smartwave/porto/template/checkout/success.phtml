@@ -1,0 +1,185 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="page-title">
+    <h1><?php echo $this->__('Your order has been received.') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="form-wrap">
+    <h2 class="sub-title"><?php echo $this->__('Thank you for your purchase!') ?></h2>
+
+    <?php if ($this->getOrderId()):?>
+    <?php if ($this->getCanViewOrder()) :?>
+        <p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
+    <?php  else :?>
+        <p><?php echo $this->__('Your order # is: %s.', $this->escapeHtml($this->getOrderId())) ?></p>
+    <?php endif;?>
+        <p><?php echo $this->__('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p>
+    <?php if ($this->getCanViewOrder() && $this->getCanPrintOrder()) :?>
+        <p>
+            <?php echo $this->__('Click <a href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $this->getPrintUrl()) ?>
+            <?php echo $this->getChildHtml() ?>
+        </p>
+    <?php endif;?>
+    <?php endif;?>
+
+    <?php if ($this->getAgreementRefId()): ?>
+        <p><?php echo $this->__('Your billing agreement # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getAgreementUrl()), $this->escapeHtml($this->getAgreementRefId())))?></p>
+    <?php endif;?>
+
+    <?php if ($profiles = $this->getRecurringProfiles()):?>
+    <p><?php echo $this->__('Your recurring payment profiles:'); ?></p>
+    <ul class="disc">
+    <?php foreach($profiles as $profile):?>
+    <?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id')));?>
+        <li><?php echo $this->__('Payment profile # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
+    <?php endforeach;?>
+    </ul>
+    <?php endif;?>
+
+    <div class="buttons-set">
+        <button type="button" class="button" title="<?php echo $this->__('Continue Shopping') ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+    </div>
+</div>
+
+
+<?php 
+
+$gakey = 'UA-10175077-1';
+
+$order = Mage::getSingleton('sales/order');
+$order->loadByIncrementId($this->getOrderId());
+
+$groupId = 0;
+
+if(Mage::getSingleton('customer/session')->isLoggedIn()){
+      //echo '<span style="display:none">Lognuty user</span>';
+      // Get group Id
+      $groupId = Mage::getSingleton('customer/session')->getCustomerGroupId();
+}
+
+//echo '<span style="display:none">'.$groupId.'</span>';
+?>
+
+<script type="text/javascript">
+  /*group <?php echo $groupId; ?>*/
+  
+  ga('require', 'ecommerce');
+  ga('ecommerce:addTransaction', {
+    'id': '<?php echo $this->getOrderId() ?>',                     // Transaction ID. Required.
+    <?php if($groupId == 2 || $groupId == 4 || $groupId == 5): ?>
+    'affiliation': 'Petpark.sk VO',   // Affiliation or store name.
+    <?php else: ?>
+    'affiliation': 'Petpark.sk',   // Affiliation or store name STANDARD.
+    <?php endif; ?>
+    'revenue': '<?php echo $order->getSubtotalInclTax() ?>',               // Grand Total.
+    'shipping': '<?php echo $order->getShippingInclTax() ?>',                  // Shipping.
+    'tax': '<?php echo $order->getTaxAmount() ?>'                     // Tax.
+  });
+
+  <?php foreach ($order->getAllItems() as $product): 
+    if (!$product->getPriceInclTax()) continue; 
+    $catids = $product->getProduct()->getCategoryIds();
+    $cat = '';
+    foreach($catids as $cid) {
+      $_cat = Mage::getModel('catalog/category')->load($cid);
+      $cat = $_cat->getName();
+      break;
+    }
+    ?>
+    ga('ecommerce:addItem', {
+      'id': '<?php echo $this->getOrderId() ?>',                     // Transaction ID. Required.
+      'name': '<?php echo $product->getName() ?>',    // Product name. Required.
+      'sku': '<?php echo $product->getSku() ?>',                 // SKU/code.
+      'category': '<?php echo $cat ?>',         // Category or variation.
+      'price': '<?php echo $product->getPriceInclTax() ?>',                 // Unit price.
+      'quantity': '<?php echo $product->getQtyOrdered() ?>'                   // Quantity.
+    });
+  <?php endforeach; ?>
+    ga('ecommerce:send');
+</script>
+
+
+    <script type="text/javascript">
+//var _hrq = _hrq || [];
+//    _hrq.push(['setKey', 'BBE9F0E37F700D89A850A296007EEC3C']);
+//    _hrq.push(['setOrderId', '<?php echo $this->getOrderId() ?>']);
+//    <?php //foreach ($order->getAllItems() as $product): ?>
+//    _hrq.push(['addProduct', '<?php echo $product->getName() ?>', '<?php echo $product->getPriceInclTax() ?>', '<?php echo $product->getQtyOrdered() ?>']);
+//    <?php //endforeach; ?>    
+       
+//    _hrq.push(['trackOrder']);
+
+//(function() {
+//    var ho = document.createElement('script'); ho.type = 'text/javascript'; ho.async = true;
+//    ho.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.heureka.cz/direct/js/ext/1-roi-async.js';
+//    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ho, s);
+//})();
+</script>
+
+
+
+
+<?php
+
+/*** Default = petpark.sk ***/
+if (Mage::app()->getStore()->getCode()=='default'){
+
+  $products = array();
+  foreach ($order->getAllItems() as $product){
+    $products[] = '&itemId[]='.urlencode($product->getSku())/*preg_replace('~[^0-9a-zA-Z-]+~','-',$product->getSku())*/.'&produkt[]='.urlencode($product->getName());
+  }
+
+  
+    $url = 'http://www.heureka.sk/direct/dotaznik/objednavka.php?id=6a04bb565412280cf32a78392b30aa4b&email='
+        .$order->getCustomerEmail()
+        .join('',$products); 
+  
+
+
+  echo '<div style="display:none">';
+  //echo $url;
+  echo '[[[';
+  //if(Mage::app()->getWebsite()->getId() > 1 )
+  //  echo file_get_contents($skurl);
+ // else
+    Mage::log($url,null,'heurekask-overeno.log');
+    echo file_get_contents($url);
+  echo ']]]';
+  echo '</div>';
+  
+}
+?>
+
+<script>
+    fbq('track', 'Purchase', {value: '<?php echo $order->getGrandTotal(); ?>', currency: 'EUR'});
+</script>
+
+<!-- CZ - petpark.cz -->
+<?php if (Mage::app()->getStore()->getCode()=='cz'){ ?>
+<!-- Měřicí kód Sklik.cz -->
+<iframe width="119" height="22" frameborder="0" scrolling="no" src="//c.imedia.cz/checkConversion?c=100031170&amp;color=1ab624&amp;v=1"></iframe>
+<?php } ?>

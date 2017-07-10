@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<config>
+
+  <modules>
+    <Zebu_Adminlog>
+      <version>0.1.0</version>
+    </Zebu_Adminlog>
+  </modules>
+
+  <admin>
+    <routers>
+      <adminlog>
+        <use>admin</use>
+        <args>
+          <module>Zebu_Adminlog</module>
+          <frontName>adminlog</frontName>
+        </args>
+      </adminlog>
+    </routers>
+  </admin>
+
+  <adminhtml>
+      <!-- nastaveni prekladu modulu -->
+    <translate>
+      <modules>
+        <mage_adminhtml>
+          <files>
+            <adminlog>Zebu_Adminlog.csv</adminlog>
+          </files>
+        </mage_adminhtml>
+      </modules>
+    </translate>
+
+
+    <menu>
+
+      <system module="system">
+        <children>
+          <adminlog module="adminlog">
+            <title>Activity log</title>
+            <sort_order>999</sort_order>
+            <action>adminlog/adminhtml_adminlog</action>
+          </adminlog>
+        </children>
+      </system>
+
+    </menu>
+      
+    <acl>
+      <resources>
+        
+        <all translate="title">
+          <title>Allow Everything</title>
+        </all>
+	
+	<admin>
+          <children>
+            <adminlog translate="title">
+              <title>Activity log</title>
+              <sort_order>10</sort_order>
+	    </adminlog>
+	    <system>
+	      <children>
+		<adminlog translate="title">
+                  <title>Activity log</title>
+                  <sort_order>999</sort_order>
+            	</adminlog>
+              </children>
+	    </system>
+	  </children>
+	</admin>
+
+      </resources>
+    </acl>
+      
+    <layout>
+      <updates>
+        <adminlog>
+          <file>adminlog.xml</file>
+        </adminlog>
+      </updates>
+    </layout>
+
+      
+  </adminhtml>
+
+    
+  <global>
+
+    <models>
+      <adminlog>
+        <class>Zebu_Adminlog_Model</class>
+        <resourceModel>adminlog_mysql4</resourceModel>
+      </adminlog>
+      <adminlog_mysql4>
+        <class>Zebu_Adminlog_Model_Mysql4</class>
+        <entities>
+          <adminlog>
+            <table>zebu_adminlog</table>
+          </adminlog>
+        </entities>
+      </adminlog_mysql4>
+      <admin>
+         <rewrite>
+            <observer>Zebu_Adminlog_Model_Observer</observer>
+            <session>Zebu_Adminlog_Model_Session</session>
+         </rewrite>
+      </admin>
+    </models>
+
+    <resources>
+
+      <adminlog_setup>
+        <setup>
+          <module>Zebu_Adminlog</module>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </adminlog_setup>
+
+      <adminlog_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </adminlog_write>
+
+      <adminlog_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </adminlog_read>
+
+    </resources>
+
+    <blocks>
+      <adminlog>
+        <class>Zebu_Adminlog_Block</class>
+      </adminlog>
+    </blocks>
+      
+    <helpers>
+      <adminlog>
+        <class>Zebu_Adminlog_Helper</class>
+      </adminlog>
+      <zebu_config>
+        <class>Zebu_Adminlog_Helper</class>
+      </zebu_config>
+    </helpers>
+
+      
+  </global>
+  
+    <crontab>
+        <jobs>
+            <zebu_adminlog_clearadminlogs>
+                <schedule><cron_expr>* * * * *</cron_expr></schedule>
+                <run>
+                    <model>adminlog/observer::clearAdminlogs</model>
+                </run>
+            </zebu_adminlog_clearadminlogs>
+        </jobs>
+    </crontab>
+    
+  <default>
+    <zebu_adminlog>
+      <zebu_adminlog_general>
+        <zebu_adminlog_enabled>1</zebu_adminlog_enabled>
+        <clean_after_days>180</clean_after_days>
+      </zebu_adminlog_general>
+    </zebu_adminlog>
+  </default>      
+</config>

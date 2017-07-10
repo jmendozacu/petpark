@@ -1,0 +1,8 @@
+- Documentation
+http://newsmartwave.net/magento/porto/documentation/
+
+- Installation Video Guide
+http://newsmartwave.net/magento/porto/video_guide/
+
+- Porto Icon Fonts Demo
+http://newsmartwave.net/magento/porto/icons_list/demo.html

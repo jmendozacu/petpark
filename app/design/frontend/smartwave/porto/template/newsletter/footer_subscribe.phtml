@@ -1,0 +1,85 @@
+<?php
+/**
+ Made by Smartwave.
+ */
+?>
+<?php
+    $store = Mage::app()->getStore();
+    $code  = $store->getCode();
+    $footer = Mage::getStoreConfig('porto_settings/footer',$code);
+?>
+<div class="block block-subscribe">
+    
+    <div class="block-title">
+        <strong><span><?php echo $footer['footer_newsletter_title']; ?></span></strong>
+    </div>
+    <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="footer-newsletter-validate-detail" onsubmit="setNewsletterCookie()">
+        <div class="block-content">
+            <p><?php echo $footer['footer_newsletter']; ?></p>
+            <div class="input-box">
+                <p class="label"><?php echo $this->__('Enter your e-mail Address'); ?></p>
+                <input type="text" name="email" id="newsletter_footer" title="<?php echo $this->__('Sign up for our newsletter') ?>" class="input-text required-entry validate-email" />
+                <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+                <div class="clearer"></div>
+            </div>
+        </div>
+
+
+        <input type="text" name="nickname" class="no-display" value="" />
+        <input type="text" name="nickname2" class="no-display" value="1" />
+
+        <?php //echo $this->getLayout()->createBlock('studioforty9_recaptcha/explicit')->setTemplate('studioforty9/recaptcha/explicit.phtml')->toHtml(); ?>
+        
+        
+<?php
+if (0){
+/**
+ * Studioforty9_Recaptcha
+ *
+ * @category  Studioforty9
+ * @package   Studioforty9_Recaptcha
+ * @author    StudioForty9 <info@studioforty9.com>
+ * @copyright 2015 StudioForty9 (http://www.studioforty9.com)
+ * @license   https://github.com/studioforty9/recaptcha/blob/master/LICENCE BSD
+ * @version   1.5.0
+ * @link      https://github.com/studioforty9/recaptcha
+ * @see       Studioforty9_Recaptcha_Block_Explicit
+ */
+$captchaBlock = new Studioforty9_Recaptcha_Block_Explicit;
+$id = 'footer-newsletter';
+?>
+<div class="recaptcha" style="overflow:hidden;position:relative;margin-bottom:10px;">
+    <input type="checkbox" id="cb-<?php echo $id ?>" name="cb-<?php echo $id ?>" value="" class="hide required-entry" style="visibility:hidden; position:absolute; left:-1000000px" />
+    <div id="el-<?php echo $id ?>"></div>
+    <script type="text/javascript">
+        var onloadCallbackFooter = function() {
+            grecaptcha.render('el-<?php echo $id ?>', {
+                'sitekey': "<?php echo $captchaBlock->getSiteKey(); ?>",
+                'theme': "dark",
+                'type': "<?php echo $captchaBlock->getType(); ?>",
+                'size': "compact",
+                'callback': function(response) {
+                    if (response.length > 0) {
+                        $('cb-<?php echo $id ?>').writeAttribute('value', 'checked');
+                        $('cb-<?php echo $id ?>').checked = true;
+                    }
+                }
+            });
+        };
+    </script>
+    <?php //echo $captchaBlock->getRecaptchaScript(); ?>
+    <?php //echo $captchaBlock->getRecaptchaScript('onloadCallbackFooter'); 
+    ?>
+</div>
+
+<?php } ?>
+        
+
+        
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var footernewsletterSubscriberFormDetail = new VarienForm('footer-newsletter-validate-detail');
+    //]]>
+    </script>
+</div>

@@ -1,0 +1,66 @@
+<!--@subject StayUnique.sk. Vitajte, {{var customer.name}}! @-->
+
+<style type="text/css">
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+</style>
+
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+    <table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+        <tr>
+            <td align="center" valign="top">
+                <!-- [ middle starts here] -->
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top" style="font-style:italic;">
+                        
+Dobrý deň pán/pani {{htmlescape var=$customer.name}},
+<p>
+Vitajte v našom obchode StayUnique.sk, obchode s vášňou pre make-up! Veľmi nás teší, že ste si u nás vytvorili účet. Vaše nakupovanie bude pre Vás odteraz ešte jednoduchšie a príjemnejšie.
+</p> 
+
+<p>
+<span style="color:#E5379A">Vaše prihlasovacie údaje:</span><br/>
+E-mail: {{var customer.email}}<br/>
+Heslo: {{htmlescape var=$customer.password}}
+</p>
+
+<p>
+V sekcii <a href="{{store url="customer/account/"}}" style="color:#E5379A;">Môj účet</a> nájdete všetky potrebné údaje, informácie o Vašich objednávkach a ich histórii, zoznamu prianí a osobných údajov. Všetky informácie môžete kedykoľvek upravovať podľa svojich potrieb.
+</p>
+<p>
+Ďakujeme za prejavenú dôveru a prajeme Vám príjemné nakupovanie.
+</p>
+<p>
+V prípade otázok nás kontaktujte
+<a href="mailto:obchod@stayunique.sk">obchod@stayunique.sk</a>, +421 911 523 823 , po-pi 09,00 – 17,00
+</p> 
+Váš <span style="color:#E5379A">STAY</span>UNIQUE.sk
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- [ header starts here] -->
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                            <a href="{{store url=""}}"><img src="{{skin url="images/stayunique.png" _area='frontend'}}" alt="{{var customer.store.website.name}}"  style="margin-bottom:10px;" border="0"/></a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="font-size:12px; font-weight: bold; line-height:16px; margin:0;">StayUnique, s.r.o.</p>
+                            <p style="font-weight: normal; line-height:16px; margin:0 0 10px 0;">Javorová 3A, 900 23 Viničné</p>
+                            <p style="line-height:16px; margin:0 0 10px 0;">IČO  47 707 402<br />
+                                   IČ DPH SK202 408 6669<br />
+                                   Bankové spojenie: ČSOB, 401 967 49 19/7500 
+                            </p>
+                            <p style="font-weight: bold; line-height:16px; margin:0;">Zákaznický servis: </p>
+                            <p style="font-weight: normal; line-height:16px; margin:0;">Po-Pia: 09:00 - 17:00, +421 911 523 823<br />
+                                   <a href="mailto:obchod@stayunique.sk">obchod@stayunique.sk</a>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,10180 @@
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+controller_front_init_before : Array
+(
+    [0] => front
+)
+
+controller_front_init_routers : Array
+(
+    [0] => front
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+sales_order_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => order
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+sales_order_load_after : Array
+(
+    [0] => data_object
+    [1] => order
+)
+
+core_locale_set_locale : Array
+(
+    [0] => locale
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+controller_action_predispatch : Array
+(
+    [0] => controller_action
+)
+
+customer_session_init : Array
+(
+    [0] => customer_session
+)
+
+controller_action_predispatch_ddg_automation : Array
+(
+    [0] => controller_action
+)
+
+controller_action_predispatch_ddg_automation_products_crosssell : Array
+(
+    [0] => controller_action
+)
+
+controller_action_layout_load_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_generate_xml_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_generate_blocks_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_session_abstract_clear_messages : Array
+(
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_session_abstract_clear_messages : Array
+(
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+controller_action_layout_generate_blocks_after : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_render_before : Array
+(
+)
+
+controller_action_layout_render_before_ddg_automation_products_crosssell : Array
+(
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+sales_order_item_collection_set_sales_order : Array
+(
+    [0] => collection
+    [1] => order_item_collection
+    [2] => order
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+sales_order_item_collection_load_before : Array
+(
+    [0] => order_item_collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+sales_order_item_collection_load_after : Array
+(
+    [0] => order_item_collection
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_product_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_attribute_backend_media_load_gallery_before : Array
+(
+    [0] => event_object_wrapper
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_entity_attribute_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => attribute
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_entity_attribute_load_after : Array
+(
+    [0] => data_object
+    [1] => attribute
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_product_load_after : Array
+(
+    [0] => data_object
+    [1] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_product_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_attribute_backend_media_load_gallery_before : Array
+(
+    [0] => event_object_wrapper
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_product_load_after : Array
+(
+    [0] => data_object
+    [1] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_entity_attribute_load_after : Array
+(
+    [0] => data_object
+    [1] => attribute
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_entity_attribute_load_after : Array
+(
+    [0] => data_object
+    [1] => attribute
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_product_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_attribute_backend_media_load_gallery_before : Array
+(
+    [0] => event_object_wrapper
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_product_load_after : Array
+(
+    [0] => data_object
+    [1] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_product_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_attribute_backend_media_load_gallery_before : Array
+(
+    [0] => event_object_wrapper
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_product_load_after : Array
+(
+    [0] => data_object
+    [1] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_product_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_attribute_backend_media_load_gallery_before : Array
+(
+    [0] => event_object_wrapper
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_product_load_after : Array
+(
+    [0] => data_object
+    [1] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_product_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_attribute_backend_media_load_gallery_before : Array
+(
+    [0] => event_object_wrapper
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_product_load_after : Array
+(
+    [0] => data_object
+    [1] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+customer_group_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+customer_group_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+customer_group_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+customer_group_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+tax_rate_data_fetch : Array
+(
+    [0] => request
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+currency_display_options_forming : Array
+(
+    [0] => currency_options
+    [1] => base_code
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+controller_action_postdispatch_ddg_automation_products_crosssell : Array
+(
+    [0] => controller_action
+)
+
+controller_action_postdispatch_ddg_automation : Array
+(
+    [0] => controller_action
+)
+
+controller_action_postdispatch : Array
+(
+    [0] => controller_action
+)
+
+model_save_before : Array
+(
+    [0] => object
+)
+
+core_abstract_save_before : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_save_after : Array
+(
+    [0] => object
+)
+
+core_abstract_save_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_save_commit_after : Array
+(
+    [0] => object
+)
+
+core_abstract_save_commit_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+controller_front_send_response_before : Array
+(
+    [0] => front
+)
+
+http_response_send_before : Array
+(
+    [0] => response
+)
+
+controller_front_send_response_after : Array
+(
+    [0] => front
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+controller_front_init_before : Array
+(
+    [0] => front
+)
+
+controller_front_init_routers : Array
+(
+    [0] => front
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+sales_order_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => order
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+sales_order_load_after : Array
+(
+    [0] => data_object
+    [1] => order
+)
+
+core_locale_set_locale : Array
+(
+    [0] => locale
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+controller_action_predispatch : Array
+(
+    [0] => controller_action
+)
+
+customer_session_init : Array
+(
+    [0] => customer_session
+)
+
+controller_action_predispatch_ddg_automation : Array
+(
+    [0] => controller_action
+)
+
+controller_action_predispatch_ddg_automation_products_crosssell : Array
+(
+    [0] => controller_action
+)
+
+controller_action_layout_load_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_generate_xml_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_generate_blocks_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_session_abstract_clear_messages : Array
+(
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_session_abstract_clear_messages : Array
+(
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+controller_action_layout_generate_blocks_after : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_render_before : Array
+(
+)
+
+controller_action_layout_render_before_ddg_automation_products_crosssell : Array
+(
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+sales_order_item_collection_set_sales_order : Array
+(
+    [0] => collection
+    [1] => order_item_collection
+    [2] => order
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+sales_order_item_collection_load_before : Array
+(
+    [0] => order_item_collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+sales_order_item_collection_load_after : Array
+(
+    [0] => order_item_collection
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_product_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_attribute_backend_media_load_gallery_before : Array
+(
+    [0] => event_object_wrapper
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_entity_attribute_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => attribute
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_entity_attribute_load_after : Array
+(
+    [0] => data_object
+    [1] => attribute
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_product_load_after : Array
+(
+    [0] => data_object
+    [1] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_product_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_attribute_backend_media_load_gallery_before : Array
+(
+    [0] => event_object_wrapper
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_product_load_after : Array
+(
+    [0] => data_object
+    [1] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_entity_attribute_load_after : Array
+(
+    [0] => data_object
+    [1] => attribute
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_entity_attribute_load_after : Array
+(
+    [0] => data_object
+    [1] => attribute
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_product_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_attribute_backend_media_load_gallery_before : Array
+(
+    [0] => event_object_wrapper
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_product_load_after : Array
+(
+    [0] => data_object
+    [1] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_product_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_attribute_backend_media_load_gallery_before : Array
+(
+    [0] => event_object_wrapper
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_product_load_after : Array
+(
+    [0] => data_object
+    [1] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_product_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_attribute_backend_media_load_gallery_before : Array
+(
+    [0] => event_object_wrapper
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_product_load_after : Array
+(
+    [0] => data_object
+    [1] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+catalog_product_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_attribute_backend_media_load_gallery_before : Array
+(
+    [0] => event_object_wrapper
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+catalog_product_load_after : Array
+(
+    [0] => data_object
+    [1] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+eav_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_before : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+catalog_product_collection_apply_limitations_before : Array
+(
+    [0] => collection
+    [1] => category_id
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_is_salable_before : Array
+(
+    [0] => product
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+catalog_product_is_salable_after : Array
+(
+    [0] => product
+    [1] => salable
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+customer_group_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+customer_group_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+customer_group_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+customer_group_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+tax_rate_data_fetch : Array
+(
+    [0] => request
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+currency_display_options_forming : Array
+(
+    [0] => currency_options
+    [1] => base_code
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+core_abstract_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+catalog_product_get_final_price : Array
+(
+    [0] => product
+    [1] => qty
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+controller_action_postdispatch_ddg_automation_products_crosssell : Array
+(
+    [0] => controller_action
+)
+
+controller_action_postdispatch_ddg_automation : Array
+(
+    [0] => controller_action
+)
+
+controller_action_postdispatch : Array
+(
+    [0] => controller_action
+)
+
+model_save_before : Array
+(
+    [0] => object
+)
+
+core_abstract_save_before : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_save_after : Array
+(
+    [0] => object
+)
+
+core_abstract_save_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_save_commit_after : Array
+(
+    [0] => object
+)
+
+core_abstract_save_commit_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+controller_front_send_response_before : Array
+(
+    [0] => front
+)
+
+http_response_send_before : Array
+(
+    [0] => response
+)
+
+controller_front_send_response_after : Array
+(
+    [0] => front
+)
+

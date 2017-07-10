@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Module developed by NoStress Commerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@nostresscommerce.cz so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this module to newer
+ * versions in the future. If you have special needs for this module, please
+ * contact us at info@nostresscommerce.cz for more information.
+ *
+ * @category    Nostress
+ * @package     Nostress_Gpwebpay
+ * @copyright   Copyright (c) 2012 NoStress Commerce (http://www.nostresscommerce.cz)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+
+<layout>
+	<nostress_gpwebpay_transactions_grid>
+		<update handle="formkey"/>
+		<block type="nostress_gpwebpay/transactions_grid" name="nostress_gpwebpay_transactions.grid" output="toHtml"></block>
+	</nostress_gpwebpay_transactions_grid>
+	
+	<nostress_gpwebpay_transactions_index>
+		<reference name="content">
+			<block type="nostress_gpwebpay/transactions" name="nostress_gpwebpay_transactions.grid.container"></block>
+		</reference>
+	</nostress_gpwebpay_transactions_index>
+	
+	<nostress_gpwebpay_transactions_view>
+		<reference name="content">
+			<block type="nostress_gpwebpay/transactions_view" name="nostress_gpwebpay_transactions_edit"></block>
+		</reference>
+		<reference name="left">
+			<block type="nostress_gpwebpay/transactions_view_tabs" name="nostress_gpwebpay_transactions_tabs">
+				<block type="nostress_gpwebpay/transactions_view_tab_info" name="transactions_tab_info" template="nostress/gpwebpay/transactions/view/tab/info.phtml">
+					<block type="nostress_gpwebpay/transactions_view_info" name="transactions_info" template="nostress/gpwebpay/transactions/view/info.phtml"></block>
+					<block type="nostress_gpwebpay/transactions_view_items" name="transactions_items" template="nostress/gpwebpay/transactions/view/items.phtml">
+						<action method="addItemRender"><type>default</type><block>adminhtml/sales_order_view_items_renderer_default</block><template>sales/order/view/items/renderer/default.phtml</template></action>
+						<!--<action method="addItemRender"><type>default</type><block>nostress_gpwebpay/transactions_view_items_renderer_default</block><template>sales/order/view/items/renderer/default.phtml</template></action>-->
+						<action method="addColumnRender"><column>qty</column><block>adminhtml/sales_items_column_qty</block><template>sales/items/column/qty.phtml</template></action>
+						<action method="addColumnRender"><column>name</column><block>adminhtml/sales_items_column_name</block><template>sales/items/column/name.phtml</template></action>
+						<action method="addColumnRender"><column>name</column><block>adminhtml/sales_items_column_name_grouped</block><template>sales/items/column/name.phtml</template><type>grouped</type></action>
+						<block type="core/text_list" name="order_item_extra_info" />
+					</block>
+					<block type="nostress_gpwebpay/transactions_payment" name="transactions_payment"/>
+					<block type="nostress_gpwebpay/transactions_view_history" name="transactions_history" template="nostress/gpwebpay/transactions/view/history.phtml"></block>
+					<block type="nostress_gpwebpay/transactions_totals" name="transactions_totals" template="nostress/gpwebpay/transactions/totals.phtml">
+							<!--<block type="nostress_gpwebpay/transactions_totals_tax" name="tax" template="nostress/gpwebpay/transactions/totals/tax.phtml" />-->
+							<block type="adminhtml/sales_order_totals_tax" name="tax" template="sales/order/totals/tax.phtml" />
+					</block>
+				</block>
+				<action method="addTab"><name>transactions_info</name><block>transactions_tab_info</block></action>
+				<action method="addTab"><name>transactions_history</name><block>nostress_gpwebpay/transactions_view_tab_history</block></action>
+            </block>
+		</reference>
+	</nostress_gpwebpay_transactions_view>
+</layout>

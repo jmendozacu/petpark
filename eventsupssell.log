@@ -1,0 +1,6376 @@
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+controller_front_init_before : Array
+(
+    [0] => front
+)
+
+controller_front_init_routers : Array
+(
+    [0] => front
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+sales_order_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => order
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+sales_order_load_after : Array
+(
+    [0] => data_object
+    [1] => order
+)
+
+core_locale_set_locale : Array
+(
+    [0] => locale
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+controller_action_predispatch : Array
+(
+    [0] => controller_action
+)
+
+customer_session_init : Array
+(
+    [0] => customer_session
+)
+
+controller_action_predispatch_ddg_automation : Array
+(
+    [0] => controller_action
+)
+
+controller_action_predispatch_ddg_automation_products_upsell : Array
+(
+    [0] => controller_action
+)
+
+controller_action_layout_load_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_generate_xml_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_generate_blocks_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_session_abstract_clear_messages : Array
+(
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_session_abstract_clear_messages : Array
+(
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+controller_action_layout_generate_blocks_after : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_render_before : Array
+(
+)
+
+controller_action_layout_render_before_ddg_automation_products_upsell : Array
+(
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+controller_action_postdispatch_ddg_automation_products_upsell : Array
+(
+    [0] => controller_action
+)
+
+controller_action_postdispatch_ddg_automation : Array
+(
+    [0] => controller_action
+)
+
+controller_action_postdispatch : Array
+(
+    [0] => controller_action
+)
+
+model_save_before : Array
+(
+    [0] => object
+)
+
+core_abstract_save_before : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_save_after : Array
+(
+    [0] => object
+)
+
+core_abstract_save_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_save_commit_after : Array
+(
+    [0] => object
+)
+
+core_abstract_save_commit_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+controller_front_send_response_before : Array
+(
+    [0] => front
+)
+
+http_response_send_before : Array
+(
+    [0] => response
+)
+
+controller_front_send_response_after : Array
+(
+    [0] => front
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+controller_front_init_before : Array
+(
+    [0] => front
+)
+
+controller_front_init_routers : Array
+(
+    [0] => front
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+sales_order_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => order
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+sales_order_load_after : Array
+(
+    [0] => data_object
+    [1] => order
+)
+
+core_locale_set_locale : Array
+(
+    [0] => locale
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+controller_action_predispatch : Array
+(
+    [0] => controller_action
+)
+
+customer_session_init : Array
+(
+    [0] => customer_session
+)
+
+controller_action_predispatch_ddg_automation : Array
+(
+    [0] => controller_action
+)
+
+controller_action_predispatch_ddg_automation_products_upsell : Array
+(
+    [0] => controller_action
+)
+
+controller_action_layout_load_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_generate_xml_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_generate_blocks_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_session_abstract_clear_messages : Array
+(
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_session_abstract_clear_messages : Array
+(
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+controller_action_layout_generate_blocks_after : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_render_before : Array
+(
+)
+
+controller_action_layout_render_before_ddg_automation_products_upsell : Array
+(
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+controller_action_postdispatch_ddg_automation_products_upsell : Array
+(
+    [0] => controller_action
+)
+
+controller_action_postdispatch_ddg_automation : Array
+(
+    [0] => controller_action
+)
+
+controller_action_postdispatch : Array
+(
+    [0] => controller_action
+)
+
+model_save_before : Array
+(
+    [0] => object
+)
+
+core_abstract_save_before : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_save_after : Array
+(
+    [0] => object
+)
+
+core_abstract_save_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_save_commit_after : Array
+(
+    [0] => object
+)
+
+core_abstract_save_commit_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+controller_front_send_response_before : Array
+(
+    [0] => front
+)
+
+http_response_send_before : Array
+(
+    [0] => response
+)
+
+controller_front_send_response_after : Array
+(
+    [0] => front
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+controller_front_init_before : Array
+(
+    [0] => front
+)
+
+controller_front_init_routers : Array
+(
+    [0] => front
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+sales_order_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => order
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+sales_order_load_after : Array
+(
+    [0] => data_object
+    [1] => order
+)
+
+core_locale_set_locale : Array
+(
+    [0] => locale
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+controller_action_predispatch : Array
+(
+    [0] => controller_action
+)
+
+customer_session_init : Array
+(
+    [0] => customer_session
+)
+
+controller_action_predispatch_ddg_automation : Array
+(
+    [0] => controller_action
+)
+
+controller_action_predispatch_ddg_automation_products_upsell : Array
+(
+    [0] => controller_action
+)
+
+controller_action_layout_load_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_generate_xml_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_generate_blocks_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_session_abstract_clear_messages : Array
+(
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_session_abstract_clear_messages : Array
+(
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+controller_action_layout_generate_blocks_after : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_render_before : Array
+(
+)
+
+controller_action_layout_render_before_ddg_automation_products_upsell : Array
+(
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+controller_action_postdispatch_ddg_automation_products_upsell : Array
+(
+    [0] => controller_action
+)
+
+controller_action_postdispatch_ddg_automation : Array
+(
+    [0] => controller_action
+)
+
+controller_action_postdispatch : Array
+(
+    [0] => controller_action
+)
+
+model_save_before : Array
+(
+    [0] => object
+)
+
+core_abstract_save_before : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_save_after : Array
+(
+    [0] => object
+)
+
+core_abstract_save_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_save_commit_after : Array
+(
+    [0] => object
+)
+
+core_abstract_save_commit_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+controller_front_send_response_before : Array
+(
+    [0] => front
+)
+
+http_response_send_before : Array
+(
+    [0] => response
+)
+
+controller_front_send_response_after : Array
+(
+    [0] => front
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_before : Array
+(
+    [0] => collection
+)
+
+core_collection_abstract_load_after : Array
+(
+    [0] => collection
+)
+
+controller_front_init_before : Array
+(
+    [0] => front
+)
+
+controller_front_init_routers : Array
+(
+    [0] => front
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+core_abstract_load_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+)
+
+sales_order_load_before : Array
+(
+    [0] => object
+    [1] => field
+    [2] => value
+    [3] => data_object
+    [4] => order
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_load_after : Array
+(
+    [0] => object
+)
+
+sales_order_load_after : Array
+(
+    [0] => data_object
+    [1] => order
+)
+
+core_locale_set_locale : Array
+(
+    [0] => locale
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+controller_action_predispatch : Array
+(
+    [0] => controller_action
+)
+
+customer_session_init : Array
+(
+    [0] => customer_session
+)
+
+controller_action_predispatch_ddg_automation : Array
+(
+    [0] => controller_action
+)
+
+controller_action_predispatch_ddg_automation_products_upsell : Array
+(
+    [0] => controller_action
+)
+
+controller_action_layout_load_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_generate_xml_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_generate_blocks_before : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_session_abstract_clear_messages : Array
+(
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_session_abstract_clear_messages : Array
+(
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_prepare_layout_after : Array
+(
+    [0] => block
+)
+
+core_layout_block_create_after : Array
+(
+    [0] => block
+)
+
+controller_action_layout_generate_blocks_after : Array
+(
+    [0] => action
+    [1] => layout
+)
+
+controller_action_layout_render_before : Array
+(
+)
+
+controller_action_layout_render_before_ddg_automation_products_upsell : Array
+(
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+core_block_abstract_to_html_before : Array
+(
+    [0] => block
+)
+
+core_block_abstract_to_html_after : Array
+(
+    [0] => block
+    [1] => transport
+)
+
+controller_action_postdispatch_ddg_automation_products_upsell : Array
+(
+    [0] => controller_action
+)
+
+controller_action_postdispatch_ddg_automation : Array
+(
+    [0] => controller_action
+)
+
+controller_action_postdispatch : Array
+(
+    [0] => controller_action
+)
+
+model_save_before : Array
+(
+    [0] => object
+)
+
+core_abstract_save_before : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+resource_get_tablename : Array
+(
+    [0] => resource
+    [1] => model_entity
+    [2] => table_name
+    [3] => table_suffix
+)
+
+model_save_after : Array
+(
+    [0] => object
+)
+
+core_abstract_save_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+model_save_commit_after : Array
+(
+    [0] => object
+)
+
+core_abstract_save_commit_after : Array
+(
+    [0] => data_object
+    [1] => object
+)
+
+controller_front_send_response_before : Array
+(
+    [0] => front
+)
+
+http_response_send_before : Array
+(
+    [0] => response
+)
+
+controller_front_send_response_after : Array
+(
+    [0] => front
+)
+

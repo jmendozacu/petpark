@@ -1,0 +1,78 @@
+<!--@subject StayUnique.sk – Tvoj balíček už je na ceste ! @-->
+
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image",
+"htmlescape var=$order.getCustomerName()":"Customer Name",
+"var order.increment_id":"Order Id",
+"var order.getStatusLabel()":"Order Status",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var comment":"Order Comment",
+"var store.getFrontendName()":"Store Name"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:13px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+<style type="text/css">
+    body,td { color:#2f2f2f; font:13px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+</style>
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:13px; margin:0; padding:0;">
+<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:13px; margin:0; padding:0;">
+<table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+<tr>
+    <td align="center" valign="top" style="padding:20px 0 20px 0">
+        <!-- [ header starts here] -->
+        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="100%" style="border:1px solid #E0E0E0;">
+                    <tr>
+                        <td valign="top">
+                            <a href="{{store url=""}}"><img height="50" src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="{{var customer.store.website.name}}"  style="margin-bottom:10px;" border="0"/></a>
+                            <hr />
+                            </td>
+                    </tr>
+
+            <tr>
+                <td valign="top">
+                
+                
+                <p style="font-size:150%">Milá/ý {{var order.getCustomerFirstname()}} !</p>
+
+                <p>Tvoja objednávka na www.stayunique.sk bola vyexpedovaná a zásielka odovzdaná doručovacej spoločnosti UPS. Už za krátky čas Ťa navštívi kuriér, ktorý Ti Tvoj balíček doručí. Priprav si prosíme hotovosť na zaplatenie dobierky.</p> 
+
+<p style="color:#E5379A;font-weight:bold;text-decoration: underline">INFORMÁCIE OHĽADOM DODANIA. Čítaj prosíme pozorne !</p>
+<ul style="margin-left: 50px">
+<li style="font-weight:bold">Očakávane doručenie : do 1 pracovného dňa.</li>
+
+<li>Bližšie informácie s číslom svojej zásielky a linkom na jej sledovanie dostaneš mailom od doručovacej spoločnosti UPS.</li> 
+
+<li>V ranných hodinách <span style="text-decoration: underline">v deň doručenia</span> (okrem víkendov a sviatkov) dostaneš od kuriéra formou SMS alebo telefonátu informáciu s podrobnosťami doručenia. V prípade, že si nevieš zásielku prevziať v uvedený deň, riaď sa prosíme inštrukciami od kuriéra. V prípade potreby nás kedykoľvek kontaktuj.</li>
+</ul>
+
+<p><strong style="color:#E5379A">FACEBOOK |</strong> Uži si svoje nové produkty a podeľ sa o svoje skúsenosti s nimi na našej Facebook stránke <a href="http://www.facebook/stayunique.sk">www.facebook/stayunique.sk</a>, kde prinášame našim fanúšikom vždy tie najkvalitnejšie informácie na témy o ženskej kráse a líčení.</p>  
+
+<p><strong style="color:#E5379A">KONTAKT |</strong> Ak sa chceš ešte niečo spýtať alebo ťa zaujímajú bližšie informácie o tvojej objednávke, radi Ti poradíme: <a href="mailto:obchod@stayunique.sk">obchod@stayunique.sk</a>, +421 911 523 823 , po-pi 09,00 – 17,00 
+</p>
+                
+<p>
+Ďakujeme za prejavenú dôveru a dúfame, že s našimi výrobkami budeš spokojná/ý.
+</p>
+
+<img height="70" src="{{skin url="images/photo.gif" _area='frontend'}}" alt="konateľka"  style="margin-bottom:10px;" border="0"/><br />
+<p>EVKA<br />
+StayUnique.sk</p>
+
+<hr />
+<div style="text-align:center">
+<div style="color:#E5379A">ZOSTAŇ JEDINEČNÁ – STAYUNIQUE</div>
+<a href="{{store url=""}}">www.stayunique.sk</a>
+<div>StayUnique, s.r.o., obchod@stayunique.sk, +421 911 523 823</div>
+</div>                                    
+                
+                   
+            </tr>
+        </table>
+    </td>
+</tr>
+</table>
+</div>
+</body>

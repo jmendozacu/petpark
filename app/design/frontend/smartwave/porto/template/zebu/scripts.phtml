@@ -1,0 +1,94 @@
+<?php //Zend_Debug::dump(Mage::getSingleton('customer/session')->getData());
+  
+ ?>
+ 
+ 
+<?php 
+
+$fbpixel = "";
+if (Mage::app()->getStore()->getCode()=='default') { $fbpixel = 1186483738032903; }
+else {
+$fbpixel = 107407983134934;
+}
+//if (Mage::app()->getStore()->getCode()=='cz') $fbpixel = 107407983134934; 
+
+?> 
+
+ 
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '<?php echo $fbpixel ?>');
+fbq('track', "PageView");
+
+
+<?php 
+$product = Mage::registry('current_product');
+if (!empty($product)): ?>
+fbq('track', 'ViewContent', {
+  content_name: '<?php echo $product->getName() ?>',
+  content_ids: ['<?php echo $product->getSku() ?>'],
+  content_type: 'product',
+  value: <?php echo $product->getFinalPrice() ?>,
+  currency: '<?php echo Mage::app()->getStore()->getCurrentCurrencyCode() ?>'
+ });
+<?php endif; ?> 
+<?php /*if ($lastProductId = Mage::getSingleton('checkout/session')->getLastAddedProductId(true)): 
+//echo '['.$lastProductId.']';
+//exit;
+$product = Mage::getModel('catalog/product')->load($lastProductId);
+?>
+fbq('track', 'AddToCart', {
+      content_name: '<?php echo $product->getName() ?>', 
+      content_ids: ['<?php echo $product->getSku() ?>'],
+      content_type: 'product',
+      value: <?php echo $product->getFinalPrice() ?>,
+      currency: '<?php echo Mage::app()->getStore()->getCurrentCurrencyCode() ?>' 
+    });  
+<?php endif;*/ ?>
+
+<?php 
+$request = Mage::app()->getFrontController()->getRequest();
+$moduleName = $request->getModuleName();
+$controllerName = $request->getControllerName();
+$actionName = $request->getActionName();
+$router = $request->getRouteName();
+
+$lastOrderId = Mage::getSingleton('checkout/session')->getLastOrderId();
+//checkout/onepage/success/
+if (
+  (
+    $moduleName=='checkout'&& $controllerName=='success'
+    ||
+    $moduleName=='checkout'&& $actionName=='success'
+    ||
+    $moduleName=='phasecheckout'&& $actionName=='success'    
+  )
+  && $lastOrderId): 
+$order = Mage::getSingleton('sales/order');
+$order->load($lastOrderId);
+?>
+fbq('track', 'Purchase', {
+  content_ids: [<?php $ids = array(); foreach ($order->getAllItems() as $it) { 
+  if (!$it->getPriceInclTax()) continue;
+     $ids[] = "'".$it->getSku()."'";
+  }
+  echo join(',', $ids);
+  ?>],
+  content_type: 'product',
+  value: <?php echo $order->getGrandTotal() ?>,
+  currency: '<?php echo Mage::app()->getStore()->getCurrentCurrencyCode() ?>'
+});  
+<?php endif; ?>
+
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=<?php echo $fbpixel ?>&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+

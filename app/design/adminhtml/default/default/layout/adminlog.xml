@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <adminlog_adminhtml_adminlog_index>
+        <reference name="content">
+            <block type="adminlog/adminhtml_adminlog" name="adminlog" />
+        </reference>
+    </adminlog_adminhtml_adminlog_index>
+</layout>

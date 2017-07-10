@@ -1,0 +1,202 @@
+<?php include_once dirname(__FILE__).'/functions2.php'; ?>
+<?php $stockItem = Mage::getModel('cataloginventory/stock_item')->loadByProduct($product);//$product->getStockItem();
+  /*if ($stockItem->getManageStock() && !$stockItem->getIsInStock())
+    return;*/
+?>
+
+<?php
+//$mainProduct = $product;
+$product = $product->load($product->getId()); 
+$products = [$product];
+/*if ($product->getTypeId() != 'simple'){
+  Mage::log($product->getTypeId(),null, 'exp.log');
+}*/
+
+if ($product->getTypeId()=='configurable') {
+  $conf = Mage::getModel('catalog/product_type_configurable')->setProduct($product);
+  $products = $conf->getUsedProductCollection()->addAttributeToSelect('*')->addFilterByRequiredOptions();
+  
+  $attributes = $product->getTypeInstance(true)->getConfigurableAttributes($product);
+  //array to keep the price differences for each attribute value
+  $pricesByAttributeValues = array();
+  //base price of the configurable product 
+  $basePrice = $product->getFinalPrice();
+  //loop through the attributes and get the price adjustments specified in the configurable product admin page
+  foreach ($attributes as $attribute){
+      $prices = $attribute->getPrices();
+      foreach ($prices as $price){
+          if ($price['is_percent']){ //if the price is specified in percents
+              $pricesByAttributeValues[$price['value_index']] = (float)$price['pricing_value'] * $basePrice / 100;
+          }
+          else { //if the price is absolute value
+              $pricesByAttributeValues[$price['value_index']] = (float)$price['pricing_value'];
+          }
+      }
+  }
+  
+  //get all simple products
+  //$simple = $product->getTypeInstance()->getUsedProducts();
+  //loop through the products
+  foreach ($products as $sProduct){
+      $totalPrice = $basePrice;
+      //loop through the configurable attributes
+      foreach ($attributes as $attribute){
+          //get the value for a specific attribute for a simple product
+          $value = $sProduct->getData($attribute->getProductAttribute()->getAttributeCode());
+          //add the price adjustment to the total price of the simple product
+          if (isset($pricesByAttributeValues[$value])){
+              $totalPrice += $pricesByAttributeValues[$value];
+          }
+      }
+      //in $totalPrice you should have now the price of the simple product
+      //do what you want/need with it
+      //$subPrices[$sProduct->getSku()] = $totalPrice;
+      //echo $sProduct->getSku().': '.$totalPrice;
+       $sProduct->setFinalPrice($totalPrice);
+  }  
+  
+}else if ($product->getTypeId()=='grouped') {
+  $grouped = Mage::getModel('catalog/product_type_grouped')->setProduct($product);
+  $products = $grouped->getAssociatedProducts();//->addAttributeToSelect('*')->addFilterByRequiredOptions();
+  //Mage::log($products,null, 'exp.log');
+}
+
+foreach($products as $simpleProduct){
+  if ($simpleProduct->getStatus()==2) continue;
+  ?>
+
+    <SHOPITEM>
+            <PRODUCT><?php echo short($simpleProduct->getNameHeureka() ? $simpleProduct->getNameHeureka() : $simpleProduct->getName(), 255); ?></PRODUCT>
+            <PRODUCTNAME><?php echo short($simpleProduct->getNameHeureka() ? $simpleProduct->getNameHeureka() : $simpleProduct->getName(), 255); ?></PRODUCTNAME>
+            <ITEM_ID><?php echo $simpleProduct->getSku(); ?></ITEM_ID>
+            <?php if ($simpleProduct->getEan()) :?><EAN><?php echo $simpleProduct->getEan() ?></EAN>
+            <?php elseif ($product->getEan()) :?><EAN><?php echo $product->getEan() ?></EAN><?php endif; ?>
+            
+            <DESCRIPTION><![CDATA[<?php echo strip_tags($product->getDescription())/*short($product->getDescription(),512)*/; ?>]]></DESCRIPTION>
+            <URL><?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$product->getUrlPath();  if ($product->getTypeId()!='simple') echo '#'.$simpleProduct->getId(); ?></URL>
+            <ITEM_TYPE>new</ITEM_TYPE>
+            <?php if (!preg_match('~^(no_selection)?$~',$product->getImage())) : ?> 
+              <IMGURL><?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'media/catalog/product'.$product->getImage() ?></IMGURL>
+            <?php endif; ?>
+            <MANUFACTURER><?php echo $product->getAttributeText('manufacturer') ?></MANUFACTURER>
+            <?php if ($stockItem->getIsInStock()) {?>
+            <DELIVERY_DATE>0</DELIVERY_DATE>
+            <?php } ?>
+            <?php /*if ($product->getIsFreeshipping()): ?>
+            <DELIVERY>
+              <DELIVERY_ID>CESKA_POSTA</DELIVERY_ID>
+              <DELIVERY_PRICE>0</DELIVERY_PRICE>
+            </DELIVERY>
+            <?php endif;*/ ?>
+            
+            <?php
+            
+            $productPrice = round($simpleProduct->getFinalPrice(),2);//getProductPrice($product);
+            
+            /*
+            $cod = Mage::getStoreConfig('payment/cashondelivery/active') ? Mage::getStoreConfig('payment/cashondelivery/inlandcosts') : 0;
+            
+            if ($cod) {
+              $codFreeFrom = Zebu_Sportpower::getFreeCodFrom();
+              if ($productPrice >= $codFreeFrom){
+                $cod = 0;
+              }
+            }
+            
+            
+            $shippings = array(
+              'ppl' => 'PPL',
+              'dpd' => 'DPD',
+              'post' => 'CESKA_POSTA',
+              'baliknapostu' => 'CESKA_POSTA_NA_POSTU'
+            );
+            
+            foreach($shippings as $code => $name){
+              if (!Mage::getStoreConfig('carriers/'.$code.'/active')){
+                continue;
+              }
+              
+              if (!Mage::getStoreConfig('carriers/'.$code.'/max_weight')){
+                if ($product->getWeight() > Mage::getStoreConfig('carriers/'.$code.'/max_weight')) {
+                  continue;
+                }
+              }
+              
+              $shippingPrice = Mage::getStoreConfig('carriers/'.$code.'/price');
+              if (Mage::getStoreConfig('carriers/'.$code.'/freeshipping_from')) {
+                 if ($productPrice >= Mage::getStoreConfig('carriers/'.$code.'/freeshipping_from')){
+                    $shippingPrice = 0;
+                 }
+              }
+              
+              ?>
+              <DELIVERY>
+                <DELIVERY_ID><?php echo $name ?></DELIVERY_ID>
+                <DELIVERY_PRICE><?php echo $shippingPrice ?></DELIVERY_PRICE>
+                <DELIVERY_PRICE_COD><?php echo $shippingPrice + $cod ?></DELIVERY_PRICE_COD>
+              </DELIVERY>
+              <?php
+            } */
+            ?>
+            
+            <?php if ($product->getTypeId()=='configurable' || $product->getTypeId()=='grouped') : ?>
+            <ITEMGROUP_ID><?php echo $product->getSku(); ?></ITEMGROUP_ID> 
+            <?php endif; ?>
+                        
+            <?php 
+            $params = [];
+            if ($simpleProduct->getFarbaHurtta()){
+              $params['Farba'] = $simpleProduct->getAttributeText('farba_hurtta');
+             }elseif ($simpleProduct->getColor()){
+              $params['Farba'] = $simpleProduct->getAttributeText('color');
+             }
+
+             $sizeAtts = array(
+                'dvierka_velkost',
+                'velkost',
+                'velkostna_tabulka_hurta',
+                'velkost_hurtta_a',
+                'velkost_krmiva',
+                'velkost_voditka_postroje',
+             );
+             foreach($sizeAtts as $sizeAttCode){
+                if ($simpleProduct->getData($sizeAttCode)){
+                   $params['Velikosť'] = $simpleProduct->getAttributeText($sizeAttCode);
+                   break;
+                }
+             }
+
+            /*if ($simpleProduct->getVelkost()){
+              $params['Velikosť'] = $simpleProduct->getAttributeText('velkost');
+            }elseif ($simpleProduct->getSize()){
+              $params['Velikosť'] = $simpleProduct->getAttributeText('size');
+            }elseif ($simpleProduct->getSize()){
+              $params['Velikosť'] = $simpleProduct->getAttributeText('size');
+            }elseif ($simpleProduct->getSize()){
+              $params['Velikosť'] = $simpleProduct->getAttributeText('size');
+            }elseif ($simpleProduct->getSize()){
+              $params['Velikosť'] = $simpleProduct->getAttributeText('size');
+            }*/
+            if (!empty($params)): ?>
+            <?php foreach($params as $param => $value): ?>
+            <PARAM>
+                <PARAM_NAME><?php echo $param; ?></PARAM_NAME>
+                <VAL><?php echo $value; ?></VAL>
+            </PARAM>
+            <?php endforeach; ?>
+            <?php endif; ?>
+            <PRICE_VAT><?php echo $productPrice ?></PRICE_VAT>
+<?php if ($product->getCategoryheureka()) :?>
+<CATEGORYTEXT><?php echo  htmlspecialchars($product->getCategoryheureka()) ?></CATEGORYTEXT>
+<?php else: ?>
+<?php
+$cats = array();
+//echo '<catids>'.join(',',$product->getCategoryIds()).'</catids>'.PHP_EOL;
+foreach(Zebu_Mage_ProductHelper::get_category_max_pathes_array(join(',',$product->getCategoryIds()),' | ',0) as $cat){
+?>
+            <CATEGORYTEXT><?php echo htmlspecialchars($cat) ?></CATEGORYTEXT>
+<?php } ?>
+<?php endif; ?>
+    </SHOPITEM>
+    
+<?php } ?>    

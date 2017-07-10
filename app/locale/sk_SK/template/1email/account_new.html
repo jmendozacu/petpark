@@ -1,0 +1,57 @@
+<!--@subject Vitajte, {{var customer.name}}! @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"htmlescape var=$customer.name":"Customer Name",
+"store url=\"customer/account/\"":"Customer Account Url",
+"var customer.email":"Customer Email",
+"htmlescape var=$customer.password":"Customer Password"}
+@-->
+
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+<table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+        <tr>
+            <td align="center" valign="top" style="padding:20px 0 20px 0">
+                <!-- [ header starts here] -->
+                <table bgcolor="FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+                    <tr>
+                        <td valign="top">
+                            <a href="{{store url=""}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}" style="margin-bottom:10px;" border="0"/></a></td>
+                    </tr>
+                <!-- [ middle starts here] -->
+                    <tr>
+                        <td valign="top">
+                            <h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;"">V&aacute;&#382;en&yacute; (&aacute;), {{htmlescape var=$customer.name}},</h1>
+                            <p style="font-size:12px; line-height:16px; margin:0 0 16px 0;">Vitajte na  {{var store.getFrontendName()}}. Na to aby ste sa mohli prihl&aacute;si&#357; na svoj &uacute;&#269;et kliknite na <a href="{{store url="customer/account/"}}" style="color:#1E7EC8;">Prihl&aacute;si&#357;</a> na vrchu ka&#382;dej str&aacute;nky a potom zadajte svoj email a va&scaron;e heslo.</p>
+              <p style="border:1px solid #E0E0E0; font-size:12px; line-height:16px; margin:0; padding:13px 18px; background:#f9f9f9;">
+Pou&#382;ite nasledovn&eacute; &uacute;daje na prihl&aacute;senie sa:<br/>
+                                <strong>E-mail</strong>: {{var customer.email}}<br/>
+                                <strong>Heslo</strong>: {{htmlescape var=$customer.password}}<p>
+                            <p style="font-size:12px; line-height:16px; margin:0 0 8px 0;">Ke&#271; sa prihl&aacute;site na svoj &uacute;&#269;et, m&ocirc;&#382;ete robi&#357; nasledovn&eacute;:</p>
+                            <ul style="font-size:12px; line-height:16px; margin:0 0 16px 0; padding:0;">
+                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Realizujete n&aacute;kup r&yacute;chlej&scaron;ie bez vypl&#328;ovanie u&#382; zadan&yacute;ch &uacute;dajov.</li>
+                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Sledova&#357; stav va&scaron;ej objedn&aacute;vky.</li>
+                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Prezera&#357; predch&aacute;dzaj&uacute;ce n&aacute;kupy. </li>
+                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Realizova&#357; zmeny vo Va&scaron;om &uacute;&#269;te.</li>
+                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Meni&#357; heslo.</li>
+                                <li style="list-style:none inside; padding:0 0 0 10px;">&ndash; Vlo&#382;i&#357; alternat&iacute;vnu adresu (pre zasielanie  priate&#318;om a rodinn&yacute;ch pr&iacute;slu&scaron;n&iacute;kom)</li>
+                          </ul>
+                            <p style="font-size:12px; line-height:16px; margin:0;">Ak m&aacute;te ak&eacute;ko&#318;vek ot&aacute;zky oh&#318;adne Va&scaron;ej objedn&aacute;vky, pros&iacute;m kontaktujte n&aacute;s na <a href="mailto:{{config path='trans_email/ident_support/email'}}" style="color:#1E7EC8;">{{config path='trans_email/ident_support/email'}}</a> alebo n&aacute;m zavolajte na {{config path='general/store_information/phone'}} Pondelok - Piatok, 8.00 - 20.00.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#EAEAEA" align="center" style="background:#EAEAEA; text-align:center;"><center>
+                          <p style="font-size:12px; margin:0;">&#270;akujeme, <strong>{{var store.getFrontendName()}}</strong></p>
+                        </center></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
