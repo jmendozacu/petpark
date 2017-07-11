@@ -6,5 +6,5 @@ var/heurekask-overeno.log
 .DS_Store
 *.cache
 
-var
-media
+/var
+/media
