@@ -146,7 +146,13 @@ if($enable_addtocart_sticky){
                 }
             ?>
                 <div class="product-name">
-                    <h1 <?php if($enabled_richsnippets): ?>itemprop="name"<?php endif; ?>><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                    <h1 <?php if($enabled_richsnippets): ?>itemprop="name"<?php endif; ?>>
+                        <?php if($_product->getNameSeo()): ?>
+                            <?php echo $_helper->productAttribute($_product, $_product->getNameSeo(), 'name_seo') ?>
+                        <?php else: ?>
+                            <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                        <?php endif; ?>
+                    </h1>
                 </div>
                 <?php if($enabled_richsnippets): ?>
                 <?php
