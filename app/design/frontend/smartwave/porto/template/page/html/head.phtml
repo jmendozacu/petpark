@@ -18,6 +18,10 @@
 <?php
 	}
 ?>
+<?php
+$currentUrl = $this->helper('core/url')->getCurrentUrl();
+$lang = (Mage::app()->getStore()->getCode()=='cz') ? 'cs' : 'sk';
+?>
 <link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
 <link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
 
@@ -34,6 +38,7 @@
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic&amp;v1&amp;subset=latin%2Clatin-ext" type="text/css" media="screen"/>
 <?php endif;?>
 <link href='//fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'/>
+<link rel="alternate" hreflang="<?php echo $lang; ?>" href="<?php echo $currentUrl; ?>"
 <?php echo $this->getCssJsHtml() ?>
 <?php echo $this->getChildHtml() ?>
 <?php echo $this->helper('core/js')->getTranslatorScript() ?>
