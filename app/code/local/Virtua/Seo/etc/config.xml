@@ -1,15 +1,25 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <Virtua_SEO>
+        <Virtua_Seo>
             <version>1.1.0</version>
-        </Virtua_SEO>
+        </Virtua_Seo>
     </modules>
     <global>
+        <models>
+            <virtua>
+                <class>Virtua_Seo_Model</class>
+            </virtua>
+        </models>
+        <helpers>
+            <virtua_seo>
+                <class>Virtua_Seo_Helper</class>
+            </virtua_seo>
+        </helpers>
         <resources>
             <virtua_setup>
                 <setup>
-                    <module>Virtua_SEO</module>
+                    <module>Virtua_Seo</module>
                     <class>Mage_Catalog_Model_Resource_Setup</class>
                 </setup>
                 <connection>
@@ -17,15 +27,5 @@
                 </connection>
             </virtua_setup>
         </resources>
-        <models>
-            <virtua>
-                <class>Virtua_SEO_Model</class>
-            </virtua>
-        </models>
-        <helpers>
-            <virtua_seo>
-                <class>Virtua_SEO_Helper</class>
-            </virtua_seo>
-        </helpers>
     </global>
 </config>
