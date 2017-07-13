@@ -31,33 +31,13 @@ if ($seoHelper->isBlogListPage($currentRoute, $currentAction)) {
     $params = $this->getRequest()->getParams();
     echo $seoHelper->getRelLink($params, $currentRoute);
 }
-
-if (Mage::app()->getStore()->getCode()=='cz') {
-    $alternateLang = 'sk';
-    $alternateCode = 'default';
-} else {
-    $alternateLang = 'cz';
-    $alternateCode = 'cz';
-}
 $request = $this->getRequest();
-$path = $request->getRouteName() .DS. $request->getControllerName() .DS. $request->getActionName();
-$params = $request->getParams();
-$paramsString = '';
-if (!empty($params)) {
-    $paramsString .= '?';
-    foreach ($params as $key => $param) {
-        if ($param) {
-            $paramsString .= $key . '=' . $param . '&';
-        }
-    }
-    $paramsString = rtrim($paramsString, '&');
+// generating alternative url (SEO)
+$alternateTag = $seoHelper->getAlternateTag($request);
+if ($alternateTag) {
+    echo $alternateTag;
 }
-$alternateUrl = Mage::app()->getStore($alternateCode)->getBaseUrl() . $path . $paramsString;
-
 ?>
-<?php if ($alternateUrl): ?>
-    <link rel="alternate" hreflang="<?php echo $alternateLang; ?>" href="<?php echo $alternateUrl; ?>" />
-<?php endif; ?>
 
 <?php //Include Google fonts character subsets (such as extended latin, cyrillic)
     if (isset($d['font']['primary_char_latin_ext']) && $d['font']['primary_char_latin_ext']==1 )
