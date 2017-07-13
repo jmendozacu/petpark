@@ -21,10 +21,33 @@
 <link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
 <link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
 <?php
-$currentUrl = $this->helper('core/url')->getCurrentUrl();
-$lang = (Mage::app()->getStore()->getCode()=='cz') ? 'cs' : 'sk';
+
+if (Mage::app()->getStore()->getCode()=='cz') {
+    $alternateLang = 'sk';
+    $alternateCode = 'default';
+} else {
+    $alternateLang = 'cz';
+    $alternateCode = 'cz';
+}
+$request = $this->getRequest();
+$path = $request->getRouteName() .DS. $request->getControllerName() .DS. $request->getActionName();
+$params = $request->getParams();
+$paramsString = '';
+if (!empty($params)) {
+    $paramsString .= '?';
+    foreach ($params as $key => $param) {
+        if ($param) {
+            $paramsString .= $key . '=' . $param . '&';
+        }
+    }
+    $paramsString = rtrim($paramsString, '&');
+}
+$alternateUrl = Mage::app()->getStore($alternateCode)->getBaseUrl() . $path . $paramsString;
+
 ?>
-<link rel="alternate" hreflang="<?php echo $lang; ?>" href="<?php echo $currentUrl; ?>" />
+<?php if ($alternateUrl): ?>
+    <link rel="alternate" hreflang="<?php echo $alternateLang; ?>" href="<?php echo $alternateUrl; ?>" />
+<?php endif; ?>
 
 <?php //Include Google fonts character subsets (such as extended latin, cyrillic)
     if (isset($d['font']['primary_char_latin_ext']) && $d['font']['primary_char_latin_ext']==1 )
