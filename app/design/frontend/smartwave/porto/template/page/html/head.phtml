@@ -20,7 +20,15 @@
 ?>
 <link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
 <link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
-
+<?php
+$seoHelper = Mage::helper('virtua_seo/data');
+$currentRoute = $this->getRequest()->getRouteName();
+$currentAction = $this->getRequest()->getActionName();
+if ($seoHelper->isBlogListPage($currentRoute, $currentAction)) {
+    $params = $this->getRequest()->getParams();
+    echo $seoHelper->getRelLink($params, $currentRoute);
+}
+?>
 <?php //Include Google fonts character subsets (such as extended latin, cyrillic)
     if (isset($d['font']['primary_char_latin_ext']) && $d['font']['primary_char_latin_ext']==1 )
         $charSubset .= ',latin-ext';
