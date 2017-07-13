@@ -17,5 +17,15 @@
                 </connection>
             </virtua_setup>
         </resources>
+        <models>
+            <virtua>
+                <class>Virtua_SEO_Model</class>
+            </virtua>
+        </models>
+        <helpers>
+            <virtua_seo>
+                <class>Virtua_SEO_Helper</class>
+            </virtua_seo>
+        </helpers>
     </global>
 </config>
