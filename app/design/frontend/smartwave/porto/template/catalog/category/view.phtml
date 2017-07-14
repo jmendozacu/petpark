@@ -26,13 +26,19 @@
         }
     }
 ?>
+
 <div class="page-title category-title">
     <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
         <a href="<?php echo $this->getRssLink() ?>" class="link-rss"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
     <?php endif; ?>
-    <h1><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
+    <h1>
+        <?php if($_category->getNameSeo()): ?>
+            <?php echo $_helper->categoryAttribute($_category, $_category->getNameSeo(), 'name_seo') ?>
+        <?php else: ?>
+            <?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?>
+        <?php endif; ?>
+    </h1>
 </div>
-
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 
 <?php if($this->isContentMode()): ?>
