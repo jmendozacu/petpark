@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <Virtua_SEO>
+        <Virtua_Seo>
             <active>true</active>
             <codePool>local</codePool>
             <version>1.0.0</version>
-        </Virtua_SEO>
+        </Virtua_Seo>
     </modules>
 </config>
