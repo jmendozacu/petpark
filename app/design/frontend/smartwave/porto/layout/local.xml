@@ -323,6 +323,9 @@
     </sendfriend_product_send>
 
     <seo_sitemap_index>
+        <reference name="head">
+            <action method="setTitle" translate="title"><title>Sitemap</title></action>
+        </reference>
         <reference name="content">
             <block type="seo/sitemap" name="virtua.seo.sitemap" template="seo/sitemap.phtml"/>
         </reference>
