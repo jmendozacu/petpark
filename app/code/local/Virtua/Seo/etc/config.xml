@@ -17,6 +17,11 @@
                 </connection>
             </virtua_setup>
         </resources>
+        <blocks>
+            <seo>
+                <class>Virtua_Seo_Block</class>
+            </seo>
+        </blocks>
         <models>
             <virtua>
                 <class>Virtua_Seo_Model</class>
@@ -28,4 +33,15 @@
             </virtua_seo>
         </helpers>
     </global>
+    <frontend>
+        <routers>
+            <seo>
+                <use>standard</use>
+                <args>
+                    <module>Virtua_Seo</module>
+                    <frontName>seo</frontName>
+                </args>
+            </seo>
+        </routers>
+    </frontend>
 </config>
