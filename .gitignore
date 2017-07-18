@@ -8,3 +8,6 @@ var/heurekask-overeno.log
 
 /var
 /media
+
+/access.log
+/error.lgg
