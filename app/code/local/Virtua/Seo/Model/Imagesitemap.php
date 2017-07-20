@@ -128,7 +128,7 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
                 if (!$this->_isset($image->getAttribute('src')) || !$this->_displayImage($image->getAttribute('src'))) {
                     continue;
                 }
-                $out[$key]['src'] = $image->getAttribute('src');
+                $out[$key]['url'] = $image->getAttribute('src');
                 if ($this->_isset($image->getAttribute('alt'))) {
                     $out[$key]['title'] = $image->getAttribute('alt');
                 }
