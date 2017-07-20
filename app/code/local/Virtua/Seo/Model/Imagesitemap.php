@@ -20,7 +20,7 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
     protected function _getFilePath()
     {
         if (is_null($this->_filePath)) {
-            $this->_filePath = str_replace('//', '/', Mage::getBaseDir()) . DS . 'var';
+            $this->_filePath = str_replace('//', '/', Mage::getBaseDir());
         }
         return $this->_filePath;
     }
@@ -103,7 +103,7 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
             }
             $singleNode = $this->_buildSingleNode($url, $images);
             $io->streamWrite($singleNode);
-            if ($i > 10) {
+            if ($i > 50) {
                 break;
             }
         }
