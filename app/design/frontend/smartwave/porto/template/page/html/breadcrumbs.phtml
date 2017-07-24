@@ -1,29 +1,36 @@
 <?php
 $helperStructuredata = Mage::helper('virtua_seo/structuredata');
 $crumbsJsonData = $helperStructuredata->buildBreadcrumbsJson($crumbs);
+$position = 1;
 ?>
 <?php if($crumbs && is_array($crumbs)): ?>
 <div class="col-sm-12 a-left">
-    <ul>
+    <ul itemscope itemtype="http://schema.org/BreadcrumbList">
         <?php foreach($crumbs as $_crumbName=>$_crumbInfo): ?>
-            <li class="<?php echo $_crumbName ?>">
+            <li class="<?php echo $_crumbName ?>" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
             <?php if($_crumbInfo['link']): ?>
-                <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></a>
+                <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>">
+                    <span itemprop="name"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></span>
+                </a>
             <?php elseif($_crumbInfo['last']): ?>
-                <strong><?php echo $this->escapeHtml($_crumbInfo['label']) ?></strong>
+                <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>">
+                    <strong itemprop="name"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></strong>
+                </a>
             <?php else: ?>
                 <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
             <?php endif; ?>
             <?php if(!$_crumbInfo['last']): ?>
                 <span class="breadcrumbs-split"><i class="icon-right-open"></i></span>
             <?php endif; ?>
+                <meta itemprop="position" content="<?php echo $position; ?>" />
             </li>
+            <?php $position++; ?>
         <?php endforeach; ?>
     </ul>
 </div>
 <?php endif; ?>
-<?php if($crumbsJsonData): ?>
-    <script type="application/ld+json">
-        <?php echo $crumbsJsonData; ?>
-    </script>
-<?php endif; ?>
+<?php //if($crumbsJsonData): ?>
+<!--    <script type="application/ld+json">-->
+<!--        --><?php //echo $crumbsJsonData; ?>
+<!--    </script>-->
+<?php //endif; ?>
