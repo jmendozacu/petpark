@@ -1,8 +1,11 @@
 <?php
     $_product = $this->getProduct();
     $_helper = $this->helper('catalog/output');
+    $helper_richsnippets = $this->helper('porto/richsnippets');
     $store = Mage::app()->getStore();
     $code  = $store->getCode();
+    $product_type = $_product->getTypeId();
+    $enabled_richsnippets = ($helper_richsnippets->isEnabled() && $product_type !== "grouped");
 ?>
 <?php
     $aspect_ratio = Mage::getStoreConfig("porto_settings/product_view/aspect_ratio", $code);
@@ -22,6 +25,10 @@
     else
         $hide_smallthumb_single = "true";
 ?>
+<?php if($enabled_richsnippets) {
+    $_img = '<img class="hidden" itemprop="image" src="'.$this->helper('catalog/image')->init($_product, 'image').'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+    echo $_helper->productAttribute($_product, $_img, 'image');
+} ?>
 <?php if (count($this->getGalleryImages()) > 0): ?>
 <ul id="etalage_<?php echo $rnd_str; ?>">
 <?php foreach ($this->getGalleryImages() as $_image): ?>

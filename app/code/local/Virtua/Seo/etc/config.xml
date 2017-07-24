@@ -6,6 +6,16 @@
         </Virtua_Seo>
     </modules>
     <global>
+        <models>
+            <virtua>
+                <class>Virtua_Seo_Model</class>
+            </virtua>
+        </models>
+        <helpers>
+            <virtua_seo>
+                <class>Virtua_Seo_Helper</class>
+            </virtua_seo>
+        </helpers>
         <resources>
             <virtua_setup>
                 <setup>
