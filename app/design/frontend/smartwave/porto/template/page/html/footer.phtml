@@ -7,6 +7,7 @@
     $footer_class = ($footer['fixed_position_footer_enabled'])?" fixed-position":"";
     $product = '';
     $product = Mage::registry('current_product');
+    $helperStructuredata = Mage::helper('virtua_seo/structuredata');
 ?>
 <div class="footer-container <?php echo $footer_class; ?>">
     <div class="footer">
@@ -203,3 +204,16 @@ var google_remarketing_only = true;
 </noscript>
   
 <?php  } ?>
+
+<!-- Structured company data -->
+<?php
+$companyStructuredData = $helperStructuredata->getJsonCompanyStructuredData();
+if ($companyStructuredData) {
+?>
+    <script type="application/ld+json">
+        <?php echo $companyStructuredData; ?>
+    </script>
+<?php
+}
+?>
+

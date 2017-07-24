@@ -1,3 +1,7 @@
+<?php
+$helperStructuredata = Mage::helper('virtua_seo/structuredata');
+$crumbsJsonData = $helperStructuredata->buildBreadcrumbsJson($crumbs);
+?>
 <?php if($crumbs && is_array($crumbs)): ?>
 <div class="col-sm-12 a-left">
     <ul>
@@ -17,4 +21,9 @@
         <?php endforeach; ?>
     </ul>
 </div>
+<?php endif; ?>
+<?php if($crumbsJsonData): ?>
+    <script type="application/ld+json">
+        <?php echo $crumbsJsonData; ?>
+    </script>
 <?php endif; ?>

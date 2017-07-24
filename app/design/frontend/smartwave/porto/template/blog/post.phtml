@@ -151,3 +151,16 @@
     <?php endif; ?>
 <?php endif; ?>
 </div>
+
+<?php
+$helperStructuredata = Mage::helper('virtua_seo/structuredata');
+$postStuctureData = $helperStructuredata->getJsonPostData($post->getId());
+if ($postStuctureData) {
+    ?>
+    <script type="application/ld+json">
+        <?php echo $postStuctureData; ?>
+    </script>
+<?php
+}
+?>
+
