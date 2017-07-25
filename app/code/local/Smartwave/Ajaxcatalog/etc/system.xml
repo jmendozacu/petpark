@@ -331,6 +331,26 @@
                         </loading_text_color>
                     </fields>
                 </ajax_conf>
+                <url_rewrite_config translate="label">
+                    <label>URL Rewrite Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <rewrite_url translate="label comment">
+                            <label>Rewrite URL Enable</label>
+                            <comment>Enable / disable rewriting url in Layer Navigation.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </rewrite_url>
+                    </fields>
+                </url_rewrite_config>
             </groups>
         </ajax_catalog>
     </sections>
