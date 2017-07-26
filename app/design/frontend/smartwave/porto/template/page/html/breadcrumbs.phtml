@@ -13,7 +13,7 @@ $position = 1;
                 </a>
             <?php elseif($_crumbInfo['last']): ?>
                 <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>">
-                    <link itemprop="url" href="<?php echo $_crumbInfo['link']; ?>">
+                    <link itemprop="url" href="<?php echo (isset($_crumbInfo['link']) && $_crumbInfo['link']) ? $_crumbInfo['link'] : Mage::helper('core/url')->getCurrentUrl(); ?>">
                     <strong itemprop="name"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></strong>
                 </a>
             <?php else: ?>
