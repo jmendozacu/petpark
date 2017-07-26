@@ -12,6 +12,7 @@ class Virtua_Seo_Model_Structuredata extends Mage_Core_Model_Abstract
             '@context' => 'http://schema.org',
             '@type' => 'Organization',
             'url' => $baseUrl,
+            'name' => self::COMPANY_NAME,
             'contactPoint' => array (
                 '@type' => 'ContactPoint',
                 'telephone' => Mage::getStoreConfig('general/store_information/phone', $storeId),
@@ -28,14 +29,11 @@ class Virtua_Seo_Model_Structuredata extends Mage_Core_Model_Abstract
     public function getPostData($postId)
     {
         $post = Mage::getModel('blog/post')->load($postId);
-        $baseUrl = Mage::getBaseUrl();
         $baseMediaUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
         $menuHelper = Mage::helper('megamenu');
-        $storeId = Mage::app()->getStore()->getStoreId();
         $output = array(
             '@context' => 'http://schema.org',
             '@type' => 'NewsArticle',
-            'url' => $baseUrl,
             'mainEntityOfPage' => array (
                 '@type' => 'WebPage',
                 '@id' => $this->_buildBlogUrl($post->getIdentifier())
@@ -66,7 +64,6 @@ class Virtua_Seo_Model_Structuredata extends Mage_Core_Model_Abstract
             'description' => $post->getMetaDescription()
         );
         return $output;
-        //echo '<pre>'; print_r($output); die();
     }
 
     protected function _buildBlogUrl($identifier, $route = 'blog')
