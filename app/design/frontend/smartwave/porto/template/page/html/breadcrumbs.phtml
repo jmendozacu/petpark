@@ -1,6 +1,4 @@
 <?php
-$helperStructuredata = Mage::helper('virtua_seo/structuredata');
-$crumbsJsonData = $helperStructuredata->buildBreadcrumbsJson($crumbs);
 $position = 1;
 ?>
 <?php if($crumbs && is_array($crumbs)): ?>
@@ -10,10 +8,12 @@ $position = 1;
             <li class="<?php echo $_crumbName ?>" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
             <?php if($_crumbInfo['link']): ?>
                 <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>">
+                    <link itemprop="url" href="<?php echo $_crumbInfo['link']; ?>">
                     <span itemprop="name"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></span>
                 </a>
             <?php elseif($_crumbInfo['last']): ?>
                 <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>">
+                    <link itemprop="url" href="<?php echo $_crumbInfo['link']; ?>">
                     <strong itemprop="name"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></strong>
                 </a>
             <?php else: ?>
@@ -29,8 +29,3 @@ $position = 1;
     </ul>
 </div>
 <?php endif; ?>
-<?php //if($crumbsJsonData): ?>
-<!--    <script type="application/ld+json">-->
-<!--        --><?php //echo $crumbsJsonData; ?>
-<!--    </script>-->
-<?php //endif; ?>
