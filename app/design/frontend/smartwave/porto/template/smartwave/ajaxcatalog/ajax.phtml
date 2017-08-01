@@ -71,6 +71,7 @@
 /*DONOT EDIT THIS CODE*/
 var old_class;
 function sliderAjax(url) {
+    console.log(url);
     if (!active) {
         active = true;
         jQuery(function($) {
@@ -106,7 +107,7 @@ function sliderAjax(url) {
                 else
                     param = "&"+param;
             }
-
+console.log(param);
             try {
                 $('body').css('cursor', 'wait');
                 $.ajax({
@@ -114,7 +115,8 @@ function sliderAjax(url) {
                     dataType: 'json',
                     type: 'post',
                     data: data,
-                    success: function(data) {                        
+                    success: function(data) {
+                        console.log(data);
 						callback();
                         if (data.viewpanel) {
                             if ($('.block-layered-nav')) {
@@ -258,9 +260,15 @@ function sliderAjax(url) {
                         <?php
                             }
                         ?>
+                    },
+                    error: function(ev) {
+                        console.log(ev);
+                        $('body').html(ev.responseText);
                     }
                 })
-            } catch (e) {}
+            } catch (e) {
+                console.log(e);
+            }
         });
         active = false
     }
