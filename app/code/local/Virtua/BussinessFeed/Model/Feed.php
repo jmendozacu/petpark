@@ -75,10 +75,9 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         if (!is_null($product->getGroupPrice())) {
             $groupPrice = $product->getData('group_price');
             $customerGroupPrice = $groupPrice[$groupId]['price'];
-            //if ($customerGroupPrice)
             return $customerGroupPrice;
         }
-        //return $product->getPrice();
+        return $product->getPrice();
     }
 
     public function prepareProductCollection($customerGroup = self::GROUP_VELKOOBCHOD_SPEC_ID)
