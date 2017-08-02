@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_BussinessFeed>
+            <version>1.0.0</version>
+        </Virtua_BussinessFeed>
+    </modules>
+    <global>
+        <models>
+            <bussinessfeed>
+                <class>Virtua_BussinessFeed_Model</class>
+            </bussinessfeed>
+        </models>
+        <helpers>
+            <bussinessfeed>
+                <class>Virtua_BussinessFeed_Helper</class>
+            </bussinessfeed>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <bussinesFeed>
+                <use>standard</use>
+                <args>
+                    <module>Virtua_BussinessFeed</module>
+                    <frontName>secret</frontName>
+                </args>
+            </bussinesFeed>
+        </routers>
+    </frontend>
+</config>
