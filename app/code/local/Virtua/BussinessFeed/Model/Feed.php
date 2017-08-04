@@ -22,9 +22,9 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     {
         $storeId = Mage::app()->getStore()->getStoreId();
         $products = Mage::getModel('catalog/product')->getCollection()
-            ->addFieldToFilter('is_salable', '1')
-            ->addFieldToFilter('is_in_stock', '1')
-            ->addFieldToFilter('type_id', 'simple')
+            //->addFieldToFilter('is_salable', '1')
+            //->addFieldToFilter('is_in_stock', '1')
+            //->addFieldToFilter('type_id', 'simple')
             ->setStore($storeId)
             ->setPageSize(300)
             ->setCurPage(1);
@@ -104,7 +104,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             $preparedData[$key]['categorytext'] = $this->getCategoryName($product);
             $preparedData[$key]['manufacturer'] = $product->getAttributeText('manufacturer');
             $preparedData[$key]['ean'] = $product->getEan();
-            $preparedData[$key]['delivery_date'] = $product->getAttributeText('availability_out');
+            $preparedData[$key]['delivery_date'] = $product->getAttributeText('availability');
         }
         //die();
         //echo '<pre>'; print_r($preparedData); die();
