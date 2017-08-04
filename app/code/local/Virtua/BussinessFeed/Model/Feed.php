@@ -60,7 +60,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                             $attribute = $this->getAttributeById($attrId);
                             if ($attribute) {
                                 $attrCode = $attribute->getAttributeCode();
-                                $params[$attrCode] = $product->getAttributeText($attrCode);
+                                $attrKey = $product->getResource()->getAttribute('color')->getStoreLabel();
+                                $params[$attrKey] = $product->getAttributeText($attrCode);
                             }
                         }
                     }
@@ -91,8 +92,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             $params = $this->getParametersAssignedToConfigurableProduct($product);
             // get group price of product
             $price = $this->getProductGroupPrice($product, $customerGroup);
-            $preparedData[$key]['description'] = $product->getMetaDescription();
-            $preparedData[$key]['imgurl'] = $baseMediaUrl . $product->getImage();
+            $preparedData[$key]['description'] =  htmlspecialchars($product->getShortDescription());;
+            $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
             $preparedData[$key]['vat'] = $this->getVat();
             $preparedData[$key]['price'] = $price;
             $preparedData[$key]['price_vat'] = $this->getVatPrice($price);
@@ -102,8 +103,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 //            $preparedData[$key]['itemgroup'] = $product->getDescription();
             $preparedData[$key]['categorytext'] = $this->getCategoryName($product);
             $preparedData[$key]['manufacturer'] = $product->getAttributeText('manufacturer');
-            $preparedData[$key]['ean'] = false;
-            $preparedData[$key]['delivery_date'] = 0;
+            $preparedData[$key]['ean'] = $product->getEan();
+            $preparedData[$key]['delivery_date'] = $product->getAttributeText('availability_out');
         }
         //die();
         //echo '<pre>'; print_r($preparedData); die();
