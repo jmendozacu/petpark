@@ -26,7 +26,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             //->addFieldToFilter('is_in_stock', '1')
             //->addFieldToFilter('type_id', 'simple')
             ->setStore($storeId)
-            ->setPageSize(400)
+            ->setPageSize(300)
             ->setCurPage(1);
         return $products;
     }
