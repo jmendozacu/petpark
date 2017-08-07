@@ -60,7 +60,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                             $attribute = $this->getAttributeById($attrId);
                             if ($attribute) {
                                 $attrCode = $attribute->getAttributeCode();
-                                $attrKey = $product->getResource()->getAttribute('color')->getStoreLabel();
+                                $attrKey = $product->getResource()->getAttribute($attrCode)->getStoreLabel();
                                 $params[$attrKey] = $product->getAttributeText($attrCode);
                             }
                         }
@@ -81,6 +81,18 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return $product->getPrice();
     }
 
+    public function getParentDescription($product)
+    {
+        if ($product->getTypeId() == 'simple') {
+            $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
+            if (!empty($parentIds)) {
+                $parent = Mage::getModel('catalog/product')->load($parentIds[0]);
+                return htmlspecialchars($parent->getShortDescription());
+            }
+        }
+        return htmlspecialchars($product->getShortDescription());
+    }
+
     public function prepareProductCollection($customerGroup = self::GROUP_VELKOOBCHOD_SPEC_ID)
     {
         $baseMediaUrl = rtrim(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA), '/');
@@ -92,7 +104,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             $params = $this->getParametersAssignedToConfigurableProduct($product);
             // get group price of product
             $price = $this->getProductGroupPrice($product, $customerGroup);
-            $preparedData[$key]['description'] =  htmlspecialchars($product->getShortDescription());;
+            $preparedData[$key]['description'] =  $this->getParentDescription($product);
             $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
             $preparedData[$key]['vat'] = $this->getVat();
             $preparedData[$key]['price'] = $price;
