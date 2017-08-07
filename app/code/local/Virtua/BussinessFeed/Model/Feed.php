@@ -26,7 +26,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             //->addFieldToFilter('is_in_stock', '1')
             //->addFieldToFilter('type_id', 'simple')
             ->setStore($storeId)
-            ->setPageSize(300)
+            ->setPageSize(1000)
             ->setCurPage(1);
         return $products;
     }
@@ -75,8 +75,14 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     {
         if (!is_null($product->getGroupPrice())) {
             $groupPrice = $product->getData('group_price');
-            $customerGroupPrice = $groupPrice[$groupId]['price'];
-            return $customerGroupPrice;
+            if (isset($groupPrice[$groupId]['price'])) {
+                $customerGroupPrice = $groupPrice[$groupId]['price'];
+                return $customerGroupPrice;
+            }
+        }
+        $price = Mage::getModel('catalogrule/rule')->calcProductPriceRule($product,$product->getPrice());
+        if ($price) {
+            return $price;
         }
         return $product->getPrice();
     }
