@@ -73,11 +73,18 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     public function getProductGroupPrice($product, $groupId)
     {
-        if (!is_null($product->getGroupPrice())) {
-            $groupPrice = $product->getData('group_price');
-            if (isset($groupPrice[$groupId]['price'])) {
-                $customerGroupPrice = $groupPrice[$groupId]['price'];
-                return $customerGroupPrice;
+        $groupPrice = $this->getGroupPrice($product, $groupId);
+        if ($groupPrice) {
+            return $groupPrice;
+        }
+        if ($product->getTypeId() == 'simple') {
+            $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
+            if (!empty($parentIds)) {
+                $parent = Mage::getModel('catalog/product')->load($parentIds[0]);
+                $groupPrice = $this->getGroupPrice($parent, $groupId);
+                if ($groupPrice) {
+                    return $groupPrice;
+                }
             }
         }
         $price = Mage::getModel('catalogrule/rule')->calcProductPriceRule($product,$product->getPrice());
@@ -85,6 +92,18 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             return $price;
         }
         return $product->getPrice();
+    }
+
+    public function getGroupPrice($product, $groupId)
+    {
+        if (!is_null($product->getGroupPrice())) {
+            $groupPrice = $product->getData('group_price');
+            if (isset($groupPrice[$groupId]['price'])) {
+                $customerGroupPrice = $groupPrice[$groupId]['price'];
+                return $customerGroupPrice;
+            }
+        }
+        return;
     }
 
     public function getParentDescription($product)
