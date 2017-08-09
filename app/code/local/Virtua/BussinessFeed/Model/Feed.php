@@ -18,16 +18,19 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return $out;
     }
 
-    public function getProductCollection()
+    public function getProductCollection($limit = 300, $page = 1)
     {
+        $arr = array(1718, 1333,1282, 561);
+        $arr = array(636, 637,670, 671, 672, 673,674,675,676,677,678,885,886,888,889,890);
         $storeId = Mage::app()->getStore()->getStoreId();
         $products = Mage::getModel('catalog/product')->getCollection()
             //->addFieldToFilter('is_salable', '1')
             //->addFieldToFilter('is_in_stock', '1')
             //->addFieldToFilter('type_id', 'simple')
+            //->addFieldToFilter('entity_id', array('in', $arr))
             ->setStore($storeId)
-            ->setPageSize(300)
-            ->setCurPage(1);
+            ->setPageSize($limit)
+            ->setCurPage($page);
         return $products;
     }
 
@@ -61,7 +64,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                             if ($attribute) {
                                 $attrCode = $attribute->getAttributeCode();
                                 $attrKey = $product->getResource()->getAttribute($attrCode)->getStoreLabel();
-                                $params[$attrKey] = $product->getAttributeText($attrCode);
+                                $params[$attrKey]['key'] = $product->getAttributeText($attrCode);
+                                $params[$attrKey]['id'] = $product->getResource()->getAttribute($attrCode)->getId();
                             }
                         }
                     }
@@ -71,21 +75,40 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return $params;
     }
 
-    public function getProductGroupPrice($product, $groupId)
+    public function getAttributeIdBySuperAttribute($superAttributeId)
     {
-        $groupPrice = $this->getGroupPrice($product, $groupId);
-        if ($groupPrice) {
-            return $groupPrice;
-        }
+        $resource = Mage::getSingleton('core/resource');
+        $readConnection = $resource->getConnection('core_read');
+        $query = 'SELECT attribute_id FROM ' . $resource->getTableName('catalog_product_super_attribute') . ' WHERE product_super_attribute_id = ' . $superAttributeId;
+        $result = $readConnection->fetchOne($query);
+        return $result;
+    }
+
+    public function getProductGroupPrice($product, $groupId, $params)
+    {
         if ($product->getTypeId() == 'simple') {
             $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
             if (!empty($parentIds)) {
                 $parent = Mage::getModel('catalog/product')->load($parentIds[0]);
+
                 $groupPrice = $this->getGroupPrice($parent, $groupId);
                 if ($groupPrice) {
-                    return $groupPrice;
+                    $parent->getTypeInstance(true)
+                        ->setStoreFilter($parent->getStore(), $parent);
+                    $attributes = $parent->getTypeInstance(true)
+                        ->getConfigurableAttributes($parent);
+                    $add = 0;
+                    foreach ($attributes as $attribute) {
+                        $prices = $attribute->getPrices();
+                        $add += $this->getConfigurableProductWithParametersDifference($groupPrice, $prices, $params);
+                    }
+                    return $groupPrice + $add;
                 }
             }
+        }
+        $groupPrice = $this->getGroupPrice($product, $groupId);
+        if ($groupPrice) {
+            return $groupPrice;
         }
         $price = Mage::getModel('catalogrule/rule')->calcProductPriceRule($product,$product->getPrice());
         if ($price) {
@@ -94,12 +117,43 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return $product->getPrice();
     }
 
+    public function getConfigurableProductWithParametersDifference($basePrice, $prices, $params)
+    {
+        $out = 0;
+        $temp = array();
+        if (!empty($prices)) {
+            foreach ($prices as $price) {
+                if ($superAttrId = $this->getAttributeIdBySuperAttribute($price['product_super_attribute_id'])) {
+                    foreach ($params as $param) {
+                        $attrId = $param['id'];
+                        if ($attrId == $superAttrId && $param['key'] == $price['label']) {
+                            $temp = $price;
+                            break;
+                        }
+                    }
+                }
+                if (!empty($temp)) {
+                    break;
+                }
+            }
+        }
+        if (!empty($temp)) {
+            if (isset($temp['is_percent']) && $temp['is_percent'] == '1' && isset($temp['pricing_value'])) {
+                $out = $basePrice * $temp['pricing_value'] / 100;
+            }
+        }
+        return $out;
+    }
+
     public function getGroupPrice($product, $groupId)
     {
         if (!is_null($product->getGroupPrice())) {
             $groupPrice = $product->getData('group_price');
             if (isset($groupPrice[$groupId]['price'])) {
                 $customerGroupPrice = $groupPrice[$groupId]['price'];
+                if ($product->getFinalPrice() < $customerGroupPrice) {
+                    return $product->getFinalPrice();
+                }
                 return $customerGroupPrice;
             }
         }
@@ -128,7 +182,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             // get array of params
             $params = $this->getParametersAssignedToConfigurableProduct($product);
             // get group price of product
-            $price = $this->getProductGroupPrice($product, $customerGroup);
+            $price = $this->getProductGroupPrice($product, $customerGroup, $params);
             $preparedData[$key]['description'] =  $this->getParentDescription($product);
             $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
             $preparedData[$key]['vat'] = $this->getVat();
@@ -136,7 +190,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             $preparedData[$key]['price_vat'] = $this->getVatPrice($price);
             $preparedData[$key]['product'] = $product->getName();
             $preparedData[$key]['item_id'] = $product->getSku();
-            $preparedData[$key]['params'] = $params;
+            $preparedData[$key]['params'] = $this->rebuildParams($params);
 //            $preparedData[$key]['itemgroup'] = $product->getDescription();
             $preparedData[$key]['categorytext'] = $this->getCategoryName($product);
             $preparedData[$key]['manufacturer'] = $product->getAttributeText('manufacturer');
@@ -146,6 +200,16 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         //die();
         //echo '<pre>'; print_r($preparedData); die();
         return $preparedData;
+    }
+
+    public function rebuildParams($params) {
+        $out = array();
+        if (!empty($params)) {
+            foreach ($params as $key => $param) {
+                $out[$key] = $param['key'];
+            }
+        }
+        return $out;
     }
 
     public function getVatPrice($price)
