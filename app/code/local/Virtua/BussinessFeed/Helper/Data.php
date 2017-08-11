@@ -10,7 +10,7 @@ class Virtua_BussinessFeed_Helper_Data extends Mage_Core_Helper_Abstract
     public function getXmlTop()
     {
         $out = '';
-        $out .= '<?xml version="1.0" encoding="UTF-8" ?>';
+        $out .= "<?xml version='1.0' encoding='UTF-8' ?>\r\n";
         $out .= $this->buildTag('feed');
         return $out;
     }
@@ -78,7 +78,7 @@ class Virtua_BussinessFeed_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function buildTag($tag, $close = false)
     {
-        return ($close) ? '</' . strtoupper($tag) . '>' : '<' . strtoupper($tag) . '>';
+        return ($close) ? '</' . strtoupper($tag) . ">\r\n" : '<' . strtoupper($tag) . '>';
     }
 
     public function replaceChars($value)
