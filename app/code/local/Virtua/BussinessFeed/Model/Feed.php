@@ -12,7 +12,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     public function fileIsOutDatedOrNotExists($file)
     {
-        return (!file_exists($file) || filemtime($file) < time() - 60 * 60);
+        return (!file_exists($file));
+        return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 10);
     }
 
     /**
