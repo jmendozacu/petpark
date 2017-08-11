@@ -12,7 +12,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     public function fileIsOutDatedOrNotExists($file)
     {
-        return (!file_exists($file) || filemtime($file) < time() - 60 * 15);
+        return (!file_exists($file) || filemtime($file) < time() - 60 * 60);
     }
 
     /**
@@ -73,14 +73,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
      */
     public function getProductCollection($limit = 300, $page = 1)
     {
-        $arr = array(1718, 1333,1282, 561);
-        $arr = array(636, 637,670, 671, 672, 673,674,675,676,677,678,885,886,888,889,890);
         $storeId = Mage::app()->getStore()->getStoreId();
         $products = Mage::getModel('catalog/product')->getCollection()
-            //->addFieldToFilter('is_salable', '1')
-            //->addFieldToFilter('is_in_stock', '1')
-            //->addFieldToFilter('type_id', 'simple')
-            //->addFieldToFilter('entity_id', array('in', $arr))
             ->setStore($storeId)
             ->setPageSize($limit)
             ->setCurPage($page);
