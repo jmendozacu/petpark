@@ -8,16 +8,69 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     protected $vat = '0.2000';
 
-    public function buildXmlFeed()
+    protected $feedFile = 'velkoobchod_spec_feed.xml';
+
+    public function fileIsOutDatedOrNotExists($file)
     {
-        $helper = Mage::helper('bussinessfeed');
-        $out = '';
-        $out .= $helper->getXmlTop();
-        $out .= $helper->prepareXmlShopItem($this->prepareProductCollection());
-        $out .= $helper->getXmlBottom();
-        return $out;
+        return (!file_exists($file) || filemtime($file) < time() - 60 * 15);
     }
 
+    /**
+     * Feed's root path
+     * @return string
+     */
+    public function getFeedPath()
+    {
+        $feedPath = Mage::getBaseDir() . DS . 'export' . DS . 'feed';
+        return $feedPath;
+    }
+
+    /**
+     * Feed's file absolute path
+     * @return string
+     */
+    public function getFeedFile()
+    {
+        $feedFile = $this->getFeedPath() . DS . $this->feedFile;
+        return $feedFile;
+    }
+
+    /**
+     * Saving data into the file
+     * @param $data
+     * @return bool|int
+     */
+    public function appendData($data) {
+        $file = $this->getFeedFile();
+        if ($this->fileIsOutDatedOrNotExists($file)) {
+            //override
+            return file_put_contents($file, $data);
+        } else {
+            //append
+            return file_put_contents($file, $data, FILE_APPEND);
+        }
+    }
+
+    /**
+     * Builds xml feed
+     */
+    public function buildXmlFeed()
+    {
+        if (!is_dir($this->getFeedPath())) {
+            mkdir($this->getFeedPath());
+        }
+        $helper = Mage::helper('bussinessfeed');
+        $this->appendData($helper->getXmlTop());
+        $this->prepareProductCollection();
+        $this->appendData($helper->getXmlBottom());
+    }
+
+    /**
+     * Retrieves product collection
+     * @param int $limit
+     * @param int $page
+     * @return mixed
+     */
     public function getProductCollection($limit = 300, $page = 1)
     {
         $arr = array(1718, 1333,1282, 561);
@@ -34,18 +87,33 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return $products;
     }
 
+    /**
+     * Retrieves customer group id
+     * @param $groupCode
+     * @return mixed
+     */
     public function getCustomerGroupIdByCode($groupCode)
     {
         $customerGroup = Mage::getModel('customer/group')->load($groupCode, 'customer_group_code');
         return $customerGroup->getEntityId();
     }
 
+    /**
+     * Retrieves customer groups collection
+     * @return object
+     */
     public function getCustomerGroups()
     {
         $customerGroups = Mage::getModel('customer/group')->getCollection();
         return $customerGroups;
     }
 
+    /**
+     * Retrieves product's parameters which is set as super attributes - they adjust product's price
+     * Example: product's size, color
+     * @param $product
+     * @return array
+     */
     public function getParametersAssignedToConfigurableProduct($product)
     {
         $params = array();
@@ -84,6 +152,13 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return $result;
     }
 
+    /**
+     * Recalculating price of product which has configurable parent and set price adjustment
+     * Returns product price
+     * @param $product
+     * @param $groupId
+     * @param $params
+     */
     public function getProductGroupPrice($product, $groupId, $params)
     {
         if ($product->getTypeId() == 'simple') {
@@ -117,6 +192,13 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return $product->getPrice();
     }
 
+    /**
+     *
+     * @param $basePrice
+     * @param $prices
+     * @param $params
+     * @return float|int price difference
+     */
     public function getConfigurableProductWithParametersDifference($basePrice, $prices, $params)
     {
         $out = 0;
@@ -145,6 +227,11 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return $out;
     }
 
+    /**
+     * Return group price of product
+     * @param $product
+     * @param $groupId
+     */
     public function getGroupPrice($product, $groupId)
     {
         if (!is_null($product->getGroupPrice())) {
@@ -160,6 +247,11 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return;
     }
 
+    /**
+     * If product is simple and has configurable parent it returns product's parent description
+     * @param $product
+     * @return string
+     */
     public function getParentDescription($product)
     {
         if ($product->getTypeId() == 'simple') {
@@ -172,36 +264,62 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return htmlspecialchars($product->getShortDescription());
     }
 
+    /**
+     * Preparing product collection
+     * Saving collection in the file
+     * @param int $customerGroup
+     */
     public function prepareProductCollection($customerGroup = self::GROUP_VELKOOBCHOD_SPEC_ID)
     {
+        $helper = Mage::helper('bussinessfeed');
         $baseMediaUrl = rtrim(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA), '/');
         $preparedData = array();
-        $products = $this->getProductCollection();
-        foreach ($products as $key => $product) {
-            $product = $this->loadProduct($product->getId());
-            // get array of params
-            $params = $this->getParametersAssignedToConfigurableProduct($product);
-            // get group price of product
-            $price = $this->getProductGroupPrice($product, $customerGroup, $params);
-            $preparedData[$key]['description'] =  $this->getParentDescription($product);
-            $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
-            $preparedData[$key]['vat'] = $this->getVat();
-            $preparedData[$key]['price'] = $price;
-            $preparedData[$key]['price_vat'] = $this->getVatPrice($price);
-            $preparedData[$key]['product'] = $product->getName();
-            $preparedData[$key]['item_id'] = $product->getSku();
-            $preparedData[$key]['params'] = $this->rebuildParams($params);
-//            $preparedData[$key]['itemgroup'] = $product->getDescription();
-            $preparedData[$key]['categorytext'] = $this->getCategoryName($product);
-            $preparedData[$key]['manufacturer'] = $product->getAttributeText('manufacturer');
-            $preparedData[$key]['ean'] = $product->getEan();
-            $preparedData[$key]['delivery_date'] = $product->getAttributeText('availability');
+        $continue = true;
+        $perPage = 100;
+        $page = 1;
+        Mage::log('Start' . $page);
+        while ($continue) {
+            $products = $this->getProductCollection($perPage, $page);
+            Mage::log('Count '. count($products));
+            $page++;
+            Mage::log('Page '. $page);
+            foreach ($products as $key => $product) {
+                $product = $this->loadProduct($product->getId());
+                // get array of params
+                $params = $this->getParametersAssignedToConfigurableProduct($product);
+                // get group price of product
+                $price = $this->getProductGroupPrice($product, $customerGroup, $params);
+                $preparedData[$key]['description'] =  $this->getParentDescription($product);
+                $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
+                $preparedData[$key]['vat'] = $this->getVat();
+                $preparedData[$key]['price'] = $price;
+                $preparedData[$key]['price_vat'] = $this->getVatPrice($price);
+                $preparedData[$key]['product'] = $product->getName();
+                $preparedData[$key]['item_id'] = $product->getSku();
+                $preparedData[$key]['params'] = $this->rebuildParams($params);
+                $preparedData[$key]['categorytext'] = $this->getCategoryName($product);
+                $preparedData[$key]['manufacturer'] = $product->getAttributeText('manufacturer');
+                $preparedData[$key]['ean'] = $product->getEan();
+                $preparedData[$key]['delivery_date'] = $product->getAttributeText('availability');
+            }
+            $this->appendData($helper->prepareXmlShopItem($preparedData));
+            unset($preparedData);
+            if (count($products) < $perPage) {
+                Mage::log('empty '. $page);
+                break;
+            }
+            unset($products);
         }
+
         //die();
         //echo '<pre>'; print_r($preparedData); die();
-        return $preparedData;
+        //return $preparedData;
     }
 
+    /**
+     * @param $params
+     * @return array
+     */
     public function rebuildParams($params) {
         $out = array();
         if (!empty($params)) {
@@ -212,6 +330,10 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return $out;
     }
 
+    /**
+     * @param $price
+     * @return string
+     */
     public function getVatPrice($price)
     {
         $vat = $this->getVat();
@@ -219,23 +341,35 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return number_format($vatPrice, 2);
     }
 
+    /**
+     * Retrieves attribute by its id
+     * @param $attributeId
+     * @return array|mixed|void
+     */
     public function getAttributeById($attributeId)
     {
+        // attribute was already retrieved from database
         if (array_key_exists($attributeId, $this->getParams())) {
             return $this->getParams($attributeId);
         }
+        // retrieve attribute from database
         $attribute = Mage::getModel('eav/entity_attribute')
             ->load($attributeId);
         if ($attribute) {
+            // append retrieved param to array
             return $this->addParam($attributeId, $attribute)->getParams($attributeId);
         }
         return;
     }
 
+    /**
+     * Retrieves product's category name
+     * @param $product
+     * @return string
+     */
     public function getCategoryName($product)
     {
         $categoryIds = $product->getCategoryIds();
-
         if(count($categoryIds) ){
             $firstCategoryId = $categoryIds[0];
             $_category = Mage::getModel('catalog/category')->load($firstCategoryId);
