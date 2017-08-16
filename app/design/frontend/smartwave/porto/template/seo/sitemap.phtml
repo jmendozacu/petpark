@@ -1,0 +1,66 @@
+<?php
+$_helperCategory = Mage::helper('catalog/category');
+$_helperProduct = Mage::helper('catalog/product');
+$cmsPageCollection = $this->getCmsPageCollection();
+$categoryCollection = $this->getCategoryCollection();
+$productCollection = $this->getProductCollection();
+$blogPostCollection = $this->getBlogPostCollection();
+$blogCategoryCollection = $this->getBlogCategoryCollection();
+?>
+
+<h2><?php echo __('SITEMAP'); ?></h2>
+
+<?php if(!empty($categoryCollection)): ?>
+    <p><?php echo __('CATEGORIES'); ?></p>
+    <ul>
+        <?php foreach($categoryCollection as $category): ?>
+            <?php
+            $_category = $this->loadCategory($category->getData('entity_id'));
+            ?>
+            <li><a href="<?php echo $_helperCategory->getCategoryUrl($_category); ?>"><?php echo $_category->getName(); ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
+<?php if(!empty($productCollection)): ?>
+    <p><?php echo __('PRODUCTS'); ?></p>
+    <ul>
+        <?php foreach($productCollection as $product): ?>
+            <?php
+            $_product = $this->loadProduct($product->getData('entity_id'));
+            if (!$_product->isSalable()) {
+                continue;
+            }
+            $url = $_product->getProductUrl();
+            ?>
+            <li><a href="<?php echo $url; ?>"><?php echo $_product->getData('name'); ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
+<?php if(!empty($cmsPageCollection)): ?>
+    <p><?php echo __('CMS PAGES'); ?></p>
+    <ul>
+        <?php foreach($cmsPageCollection as $key => $cms): ?>
+            <li><a href="<?php echo $cms['url']; ?>"><?php echo $cms['title']; ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
+<?php if(!empty($blogCategoryCollection)): ?>
+    <p><?php echo __('BLOG CATEGORIES'); ?></p>
+    <ul>
+        <?php foreach($blogCategoryCollection as $identifier => $label): ?>
+            <li><a href="<?php echo $this->buildBlogUrl($identifier, 'blog/cat'); ?>"><?php echo $label; ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
+<?php if(!empty($blogPostCollection)): ?>
+    <p><?php echo __('BLOG POSTS'); ?></p>
+    <ul>
+        <?php foreach($blogPostCollection as $identifier => $label): ?>
+            <li><a href="<?php echo $this->buildBlogUrl($identifier); ?>"><?php echo $label; ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>

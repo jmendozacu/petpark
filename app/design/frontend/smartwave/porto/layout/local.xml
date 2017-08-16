@@ -39,8 +39,8 @@
             <action method="addItem"><type>skin_js</type><name>js/porto.js</name></action>
             <action method="addJs"><script>smartwave/bootstrap/js/bootstrap.min.js</script></action>
             <action method="addItem"><type>skin_js</type><name>js/lib/imagesloaded.js</name></action>
-            
-            <action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action> 
+
+            <action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action>
             <action method="addCss"><stylesheet>icons/css/porto.css</stylesheet></action>
             <action method="addCss"><stylesheet>icons/css/animation.css</stylesheet></action>
             <action method="addCss" ifconfig="porto_settings/general/rtl" condition="0"><stylesheet>css/local.css</stylesheet></action>
@@ -146,7 +146,7 @@
         </reference>
         <reference name="after_body_start">
             <block type="core/template" name="zebu_scripts" template="zebu/scripts.phtml" />
-        </reference>        
+        </reference>
     </default>
     <catalog_category_default>
         <reference name="root">
@@ -163,7 +163,7 @@
             <block type="cms/block" name="custom_side_block" after="-"><action method="setBlockId"><block_id>porto_left_side_category</block_id></action></block>
         </reference>
     </catalog_category_default>
-    
+
     <catalog_category_layered>
         <reference name="root">
             <action method="setTemplate" ifconfig="porto_settings/category/page_layout" condition="one_column"><template>page/1column.phtml</template></action>
@@ -321,5 +321,14 @@
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
     </sendfriend_product_send>
+
+    <seo_sitemap_index>
+        <reference name="head">
+            <action method="setTitle" translate="title"><title>Sitemap</title></action>
+        </reference>
+        <reference name="content">
+            <block type="seo/sitemap" name="virtua.seo.sitemap" template="seo/sitemap.phtml"/>
+        </reference>
+    </seo_sitemap_index>
 
 </layout>
