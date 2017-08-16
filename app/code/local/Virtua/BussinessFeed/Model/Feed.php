@@ -28,12 +28,12 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     /**
      * Feed's file absolute path
-     * @return string
+     * @return strings
      */
     public function getFeedFile()
     {
-        $showFullDescription = Mage::app()->getRequest()->getParam('desc');
-        if (!is_null($showFullDescription) && $showFullDescription == '1') {
+        $showFullDescription = Mage::app()->getRequest()->getParam('fulldesc');
+        if (isset($showFullDescription) && !is_null($showFullDescription)) {
             $feedFile = $this->getFeedPath() . DS . 'fulldesc_' .$this->feedFile;
         } else {
             $feedFile = $this->getFeedPath() . DS . $this->feedFile;
