@@ -82,8 +82,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $storeId = Mage::app()->getStore()->getStoreId();
         $products = Mage::getModel('catalog/product')->getCollection()
             ->setStore($storeId)
-            ->setPageSize($limit)
-            ->setCurPage($page)
+            //->setPageSize($limit)
+            //->setCurPage($page)
             ->getAllIdsCache();
         return $products;
     }
