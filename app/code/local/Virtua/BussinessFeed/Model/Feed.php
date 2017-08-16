@@ -288,7 +288,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             $price = $this->getProductGroupPrice($product, $customerGroup, $params);
             $preparedData[$key]['description'] = $this->getParentDescription($product);
             if ($showFullDesc) {
-                $preparedData[$key]['full_description'] = $this->prepareFullDescription($product->getDescription());
+                $preparedData[$key]['description_full'] = $this->prepareFullDescription($product->getDescription());
             }
             $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
             $preparedData[$key]['vat'] = $this->getVat();
