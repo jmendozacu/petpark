@@ -10,10 +10,27 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     protected $feedFile = 'velkoobchod_spec_feed.xml';
 
+    protected $fullDescription = false;
+
+    protected $feeds = array(
+        array(
+            'group_id' => self::GROUP_VELKOOBCHOD_SPEC_ID,
+            'full_description' => false,
+        ),
+        array(
+            'group_id' => self::GROUP_VELKOOBCHOD_SPEC_ID,
+            'full_description' => true,
+        ),
+    );
+
+    public function getFeeds()
+    {
+        return $this->feeds;
+    }
+
     public function fileIsOutDatedOrNotExists($file)
     {
-        return (!file_exists($file));
-        //return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 48);
+        return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 23);
     }
 
     /**
@@ -33,7 +50,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     public function getFeedFile()
     {
         $showFullDescription = Mage::app()->getRequest()->getParam('fulldesc');
-        if (isset($showFullDescription) && !is_null($showFullDescription)) {
+        if ((isset($showFullDescription) && !is_null($showFullDescription)) || $this->fullDescription) {
             $feedFile = $this->getFeedPath() . DS . 'fulldesc_' .$this->feedFile;
         } else {
             $feedFile = $this->getFeedPath() . DS . $this->feedFile;
@@ -60,10 +77,13 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     /**
      * Builds xml feed
      */
-    public function buildXmlFeed()
+    public function buildXmlFeed($fullDescription = false)
     {
         if (!is_dir($this->getFeedPath())) {
             mkdir($this->getFeedPath());
+        }
+        if ($fullDescription) {
+            $this->fullDescription = true;
         }
         $helper = Mage::helper('bussinessfeed');
         $this->appendData($helper->getXmlTop());

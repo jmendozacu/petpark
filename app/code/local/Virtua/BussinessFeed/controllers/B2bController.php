@@ -7,11 +7,6 @@ class Virtua_BussinessFeed_B2bController extends Mage_Core_Controller_Front_Acti
         $model = Mage::getModel('bussinessfeed/feed');
         $feedFile = $model->getFeedFile();
         try {
-            // if file not exists or file is old dated
-            if ($model->fileIsOutDatedOrNotExists($feedFile)) {
-                // get feed content and save it inside file
-                $model->buildXmlFeed();
-            }
             // read feed xml
             $this->_readFeed($feedFile);
         } catch (Exception $exception) {

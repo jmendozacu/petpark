@@ -28,4 +28,12 @@
             </bussinesFeed>
         </routers>
     </frontend>
+    <crontab>
+        <jobs>
+            <bussinessfeed>
+                <schedule><cron_expr>30 3 * * *</cron_expr></schedule>
+                <run><model>bussinessfeed/observer::generateFeed</model></run>
+            </bussinessfeed>
+        </jobs>
+    </crontab>
 </config>
