@@ -250,18 +250,25 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     }
 
     /**
-     * If product is simple and has configurable parent it returns product's parent description
+     * If product is simple and has configurable parent it returns product's parent description (full or short)
      * @param $product
-     * @return string
+     * @param bool $full full or shor description
+     * @return mixed|string
      */
-    public function getParentDescription($product)
+    public function getParentDescription($product, $full = false)
     {
         if ($product->getTypeId() == 'simple') {
             $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
             if (!empty($parentIds)) {
                 $parent = Mage::getModel('catalog/product')->load($parentIds[0]);
+                if ($full) {
+                    return $this->prepareFullDescription($parent->getDescription());
+                }
                 return htmlspecialchars($parent->getShortDescription());
             }
+        }
+        if ($full) {
+            return $this->prepareFullDescription($product->getDescription());
         }
         return htmlspecialchars($product->getShortDescription());
     }
@@ -276,6 +283,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $showFullDesc = Mage::app()->getRequest()->getParam('desc');
         $helper = Mage::helper('bussinessfeed');
         $baseMediaUrl = rtrim(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA), '/');
+        $baseMediaUrl = 'http://petpark.onlydev.net/media';
         $preparedData = array();
         Mage::log('Start');
         Mage::log(memory_get_usage());
@@ -288,7 +296,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             $price = $this->getProductGroupPrice($product, $customerGroup, $params);
             $preparedData[$key]['description'] = $this->getParentDescription($product);
             if ($showFullDesc) {
-                $preparedData[$key]['description_full'] = $this->prepareFullDescription($product->getDescription());
+                $preparedData[$key]['description_full'] = $this->getParentDescription($product, true);
             }
             $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
             $preparedData[$key]['vat'] = $this->getVat();
