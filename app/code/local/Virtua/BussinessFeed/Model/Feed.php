@@ -12,8 +12,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     public function fileIsOutDatedOrNotExists($file)
     {
-        return (!file_exists($file));
-        return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 10);
+        //return (!file_exists($file));
+        return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 48);
     }
 
     /**
@@ -32,7 +32,12 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
      */
     public function getFeedFile()
     {
-        $feedFile = $this->getFeedPath() . DS . $this->feedFile;
+        $showFullDescription = Mage::app()->getRequest()->getParam('desc');
+        if (!is_null($showFullDescription) && $showFullDescription == '1') {
+            $feedFile = $this->getFeedPath() . DS . 'fulldesc_' .$this->feedFile;
+        } else {
+            $feedFile = $this->getFeedPath() . DS . $this->feedFile;
+        }
         return $feedFile;
     }
 
@@ -78,7 +83,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $products = Mage::getModel('catalog/product')->getCollection()
             ->setStore($storeId)
             ->setPageSize($limit)
-            ->setCurPage($page);
+            ->setCurPage($page)
+            ->getAllIdsCache();
         return $products;
     }
 
@@ -219,6 +225,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                 $out = $basePrice * $temp['pricing_value'] / 100;
             }
         }
+        $temp = null;
         return $out;
     }
 
@@ -266,49 +273,51 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
      */
     public function prepareProductCollection($customerGroup = self::GROUP_VELKOOBCHOD_SPEC_ID)
     {
+        $showFullDesc = Mage::app()->getRequest()->getParam('desc');
         $helper = Mage::helper('bussinessfeed');
         $baseMediaUrl = rtrim(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA), '/');
         $preparedData = array();
-        $continue = true;
-        $perPage = 100;
-        $page = 1;
-        Mage::log('Start' . $page);
-        while ($continue) {
-            $products = $this->getProductCollection($perPage, $page);
-            Mage::log('Count '. count($products));
-            $page++;
-            Mage::log('Page '. $page);
-            foreach ($products as $key => $product) {
-                $product = $this->loadProduct($product->getId());
-                // get array of params
-                $params = $this->getParametersAssignedToConfigurableProduct($product);
-                // get group price of product
-                $price = $this->getProductGroupPrice($product, $customerGroup, $params);
-                $preparedData[$key]['description'] =  $this->getParentDescription($product);
-                $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
-                $preparedData[$key]['vat'] = $this->getVat();
-                $preparedData[$key]['price'] = $price;
-                $preparedData[$key]['price_vat'] = $this->getVatPrice($price);
-                $preparedData[$key]['product'] = $product->getName();
-                $preparedData[$key]['item_id'] = $product->getSku();
-                $preparedData[$key]['params'] = $this->rebuildParams($params);
-                $preparedData[$key]['categorytext'] = $this->getCategoryName($product);
-                $preparedData[$key]['manufacturer'] = $product->getAttributeText('manufacturer');
-                $preparedData[$key]['ean'] = $product->getEan();
-                $preparedData[$key]['delivery_date'] = $product->getAttributeText('availability');
+        Mage::log('Start');
+        Mage::log(memory_get_usage());
+        $products = $this->getProductCollection();
+        foreach ($products as $key => $product) {
+            $product = $this->loadProduct($product);
+            // get array of params
+            $params = $this->getParametersAssignedToConfigurableProduct($product);
+            // get group price of product
+            $price = $this->getProductGroupPrice($product, $customerGroup, $params);
+            $preparedData[$key]['description'] = $this->getParentDescription($product);
+            if ($showFullDesc) {
+                $preparedData[$key]['full_description'] = $this->prepareFullDescription($product->getDescription());
             }
-            $this->appendData($helper->prepareXmlShopItem($preparedData));
-            unset($preparedData);
-            if (count($products) < $perPage) {
-                Mage::log('empty '. $page);
-                break;
-            }
-            unset($products);
+            $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
+            $preparedData[$key]['vat'] = $this->getVat();
+            $preparedData[$key]['price'] = $price;
+            $preparedData[$key]['price_vat'] = $this->getVatPrice($price);
+            $preparedData[$key]['product'] = $product->getName();
+            $preparedData[$key]['item_id'] = $product->getSku();
+            $preparedData[$key]['params'] = $this->rebuildParams($params);
+            $preparedData[$key]['categorytext'] = $this->getCategoryName($product);
+            $preparedData[$key]['manufacturer'] = $product->getAttributeText('manufacturer');
+            $preparedData[$key]['ean'] = $product->getEan();
+            $preparedData[$key]['delivery_date'] = $product->getAttributeText('availability');
+            $product->clearInstance();
         }
+        $this->appendData($helper->prepareXmlShopItem($preparedData));
+        $preparedData = null;
+        $products = null;
+        Mage::log('After ');
+        Mage::log(memory_get_usage());
 
         //die();
         //echo '<pre>'; print_r($preparedData); die();
         //return $preparedData;
+    }
+
+    public function prepareFullDescription($description) {
+        $description = preg_replace("/<img[^>]+\>/i", "", $description);
+        $description = '<![CDATA[' . $description . ']]>';
+        return $description;
     }
 
     /**
@@ -373,6 +382,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         }
         return '';
     }
+
+    protected $_product;
 
     public function loadProduct($id)
     {
