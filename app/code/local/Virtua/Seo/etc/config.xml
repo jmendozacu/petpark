@@ -6,17 +6,6 @@
         </Virtua_Seo>
     </modules>
     <global>
-        <resources>
-            <virtua_setup>
-                <setup>
-                    <module>Virtua_Seo</module>
-                    <class>Mage_Catalog_Model_Resource_Setup</class>
-                </setup>
-                <connection>
-                    <use>core_setup</use>
-                </connection>
-            </virtua_setup>
-        </resources>
         <blocks>
             <seo>
                 <class>Virtua_Seo_Block</class>
@@ -32,6 +21,17 @@
                 <class>Virtua_Seo_Helper</class>
             </virtua_seo>
         </helpers>
+        <resources>
+            <virtua_setup>
+                <setup>
+                    <module>Virtua_Seo</module>
+                    <class>Mage_Catalog_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </virtua_setup>
+        </resources>
     </global>
     <frontend>
         <routers>
