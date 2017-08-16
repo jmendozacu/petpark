@@ -5,7 +5,8 @@ class Virtua_BussinessFeed_B2bController extends Mage_Core_Controller_Front_Acti
     public function velkoobchodspecAction()
     {
         $model = Mage::getModel('bussinessfeed/feed');
-        $feedFile = $model->getFeedFile();
+        $showFullDescription = $this->getRequest()->getParam('desc');
+        $feedFile = $model->getFeedFile($showFullDescription);
         try {
             // if file not exists or file is old dated
             if ($model->fileIsOutDatedOrNotExists($feedFile)) {
