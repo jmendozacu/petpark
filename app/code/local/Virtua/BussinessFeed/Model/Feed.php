@@ -12,8 +12,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     public function fileIsOutDatedOrNotExists($file)
     {
-        //return (!file_exists($file));
-        return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 48);
+        return (!file_exists($file));
+        //return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 48);
     }
 
     /**
@@ -283,10 +283,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $showFullDesc = Mage::app()->getRequest()->getParam('desc');
         $helper = Mage::helper('bussinessfeed');
         $baseMediaUrl = rtrim(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA), '/');
-        $baseMediaUrl = 'http://petpark.onlydev.net/media';
         $preparedData = array();
-        Mage::log('Start');
-        Mage::log(memory_get_usage());
         $products = $this->getProductCollection();
         foreach ($products as $key => $product) {
             $product = $this->loadProduct($product);
@@ -314,14 +311,13 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $this->appendData($helper->prepareXmlShopItem($preparedData));
         $preparedData = null;
         $products = null;
-        Mage::log('After ');
-        Mage::log(memory_get_usage());
-
-        //die();
-        //echo '<pre>'; print_r($preparedData); die();
-        //return $preparedData;
     }
 
+    /**
+     * Removing all img tags from description
+     * @param $description
+     * @return mixed|string
+     */
     public function prepareFullDescription($description) {
         $description = preg_replace("/<img[^>]+\>/i", "", $description);
         $description = '<![CDATA[' . $description . ']]>';
