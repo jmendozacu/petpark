@@ -25,12 +25,18 @@
  */
 ?>
 <?php /* @var $this Mage_Catalog_Block_Product_View_Abstract */?>
-<?php $_product = $this->getProduct() ?>
+<?php
+$_product = $this->getProduct();
+$helper_richsnippets = $this->helper('porto/richsnippets');
+$product_type = $_product->getTypeId();
+$enabled_richsnippets = ($helper_richsnippets->isEnabled() && $product_type !== "grouped");
+
+?>
 <?php if ($this->displayProductStockStatus()): ?>
     <?php if ($_product->isAvailable()): ?>
-        <p class="availability in-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $_product->getAvailability() ? $_product->getAttributeText('availability') : $this->__('In stock') ?></span></p>
+        <p class="availability in-stock"><?php echo ($enabled_richsnippets) ? '<link itemprop="availability" href="http://schema.org/InStock" />' : null; ?><?php echo $this->__('Availability:') ?> <span><?php echo $_product->getAvailability() ? $_product->getAttributeText('availability') : $this->__('In stock') ?></span></p>
     <?php else: ?>
-        <p class="availability out-of-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('Out of stock') ?></span></p>
+        <p class="availability out-of-stock"><?php echo ($enabled_richsnippets) ? '<link itemprop="availability" href="http://schema.org/OutOfStock" />' : null; ?><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('Out of stock') ?></span></p>
     <?php endif; ?>
 <?php endif; ?>
 <?php echo $this->getChildHtml('product_type_data_extra') ?>
