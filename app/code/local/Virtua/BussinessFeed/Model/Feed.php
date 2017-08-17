@@ -30,7 +30,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     public function fileIsOutDatedOrNotExists($file)
     {
-        return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 23);
+        return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 12);
     }
 
     /**
@@ -300,7 +300,6 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
      */
     public function prepareProductCollection($customerGroup = self::GROUP_VELKOOBCHOD_SPEC_ID)
     {
-        $showFullDesc = Mage::app()->getRequest()->getParam('desc');
         $helper = Mage::helper('bussinessfeed');
         $baseMediaUrl = rtrim(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA), '/');
         $preparedData = array();
@@ -312,7 +311,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             // get group price of product
             $price = $this->getProductGroupPrice($product, $customerGroup, $params);
             $preparedData[$key]['description'] = $this->getParentDescription($product);
-            if ($showFullDesc) {
+            if ($this->fullDescription) {
                 $preparedData[$key]['description_full'] = $this->getParentDescription($product, true);
             }
             $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
