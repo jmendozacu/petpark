@@ -101,9 +101,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     {
         $storeId = Mage::app()->getStore()->getStoreId();
         $products = Mage::getModel('catalog/product')->getCollection()
+            ->addFieldToFilter('type_id', array('neq' =>'configurable'))
             ->setStore($storeId)
-            //->setPageSize($limit)
-            //->setCurPage($page)
             ->getAllIdsCache();
         return $products;
     }
