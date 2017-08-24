@@ -11,43 +11,53 @@
         $_imgHtml = '<p class="category-image"><img src="'.$_imgUrl.'" alt="'.$this->escapeHtml($_category->getName()).'" title="'.$this->escapeHtml($_category->getName()).'" /></p>';
         $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
     }
+    $seoData = $this->getSeoData();
 ?>
-<?php echo $_imgHtml ?>
-<?php
-    if(!Mage::getStoreConfig("porto_settings/category/fullwidth_description",$code)){
-        if($_description=$_category->getDescription()){
-?>
-<div class="category-description std">
-<?php
-            echo $_helper->categoryAttribute($_category, $_description, 'description');
-?>
-</div>
-<?php
+<div id="category-content">
+    <?php echo $_imgHtml ?>
+    <?php
+        if(!Mage::getStoreConfig("porto_settings/category/fullwidth_description",$code)){
+            if($_description=$_category->getDescription()){
+    ?>
+    <div class="category-description std">
+    <?php
+                echo $_helper->categoryAttribute($_category, $_description, 'description');
+    ?>
+    </div>
+    <?php
+            }
         }
-    }
-?>
+    ?>
 
-<div class="page-title category-title">
-    <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
-        <a href="<?php echo $this->getRssLink() ?>" class="link-rss"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
-    <?php endif; ?>
-    <h1>
-        <?php if($_category->getNameSeo()): ?>
-            <?php echo $_helper->categoryAttribute($_category, $_category->getNameSeo(), 'name_seo') ?>
-        <?php else: ?>
-            <?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?>
+    <div class="page-title category-title">
+        <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
+            <a href="<?php echo $this->getRssLink() ?>" class="link-rss"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
         <?php endif; ?>
-    </h1>
+        <h1>
+            <?php if($_category->getNameSeo()): ?>
+                <?php echo $_helper->categoryAttribute($_category, $_category->getNameSeo(), 'name_seo') ?>
+            <?php else: ?>
+                <?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?>
+            <?php endif; ?>
+        </h1>
+    </div>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+    <?php if($this->isContentMode()): ?>
+        <?php echo $this->getCmsBlockHtml() ?>
+
+    <?php elseif($this->isMixedMode()): ?>
+        <?php if(!empty($seoData)): ?>
+            <div>
+                <h1><?php echo $seoData['title']; ?></h1>
+                <p><?php echo $seoData['meta_description']; ?></p>
+            </div>
+        <?php else: ?>
+            <?php echo $this->getCmsBlockHtml() ?>
+        <?php endif; ?>
+        <?php echo $this->getProductListHtml() ?>
+
+    <?php else: ?>
+        <?php echo $this->getProductListHtml() ?>
+    <?php endif; ?>
 </div>
-<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-
-<?php if($this->isContentMode()): ?>
-    <?php echo $this->getCmsBlockHtml() ?>
-
-<?php elseif($this->isMixedMode()): ?>
-    <?php echo $this->getCmsBlockHtml() ?>
-    <?php echo $this->getProductListHtml() ?>
-
-<?php else: ?>
-    <?php echo $this->getProductListHtml() ?>
-<?php endif; ?>

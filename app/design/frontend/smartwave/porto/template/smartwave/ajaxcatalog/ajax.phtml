@@ -107,7 +107,7 @@ function sliderAjax(url) {
                 else
                     param = "&"+param;
             }
-console.log(param);
+
             try {
                 $('body').css('cursor', 'wait');
                 $.ajax({
@@ -125,8 +125,13 @@ console.log(param);
                             }
                         }
                         if (data.productlist) {
-                            $('.col-main .category-products').empty();
-                            $('.col-main .category-products').replaceWith(data.productlist)
+                            if (typeof data.type != 'undefined' && data.type == 'category') {
+                                $('#category-content').empty();
+                                $('#category-content').replaceWith(data.productlist);
+                            } else {
+                                $('.col-main .category-products').empty();
+                                $('.col-main .category-products').replaceWith(data.productlist);
+                            }
                         }
 						if($( ".col-main" ).has( ".category-products" ).length)
 							$(".col-main .category-products").scrollToMe();
