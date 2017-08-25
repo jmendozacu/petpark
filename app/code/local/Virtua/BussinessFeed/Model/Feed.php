@@ -11,6 +11,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     protected $feedFile = 'velkoobchod_spec_feed.xml';
     protected $storeVersion;
+    protected $storeVersionId;
     protected $includePrices;
     protected $groupId;
     protected $fullDescription = false;
@@ -106,6 +107,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $this->groupId = $this->_getOption($feedOptions['group_id']);
         $this->includePrices = $this->_getOption($feedOptions['include_prices']);
         $this->storeVersion = $this->_getOption($feedOptions['store']);
+        $this->storeVersionId = ($this->storeVersion == 'cz') ? 2 : 1;
         $this->feedFile = $this->_getOption($feedOptions['filename']);
         $this->fullDescription = $this->_getOption($feedOptions['full_description']);
         if (!is_dir($this->getFeedPath())) {
@@ -124,10 +126,9 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     public function getProductCollection()
     {
         //$storeId = Mage::app()->getStore()->getStoreId();
-        $storeId = ($this->storeVersion == 'cz') ? 2 : 1;
         $products = Mage::getModel('catalog/product')->getCollection()
             ->addFieldToFilter('type_id', array('neq' =>'configurable'))
-            ->setStore($storeId)
+            ->setStore($this->storeVersionId)
             ->getAllIdsCache();
         return $products;
     }
@@ -325,7 +326,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     public function prepareProductCollection($customerGroup = self::GROUP_VELKOOBCHOD_SPEC_ID)
     {
         $helper = Mage::helper('bussinessfeed');
-        $baseMediaUrl = rtrim(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA), '/');
+        $baseMediaUrl = rtrim(Mage::app()->getStore($this->storeVersionId)->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA), '/');
         $preparedData = array();
         $products = $this->getProductCollection();
         foreach ($products as $key => $product) {
@@ -437,7 +438,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     public function loadProduct($id)
     {
-        $product = Mage::getModel('catalog/product')->load($id);
+        $product = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($id);
         return $product;
     }
 

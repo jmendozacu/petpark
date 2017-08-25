@@ -31,7 +31,7 @@
     <crontab>
         <jobs>
             <bussinessfeed>
-                <schedule><cron_expr>15 13 * * *</cron_expr></schedule>
+                <schedule><cron_expr>40 13 * * *</cron_expr></schedule>
                 <run><model>bussinessfeed/observer::generateFeed</model></run>
             </bussinessfeed>
         </jobs>
