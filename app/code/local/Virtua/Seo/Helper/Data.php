@@ -163,7 +163,7 @@ class Virtua_Seo_Helper_Data extends Mage_Core_Helper_Abstract
             );
         } else {
             $data = array(
-                'alternateLang' => 'cz',
+                'alternateLang' => 'cs',
                 'alternateCode' => 'cz'
             );
         }

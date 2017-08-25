@@ -10,10 +10,27 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     protected $feedFile = 'velkoobchod_spec_feed.xml';
 
+    protected $fullDescription = false;
+
+    protected $feeds = array(
+        array(
+            'group_id' => self::GROUP_VELKOOBCHOD_SPEC_ID,
+            'full_description' => false,
+        ),
+        array(
+            'group_id' => self::GROUP_VELKOOBCHOD_SPEC_ID,
+            'full_description' => true,
+        ),
+    );
+
+    public function getFeeds()
+    {
+        return $this->feeds;
+    }
+
     public function fileIsOutDatedOrNotExists($file)
     {
-        //return (!file_exists($file));
-        return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 48);
+        return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 12);
     }
 
     /**
@@ -28,12 +45,12 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     /**
      * Feed's file absolute path
-     * @return string
+     * @return strings
      */
     public function getFeedFile()
     {
-        $showFullDescription = Mage::app()->getRequest()->getParam('desc');
-        if (!is_null($showFullDescription) && $showFullDescription == '1') {
+        $showFullDescription = Mage::app()->getRequest()->getParam('fulldesc');
+        if ((isset($showFullDescription) && !is_null($showFullDescription)) || $this->fullDescription) {
             $feedFile = $this->getFeedPath() . DS . 'fulldesc_' .$this->feedFile;
         } else {
             $feedFile = $this->getFeedPath() . DS . $this->feedFile;
@@ -60,10 +77,13 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     /**
      * Builds xml feed
      */
-    public function buildXmlFeed()
+    public function buildXmlFeed($fullDescription = false)
     {
         if (!is_dir($this->getFeedPath())) {
             mkdir($this->getFeedPath());
+        }
+        if ($fullDescription) {
+            $this->fullDescription = true;
         }
         $helper = Mage::helper('bussinessfeed');
         $this->appendData($helper->getXmlTop());
@@ -81,9 +101,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     {
         $storeId = Mage::app()->getStore()->getStoreId();
         $products = Mage::getModel('catalog/product')->getCollection()
+            ->addFieldToFilter('type_id', array('neq' =>'configurable'))
             ->setStore($storeId)
-            ->setPageSize($limit)
-            ->setCurPage($page)
             ->getAllIdsCache();
         return $products;
     }
@@ -250,18 +269,25 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     }
 
     /**
-     * If product is simple and has configurable parent it returns product's parent description
+     * If product is simple and has configurable parent it returns product's parent description (full or short)
      * @param $product
-     * @return string
+     * @param bool $full full or shor description
+     * @return mixed|string
      */
-    public function getParentDescription($product)
+    public function getParentDescription($product, $full = false)
     {
         if ($product->getTypeId() == 'simple') {
             $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
             if (!empty($parentIds)) {
                 $parent = Mage::getModel('catalog/product')->load($parentIds[0]);
+                if ($full) {
+                    return $this->prepareFullDescription($parent->getDescription());
+                }
                 return htmlspecialchars($parent->getShortDescription());
             }
+        }
+        if ($full) {
+            return $this->prepareFullDescription($product->getDescription());
         }
         return htmlspecialchars($product->getShortDescription());
     }
@@ -273,12 +299,9 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
      */
     public function prepareProductCollection($customerGroup = self::GROUP_VELKOOBCHOD_SPEC_ID)
     {
-        $showFullDesc = Mage::app()->getRequest()->getParam('desc');
         $helper = Mage::helper('bussinessfeed');
         $baseMediaUrl = rtrim(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA), '/');
         $preparedData = array();
-        Mage::log('Start');
-        Mage::log(memory_get_usage());
         $products = $this->getProductCollection();
         foreach ($products as $key => $product) {
             $product = $this->loadProduct($product);
@@ -287,8 +310,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             // get group price of product
             $price = $this->getProductGroupPrice($product, $customerGroup, $params);
             $preparedData[$key]['description'] = $this->getParentDescription($product);
-            if ($showFullDesc) {
-                $preparedData[$key]['full_description'] = $this->prepareFullDescription($product->getDescription());
+            if ($this->fullDescription) {
+                $preparedData[$key]['description_full'] = $this->getParentDescription($product, true);
             }
             $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
             $preparedData[$key]['vat'] = $this->getVat();
@@ -306,14 +329,13 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $this->appendData($helper->prepareXmlShopItem($preparedData));
         $preparedData = null;
         $products = null;
-        Mage::log('After ');
-        Mage::log(memory_get_usage());
-
-        //die();
-        //echo '<pre>'; print_r($preparedData); die();
-        //return $preparedData;
     }
 
+    /**
+     * Removing all img tags from description
+     * @param $description
+     * @return mixed|string
+     */
     public function prepareFullDescription($description) {
         $description = preg_replace("/<img[^>]+\>/i", "", $description);
         $description = '<![CDATA[' . $description . ']]>';
