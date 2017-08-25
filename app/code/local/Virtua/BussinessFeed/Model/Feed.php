@@ -27,7 +27,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'group_id' => self::GROUP_VELKOOBCHOD_SPEC_ID,
             'full_description' => true,
             'store' => 'sk',
-            'filename' => 'fulldesc_velkoobchod_spec_feed.xml',
+            'filename' => 'velkoobchod_spec_feed.xml',
             'include_prices' => true,
         ),
         array(
