@@ -15,6 +15,19 @@ class Virtua_BussinessFeed_B2bController extends Mage_Core_Controller_Front_Acti
         return;
     }
 
+    public function feedAction()
+    {
+        $model = Mage::getModel('bussinessfeed/feed');
+        $feedFile = $model->getFeedPath() . DS . 'cz' . DS . 'fulldesc_general_feed.xml';
+        try {
+            // read feed xml
+            $this->_readFeed($feedFile);
+        } catch (Exception $exception) {
+            Mage::log($exception->getMessage());
+        }
+        return;
+    }
+
     /**
      * Read feed xml
      * @param string $feedFile

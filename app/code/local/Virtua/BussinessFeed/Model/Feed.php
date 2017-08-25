@@ -2,6 +2,7 @@
 
 class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 {
+    const GROUP_GENERAL = 1;
     const GROUP_VELKOOBCHOD_SPEC_ID = 5;
 
     protected $params = array();
@@ -9,17 +10,33 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     protected $vat = '0.2000';
 
     protected $feedFile = 'velkoobchod_spec_feed.xml';
-
+    protected $storeVersion;
+    protected $storeVersionId;
+    protected $includePrices;
+    protected $groupId;
     protected $fullDescription = false;
 
     protected $feeds = array(
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_SPEC_ID,
             'full_description' => false,
+            'store' => 'sk',
+            'filename' => 'velkoobchod_spec_feed.xml',
+            'include_prices' => true,
         ),
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_SPEC_ID,
             'full_description' => true,
+            'store' => 'sk',
+            'filename' => 'velkoobchod_spec_feed.xml',
+            'include_prices' => true,
+        ),
+        array(
+            'group_id' => self::GROUP_GENERAL,
+            'full_description' => true,
+            'store' => 'cz',
+            'filename' => 'general_feed.xml',
+            'include_prices' => false,
         ),
     );
 
@@ -30,7 +47,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     public function fileIsOutDatedOrNotExists($file)
     {
-        return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 12);
+        return (!file_exists($file) || filemtime($file) < time() - 60 * 60 * 4);
     }
 
     /**
@@ -40,6 +57,9 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     public function getFeedPath()
     {
         $feedPath = Mage::getBaseDir() . DS . 'export' . DS . 'feed';
+        if ($this->storeVersion == 'cz') {
+            $feedPath .= DS . 'cz';
+        }
         return $feedPath;
     }
 
@@ -74,16 +94,24 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         }
     }
 
+    protected function _getOption($option)
+    {
+        return (isset($option)) ? $option : null;
+    }
+
     /**
      * Builds xml feed
      */
-    public function buildXmlFeed($fullDescription = false)
+    public function buildXmlFeed($feedOptions)
     {
+        $this->groupId = $this->_getOption($feedOptions['group_id']);
+        $this->includePrices = $this->_getOption($feedOptions['include_prices']);
+        $this->storeVersion = $this->_getOption($feedOptions['store']);
+        $this->storeVersionId = ($this->storeVersion == 'cz') ? 2 : 1;
+        $this->feedFile = $this->_getOption($feedOptions['filename']);
+        $this->fullDescription = $this->_getOption($feedOptions['full_description']);
         if (!is_dir($this->getFeedPath())) {
             mkdir($this->getFeedPath());
-        }
-        if ($fullDescription) {
-            $this->fullDescription = true;
         }
         $helper = Mage::helper('bussinessfeed');
         $this->appendData($helper->getXmlTop());
@@ -93,16 +121,14 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     /**
      * Retrieves product collection
-     * @param int $limit
-     * @param int $page
      * @return mixed
      */
-    public function getProductCollection($limit = 300, $page = 1)
+    public function getProductCollection()
     {
-        $storeId = Mage::app()->getStore()->getStoreId();
+        //$storeId = Mage::app()->getStore()->getStoreId();
         $products = Mage::getModel('catalog/product')->getCollection()
             ->addFieldToFilter('type_id', array('neq' =>'configurable'))
-            ->setStore($storeId)
+            ->setStore($this->storeVersionId)
             ->getAllIdsCache();
         return $products;
     }
@@ -300,23 +326,26 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     public function prepareProductCollection($customerGroup = self::GROUP_VELKOOBCHOD_SPEC_ID)
     {
         $helper = Mage::helper('bussinessfeed');
-        $baseMediaUrl = rtrim(Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA), '/');
+        $baseMediaUrl = rtrim(Mage::app()->getStore($this->storeVersionId)->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA), '/');
         $preparedData = array();
         $products = $this->getProductCollection();
         foreach ($products as $key => $product) {
             $product = $this->loadProduct($product);
             // get array of params
             $params = $this->getParametersAssignedToConfigurableProduct($product);
-            // get group price of product
-            $price = $this->getProductGroupPrice($product, $customerGroup, $params);
             $preparedData[$key]['description'] = $this->getParentDescription($product);
             if ($this->fullDescription) {
                 $preparedData[$key]['description_full'] = $this->getParentDescription($product, true);
             }
+            if ($this->includePrices) {
+                // get group price of product
+                $price = $this->getProductGroupPrice($product, $customerGroup, $params);
+                $preparedData[$key]['price'] = $price;
+                $preparedData[$key]['price_vat'] = $this->getVatPrice($price);
+            }
             $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
             $preparedData[$key]['vat'] = $this->getVat();
-            $preparedData[$key]['price'] = $price;
-            $preparedData[$key]['price_vat'] = $this->getVatPrice($price);
+
             $preparedData[$key]['product'] = $product->getName();
             $preparedData[$key]['item_id'] = $product->getSku();
             $preparedData[$key]['params'] = $this->rebuildParams($params);
@@ -409,7 +438,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     public function loadProduct($id)
     {
-        $product = Mage::getModel('catalog/product')->load($id);
+        $product = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($id);
         return $product;
     }
 
