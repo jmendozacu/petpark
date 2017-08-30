@@ -16,7 +16,7 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
                 $params[$attrCode] = "all";
             }
         }
-        $params = json_encode($params);
+        $paramsJson = json_encode($params);
         //Mage::log($params);
         $storeId = Mage::app()->getStore()->getId();
         $resource = Mage::getSingleton('core/resource');
@@ -24,7 +24,7 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
         $query = "
             SELECT meta_title, meta_description, title  
             FROM virtua_seoattributes 
-            WHERE attributes = '".$params."' AND category_id = '".$categoryId."' AND enabled='1' AND store_id = '".$storeId."' 
+            WHERE attributes = '".$paramsJson."' AND category_id = '".$categoryId."' AND enabled='1' AND store_id = '".$storeId."' 
         ";
         $result = $readConnection->fetchAll($query);
         if (!empty($result)) {
@@ -34,8 +34,69 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
                 $result[$key] = $helper->replaceVariables($value, $paramValues);
             }
             return $result;
+        } else if (count($params) > 1) {
+            return $this->prepareAndGetSeoDataFromMultipleParams($categoryId, $params, $storeId);
         }
         return array();
+    }
+
+    public function prepareAndGetSeoDataFromMultipleParams($categoryId, $params, $storeId)
+    {
+        // enabled for sk store only
+        if ($storeId != 1) {
+            return array();
+        }
+        $categoryTitle = $this->getCategoryTitle($categoryId);
+        $paramsString = '';
+        foreach ($params as $attrCode => $optionId) {
+            Mage::log($this->getOptionValueByOptionId($attrCode, $optionId));
+            $paramsString .= $this->getOptionValueByOptionId($attrCode, $optionId) . '-';
+        }
+        if ($paramsString != '') {
+            $paramsString = rtrim($paramsString, '-');
+        }
+        $insertData = array(
+            'category_id' => $categoryId,
+            'attributes' => json_encode($params),
+            'meta_title' => $this->_prepareTitle($categoryTitle, $paramsString, true),
+            'title' => $this->_prepareTitle($categoryTitle, $paramsString),
+            'meta_description' => $this->_prepareDescription($categoryTitle, $paramsString),
+            'store_id' => $storeId,
+            'enabled' => 1,
+        );
+        Mage::log(print_r($insertData, true));
+        try {
+            //$this->getModel()->setData($insertData);
+            return $insertData;
+        } catch (Exception $exception) {
+            Mage::log($exception);
+        }
+        return array();
+    }
+
+    protected function _prepareDescription($categoryTitle, $paramsString)
+    {
+        $out = 'Ponúkame vám ' . $categoryTitle . ' ' . $paramsString . ' na stránkach petpark.sk. Vyberte si produkty, ktoré potešia vašich domácich miláčikov.';
+        return $out;
+    }
+
+    protected function _prepareTitle($categoryTitle, $paramsString, $meta = false)
+    {
+        $out = $categoryTitle . ' ' . $paramsString;
+        if ($meta) {
+            $out .= ' | petpark.sk';
+        }
+        return $out;
+    }
+
+    public function getCategoryTitle($categoryId)
+    {
+        $model = Mage::getModel('catalog/category');
+        $category = $model->load($categoryId);
+        if ($category) {
+            return ($category->getNameSeo()) ? $category->getNameSeo() : $category->getName();
+        }
+        return '';
     }
 
     public function getOptionValueByOptionId($attrCode, $optionId)
@@ -43,7 +104,8 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
         $attributeInfo = Mage::getModel('eav/entity_attribute')
             ->loadByCode('catalog_product', $attrCode);
 
-        if ($attributeInfo->getFrontendInput() == 'select') {
+        $allowedInputTypes = array('select', 'multiselect');
+        if (in_array($attributeInfo->getFrontendInput(), $allowedInputTypes)) {
             $resource = Mage::getSingleton('core/resource');
             $readConnection = $resource->getConnection('core_read');
             $query = "
