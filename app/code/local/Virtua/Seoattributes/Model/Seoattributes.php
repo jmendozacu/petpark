@@ -24,5 +24,4 @@ class Virtua_Seoattributes_Model_Seoattributes extends Mage_Core_Model_Abstract
         }
         return $seoData;
     }
-
 }
