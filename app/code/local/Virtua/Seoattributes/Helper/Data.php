@@ -8,19 +8,28 @@ class Virtua_Seoattributes_Helper_Data extends Mage_Core_Helper_Abstract
         'prevedenie_oplotenia',
     );
 
-    protected $_includedCategoriesId = array(
-        152, 180, 106, 104, 160, 115, 172, 103,
+    protected $_excludedAttributes = array(
+        'availability', 'komplety', 'id',
     );
+
+//    protected $_includedCategoriesId = array(
+//        152, 180, 106, 104, 160, 115, 172, 103,
+//    );
 
     public function getIncludedAttributes()
     {
         return $this->_includedAttributes;
     }
 
-    public function getIncludedCategoriesId()
+    public function getExcludedAttributes()
     {
-        return $this->_includedCategoriesId;
+        return $this->_excludedAttributes;
     }
+
+//    public function getIncludedCategoriesId()
+//    {
+//        return $this->_includedCategoriesId;
+//    }
 
     /**
      * Return array with included attributes
@@ -29,14 +38,15 @@ class Virtua_Seoattributes_Helper_Data extends Mage_Core_Helper_Abstract
     public function parseAttributes($attributes)
     {
         $out = array();
-        $includedAttributes = $this->getIncludedAttributes();
+        $excludedAttributes = $this->getExcludedAttributes();
         if (!empty($attributes)) {
             foreach ($attributes as $attr => $id) {
-                if (in_array($attr, $includedAttributes)) {
+                if (!in_array($attr, $excludedAttributes)) {
                     $out[$attr] = $id;
                 }
             }
         }
+        Mage::log(print_r($out, true));
         return $out;
     }
 
@@ -45,14 +55,14 @@ class Virtua_Seoattributes_Helper_Data extends Mage_Core_Helper_Abstract
      * @param $categoryId
      * @return int
      */
-    public function categoryIsIncluded($categoryId)
-    {
-        if (!$categoryId) {
-            return 0;
-        }
-        $includedCategoriesId = $this->getIncludedCategoriesId();
-        return ($categoryId && in_array($categoryId, $includedCategoriesId)) ? $categoryId : 0;
-    }
+//    public function categoryIsIncluded($categoryId)
+//    {
+//        if (!$categoryId) {
+//            return 0;
+//        }
+//        $includedCategoriesId = $this->getIncludedCategoriesId();
+//        return ($categoryId && in_array($categoryId, $includedCategoriesId)) ? $categoryId : 0;
+//    }
 
     public function replaceVariables($string, $variables)
     {
