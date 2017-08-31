@@ -11,15 +11,16 @@ class Virtua_Seoattributes_Model_Seoattributes extends Mage_Core_Model_Abstract
     {
         $seoData = array();
         $params = Mage::app()->getRequest()->getParams();
+        Mage::log(print_r($params, true));
         $seoAttributesHelper = Mage::helper('virtua_seoattributes');
-        $categoryId = $seoAttributesHelper->categoryIsIncluded(Mage::app()->getRequest()->getParam('id'));
+        $categoryId = Mage::app()->getRequest()->getParam('id');
         if ($categoryId) {
             $includedParams = $seoAttributesHelper->parseAttributes($params);
             if (!empty($includedParams)) {
-                $seoData = $this->getResource()->getSeoDataByIdAndParams($categoryId, $includedParams, true);
-                if (empty($seoData)) {
+                //$seoData = $this->getResource()->getSeoDataByIdAndParams($categoryId, $includedParams, true);
+                //if (empty($seoData)) {
                     $seoData = $this->getResource()->getSeoDataByIdAndParams($categoryId, $includedParams, false);
-                }
+                //}
             }
         }
         return $seoData;

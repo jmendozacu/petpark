@@ -44,7 +44,14 @@
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 
     <?php if($this->isContentMode()): ?>
-        <?php echo $this->getCmsBlockHtml() ?>
+        <?php if(!empty($seoData)): ?>
+            <div>
+                <h1><?php echo $seoData['title']; ?></h1>
+                <p><?php echo $seoData['meta_description']; ?></p>
+            </div>
+        <?php else: ?>
+            <?php echo $this->getCmsBlockHtml() ?>
+        <?php endif; ?>
 
     <?php elseif($this->isMixedMode()): ?>
         <?php if(!empty($seoData)): ?>
