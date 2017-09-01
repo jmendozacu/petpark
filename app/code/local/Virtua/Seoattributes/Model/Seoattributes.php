@@ -17,10 +17,7 @@ class Virtua_Seoattributes_Model_Seoattributes extends Mage_Core_Model_Abstract
         if ($categoryId) {
             $includedParams = $seoAttributesHelper->parseAttributes($params);
             if (!empty($includedParams)) {
-                //$seoData = $this->getResource()->getSeoDataByIdAndParams($categoryId, $includedParams, true);
-                //if (empty($seoData)) {
-                    $seoData = $this->getResource()->getSeoDataByIdAndParams($categoryId, $includedParams, false);
-                //}
+                $seoData = $this->getResource()->getSeoDataByIdAndParams($categoryId, $includedParams, false);
             }
         }
         return $seoData;

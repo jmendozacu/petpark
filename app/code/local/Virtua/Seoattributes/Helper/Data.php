@@ -12,10 +12,6 @@ class Virtua_Seoattributes_Helper_Data extends Mage_Core_Helper_Abstract
         'availability', 'komplety', 'id',
     );
 
-//    protected $_includedCategoriesId = array(
-//        152, 180, 106, 104, 160, 115, 172, 103,
-//    );
-
     public function getIncludedAttributes()
     {
         return $this->_includedAttributes;
@@ -25,11 +21,6 @@ class Virtua_Seoattributes_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return $this->_excludedAttributes;
     }
-
-//    public function getIncludedCategoriesId()
-//    {
-//        return $this->_includedCategoriesId;
-//    }
 
     /**
      * Return array with included attributes
@@ -46,23 +37,8 @@ class Virtua_Seoattributes_Helper_Data extends Mage_Core_Helper_Abstract
                 }
             }
         }
-        Mage::log(print_r($out, true));
         return $out;
     }
-
-    /**
-     * Return category id if given category is included
-     * @param $categoryId
-     * @return int
-     */
-//    public function categoryIsIncluded($categoryId)
-//    {
-//        if (!$categoryId) {
-//            return 0;
-//        }
-//        $includedCategoriesId = $this->getIncludedCategoriesId();
-//        return ($categoryId && in_array($categoryId, $includedCategoriesId)) ? $categoryId : 0;
-//    }
 
     public function replaceVariables($string, $variables)
     {
