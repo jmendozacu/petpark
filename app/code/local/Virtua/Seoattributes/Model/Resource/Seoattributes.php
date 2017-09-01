@@ -9,34 +9,7 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
 
     public function getSeoDataByIdAndParams($categoryId, $params, $predefined = false)
     {
-//        $paramValues = array();
-//        if (!$predefined) {
-//            foreach ($params as $attrCode => $optionId) {
-//                $paramValues['{{' . $attrCode . '}}'] = $this->getOptionValueByOptionId($attrCode, $optionId);
-//                $params[$attrCode] = "all";
-//            }
-//        }
-//        $paramsJson = json_encode($params);
-        //Mage::log($params);
         $storeId = Mage::app()->getStore()->getId();
-//        $resource = Mage::getSingleton('core/resource');
-//        $readConnection = $resource->getConnection('core_read');
-//        $query = "
-//            SELECT meta_title, meta_description, title
-//            FROM virtua_seoattributes
-//            WHERE attributes = '".$paramsJson."' AND category_id = '".$categoryId."' AND enabled='1' AND store_id = '".$storeId."'
-//        ";
-//        $result = $readConnection->fetchAll($query);
-//        if (!empty($result)) {
-//            $helper = Mage::helper('virtua_seoattributes');
-//            $result = $result[0];
-//            foreach ($result as $key => $value) {
-//                $result[$key] = $helper->replaceVariables($value, $paramValues);
-//            }
-//            return $result;
-//        } else if (count($params) > 1) {
-//            return $this->prepareAndGetSeoDataFromMultipleParams($categoryId, $params, $storeId);
-//        }
         if (count($params)) {
             return $this->prepareAndGetSeoDataFromMultipleParams($categoryId, $params, $storeId);
         }

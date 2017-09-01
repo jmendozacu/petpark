@@ -33,38 +33,41 @@
         <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
             <a href="<?php echo $this->getRssLink() ?>" class="link-rss"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
         <?php endif; ?>
-        <h1>
-            <?php if($_category->getNameSeo()): ?>
-                <?php echo $_helper->categoryAttribute($_category, $_category->getNameSeo(), 'name_seo') ?>
-            <?php else: ?>
-                <?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?>
-            <?php endif; ?>
-        </h1>
+        <?php if(empty($seoData)): ?>
+            <h1>
+                <?php if($_category->getNameSeo()): ?>
+                    <?php echo $_helper->categoryAttribute($_category, $_category->getNameSeo(), 'name_seo') ?>
+                <?php else: ?>
+                    <?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?>
+                <?php endif; ?>
+            </h1>
+        <?php endif; ?>
     </div>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 
-    <?php if($this->isContentMode()): ?>
-        <?php if(!empty($seoData)): ?>
+    <?php if(!empty($seoData)): ?>
+        <?php if($this->isContentMode()): ?>
             <div>
                 <h1><?php echo $seoData['title']; ?></h1>
                 <p><?php echo $seoData['meta_description']; ?></p>
             </div>
-        <?php else: ?>
-            <?php echo $this->getCmsBlockHtml() ?>
-        <?php endif; ?>
-
-    <?php elseif($this->isMixedMode()): ?>
-        <?php if(!empty($seoData)): ?>
+        <?php elseif($this->isMixedMode()): ?>
             <div>
                 <h1><?php echo $seoData['title']; ?></h1>
                 <p><?php echo $seoData['meta_description']; ?></p>
             </div>
+            <?php echo $this->getProductListHtml() ?>
         <?php else: ?>
-            <?php echo $this->getCmsBlockHtml() ?>
+            <?php echo $this->getProductListHtml() ?>
         <?php endif; ?>
-        <?php echo $this->getProductListHtml() ?>
-
     <?php else: ?>
-        <?php echo $this->getProductListHtml() ?>
+        <?php if($this->isContentMode()): ?>
+             <?php echo $this->getCmsBlockHtml() ?>
+        <?php elseif($this->isMixedMode()): ?>
+            <?php echo $this->getCmsBlockHtml() ?>
+            <?php echo $this->getProductListHtml() ?>
+        <?php else: ?>
+            <?php echo $this->getProductListHtml() ?>
+        <?php endif; ?>
     <?php endif; ?>
 </div>
