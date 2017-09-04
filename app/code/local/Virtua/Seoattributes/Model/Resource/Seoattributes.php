@@ -2,30 +2,61 @@
 
 class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_Mysql4_Abstract
 {
+    protected $_storeId;
+
     protected function _construct()
     {
         $this->_init('virtua_seoattributes/seoattributes', 'entity_id');
     }
 
-    public function getSeoDataByIdAndParams($categoryId, $params, $predefined = false)
+    public function getCurrentStoreId()
     {
-        $storeId = Mage::app()->getStore()->getId();
+        if (!$this->_storeId) {
+            $this->_storeId = Mage::app()->getStore()->getId();
+        }
+        return $this->_storeId;
+    }
+
+    public function getSeoDataByIdAndParams($categoryId, $params)
+    {
         if (count($params)) {
-            return $this->prepareAndGetSeoDataFromMultipleParams($categoryId, $params, $storeId);
+            return $this->prepareAndGetSeoDataFromMultipleParams($categoryId, $params);
         }
         return array();
     }
 
-    public function prepareAndGetSeoDataFromMultipleParams($categoryId, $params, $storeId)
+    /**
+     * Manufacturer has to be always on the first place, color on the last.
+     * @param array $params
+     * @return array
+     */
+    protected function _sortParams($params)
     {
-        // enabled for sk store only
-        if ($storeId != 1) {
-            return array();
+        if (!empty($params)) {
+            if (key_exists('manufacturer', $params)) {
+                $temp['manufacturer'] = $params['manufacturer'];
+                unset($params['manufacturer']);
+                $params = array_merge($temp, $params);
+                $temp = null;
+            }
+            if (key_exists('farba_hurtta', $params)) {
+                $farbaHurtta = $params['farba_hurtta'];
+                unset($params['farba_hurtta']);
+                $params['farba_hurtta'] = $farbaHurtta;
+                $farbaHurtta = null;
+            }
+            return $params;
         }
+    }
+
+    public function prepareAndGetSeoDataFromMultipleParams($categoryId, $params)
+    {
+        $storeId = $this->getCurrentStoreId();
         $categoryTitle = $this->getCategoryTitle($categoryId);
         $paramsString = '';
+        $params = $this->_sortParams($params);
         foreach ($params as $attrCode => $optionId) {
-            Mage::log($this->getOptionValueByOptionId($attrCode, $optionId));
+            //Mage::log($this->getOptionValueByOptionId($attrCode, $optionId));
             $optionValue = $this->getOptionValueByOptionId($attrCode, $optionId);
             if ($optionValue) {
                 $paramsString .= $optionValue . '-';
@@ -61,9 +92,10 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
 
     protected function _prepareTitle($categoryTitle, $paramsString, $meta = false)
     {
+        $domain = ($this->getCurrentStoreId() == 1) ? 'petpark.sk' : 'pet-park.cz';
         $out = $categoryTitle . ' ' . $paramsString;
         if ($meta) {
-            $out .= ' | petpark.sk';
+            $out .= ' | ' . $domain;
         }
         return $out;
     }
@@ -71,7 +103,7 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
     public function getCategoryTitle($categoryId)
     {
         $model = Mage::getModel('catalog/category');
-        $category = $model->load($categoryId);
+        $category = $model->setStoreId($this->getCurrentStoreId())->load($categoryId);
         if ($category) {
             return ($category->getNameSeo()) ? $category->getNameSeo() : $category->getName();
         }
@@ -90,7 +122,7 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
             $query = "
             SELECT o.value 
             FROM eav_attribute_option_value AS o 
-            WHERE o.option_id = '".$optionId."' AND o.store_id='0'
+            WHERE o.option_id = '".$optionId."' AND o.store_id='".$this->getCurrentStoreId()."'
         ";
             $result = $readConnection->fetchAll($query);
             if (!empty($result)) {

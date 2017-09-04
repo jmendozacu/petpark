@@ -73,22 +73,7 @@ class Flagbit_FilterUrls_Controller_Router extends Mage_Core_Controller_Varien_R
             $identifier
         );
 
-//        //TODO cleanup!!
-//        $seoData = array();
-//        $storeCode = Mage::app()->getStore()->getCode();
-//        $seoAttributesModel = Mage::getModel('virtua_seoattributes/seoattributes');
-//        $seoData = $seoAttributesModel->getSeoData();
-
-        if (!empty($seoData)) {
-            //Mage::app()->getLayout()->getBlock('head')->setTitle('test');
-            //Mage::log('Seo data');
-            //Mage::log(print_r($seoData, true));
-        }
-
-        //Mage::log(print_r(Mage::app()->getRequest()->getParams(), true));
-        //Mage::log(print_r($includedParams, true));
         if ($request->isXmlHttpRequest() && Mage::app()->getRequest()->getParam('ajaxcatalog')) {
-            //$categoryDescription = Mage::app()->getLayout()->getBlock('catalog_')->toHtml();
             $viewpanel = Mage::app()->getLayout()->getBlock('catalog.leftnav')->toHtml();
             $productlist = Mage::app()->getLayout()->getBlock('category.products')->toHtml(); // Generate product list
             $response['status'] = 'SUCCESS';
