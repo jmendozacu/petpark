@@ -74,7 +74,7 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
             'store_id' => $storeId,
             'enabled' => 1,
         );
-        Mage::log(print_r($insertData, true));
+        //Mage::log(print_r($insertData, true));
         try {
             //$this->getModel()->setData($insertData);
             return $insertData;
@@ -86,13 +86,19 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
 
     protected function _prepareDescription($categoryTitle, $paramsString)
     {
-        $out = 'Ponúkame vám ' . $categoryTitle . ' ' . $paramsString . ' na stránkach petpark.sk. Vyberte si produkty, ktoré potešia vašich domácich miláčikov.';
+        $domain = $this->_getCurrentDomain();
+        $out = 'Ponúkame vám ' . $categoryTitle . ' ' . $paramsString . ' na stránkach ' . $domain . '. Vyberte si produkty, ktoré potešia vašich domácich miláčikov.';
         return $out;
+    }
+
+    protected function _getCurrentDomain()
+    {
+        return ($this->getCurrentStoreId() == 1) ? 'petpark.sk' : 'pet-park.cz';
     }
 
     protected function _prepareTitle($categoryTitle, $paramsString, $meta = false)
     {
-        $domain = ($this->getCurrentStoreId() == 1) ? 'petpark.sk' : 'pet-park.cz';
+        $domain = $this->_getCurrentDomain();
         $out = $categoryTitle . ' ' . $paramsString;
         if ($meta) {
             $out .= ' | ' . $domain;
