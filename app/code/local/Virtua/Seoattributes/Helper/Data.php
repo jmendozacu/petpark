@@ -9,7 +9,8 @@ class Virtua_Seoattributes_Helper_Data extends Mage_Core_Helper_Abstract
     );
 
     protected $_excludedAttributes = array(
-        'availability', 'komplety', 'id',
+        'availability', 'komplety', 'id', 'komplety_oplotenie', 'rozsiritelny_vycvik', 'komplety', 'typ_voditka_postroje',
+        'velkost_filtrovatelna', 'typ_kozmetiky', 'urcenie_sampony',
     );
 
     public function getIncludedAttributes()

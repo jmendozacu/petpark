@@ -83,7 +83,6 @@ $mageRunCode = isset($_SERVER['MAGE_RUN_CODE']) ? $_SERVER['MAGE_RUN_CODE'] : ''
 $mageRunType = isset($_SERVER['MAGE_RUN_TYPE']) ? $_SERVER['MAGE_RUN_TYPE'] : 'store';
 
 $devHosts = array('dev.petpark.cz', 'www.cz.petpark.onlydev.net');
-Mage::log($_SERVER['HTTP_HOST']);
 
 if ($_SERVER['HTTP_HOST']=='www.pet-park.cz' || in_array($_SERVER['HTTP_HOST'], $devHosts)){
 	$mageRunCode = 'cz';

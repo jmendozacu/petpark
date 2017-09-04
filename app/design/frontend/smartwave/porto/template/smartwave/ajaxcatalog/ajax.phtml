@@ -71,7 +71,6 @@
 /*DONOT EDIT THIS CODE*/
 var old_class;
 function sliderAjax(url) {
-    console.log(url);
     if (!active) {
         active = true;
         jQuery(function($) {
@@ -116,7 +115,6 @@ function sliderAjax(url) {
                     type: 'post',
                     data: data,
                     success: function(data) {
-                        console.log(data);
 						callback();
                         if (data.viewpanel) {
                             if ($('.block-layered-nav')) {
@@ -255,7 +253,6 @@ function sliderAjax(url) {
                                 page_loaded = true;
                             } else {
                                 $("#fullajax_loader").show();
-                                console.log("pathname: "+location.pathname);
 
                                 $.ajax({url: location.pathname,data:{fullpageajax:true},success: showResponse,error: function() {
                                     window.location.href = a
@@ -482,7 +479,6 @@ function infiniteAjax(url) {
                                 page_loaded = true;
                             } else {
                                 $("#fullajax_loader").show();
-                                console.log("pathname: "+location.pathname);
 
                                 $.ajax({url: location.pathname,data:{fullpageajax:true},success: showResponse,error: function() {
                                     window.location.href = a
