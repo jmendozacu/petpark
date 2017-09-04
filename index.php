@@ -82,7 +82,7 @@ $mageRunCode = isset($_SERVER['MAGE_RUN_CODE']) ? $_SERVER['MAGE_RUN_CODE'] : ''
 /* Run store or run website */
 $mageRunType = isset($_SERVER['MAGE_RUN_TYPE']) ? $_SERVER['MAGE_RUN_TYPE'] : 'store';
 
-$devHosts = array('dev.petpark.cz', 'www.cz.petpark.onlydev.net');
+$devHosts = array('dev.petpark.cz', 'www.cz.petpark.onlydev.net', 'cz.petpark.onlydev.net');
 
 if ($_SERVER['HTTP_HOST']=='www.pet-park.cz' || in_array($_SERVER['HTTP_HOST'], $devHosts)){
 	$mageRunCode = 'cz';
