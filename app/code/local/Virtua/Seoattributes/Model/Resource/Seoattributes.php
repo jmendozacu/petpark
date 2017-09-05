@@ -21,10 +21,37 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
         return $this->_storeId;
     }
 
+    /**
+     * Retrieve seo data from database
+     * If not found - save and retrieve
+     * @param $categoryId
+     * @param $params
+     * @return array
+     */
     public function getSeoDataByIdAndParams($categoryId, $params)
     {
         if (count($params)) {
-            return $this->prepareAndGetSeoDataFromMultipleParams($categoryId, $params);
+            $paramsJson = json_encode($params);
+            $storeId = $this->getCurrentStoreId();
+            $table = $this->getMainTable();
+            $adapter = $this->_getReadAdapter();
+            $bind = array(
+                'category_id' => $categoryId,
+                'attributes' => $paramsJson,
+                'store_id' => $storeId,
+            );
+            $select = $adapter->select()
+                ->from(array('seo' => $table))
+                ->where('seo.category_id = :category_id')
+                ->where('seo.attributes = :attributes')
+                ->where('seo.store_id = :store_id');
+            $result = $this->_getReadAdapter()->fetchAll($select, $bind);
+
+            if (!empty($result) && !empty($result[0])) {
+                return $result[0];
+            } else {
+                return $this->prepareAndGetSeoDataFromMultipleParams($categoryId, $params);
+            }
         }
         return array();
     }
@@ -53,15 +80,20 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
         }
     }
 
+    /**
+     * Prepare data and save in database
+     * Return array contains inserted data
+     * @param $categoryId
+     * @param $params
+     * @return array
+     */
     public function prepareAndGetSeoDataFromMultipleParams($categoryId, $params)
     {
         $storeId = $this->getCurrentStoreId();
         $categoryTitle = $this->getCategoryTitle($categoryId);
         $paramsString = '';
         $params = $this->_sortParams($params);
-        Mage::log(print_r($params, true));
         foreach ($params as $attrCode => $optionId) {
-            //Mage::log($this->getOptionValueByOptionId($attrCode, $optionId));
             $optionValue = $this->getOptionValueByOptionId($attrCode, $optionId);
             if ($optionValue) {
                 $paramsString .= $optionValue . '-';
@@ -79,9 +111,9 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
             'store_id' => $storeId,
             'enabled' => 1,
         );
-        //Mage::log(print_r($insertData, true));
         try {
-            //$this->getModel()->setData($insertData);
+            $model = Mage::getModel('virtua_seoattributes/seoattributes');
+            $model->setData($insertData)->save();
             return $insertData;
         } catch (Exception $exception) {
             Mage::log($exception);
@@ -89,6 +121,12 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
         return array();
     }
 
+    /**
+     * Prepare description
+     * @param string $categoryTitle
+     * @param $string paramsString
+     * @return string
+     */
     protected function _prepareDescription($categoryTitle, $paramsString)
     {
         $domain = $this->_getCurrentDomain();
@@ -105,6 +143,13 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
         return ($this->getCurrentStoreId() == 1) ? self::DOMAIN_SK : self::DOMAIN_CZ;
     }
 
+    /**
+     * Prepare title
+     * @param $categoryTitle
+     * @param $paramsString
+     * @param bool $meta
+     * @return string
+     */
     protected function _prepareTitle($categoryTitle, $paramsString, $meta = false)
     {
         $domain = $this->_getCurrentDomain();
@@ -125,6 +170,13 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
         return '';
     }
 
+    /**
+     * Return option value
+     * @param $attrCode
+     * @param $optionId
+     * @param bool $adminStore
+     * @return string
+     */
     public function getOptionValueByOptionId($attrCode, $optionId, $adminStore = false)
     {
         $attributeInfo = Mage::getModel('eav/entity_attribute')
@@ -132,17 +184,19 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
 
         $storeId = ($adminStore) ? 0 : $this->getCurrentStoreId();
         $allowedInputTypes = array('select', 'multiselect');
+
         if (in_array($attributeInfo->getFrontendInput(), $allowedInputTypes)) {
             $resource = Mage::getSingleton('core/resource');
             $readConnection = $resource->getConnection('core_read');
             $query = "
-            SELECT o.value 
-            FROM eav_attribute_option_value AS o 
-            WHERE o.option_id = '".$optionId."' AND o.store_id='".$storeId."'
-        ";
+                SELECT o.value 
+                FROM eav_attribute_option_value AS o 
+                WHERE o.option_id = '".$optionId."' AND o.store_id='".$storeId."'
+            ";
             $result = $readConnection->fetchAll($query);
             if (!empty($result)) {
                 return $result[0]['value'];
+            // if manufacturer has not set value for current store view
             } elseif ($this->_flague && $attrCode == 'manufacturer') {
                 $out = $this->getOptionValueByOptionId($attrCode, $optionId, true);
                 $this->_flague = false;
