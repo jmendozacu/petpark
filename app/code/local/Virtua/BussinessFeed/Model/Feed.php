@@ -3,6 +3,7 @@
 class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 {
     const GROUP_GENERAL = 1;
+    const GROUP_VELKOOBCHOD_ID = 2;
     const GROUP_VELKOOBCHOD_SPEC_ID = 5;
 
     protected $params = array();
@@ -29,6 +30,20 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'full_description' => true,
             'store' => 'sk',
             'filename' => 'velkoobchod_spec_feed.xml',
+            'include_prices' => true,
+        ),
+        array(
+            'group_id' => self::GROUP_VELKOOBCHOD_ID,
+            'full_description' => false,
+            'store' => 'sk',
+            'filename' => 'velkoobchod_feed.xml',
+            'include_prices' => true,
+        ),
+        array(
+            'group_id' => self::GROUP_VELKOOBCHOD_ID,
+            'full_description' => true,
+            'store' => 'sk',
+            'filename' => 'velkoobchod_feed.xml',
             'include_prices' => true,
         ),
         array(
@@ -323,7 +338,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
      * Saving collection in the file
      * @param int $customerGroup
      */
-    public function prepareProductCollection($customerGroup = self::GROUP_VELKOOBCHOD_SPEC_ID)
+    public function prepareProductCollection()
     {
         $helper = Mage::helper('bussinessfeed');
         $baseMediaUrl = rtrim(Mage::app()->getStore($this->storeVersionId)->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA), '/');
@@ -339,7 +354,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             }
             if ($this->includePrices) {
                 // get group price of product
-                $price = $this->getProductGroupPrice($product, $customerGroup, $params);
+                $price = $this->getProductGroupPrice($product, $this->groupId, $params);
                 $preparedData[$key]['price'] = $price;
                 $preparedData[$key]['price_vat'] = $this->getVatPrice($price);
             }

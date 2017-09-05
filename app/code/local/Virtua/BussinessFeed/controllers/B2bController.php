@@ -28,6 +28,23 @@ class Virtua_BussinessFeed_B2bController extends Mage_Core_Controller_Front_Acti
         return;
     }
 
+    public function id2Action()
+    {
+        $model = Mage::getModel('bussinessfeed/feed');
+        if (!is_null($this->getRequest()->getParam('fulldesc'))) {
+            $feedFile = $model->getFeedPath() . DS . 'fulldesc_velkoobchod_feed.xml';
+        } else {
+            $feedFile = $model->getFeedPath() . DS . 'velkoobchod_feed.xml';
+        }
+        try {
+            // read feed xml
+            $this->_readFeed($feedFile);
+        } catch (Exception $exception) {
+            Mage::log($exception->getMessage());
+        }
+        return;
+    }
+
     /**
      * Read feed xml
      * @param string $feedFile
