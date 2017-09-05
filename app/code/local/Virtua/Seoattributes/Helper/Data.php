@@ -10,6 +10,7 @@ class Virtua_Seoattributes_Helper_Data extends Mage_Core_Helper_Abstract
 
     protected $_excludedAttributes = array(
         'availability', 'komplety', 'id', 'komplety_oplotenie', 'rozsiritelny_vycvik', 'komplety', 'velkost_filtrovatelna',
+        'ajaxcatalog',
     );
 
     public function getIncludedAttributes()
