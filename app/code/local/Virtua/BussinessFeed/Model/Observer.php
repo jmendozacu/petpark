@@ -11,7 +11,7 @@ class Virtua_BussinessFeed_Model_Observer
         }
         try {
             foreach ($feeds as $feed) {
-                $model->buildXmlFeed($feed['full_description']);
+                $model->buildXmlFeed($feed);
             }
         } catch(Exception $exc) {
             Mage::log($exc->getMessage());
