@@ -264,11 +264,12 @@ $data = array(
     ),
 );
 
-foreach ($data as $key => $value) {
-    try {
-        $model = Mage::getModel('virtua_seoattributes/seoattributes');
-        $model->setData($value)->save();
-    } catch (Exception $exception) {
-        Mage::log($exception->getMessage());
-    }
-}
+// TODO probably to remove whole file
+//foreach ($data as $key => $value) {
+//    try {
+//        $model = Mage::getModel('virtua_seoattributes/seoattributes');
+//        $model->setData($value)->save();
+//    } catch (Exception $exception) {
+//        Mage::log($exception->getMessage());
+//    }
+//}
