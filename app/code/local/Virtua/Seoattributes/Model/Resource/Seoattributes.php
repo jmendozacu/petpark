@@ -2,7 +2,11 @@
 
 class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_Mysql4_Abstract
 {
+    const DOMAIN_SK = 'petpark.sk';
+    const DOMAIN_CZ = 'pet-park.cz';
+
     protected $_storeId;
+    protected $_flague = true;
 
     protected function _construct()
     {
@@ -55,6 +59,7 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
         $categoryTitle = $this->getCategoryTitle($categoryId);
         $paramsString = '';
         $params = $this->_sortParams($params);
+        Mage::log(print_r($params, true));
         foreach ($params as $attrCode => $optionId) {
             //Mage::log($this->getOptionValueByOptionId($attrCode, $optionId));
             $optionValue = $this->getOptionValueByOptionId($attrCode, $optionId);
@@ -87,13 +92,17 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
     protected function _prepareDescription($categoryTitle, $paramsString)
     {
         $domain = $this->_getCurrentDomain();
-        $out = 'Ponúkame vám ' . $categoryTitle . ' ' . $paramsString . ' na stránkach ' . $domain . '. Vyberte si produkty, ktoré potešia vašich domácich miláčikov.';
+        if ($this->getCurrentStoreId() == 1) {
+            $out = 'Ponúkame vám ' . $categoryTitle . ' ' . $paramsString . ' na stránkach ' . $domain . '. Vyberte si produkty, ktoré potešia vašich domácich miláčikov.';
+        } else {
+            $out = 'Nabízíme vám ' . $categoryTitle . ' ' . $paramsString . ' na stránkach ' . $domain . '. Vyberte si produkty, které potěší vaše domácí mazlíčky.';
+        }
         return $out;
     }
 
     protected function _getCurrentDomain()
     {
-        return ($this->getCurrentStoreId() == 1) ? 'petpark.sk' : 'pet-park.cz';
+        return ($this->getCurrentStoreId() == 1) ? self::DOMAIN_SK : self::DOMAIN_CZ;
     }
 
     protected function _prepareTitle($categoryTitle, $paramsString, $meta = false)
@@ -116,11 +125,12 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
         return '';
     }
 
-    public function getOptionValueByOptionId($attrCode, $optionId)
+    public function getOptionValueByOptionId($attrCode, $optionId, $adminStore = false)
     {
         $attributeInfo = Mage::getModel('eav/entity_attribute')
             ->loadByCode('catalog_product', $attrCode);
 
+        $storeId = ($adminStore) ? 0 : $this->getCurrentStoreId();
         $allowedInputTypes = array('select', 'multiselect');
         if (in_array($attributeInfo->getFrontendInput(), $allowedInputTypes)) {
             $resource = Mage::getSingleton('core/resource');
@@ -128,11 +138,15 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
             $query = "
             SELECT o.value 
             FROM eav_attribute_option_value AS o 
-            WHERE o.option_id = '".$optionId."' AND o.store_id='".$this->getCurrentStoreId()."'
+            WHERE o.option_id = '".$optionId."' AND o.store_id='".$storeId."'
         ";
             $result = $readConnection->fetchAll($query);
             if (!empty($result)) {
                 return $result[0]['value'];
+            } elseif ($this->_flague && $attrCode == 'manufacturer') {
+                $out = $this->getOptionValueByOptionId($attrCode, $optionId, true);
+                $this->_flague = false;
+                return $out;
             }
         } else {
             return '';
