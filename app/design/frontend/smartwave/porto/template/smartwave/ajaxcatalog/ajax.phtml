@@ -114,7 +114,7 @@ function sliderAjax(url) {
                     dataType: 'json',
                     type: 'post',
                     data: data,
-                    success: function(data) {                        
+                    success: function(data) {
 						callback();
                         if (data.viewpanel) {
                             if ($('.block-layered-nav')) {
@@ -123,8 +123,13 @@ function sliderAjax(url) {
                             }
                         }
                         if (data.productlist) {
-                            $('.col-main .category-products').empty();
-                            $('.col-main .category-products').replaceWith(data.productlist)
+                            if (typeof data.type != 'undefined' && data.type == 'category') {
+                                $('#category-content').empty();
+                                $('#category-content').replaceWith(data.productlist);
+                            } else {
+                                $('.col-main .category-products').empty();
+                                $('.col-main .category-products').replaceWith(data.productlist);
+                            }
                         }
 						if($( ".col-main" ).has( ".category-products" ).length)
 							$(".col-main .category-products").scrollToMe();
@@ -248,7 +253,6 @@ function sliderAjax(url) {
                                 page_loaded = true;
                             } else {
                                 $("#fullajax_loader").show();
-                                console.log("pathname: "+location.pathname);
 
                                 $.ajax({url: location.pathname,data:{fullpageajax:true},success: showResponse,error: function() {
                                     window.location.href = a
@@ -258,9 +262,15 @@ function sliderAjax(url) {
                         <?php
                             }
                         ?>
+                    },
+                    error: function(ev) {
+                        console.log(ev);
+                        $('body').html(ev.responseText);
                     }
                 })
-            } catch (e) {}
+            } catch (e) {
+                console.log(e);
+            }
         });
         active = false
     }
@@ -469,7 +479,6 @@ function infiniteAjax(url) {
                                 page_loaded = true;
                             } else {
                                 $("#fullajax_loader").show();
-                                console.log("pathname: "+location.pathname);
 
                                 $.ajax({url: location.pathname,data:{fullpageajax:true},success: showResponse,error: function() {
                                     window.location.href = a
