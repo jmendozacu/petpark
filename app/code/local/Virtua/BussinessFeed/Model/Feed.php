@@ -233,8 +233,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
             if (!empty($parentIds)) {
                 $parent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($parentIds[0]);
-                $groupPrice = $this->getGroupPrice($parent, $groupId);
-                if ($groupPrice) {
+                $tempPrice = ($this->getGroupPrice($parent, $groupId)) ? $this->getGroupPrice($parent, $groupId) : $parent->getPrice();
+                if ($tempPrice) {
                     $parent->getTypeInstance(true)
                         ->setStoreFilter($parent->getStore(), $parent);
                     $attributes = $parent->getTypeInstance(true)
@@ -242,9 +242,9 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                     $add = 0;
                     foreach ($attributes as $attribute) {
                         $prices = $attribute->getPrices();
-                        $add += $this->getConfigurableProductWithParametersDifference($groupPrice, $prices, $params);
+                        $add += $this->getConfigurableProductWithParametersDifference($tempPrice, $prices, $params);
                     }
-                    return $groupPrice + $add;
+                    return $tempPrice + $add;
                 }
             }
         }
