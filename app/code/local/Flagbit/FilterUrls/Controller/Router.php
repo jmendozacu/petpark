@@ -10,7 +10,6 @@ class Flagbit_FilterUrls_Controller_Router extends Mage_Core_Controller_Varien_R
      */
     public function addFilterUrlsRouter($observer)
     {
-        Mage::log('ok');
         $front = $observer->getEvent()->getFront();
 
         $filterUrlsRouter = new Flagbit_FilterUrls_Controller_Router();
