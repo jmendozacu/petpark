@@ -9,10 +9,24 @@ class Virtua_Seoattributes_Block_Category_View extends Mage_Catalog_Block_Catego
     {
         parent::_prepareLayout();
 
-        $seoData = $this->getSeoData();
-        if (!empty($seoData)) {
-            $this->getLayout()->getBlock('head')->setTitle($seoData['title']);
-            $this->getLayout()->getBlock('head')->setDescription($seoData['meta_description']);
+        if ($headBlock = $this->getLayout()->getBlock('head')) {
+            $category = $this->getCurrentCategory();
+            if ($this->helper('catalog/category')->canUseCanonicalTag()) {
+                $rewrite = Mage::getStoreConfig('web/seo/use_rewrites',Mage::app()->getStore()->getId());
+                // Rewrite
+                if($rewrite == 1) {
+                    $headBlock->removeItem('link_rel',$category->getUrl());
+                    $headBlock->addLinkRel('canonical', Mage::getModel('filterurls/catalog_layer_filter_item')->getSpeakingFilterUrl(FALSE, TRUE));
+                }
+                else{
+                    $headBlock->addLinkRel('canonical', $category->getUrl());
+                }
+            }
+            $seoData = $this->getSeoData();
+            if (!empty($seoData)) {
+                $headBlock->setTitle($seoData['title']);
+                $headBlock->setDescription($seoData['meta_description']);
+            }
         }
 
         return $this;
