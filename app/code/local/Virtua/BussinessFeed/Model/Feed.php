@@ -251,6 +251,14 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                     return $tempPrice + $add;
                 }
             }
+            $groupedParentsIds = Mage::getResourceSingleton('catalog/product_link')
+                ->getParentIdsByChild($product->getId(), Mage_Catalog_Model_Product_Link::LINK_TYPE_GROUPED);
+            if (!empty($groupedParentsIds)) {
+                $groupParent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($groupedParentsIds[0]);
+                if ($groupParent && $groupParent->getSku()) {
+                    $this->tempParentSku = $groupParent->getSku();
+                }
+            }
         }
         $groupPrice = $this->getGroupPrice($product, $groupId);
         if ($groupPrice) {
