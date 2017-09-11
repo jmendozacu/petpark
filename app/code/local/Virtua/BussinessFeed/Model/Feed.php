@@ -15,7 +15,10 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     protected $storeVersionId;
     protected $includePrices;
     protected $groupId;
+    protected $extraPrice;
     protected $fullDescription = false;
+
+    protected $tempParentSku;
 
     protected $feeds = array(
         array(
@@ -24,6 +27,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'store' => 'sk',
             'filename' => 'velkoobchod_spec_feed.xml',
             'include_prices' => true,
+            'extra_price' => false,
         ),
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_SPEC_ID,
@@ -31,6 +35,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'store' => 'sk',
             'filename' => 'velkoobchod_spec_feed.xml',
             'include_prices' => true,
+            'extra_price' => false,
         ),
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_ID,
@@ -38,6 +43,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'store' => 'sk',
             'filename' => 'velkoobchod_feed.xml',
             'include_prices' => true,
+            'extra_price' => self::GROUP_GENERAL,
         ),
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_ID,
@@ -45,6 +51,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'store' => 'sk',
             'filename' => 'velkoobchod_feed.xml',
             'include_prices' => true,
+            'extra_price' => self::GROUP_GENERAL,
         ),
         array(
             'group_id' => self::GROUP_GENERAL,
@@ -52,6 +59,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'store' => 'cz',
             'filename' => 'general_feed.xml',
             'include_prices' => false,
+            'extra_price' => false,
         ),
     );
 
@@ -124,6 +132,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $this->storeVersion = $this->_getOption($feedOptions['store']);
         $this->storeVersionId = ($this->storeVersion == 'cz') ? 2 : 1;
         $this->feedFile = $this->_getOption($feedOptions['filename']);
+        $this->extraPrice = $this->_getOption($feedOptions['extra_price']);
         $this->fullDescription = $this->_getOption($feedOptions['full_description']);
         if (!is_dir($this->getFeedPath())) {
             mkdir($this->getFeedPath());
@@ -140,9 +149,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
      */
     public function getProductCollection()
     {
-        //$storeId = Mage::app()->getStore()->getStoreId();
         $products = Mage::getModel('catalog/product')->getCollection()
-            ->addFieldToFilter('type_id', array('neq' =>'configurable'))
+            //->addFieldToFilter('type_id', array('neq' =>'configurable'))
             ->setStore($this->storeVersionId)
             ->getAllIdsCache();
         return $products;
@@ -225,10 +233,12 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         if ($product->getTypeId() == 'simple') {
             $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
             if (!empty($parentIds)) {
-                $parent = Mage::getModel('catalog/product')->load($parentIds[0]);
-
-                $groupPrice = $this->getGroupPrice($parent, $groupId);
-                if ($groupPrice) {
+                $parent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($parentIds[0]);
+                if ($parent->getId()) {
+                    $this->tempParentSku = $parent->getSku();
+                }
+                $tempPrice = ($this->getGroupPrice($parent, $groupId)) ? $this->getGroupPrice($parent, $groupId) : $parent->getPrice();
+                if ($tempPrice) {
                     $parent->getTypeInstance(true)
                         ->setStoreFilter($parent->getStore(), $parent);
                     $attributes = $parent->getTypeInstance(true)
@@ -236,9 +246,17 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                     $add = 0;
                     foreach ($attributes as $attribute) {
                         $prices = $attribute->getPrices();
-                        $add += $this->getConfigurableProductWithParametersDifference($groupPrice, $prices, $params);
+                        $add += $this->getConfigurableProductWithParametersDifference($tempPrice, $prices, $params);
                     }
-                    return $groupPrice + $add;
+                    return $tempPrice + $add;
+                }
+            }
+            $groupedParentsIds = Mage::getResourceSingleton('catalog/product_link')
+                ->getParentIdsByChild($product->getId(), Mage_Catalog_Model_Product_Link::LINK_TYPE_GROUPED);
+            if (!empty($groupedParentsIds)) {
+                $groupParent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($groupedParentsIds[0]);
+                if ($groupParent && $groupParent->getSku()) {
+                    $this->tempParentSku = $groupParent->getSku();
                 }
             }
         }
@@ -296,15 +314,13 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
      */
     public function getGroupPrice($product, $groupId)
     {
-        if (!is_null($product->getGroupPrice())) {
-            $groupPrice = $product->getData('group_price');
-            if (isset($groupPrice[$groupId]['price'])) {
-                $customerGroupPrice = $groupPrice[$groupId]['price'];
-                if ($product->getFinalPrice() < $customerGroupPrice) {
-                    return $product->getFinalPrice();
-                }
-                return $customerGroupPrice;
+        $groupPrice = $product->getData('group_price');
+        if (isset($groupPrice[$groupId]['price'])) {
+            $customerGroupPrice = $groupPrice[$groupId]['price'];
+            if ($product->getFinalPrice() < $customerGroupPrice) {
+                return $product->getFinalPrice();
             }
+            return $customerGroupPrice;
         }
         return;
     }
@@ -357,6 +373,12 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                 $price = $this->getProductGroupPrice($product, $this->groupId, $params);
                 $preparedData[$key]['price'] = $price;
                 $preparedData[$key]['price_vat'] = $this->getVatPrice($price);
+                if ($this->extraPrice) {
+                    // get extra price
+                    $extraPrice = $this->getProductGroupPrice($product, $this->extraPrice, $params);
+                    $preparedData[$key]['price_general'] = $extraPrice;
+                    $preparedData[$key]['price_general_vat'] = $this->getVatPrice($extraPrice);
+                }
             }
             $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
             $preparedData[$key]['vat'] = $this->getVat();
@@ -368,7 +390,9 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             $preparedData[$key]['manufacturer'] = $product->getAttributeText('manufacturer');
             $preparedData[$key]['ean'] = $product->getEan();
             $preparedData[$key]['delivery_date'] = $product->getAttributeText('availability');
+            $preparedData[$key]['itemgroup_id'] = $this->tempParentSku;
             $product->clearInstance();
+            $this->tempParentSku = null;
         }
         $this->appendData($helper->prepareXmlShopItem($preparedData));
         $preparedData = null;
