@@ -75,17 +75,22 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
 
         $io->open(array('path' => $this->_getFilePath()));
         // write file if not exists
-        if (!file_exists($this->_getRealFilePath())) {
-            if (!$io->write($this->_getRealFilePath(), $this->_getRealFilePath())) {
-                $this->_throwMageException('File cannot be written');
+        try {
+            if (!file_exists($this->_getRealFilePath())) {
+                if (!$io->write($this->_getRealFilePath(), $this->_getRealFilePath())) {
+                    $this->_throwMageException('File cannot be written');
+                }
             }
+        } catch (Exception $exception) {
+            Mage::log($exception->getMessage());
         }
+
         // is writable
         if ($io->fileExists($this->_getRealFilePath()) && !$io->isWriteable($this->_getRealFilePath())) {
             $this->_throwMageException('File is not writable');
         }
 
-        $io->streamOpen($this->_getFileName());
+        $io->streamOpen($this->_getRealFilePath());
 
         // xml head
         $io->streamWrite('<?xml version="1.0" encoding="UTF-8"?>' . "\n");
@@ -125,6 +130,8 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
             $dom->preserveWhiteSpace = false;
             $images = $dom->getElementsByTagName('img');
             foreach ($images as $key => $image) {
+                print_r($image->getAttribute('src'));
+                echo '<br>';
                 if (!$this->_isset($image->getAttribute('src')) || !$this->_displayImage($image->getAttribute('src'))) {
                     continue;
                 }
