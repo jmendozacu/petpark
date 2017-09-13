@@ -336,7 +336,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         if ($product->getTypeId() == 'simple') {
             $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
             if (!empty($parentIds)) {
-                $parent = Mage::getModel('catalog/product')->load($parentIds[0]);
+                $parent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($parentIds[0]);
                 if ($full) {
                     return $this->prepareFullDescription($parent->getDescription());
                 }
@@ -466,7 +466,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $categoryIds = $product->getCategoryIds();
         if(count($categoryIds) ){
             $firstCategoryId = $categoryIds[0];
-            $_category = Mage::getModel('catalog/category')->load($firstCategoryId);
+            $_category = Mage::getModel('catalog/category')->setStoreId($this->storeVersionId)->load($firstCategoryId);
 
             return $_category->getName();
         }
