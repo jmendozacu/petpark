@@ -2,13 +2,33 @@
 
 class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
 {
-
     const MAP_EXTENSION = '.xml';
     const MAP_BASE_NAME = 'imagemap_';
 
+    protected $_storeVersion;
+    protected $_storeId;
+
     protected $_enabledExtensions = array(
-        'jpg', 'jpeg',
+        'jpg', 'jpeg', 'png', 'tif', 'gif',
     );
+
+    protected $_sitemaps = array(
+        array(
+            'version' => 'sk',
+            'store_id' => '1',
+            'file' => 'sitemap.xml',
+        ),
+        array(
+            'version' => 'cz',
+            'store_id' => '2',
+            'file' => 'sitemapcz/sitemap.xml',
+        ),
+    );
+
+    public function getSitemaps()
+    {
+        return $this->_sitemaps;
+    }
 
     protected $_filePath;
 
@@ -25,18 +45,31 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
         return $this->_filePath;
     }
 
+    /**
+     * Return file name of image map
+     * @return string
+     */
     protected function _getFileName()
     {
-        $fileName = self::MAP_BASE_NAME . strtolower(Mage::app()->getStore()->getName()) . self::MAP_EXTENSION;
+        $fileName = self::MAP_BASE_NAME . $this->_storeVersion . self::MAP_EXTENSION;
         return $fileName;
     }
 
+    /**
+     * Return full path to image map file
+     * @return string
+     */
     protected function _getRealFilePath()
     {
         $io = new Varien_Io_File();
         return $io->getCleanPath($this->_getFilePath() . DS . $this->_getFileName());
     }
 
+    /**
+     * Retrieve array of urls from given sitemap
+     * @param $sitemap
+     * @return array
+     */
     protected function _getSiteUrls($sitemap)
     {
         $array = array();
@@ -46,31 +79,20 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
                     continue;
                 }
                 $loc = (array) $item->loc;
-                $array[] = $this->_buildLocalUrl($loc[0]);
-                //$array[] = $loc[0];
+                $array[] = $loc[0];
             }
         }
         return $array;
     }
 
-    protected function _buildLocalUrl($url)
+    /**
+     * Generate image sitemap
+     * @param array $sitemapData
+     */
+    public function generateImageSitemap($sitemapData)
     {
-        $urlArr = parse_url($url);
-        if (!empty($urlArr)) {
-            $baseUrl = Mage::getBaseUrl();
-            if ($this->_isset($urlArr['path'])) {
-                $url = rtrim($baseUrl, DS) . $urlArr['path'];
-                $url = rtrim($url, DS);
-//                if ($this->_isset($urlArr['query'])) {
-//                    $url .= '&' . $urlArr['query'];
-//                }
-            }
-        }
-        return $url;
-    }
-
-    public function generateImageSitemap()
-    {
+        $this->_storeVersion = $sitemapData['version'];
+        $this->_storeId = $sitemapData['store_id'];
         $io = new Varien_Io_File();
 
         $io->open(array('path' => $this->_getFilePath()));
@@ -97,18 +119,18 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
         $io->streamWrite('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">');
 
         //xml content
-        $sitemap = $this->_loadSitemap();
+        $sitemap = $this->_loadSitemap($sitemapData);
         $urls = $this->_getSiteUrls($sitemap);
         $i = 0;
         foreach ($urls as $url) {
             $i++;
-            $images = $this->_getImagesFromUrl($url);
+            $images = $this->_getImagesDataFromUrl($url);
             if (empty($images)) {
                 continue;
             }
             $singleNode = $this->_buildSingleNode($url, $images);
             $io->streamWrite($singleNode);
-            if ($i > 50) {
+            if ($i > 15) {
                 break;
             }
         }
@@ -120,18 +142,28 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
 
     }
 
-    protected function _getImagesFromUrl($url)
+    public function onlydevReplace($string)
+    {
+        $string = str_replace('http://petpark.dev', 'http://petpark.onlydev.net', $string);
+        $string = str_replace('http://dev.petpark.cz', 'http://cz.petpark.onlydev.net', $string);
+        return $string;
+    }
+
+    /**
+     * Retrvieve images data (src and alt) from given url
+     * @param $url
+     * @return array
+     */
+    protected function _getImagesDataFromUrl($url)
     {
         $out = array();
         $html = $this->_getFileContent($url);
         if ($html) {
-            $dom = new domDocument;
+            $dom = new DOMDocument('1.0', 'UTF-8');
             $dom->loadHTML($html);
             $dom->preserveWhiteSpace = false;
             $images = $dom->getElementsByTagName('img');
             foreach ($images as $key => $image) {
-                print_r($image->getAttribute('src'));
-                echo '<br>';
                 if (!$this->_isset($image->getAttribute('src')) || !$this->_displayImage($image->getAttribute('src'))) {
                     continue;
                 }
@@ -144,24 +176,17 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
         return $out;
     }
 
-    protected function _displayImage($src)
-    {
-        $ext = pathinfo($src, PATHINFO_EXTENSION);
-        return ($this->_enabledSrcDomain($src) && in_array($ext, $this->getEnabledExtensions()));
-    }
-
-    protected function _enabledSrcDomain($src)
-    {
-        $baseUrl = Mage::getBaseUrl();
-        return (strpos($src, $baseUrl) !== false);
-    }
-
-    protected function _getFileContent($file)
+    /**
+     * Get file content from given url
+     * @param string $url
+     * @return mixed
+     */
+    protected function _getFileContent($url)
     {
         $request = curl_init();
         curl_setopt_array($request, array
         (
-            CURLOPT_URL => $file,
+            CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => TRUE,
             CURLOPT_HEADER => FALSE,
             CURLOPT_SSL_VERIFYPEER => FALSE,
@@ -174,11 +199,32 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
         return $response;
     }
 
-    protected function _loadSitemap()
+    /**
+     * Check image extension is allowed and image has local domain
+     * @param $src
+     * @return bool
+     */
+    protected function _displayImage($src)
+    {
+        $ext = pathinfo($src, PATHINFO_EXTENSION);
+        return ($this->_enabledSrcDomain($src) && in_array($ext, $this->getEnabledExtensions()));
+    }
+
+    protected function _enabledSrcDomain($src)
+    {
+        $baseUrl = Mage::app()->getStore($this->_storeId)->getBaseUrl();
+        return (strpos($src, $baseUrl) !== false);
+    }
+
+    /**
+     * Load sitemap file
+     * @param $sitemapData
+     * @return SimpleXMLElement
+     */
+    protected function _loadSitemap($sitemapData)
     {
         $baseUrl = $this->_filePath = str_replace('//', '/', Mage::getBaseDir());
-        $sitemapPath = $baseUrl . DS . 'sitemap.xml';
-        //$sitemapString = $this->_getFileContent($sitemap);
+        $sitemapPath = $baseUrl . DS . $sitemapData['file'];
         $sitemap = simplexml_load_file($sitemapPath);
         return $sitemap;
     }
@@ -187,6 +233,14 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
         return (isset($val) && $val != '');
     }
 
+    /**
+     * Build single xml node. Contains site url and images
+     * TODO remove onlydev replace method
+     * @param string $url
+     * @param array $images
+     * @param string $priority
+     * @return mixed
+     */
     protected function _buildSingleNode($url, $images, $priority = '1.0') {
         $xml = '';
         if (!empty($images)) {
@@ -195,21 +249,21 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
                 if (!$this->_isset($img['url'])) {
                     continue;
                 }
-                $imgNode = '<image:image>';
-                $imgNode .= '<image:loc>' . $img['url'] . '</image:loc>';
-                if ($this->_isset($img['title'])) {
+                $imgNode .= '<image:image>';
+                $imgNode .= '<image:loc>' . $this->onlydevReplace($img['url']) . '</image:loc>';
+                if (isset($img['title'])) {
                     $imgNode .= '<image:title>' . $img['title'] . '</image:title>';
                 }
                 $imgNode .= '</image:image>';
             }
             $xml = sprintf(
-                '<url><loc>%s</loc><priority>%s</priority>%s</url>',
-                htmlspecialchars($url),
+                '<url><loc>%s</loc><priority>%s</priority>%s</url>'. "\n",
+                $this->onlydevReplace(htmlspecialchars($url)),
                 $priority,
                 $imgNode
             );
         }
-        return $xml;
+        return preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $xml);
     }
 
     protected function _throwMageException($msg)
