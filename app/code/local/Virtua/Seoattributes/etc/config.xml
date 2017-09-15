@@ -54,5 +54,15 @@
                 </connection>
             </virtua_seoattributes_read>
         </resources>
+        <events>
+            <sitemap_categories_generating_before>
+                <observers>
+                    <virtua_seoattributes>
+                        <class>Virtua_Seoattributes_Model_Observer</class>
+                        <method>addNewCategories</method>
+                    </virtua_seoattributes>
+                </observers>
+            </sitemap_categories_generating_before>
+        </events>
     </global>
 </config>
