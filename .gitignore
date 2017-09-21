@@ -11,3 +11,5 @@ var/heurekask-overeno.log
 
 /access.log
 /error.lgg
+/imagemap_sk.xml
+/imagemap_cz.xml
