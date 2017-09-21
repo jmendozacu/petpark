@@ -33,6 +33,15 @@
                 </args>
             </seo>
         </routers>
+        <translate>
+            <modules>
+                <virtua_seo>
+                    <files>
+                        <default>Virtua_Seo.csv</default>
+                    </files>
+                </virtua_seo>
+            </modules>
+        </translate>
     </frontend>
     <crontab>
         <jobs>
