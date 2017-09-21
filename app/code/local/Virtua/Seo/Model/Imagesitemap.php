@@ -242,7 +242,7 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
                     continue;
                 }
                 $imgNode .= '<image:image>';
-                $imgNode .= '<image:loc>' . $this->onlydevReplace($img['url']) . '</image:loc>';
+                $imgNode .= '<image:loc>' . $img['url'] . '</image:loc>';
                 if (isset($img['title'])) {
                     $imgNode .= '<image:title>' . $img['title'] . '</image:title>';
                 }
