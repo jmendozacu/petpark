@@ -43,12 +43,4 @@
             </modules>
         </translate>
     </frontend>
-    <crontab>
-        <jobs>
-            <seo>
-                <schedule><cron_expr>45 0 * * *</cron_expr></schedule>
-                <run><model>virtua/observer::generateImageMap</model></run>
-            </seo>
-        </jobs>
-    </crontab>
 </config>
