@@ -5,9 +5,10 @@ class Virtua_Seoattributes_Model_Observer
     public function addNewCategories(Varien_Event_Observer $observer)
     {
         try {
+            $storeId = $observer->getStore();
             $rewritesCollection = Mage::getModel('filterurls/url')
                 ->getCollection()
-                ->addFieldToFilter('store_id', 1);
+                ->addFieldToFilter('store_id', $storeId);
             foreach ($this->_getExcludedAttributes() as $attr) {
                 $rewritesCollection->addFieldToFilter('attributes', array('nlike' => '%'.$attr.'%'));
             }

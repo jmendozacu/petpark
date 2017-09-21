@@ -20,6 +20,11 @@
                     </seoattributes>
                 </entities>
             </virtua_seoattributes_resource>
+            <sitemap>
+                <rewrite>
+                    <sitemap>Virtua_Seoattributes_Model_Sitemap</sitemap>
+                </rewrite>
+            </sitemap>
         </models>
         <helpers>
             <virtua_seoattributes>
