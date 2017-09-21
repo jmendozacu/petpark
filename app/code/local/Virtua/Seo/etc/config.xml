@@ -32,6 +32,11 @@
                 </connection>
             </virtua_setup>
         </resources>
+        <models>
+            <virtua>
+                <class>Virtua_Seo_Model</class>
+            </virtua>
+        </models>
     </global>
     <frontend>
         <routers>
