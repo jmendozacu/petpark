@@ -121,18 +121,13 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
         //xml content
         $sitemap = $this->_loadSitemap($sitemapData);
         $urls = $this->_getSiteUrls($sitemap);
-        $i = 0;
         foreach ($urls as $url) {
-            $i++;
             $images = $this->_getImagesDataFromUrl($url);
             if (empty($images)) {
                 continue;
             }
             $singleNode = $this->_buildSingleNode($url, $images);
             $io->streamWrite($singleNode);
-            if ($i > 15) {
-                break;
-            }
         }
 
         // xml bottom
@@ -142,16 +137,9 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
 
     }
 
-    public function onlydevReplace($string)
-    {
-        $string = str_replace('http://petpark.dev', 'http://petpark.onlydev.net', $string);
-        $string = str_replace('http://dev.petpark.cz', 'http://cz.petpark.onlydev.net', $string);
-        return $string;
-    }
-
     /**
      * Retrvieve images data (src and alt) from given url
-     * @param $url
+     * @param string $url
      * @return array
      */
     protected function _getImagesDataFromUrl($url)
@@ -210,6 +198,11 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
         return ($this->_enabledSrcDomain($src) && in_array($ext, $this->getEnabledExtensions()));
     }
 
+    /**
+     * Check if given src is under store site domain
+     * @param string $src
+     * @return bool
+     */
     protected function _enabledSrcDomain($src)
     {
         $baseUrl = Mage::app()->getStore($this->_storeId)->getBaseUrl();
@@ -235,7 +228,6 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
 
     /**
      * Build single xml node. Contains site url and images
-     * TODO remove onlydev replace method
      * @param string $url
      * @param array $images
      * @param string $priority
@@ -246,7 +238,7 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
         if (!empty($images)) {
             $imgNode = '';
             foreach ($images as $img) {
-                if (!$this->_isset($img['url'])) {
+                if (!isset($img['url'])) {
                     continue;
                 }
                 $imgNode .= '<image:image>';
@@ -258,7 +250,7 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
             }
             $xml = sprintf(
                 '<url><loc>%s</loc><priority>%s</priority>%s</url>'. "\n",
-                $this->onlydevReplace(htmlspecialchars($url)),
+                htmlspecialchars($url),
                 $priority,
                 $imgNode
             );
@@ -268,9 +260,7 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
 
     protected function _throwMageException($msg)
     {
-        Mage::log($msg);
-        //Mage::throwException(__($msg));
-        return $this;
+        Mage::throwException(__($msg));
     }
 
     public function getEnabledExtensions()
