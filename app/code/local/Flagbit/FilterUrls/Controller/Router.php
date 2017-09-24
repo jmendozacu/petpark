@@ -72,7 +72,7 @@ class Flagbit_FilterUrls_Controller_Router extends Mage_Core_Controller_Varien_R
             $identifier
         );
 
-        if ($request->isXmlHttpRequest() && Mage::app()->getRequest()->getParam('ajaxcatalog')) {
+        if ($request->isXmlHttpRequest() && (Mage::app()->getRequest()->getParam('ajaxcatalog') || Mage::app()->getRequest()->getParam('infinite'))) {
             $viewpanel = Mage::app()->getLayout()->getBlock('catalog.leftnav')->toHtml();
             $productlist = Mage::app()->getLayout()->getBlock('category.products')->toHtml(); // Generate product list
             $response['status'] = 'SUCCESS';
