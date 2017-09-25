@@ -20,6 +20,11 @@
                     </seoattributes>
                 </entities>
             </virtua_seoattributes_resource>
+            <sitemap>
+                <rewrite>
+                    <sitemap>Virtua_Seoattributes_Model_Sitemap</sitemap>
+                </rewrite>
+            </sitemap>
         </models>
         <helpers>
             <virtua_seoattributes>
@@ -54,6 +59,16 @@
                 </connection>
             </virtua_seoattributes_read>
         </resources>
+        <events>
+            <sitemap_categories_generating_before>
+                <observers>
+                    <virtua_seoattributes>
+                        <class>Virtua_Seoattributes_Model_Observer</class>
+                        <method>addNewCategories</method>
+                    </virtua_seoattributes>
+                </observers>
+            </sitemap_categories_generating_before>
+        </events>
     </global>
     <adminhtml>
         <events>
