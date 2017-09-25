@@ -2,7 +2,6 @@
 
 class Virtua_Seoattributes_Model_Observer
 {
-
     /**
     * Remove all seo attributes connected to updated category
     * @param $observer
