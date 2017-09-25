@@ -55,4 +55,17 @@
             </virtua_seoattributes_read>
         </resources>
     </global>
+    <adminhtml>
+        <events>
+            <catalog_category_prepare_save>
+                <observers>
+                    <virtua_seoattributes>
+                        <type>singleton</type>
+                        <class>Virtua_Seoattributes_Model_Observer</class>
+                        <method>removeSeoattributesOnUpdateCategory</method>
+                    </virtua_seoattributes>
+                </observers>
+            </catalog_category_prepare_save>
+        </events>
+    </adminhtml>
 </config>
