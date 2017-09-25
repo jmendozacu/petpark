@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_Heureka>
+            <version>1.0.0</version>
+        </Virtua_Heureka>
+    </modules>
+    <global>
+        <models>
+            <virtua_heureka>
+                <class>Virtua_Heureka_Model</class>
+            </virtua_heureka>
+        </models>
+    </global>
+    <crontab>
+        <jobs>
+            <virtua_heureka>
+                <schedule><cron_expr>5 20 * * *</cron_expr></schedule>
+                <run><model>virtua_heureka/observer::updateHeurekaReviews</model></run>
+            </virtua_heureka>
+        </jobs>
+    </crontab>
+</config>
