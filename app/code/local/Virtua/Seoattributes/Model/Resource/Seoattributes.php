@@ -171,6 +171,29 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
     }
 
     /**
+     * @param int $categoryId
+     * @return bool
+     */
+    public function removeRowByCategoryId($categoryId)
+    {
+        if (!$categoryId) {
+            return false;
+        }
+        $resource = Mage::getSingleton('core/resource');
+        $writeConnection = $resource->getConnection('core_write');
+        $query = "
+                DELETE FROM virtua_seoattributes 
+                WHERE category_id = '".$categoryId."'
+            ";
+        try {
+            return $writeConnection->query($query);
+        } catch (Exception $exception) {
+            Mage::log($exception->getMessage());
+        }
+        return false;
+    }
+
+    /**
      * Return option value
      * @param $attrCode
      * @param $optionId

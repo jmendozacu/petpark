@@ -20,6 +20,11 @@
                     </seoattributes>
                 </entities>
             </virtua_seoattributes_resource>
+            <sitemap>
+                <rewrite>
+                    <sitemap>Virtua_Seoattributes_Model_Sitemap</sitemap>
+                </rewrite>
+            </sitemap>
         </models>
         <helpers>
             <virtua_seoattributes>
@@ -65,4 +70,17 @@
             </sitemap_categories_generating_before>
         </events>
     </global>
+    <adminhtml>
+        <events>
+            <catalog_category_prepare_save>
+                <observers>
+                    <virtua_seoattributes>
+                        <type>singleton</type>
+                        <class>Virtua_Seoattributes_Model_Observer</class>
+                        <method>removeSeoattributesOnUpdateCategory</method>
+                    </virtua_seoattributes>
+                </observers>
+            </catalog_category_prepare_save>
+        </events>
+    </adminhtml>
 </config>
