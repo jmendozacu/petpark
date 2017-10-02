@@ -2229,6 +2229,7 @@ li.etalage_small_thumbs{margin-top:8px;top:100%}
 .footer-middle .fb-persons .fb-person a{width:100%;display:inline-block}
 .footer-middle .fb-persons .fb-person a:hover img{opacity:.8;filter:alpha(opacity=80)}
 .footer-middle .fb-persons .fb-person a img{width:100%}
+.footer-middle .pluginFacepile .uiList{display:none!important;}
 
 .footer-bottom{min-height:50px;line-height:40px;background-color:#0c0c0c;padding:25px 0}
 .footer-bottom a.logo{float:left;margin-right:45px}
