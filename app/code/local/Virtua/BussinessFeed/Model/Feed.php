@@ -201,7 +201,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                             if ($attribute) {
                                 $attrCode = $attribute->getAttributeCode();
                                 $attrKey = $product->getResource()->getAttribute($attrCode)->getStoreLabel();
-                                $params[$attrKey]['key'] = $product->getAttributeText($attrCode);
+                                $params[$attrKey]['key'] = $product->setStoreId($this->storeVersionId)->getAttributeText($attrCode);
                                 $params[$attrKey]['id'] = $product->getResource()->getAttribute($attrCode)->getId();
                             }
                         }
@@ -362,6 +362,9 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $products = $this->getProductCollection();
         foreach ($products as $key => $product) {
             $product = $this->loadProduct($product);
+            if ($product->getStatus() != Mage_Catalog_Model_Product_Status::STATUS_ENABLED) {
+                continue;
+            }
             // get array of params
             $params = $this->getParametersAssignedToConfigurableProduct($product);
             $preparedData[$key]['description'] = $this->getParentDescription($product);
@@ -448,6 +451,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         }
         // retrieve attribute from database
         $attribute = Mage::getModel('eav/entity_attribute')
+            ->setStoreId($this->storeVersionId)
             ->load($attributeId);
         if ($attribute) {
             // append retrieved param to array
