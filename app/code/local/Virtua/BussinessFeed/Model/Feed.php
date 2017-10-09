@@ -201,7 +201,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                             if ($attribute) {
                                 $attrCode = $attribute->getAttributeCode();
                                 $attrKey = $product->getResource()->getAttribute($attrCode)->getStoreLabel();
-                                $params[$attrKey]['key'] = $product->setStoreId($this->storeVersionId)->getAttributeText($attrCode);
+                                $params[$attrKey]['key'] = $product->getResource()->getAttribute($attrCode)->setStoreId($this->storeVersionId)->getFrontend()->getValue($product);
                                 $params[$attrKey]['id'] = $product->getResource()->getAttribute($attrCode)->getId();
                             }
                         }
