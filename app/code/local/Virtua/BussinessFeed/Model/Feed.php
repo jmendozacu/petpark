@@ -221,6 +221,30 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return $result;
     }
 
+    public function setSimpleProductParentSku($product)
+    {
+        if ($product->getTypeId() == 'simple') {
+            $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
+            if (!empty($parentIds)) {
+                $parent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($parentIds[0]);
+                if ($parent->getId()) {
+                    $this->tempParentSku = $parent->getSku();
+                    return;
+                }
+            }
+        }
+        $groupedParentsIds = Mage::getResourceSingleton('catalog/product_link')
+            ->getParentIdsByChild($product->getId(), Mage_Catalog_Model_Product_Link::LINK_TYPE_GROUPED);
+        if (!empty($groupedParentsIds)) {
+            $groupParent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($groupedParentsIds[0]);
+            if ($groupParent && $groupParent->getSku()) {
+                $this->tempParentSku = $groupParent->getSku();
+                return;
+            }
+        }
+        return;
+    }
+
     /**
      * Recalculating price of product which has configurable parent and set price adjustment
      * Returns product price
@@ -349,6 +373,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return htmlspecialchars($product->getShortDescription());
     }
 
+
+
     /**
      * Preparing product collection
      * Saving collection in the file
@@ -382,6 +408,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                     $preparedData[$key]['price_general'] = $extraPrice;
                     $preparedData[$key]['price_general_vat'] = $this->getVatPrice($extraPrice);
                 }
+            } else {
+                $this->setSimpleProductParentSku($product);
             }
             $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
             $preparedData[$key]['vat'] = $this->getVat();
