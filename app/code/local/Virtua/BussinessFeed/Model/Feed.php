@@ -420,7 +420,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             $preparedData[$key]['categorytext'] = $this->getCategoryName($product);
             $preparedData[$key]['manufacturer'] = $product->getAttributeText('manufacturer');
             $preparedData[$key]['ean'] = $product->getEan();
-            $preparedData[$key]['delivery_date'] = $product->getAttributeText('availability');
+            $preparedData[$key]['delivery_date'] = $product->getResource()->getAttribute('availability')->setStoreId($this->storeVersionId)->getFrontend()->getValue($product);
             $preparedData[$key]['itemgroup_id'] = $this->tempParentSku;
             $product->clearInstance();
             $this->tempParentSku = null;
