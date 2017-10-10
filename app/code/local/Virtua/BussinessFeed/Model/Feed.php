@@ -6,6 +6,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     const GROUP_VELKOOBCHOD_ID = 2;
     const GROUP_VELKOOBCHOD_SPEC_ID = 5;
 
+    const IMAGE_NO_SELECTION = 'productno_selection';
+
     protected $params = array();
 
     protected $vat = '0.2000';
@@ -411,9 +413,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             } else {
                 $this->setSimpleProductParentSku($product);
             }
-            $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
+            $preparedData[$key]['imgurl'] = $this->getProductImage($product, $baseMediaUrl);
             $preparedData[$key]['vat'] = $this->getVat();
-
             $preparedData[$key]['product'] = $product->getName();
             $preparedData[$key]['item_id'] = $product->getSku();
             $preparedData[$key]['params'] = $this->rebuildParams($params);
@@ -428,6 +429,23 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $this->appendData($helper->prepareXmlShopItem($preparedData));
         $preparedData = null;
         $products = null;
+    }
+
+    public function getProductImage($product, $baseMediaUrl)
+    {
+        if (!$product->getImage() || $product->getImage() == self::IMAGE_NO_SELECTION) {
+            if ($product->getTypeId() == 'simple') {
+                $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
+                if (!empty($parentIds)) {
+                    $parent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($parentIds[0]);
+                    if ($parent->getId() && $parent->getImage() && $parent->getImage() != self::IMAGE_NO_SELECTION) {
+                        return $baseMediaUrl . '/catalog/product' . $parent->getImage();
+                    }
+                }
+            }
+            return null;
+        }
+        return $baseMediaUrl . '/catalog/product' . $product->getImage();
     }
 
     /**
