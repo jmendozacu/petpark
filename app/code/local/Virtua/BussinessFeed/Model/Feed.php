@@ -433,7 +433,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
 
     public function getProductImage($product, $baseMediaUrl)
     {
-        if (!$product->getImage() || $product->getImage() == self::IMAGE_NO_SELECTION) {
+        if (!$product->getImage() || $product->getImage() == self::IMAGE_NO_SELECTION || $product->getImage() == '/'.self::IMAGE_NO_SELECTION) {
             if ($product->getTypeId() == 'simple') {
                 $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
                 if (!empty($parentIds)) {
