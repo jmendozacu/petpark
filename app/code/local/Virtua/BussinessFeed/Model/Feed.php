@@ -18,10 +18,15 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     protected $includePrices;
     protected $groupId;
     protected $extraPrice;
+    protected $excludeConfigurable;
     protected $fullDescription = false;
 
     protected $tempParentSku;
 
+    /**
+     * Feed's options
+     * @var array
+     */
     protected $feeds = array(
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_SPEC_ID,
@@ -30,6 +35,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'filename' => 'velkoobchod_spec_feed.xml',
             'include_prices' => true,
             'extra_price' => false,
+            'exclude_configurable' => false,
         ),
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_SPEC_ID,
@@ -38,6 +44,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'filename' => 'velkoobchod_spec_feed.xml',
             'include_prices' => true,
             'extra_price' => false,
+            'exclude_configurable' => false,
         ),
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_ID,
@@ -46,6 +53,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'filename' => 'velkoobchod_feed.xml',
             'include_prices' => true,
             'extra_price' => self::GROUP_GENERAL,
+            'exclude_configurable' => false,
         ),
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_ID,
@@ -54,6 +62,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'filename' => 'velkoobchod_feed.xml',
             'include_prices' => true,
             'extra_price' => self::GROUP_GENERAL,
+            'exclude_configurable' => false,
         ),
         array(
             'group_id' => self::GROUP_GENERAL,
@@ -62,6 +71,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'filename' => 'general_feed.xml',
             'include_prices' => false,
             'extra_price' => false,
+            'exclude_configurable' => true,
         ),
     );
 
@@ -136,6 +146,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $this->feedFile = $this->_getOption($feedOptions['filename']);
         $this->extraPrice = $this->_getOption($feedOptions['extra_price']);
         $this->fullDescription = $this->_getOption($feedOptions['full_description']);
+        $this->excludeConfigurable = $this->_getOption($feedOptions['exclude_configurable']);
         if (!is_dir($this->getFeedPath())) {
             mkdir($this->getFeedPath());
         }
@@ -152,7 +163,6 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     public function getProductCollection()
     {
         $products = Mage::getModel('catalog/product')->getCollection()
-            //->addFieldToFilter('type_id', array('neq' =>'configurable'))
             ->setStore($this->storeVersionId)
             ->getAllIdsCache();
         return $products;
@@ -390,6 +400,9 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $products = $this->getProductCollection();
         foreach ($products as $key => $product) {
             $product = $this->loadProduct($product);
+            if ($product->getTypeId() == 'configurable' && $this->excludeConfigurable) {
+                continue;
+            }
             if ($product->getStatus() != Mage_Catalog_Model_Product_Status::STATUS_ENABLED) {
                 continue;
             }
