@@ -171,6 +171,30 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
     }
 
     /**
+     * Remove all rows related with given attribute code
+     * @param string $attributeCode
+     * @return bool
+     */
+    public function removeRowByAttributeCode($attributeCode)
+    {
+        if (!$attributeCode || !is_string($attributeCode)) {
+            return false;
+        }
+        $resource = Mage::getSingleton('core/resource');
+        $writeConnection = $resource->getConnection('core_write');
+        $query = "
+                DELETE FROM virtua_seoattributes 
+                WHERE attributes LIKE '%".$attributeCode."%'
+            ";
+        try {
+            return $writeConnection->query($query);
+        } catch (Exception $exception) {
+            Mage::log($exception->getMessage());
+        }
+        return false;
+    }
+
+    /**
      * @param int $categoryId
      * @return bool
      */
