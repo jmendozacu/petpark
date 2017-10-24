@@ -91,7 +91,7 @@ foreach($products as $simpleProduct){
             
             <?php
             
-            $productPrice = round($simpleProduct->getFinalPrice(),2);//getProductPrice($product);
+            $productPrice = round($simpleProduct->getFinalPrice() + ($simpleProduct->getFinalPrice() * 20/100),2);//getProductPrice($product);
             
             /*
             $cod = Mage::getStoreConfig('payment/cashondelivery/active') ? Mage::getStoreConfig('payment/cashondelivery/inlandcosts') : 0;

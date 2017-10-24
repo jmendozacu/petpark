@@ -81,6 +81,15 @@
                     </virtua_seoattributes>
                 </observers>
             </catalog_category_prepare_save>
+            <controller_action_postdispatch_adminhtml_catalog_product_attribute_save>
+                <observers>
+                    <virtua_catalog_product_attribute_observer>
+                        <type>singleton</type>
+                        <class>Virtua_Seoattributes_Controller_Observer</class>
+                        <method>saveAttributeObserver</method>
+                    </virtua_catalog_product_attribute_observer>
+                </observers>
+            </controller_action_postdispatch_adminhtml_catalog_product_attribute_save>
         </events>
     </adminhtml>
 </config>

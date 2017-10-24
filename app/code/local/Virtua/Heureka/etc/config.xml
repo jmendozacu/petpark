@@ -15,9 +15,13 @@
     <crontab>
         <jobs>
             <virtua_heureka>
-                <schedule><cron_expr>5 20 * * *</cron_expr></schedule>
+                <schedule><cron_expr>30 01 * * *</cron_expr></schedule>
                 <run><model>virtua_heureka/observer::updateHeurekaReviews</model></run>
             </virtua_heureka>
+            <virtua_heureka_variants>
+                <schedule><cron_expr>30 02 * * *</cron_expr></schedule>
+                <run><model>virtua_heureka/observer::updateHeurekaVariants</model></run>
+            </virtua_heureka_variants>
         </jobs>
     </crontab>
 </config>

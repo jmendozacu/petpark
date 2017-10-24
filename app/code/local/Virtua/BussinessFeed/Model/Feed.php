@@ -6,6 +6,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     const GROUP_VELKOOBCHOD_ID = 2;
     const GROUP_VELKOOBCHOD_SPEC_ID = 5;
 
+    const IMAGE_NO_SELECTION = 'no_selection';
+
     protected $params = array();
 
     protected $vat = '0.2000';
@@ -16,10 +18,15 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     protected $includePrices;
     protected $groupId;
     protected $extraPrice;
+    protected $excludeConfigurable;
     protected $fullDescription = false;
 
     protected $tempParentSku;
 
+    /**
+     * Feed's options
+     * @var array
+     */
     protected $feeds = array(
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_SPEC_ID,
@@ -28,6 +35,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'filename' => 'velkoobchod_spec_feed.xml',
             'include_prices' => true,
             'extra_price' => false,
+            'exclude_configurable' => false,
         ),
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_SPEC_ID,
@@ -36,6 +44,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'filename' => 'velkoobchod_spec_feed.xml',
             'include_prices' => true,
             'extra_price' => false,
+            'exclude_configurable' => false,
         ),
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_ID,
@@ -44,6 +53,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'filename' => 'velkoobchod_feed.xml',
             'include_prices' => true,
             'extra_price' => self::GROUP_GENERAL,
+            'exclude_configurable' => false,
         ),
         array(
             'group_id' => self::GROUP_VELKOOBCHOD_ID,
@@ -52,6 +62,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'filename' => 'velkoobchod_feed.xml',
             'include_prices' => true,
             'extra_price' => self::GROUP_GENERAL,
+            'exclude_configurable' => false,
         ),
         array(
             'group_id' => self::GROUP_GENERAL,
@@ -60,6 +71,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'filename' => 'general_feed.xml',
             'include_prices' => false,
             'extra_price' => false,
+            'exclude_configurable' => true,
         ),
     );
 
@@ -134,6 +146,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $this->feedFile = $this->_getOption($feedOptions['filename']);
         $this->extraPrice = $this->_getOption($feedOptions['extra_price']);
         $this->fullDescription = $this->_getOption($feedOptions['full_description']);
+        $this->excludeConfigurable = $this->_getOption($feedOptions['exclude_configurable']);
         if (!is_dir($this->getFeedPath())) {
             mkdir($this->getFeedPath());
         }
@@ -150,7 +163,6 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
     public function getProductCollection()
     {
         $products = Mage::getModel('catalog/product')->getCollection()
-            //->addFieldToFilter('type_id', array('neq' =>'configurable'))
             ->setStore($this->storeVersionId)
             ->getAllIdsCache();
         return $products;
@@ -201,7 +213,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                             if ($attribute) {
                                 $attrCode = $attribute->getAttributeCode();
                                 $attrKey = $product->getResource()->getAttribute($attrCode)->getStoreLabel();
-                                $params[$attrKey]['key'] = $product->getAttributeText($attrCode);
+                                $params[$attrKey]['key'] = $product->getResource()->getAttribute($attrCode)->setStoreId($this->storeVersionId)->getFrontend()->getValue($product);
                                 $params[$attrKey]['id'] = $product->getResource()->getAttribute($attrCode)->getId();
                             }
                         }
@@ -219,6 +231,30 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $query = 'SELECT attribute_id FROM ' . $resource->getTableName('catalog_product_super_attribute') . ' WHERE product_super_attribute_id = ' . $superAttributeId;
         $result = $readConnection->fetchOne($query);
         return $result;
+    }
+
+    public function setSimpleProductParentSku($product)
+    {
+        if ($product->getTypeId() == 'simple') {
+            $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
+            if (!empty($parentIds)) {
+                $parent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($parentIds[0]);
+                if ($parent->getId()) {
+                    $this->tempParentSku = $parent->getSku();
+                    return;
+                }
+            }
+        }
+        $groupedParentsIds = Mage::getResourceSingleton('catalog/product_link')
+            ->getParentIdsByChild($product->getId(), Mage_Catalog_Model_Product_Link::LINK_TYPE_GROUPED);
+        if (!empty($groupedParentsIds)) {
+            $groupParent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($groupedParentsIds[0]);
+            if ($groupParent && $groupParent->getSku()) {
+                $this->tempParentSku = $groupParent->getSku();
+                return;
+            }
+        }
+        return;
     }
 
     /**
@@ -349,6 +385,8 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         return htmlspecialchars($product->getShortDescription());
     }
 
+
+
     /**
      * Preparing product collection
      * Saving collection in the file
@@ -362,6 +400,12 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $products = $this->getProductCollection();
         foreach ($products as $key => $product) {
             $product = $this->loadProduct($product);
+            if ($product->getTypeId() == 'configurable' && $this->excludeConfigurable) {
+                continue;
+            }
+            if ($product->getStatus() != Mage_Catalog_Model_Product_Status::STATUS_ENABLED) {
+                continue;
+            }
             // get array of params
             $params = $this->getParametersAssignedToConfigurableProduct($product);
             $preparedData[$key]['description'] = $this->getParentDescription($product);
@@ -379,17 +423,18 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
                     $preparedData[$key]['price_general'] = $extraPrice;
                     $preparedData[$key]['price_general_vat'] = $this->getVatPrice($extraPrice);
                 }
+            } else {
+                $this->setSimpleProductParentSku($product);
             }
-            $preparedData[$key]['imgurl'] = $baseMediaUrl . '/catalog/product' . $product->getImage();
+            $preparedData[$key]['imgurl'] = $this->getProductImage($product, $baseMediaUrl);
             $preparedData[$key]['vat'] = $this->getVat();
-
             $preparedData[$key]['product'] = $product->getName();
             $preparedData[$key]['item_id'] = $product->getSku();
             $preparedData[$key]['params'] = $this->rebuildParams($params);
             $preparedData[$key]['categorytext'] = $this->getCategoryName($product);
             $preparedData[$key]['manufacturer'] = $product->getAttributeText('manufacturer');
             $preparedData[$key]['ean'] = $product->getEan();
-            $preparedData[$key]['delivery_date'] = $product->getAttributeText('availability');
+            $preparedData[$key]['delivery_date'] = $product->getResource()->getAttribute('availability')->setStoreId($this->storeVersionId)->getFrontend()->getValue($product);
             $preparedData[$key]['itemgroup_id'] = $this->tempParentSku;
             $product->clearInstance();
             $this->tempParentSku = null;
@@ -397,6 +442,23 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         $this->appendData($helper->prepareXmlShopItem($preparedData));
         $preparedData = null;
         $products = null;
+    }
+
+    public function getProductImage($product, $baseMediaUrl)
+    {
+        if (!$product->getImage() || $product->getImage() == self::IMAGE_NO_SELECTION) {
+            if ($product->getTypeId() == 'simple') {
+                $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
+                if (!empty($parentIds)) {
+                    $parent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($parentIds[0]);
+                    if ($parent->getId() && $parent->getImage() && $parent->getImage() != self::IMAGE_NO_SELECTION) {
+                        return $baseMediaUrl . '/catalog/product' . $parent->getImage();
+                    }
+                }
+            }
+            return null;
+        }
+        return $baseMediaUrl . '/catalog/product' . $product->getImage();
     }
 
     /**
@@ -448,6 +510,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
         }
         // retrieve attribute from database
         $attribute = Mage::getModel('eav/entity_attribute')
+            ->setStoreId($this->storeVersionId)
             ->load($attributeId);
         if ($attribute) {
             // append retrieved param to array
