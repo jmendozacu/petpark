@@ -138,10 +138,6 @@ foreach($products as $simpleProduct){
               <?php
             } */
             ?>
-            
-            <?php if ($product->getTypeId()=='configurable' || $product->getTypeId()=='grouped') : ?>
-            <ITEMGROUP_ID><?php echo $product->getSku(); ?></ITEMGROUP_ID> 
-            <?php endif; ?>
                         
             <?php 
             $params = [];
