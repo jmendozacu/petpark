@@ -100,7 +100,7 @@
                 if (isset($prices[Mage::app()->getStore()->getWebsiteId()][$product->getId()])){
                     return /*ceil*/convertPrice($prices[ Mage::app()->getStore()->getWebsiteId()][$product->getId()], $ceil);
                 }
-                return /*ceil*/convertPrice($product->getPrice() + ($product->getPrice() * 20/100), $ceil);
+                return /*ceil*/convertPrice($product->getPrice(), $ceil);
                 
                 
                 

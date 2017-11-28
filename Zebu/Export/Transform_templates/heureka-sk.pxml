@@ -3,6 +3,8 @@
     $name = $product->getName();
     $zname = $product->getData('nazev_seznam');
     $ean = $product->getData('ean');
+    $productPrice = getProductPrice($product, false);
+    $productPrice = round($productPrice + ($productPrice * 20/100), 2);
     ?>
     <SHOPITEM>
             <ITEM_ID><?php echo $product->getSku(); ?></ITEM_ID>
@@ -72,7 +74,7 @@
                 <DELIVERY_PRICE_COD><?php echo ($shipping + $dob); ?></DELIVERY_PRICE_COD>
             </DELIVERY>
              <?php */ ?>
-            <PRICE_VAT><?php echo getProductPrice($product, false); ?></PRICE_VAT>
+            <PRICE_VAT><?php echo $productPrice; ?></PRICE_VAT>
 <?php /* foreach(Zebu_Mage_ProductHelper::get_category_max_pathes_array(join(',',$product->getCategoryIds()),' | ',0) as $cat){?>
             <?php if(htmlspecialchars($cat) != 'Výprodej') : ?>
             <CATEGORYTEXT><?php echo htmlspecialchars($cat) ?></CATEGORYTEXT>
