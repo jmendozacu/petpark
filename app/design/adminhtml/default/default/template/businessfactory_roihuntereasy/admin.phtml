@@ -1,0 +1,78 @@
+<script>
+    function iFrameLoad() {
+        var storeUrl = "<?php echo $this->getStoreBaseUrl(); ?>";
+        var storeName = "<?php echo $this->getStoreName(); ?>";
+        var storeCurrency = "<?php echo $this->getStoreCurrency(); ?>";
+        var storeLanguage = "<?php echo $this->getStoreLanguage(); ?>";
+        var storeCountry = "<?php echo $this->getStoreCountry(); ?>";
+
+        var customerId = "<?php echo($this->getMainItemEntry() ? $this->getMainItemEntry()->getCustomerId() : null); ?>";
+        var accessToken = "<?php echo($this->getMainItemEntry() ? $this->getMainItemEntry()->getAccessToken() : null); ?>";
+        var clientToken = "<?php echo($this->getMainItemEntry() ? $this->getMainItemEntry()->getClientToken() : null); ?>";
+        var managedMerchants = "<?php echo($this->getMainItemEntry() ? $this->getMainItemEntry()->getManagedMerchants() : null); ?>";
+        var adultOriented = "<?php echo($this->getMainItemEntry() ? $this->getMainItemEntry()->getAdultOriented() : null); ?>";
+        var status = "<?php echo($this->getMainItemEntry() ? $this->getMainItemEntry()->getStatus() : null); ?>";
+        var errors = "<?php echo($this->getMainItemEntry() ? $this->getMainItemEntry()->getErrors() : null); ?>";
+        var creationState = "<?php echo($this->getMainItemEntry() ? $this->getMainItemEntry()->getCreationState() : null); ?>";
+        var magentoMode = "<?php echo $this->getDevelopmentMode(); ?>";
+        var pluginVersion = "magento_" + "<?php echo $this->getPluginVersion(); ?>";
+        var stagingActive = <?php echo json_encode($this->isStagingActive()); ?>;
+
+        console.log("mode: " + magentoMode);
+        console.log("baseUrl: " + storeUrl);
+        console.log("storeLanguage_storeCountry: " + storeLanguage + "_" + storeCountry);
+
+        // pass base url to React iframe fro future API calls to this site
+        var iFrame = document.getElementById('RoiHunterEasyIFrame');
+        iFrame.contentWindow.postMessage({
+                        "type": "roihunter_magento_plugin",
+                        "storeUrl": storeUrl,
+                        "storeName": storeName,
+                        "storeCurrency": storeCurrency,
+                        "storeLanguage": storeLanguage,
+                        "storeCountry": storeCountry,
+                        "storeMode": magentoMode,
+                        "pluginVersion": pluginVersion,
+                        "stagingActive": stagingActive,
+
+                        // Database part
+                        "customerId": customerId,
+                        "accessToken": accessToken,
+                        "clientToken": clientToken,
+                        "managedMerchants": managedMerchants,
+                        "adultOriented": adultOriented,
+                        "status": status,
+                        "errors": errors,
+                        "creationState": creationState
+                    }, '*'
+                );
+
+        // Create IE + others compatible event handler
+    var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+    var eventer = window[eventMethod];
+    var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+    // Listen to message from child window
+    eventer(messageEvent, function (e) {
+        if (e.data.type === "roihunter_magento_plugin_height") {
+//            Change size of iFrame to correspond new height of content
+//            console.log("new height: " + e.data.height);
+            document.getElementById('RoiHunterEasyIFrame').style.height = e.data.height + 'px';
+        } else {
+//            console.log("Unknown message event", e);
+        }
+    }, false);
+    }
+</script>
+
+<!--"http://localhost:3000"    "http://magento.roihunter.com/" -->
+<iframe src="<?php echo $this->getIframeBaseUrl(); ?>"
+        id="RoiHunterEasyIFrame"
+        scrolling="yes"
+        frameBorder="0"
+        allowfullscreen
+        align="center"
+        onload="iFrameLoad()"
+        style="width: 100%; min-height: 500px">
+    <p>Your browser does not support iFrames.</p>
+</iframe>
