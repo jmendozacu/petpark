@@ -43,7 +43,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'store' => 'sk',
             'filename' => 'velkoobchod_spec_feed.xml',
             'include_prices' => true,
-            'extra_price' => false,
+            'extra_price' => self::GROUP_GENERAL,
             'exclude_configurable' => false,
         ),
         array(
