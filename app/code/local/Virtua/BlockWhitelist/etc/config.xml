@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_BlockWhitelist>
+            <version>0.1.0</version>
+        </Virtua_BlockWhitelist>
+    </modules>
+    <global>
+        <resources>
+            <virtua_blockwhitelist_setup>
+                <setup>
+                    <module>Virtua_BlockWhitelist</module>
+                </setup>
+            </virtua_blockwhitelist_setup>
+        </resources>
+    </global>
+</config>
