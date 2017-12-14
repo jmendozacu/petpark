@@ -66,6 +66,7 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
     }
 
     /**
+     * NOT IN USE
      * Retrieve array of urls from given sitemap
      * @param $sitemap
      * @return array
@@ -118,15 +119,26 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
         $io->streamWrite('<?xml version="1.0" encoding="UTF-8"?>' . "\n");
         $io->streamWrite('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">');
 
-        //xml content
-        $sitemap = $this->_loadSitemap($sitemapData);
-        $urls = $this->_getSiteUrls($sitemap);
-        foreach ($urls as $url) {
-            $images = $this->_getImagesDataFromUrl($url);
+        // products
+        Mage::app()->setCurrentStore($this->_storeId);
+        $sitemapModel =  Mage::getModel('virtua/sitemap');
+        $mediaApi = Mage::getModel('catalog/product_attribute_media_api');
+        $products = $sitemapModel->getProductCollection($this->_storeId);
+
+        foreach ($products as $key => $product) {
+            $url = $product->getProductUrl();
+            $images = $mediaApi->items($product->getId());
             if (empty($images)) {
                 continue;
             }
-            $singleNode = $this->_buildSingleNode($url, $images);
+            $preparedImages = array();
+            foreach ($images as $image) {
+                $preparedImages = $this->_prepareImagesArray($images);
+            }
+            if (empty($preparedImages)) {
+                continue;
+            }
+            $singleNode = $this->_buildSingleNode($url, $preparedImages);
             $io->streamWrite($singleNode);
         }
 
@@ -134,10 +146,32 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
         $io->streamWrite('</urlset>');
 
         $io->streamClose();
-
     }
 
     /**
+     * Preparing array of image
+     * Returning only essential data for xml node building
+     * @param array $images
+     * @return array
+     */
+    protected function _prepareImagesArray($images)
+    {
+        $out = array();
+        if (!is_array($images) || empty($images)) {
+            return $out;
+        }
+        foreach ($images as $key => $image) {
+            if (!isset($image['url'])) {
+                continue;
+            }
+            $out[$key]['url'] = $image['url'];
+            $out[$key]['title'] = (isset($image['label'])) ? $image['label'] : '';
+        }
+        return $out;
+    }
+
+    /**
+     * NOT IN USE
      * Retrvieve images data (src and alt) from given url
      * @param string $url
      * @return array
@@ -165,6 +199,7 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
     }
 
     /**
+     * NOT IN USE
      * Get file content from given url
      * @param string $url
      * @return mixed
@@ -188,6 +223,7 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
     }
 
     /**
+     * NOT IN USE
      * Check image extension is allowed and image has local domain
      * @param $src
      * @return bool
@@ -210,6 +246,7 @@ class Virtua_Seo_Model_Imagesitemap extends Mage_Core_Model_Abstract
     }
 
     /**
+     * NOT IN USE
      * Load sitemap file
      * @param $sitemapData
      * @return SimpleXMLElement
