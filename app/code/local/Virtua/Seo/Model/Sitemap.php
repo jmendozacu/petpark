@@ -41,9 +41,11 @@ class Virtua_Seo_Model_Sitemap extends Mage_Core_Model_Abstract
         return $category;
     }
 
-    public function getProductCollection()
+    public function getProductCollection($storeId = null)
     {
+        $storeId = ($storeId) ? $storeId : Mage::app()->getStore()->getId();
         $products = Mage::getModel('catalog/product')->getCollection()
+            ->setStoreId($storeId)
             ->addFieldToFilter('is_salable', '1')
             ->addFieldToFilter('is_in_stock', '1')
             ->addFieldToFilter(array(
