@@ -65,12 +65,12 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'exclude_configurable' => false,
         ),
         array(
-            'group_id' => self::GROUP_GENERAL,
+            'group_id' => self::GROUP_VELKOOBCHOD_ID,
             'full_description' => true,
             'store' => 'cz',
             'filename' => 'general_feed.xml',
-            'include_prices' => false,
-            'extra_price' => false,
+            'include_prices' => true,
+            'extra_price' => self::GROUP_GENERAL,
             'exclude_configurable' => true,
         ),
     );
@@ -266,6 +266,11 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
      */
     public function getProductGroupPrice($product, $groupId, $params)
     {
+        if($this->storeVersion == 'cz')
+        {
+            $product = Mage::getModel('catalog/product')->setStoreId(1)->load($product->getId());
+        }
+        
         if ($product->getTypeId() == 'simple') {
             $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
             if (!empty($parentIds)) {
