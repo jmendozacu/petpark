@@ -55,13 +55,16 @@
     foreach($col as $product){
       //echo '"'.f($product->getSku()).'","'.f($product->getName()).'"'.PHP_EOL;
       $product->load($product->getId());
+      $priceInclTax = Mage::helper('tax')->getPrice($product, $product->getFinalPrice(), true,null, null, null, null, null, true);
       $csv->saveRow(
         array(
           'ID' => ($product->getSku()), 
           'Item title' => ($product->getName()),
           'Final URL' => Mage::app()->getStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$product->getUrlPath(),
           'Image URL' => Mage::app()->getStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'media/catalog/product'.$product->getImage(), 
-          'Price' => $product->getFinalPrice().' '.	Mage::app()->getStore()->getCurrentCurrencyCode()
+          //'Price' => $product->getFinalPrice().' '.	Mage::app()->getStore()->getCurrentCurrencyCode()
+            'Price' => $priceInclTax.' '.	Mage::app()->getStore()->getCurrentCurrencyCode()
+
         )
       );
       //break;
