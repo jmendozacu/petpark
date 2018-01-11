@@ -59,6 +59,8 @@
       //$product->load($product->getId());
       $product = Mage::getModel('catalog/product')->setStoreId(2)->load($product->getId());
       $priceInclTax = Mage::helper('tax')->getPrice($product, $product->getFinalPrice(), true,null, null, null, null, null, true);
+        $priceInclTax = str_replace('.', ' ', $priceInclTax);
+        $priceInclTax = str_replace(',', '.', $priceInclTax);
       $csv->saveRow(
         array(
           'ID' => ($product->getSku()), 
