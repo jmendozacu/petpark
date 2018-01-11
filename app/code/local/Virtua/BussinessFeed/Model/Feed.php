@@ -65,12 +65,12 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             'exclude_configurable' => false,
         ),
         array(
-            'group_id' => self::GROUP_GENERAL,
+            'group_id' => self::GROUP_VELKOOBCHOD_ID,
             'full_description' => true,
             'store' => 'cz',
             'filename' => 'general_feed.xml',
-            'include_prices' => false,
-            'extra_price' => false,
+            'include_prices' => true,
+            'extra_price' => self::GROUP_GENERAL,
             'exclude_configurable' => true,
         ),
     );
@@ -266,17 +266,24 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
      */
     public function getProductGroupPrice($product, $groupId, $params)
     {
+        $_storeVersionId = $this->storeVersionId;
+        if($this->storeVersion == 'cz')
+        {
+            $_storeVersionId = 1;
+            $product = Mage::getModel('catalog/product')->setStoreId($_storeVersionId)->load($product->getId());
+        }
+        
         if ($product->getTypeId() == 'simple') {
             $parentIds = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
             if (!empty($parentIds)) {
-                $parent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($parentIds[0]);
+                $parent = Mage::getModel('catalog/product')->setStoreId($_storeVersionId)->load($parentIds[0]);
                 if ($parent->getId()) {
                     $this->tempParentSku = $parent->getSku();
                 }
                 $tempPrice = ($this->getGroupPrice($parent, $groupId)) ? $this->getGroupPrice($parent, $groupId) : $parent->getPrice();
                 if ($tempPrice) {
                     $parent->getTypeInstance(true)
-                        ->setStoreFilter($parent->getStore(), $parent);
+                        ->setStoreFilter($_storeVersionId, $parent);
                     $attributes = $parent->getTypeInstance(true)
                         ->getConfigurableAttributes($parent);
                     $add = 0;
@@ -290,7 +297,7 @@ class Virtua_BussinessFeed_Model_Feed extends Mage_Core_Model_Abstract
             $groupedParentsIds = Mage::getResourceSingleton('catalog/product_link')
                 ->getParentIdsByChild($product->getId(), Mage_Catalog_Model_Product_Link::LINK_TYPE_GROUPED);
             if (!empty($groupedParentsIds)) {
-                $groupParent = Mage::getModel('catalog/product')->setStoreId($this->storeVersionId)->load($groupedParentsIds[0]);
+                $groupParent = Mage::getModel('catalog/product')->setStoreId($_storeVersionId)->load($groupedParentsIds[0]);
                 if ($groupParent && $groupParent->getSku()) {
                     $this->tempParentSku = $groupParent->getSku();
                 }
