@@ -131,9 +131,10 @@ class Virtua_Seoattributes_Model_Resource_Seoattributes extends Mage_Core_Model_
     {
         $domain = $this->_getCurrentDomain();
         if ($this->getCurrentStoreId() == 1) {
-            $out = 'Ponúkame vám ' . $categoryTitle . ' ' . $paramsString . ' na stránkach ' . $domain . '. Vyberte si produkty, ktoré potešia vašich domácich miláčikov.';
+            //$out = 'Ponúkame vám ' . $categoryTitle . ' ' . $paramsString . ' na stránkach ' . $domain . '. Vyberte si produkty, ktoré potešia vašich domácich miláčikov.';
+            $out = 'Kúpte svojmu miláčikovi ' . $categoryTitle . ' ' . $paramsString . '. Ponúkame 100% značkové TOP produkty najvyššej kvality od popredných svetových značiek, ktoré potešia vašich domácich miláčikov ale určite aj Vás. Neváhajte sa na nás obrátiť s vašimi otázkami a požiadavkami. Využite akciový VÝPREDAJ.';
         } else {
-            $out = 'Nabízíme vám ' . $categoryTitle . ' ' . $paramsString . ' na stránkach ' . $domain . '. Vyberte si produkty, které potěší vaše domácí mazlíčky.';
+            $out = 'Kupte svému miláčkovi ' . $categoryTitle . ' ' . $paramsString . '. Nabízíme 100% značkové TOP produkty nejvyšší kvality od předních světových značek, které potěší vaše domácí mazlíčky a určitě i vás. Neváhejte a obraťte se na nás s vašimi požadavky a otázkami. Využijte akci VÝPRODEJ.';
         }
         return $out;
     }
