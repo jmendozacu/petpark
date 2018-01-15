@@ -43,29 +43,32 @@
       return str_replace('"','""', $str); 
     }
     
-    $file = 'export/feed.csv';
+    $file = 'export/feed-cz.csv';
     $csv = new Zebu_Tools_CSV_AssocWriter($file, null, ',');
     $args = getArgs();
    // echo '"ID","Item title"'.PHP_EOL;
     $col = Mage::getModel('catalog/product')->getCollection()
+            ->setStoreId(2)
             ->addAttributeToSelect('name')
             ->addAttributeToFilter('status',1)
             ->addAttributeToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH);
             //->addAttributeToFilter('type_id','simple');
+    $store = Mage::getModel('core/store')->load(2);
     foreach($col as $product){
       //echo '"'.f($product->getSku()).'","'.f($product->getName()).'"'.PHP_EOL;
-      $product->load($product->getId());
+      //$product->load($product->getId());
+      $product = Mage::getModel('catalog/product')->setStoreId(2)->load($product->getId());
       $priceInclTax = Mage::helper('tax')->getPrice($product, $product->getFinalPrice(), true,null, null, null, null, null, true);
-      $priceInclTax = str_replace('.', ' ', $priceInclTax);
-      $priceInclTax = str_replace(',', '.', $priceInclTax);
+        $priceInclTax = str_replace('.', ' ', $priceInclTax);
+        $priceInclTax = str_replace(',', '.', $priceInclTax);
       $csv->saveRow(
         array(
-            'ID' => ($product->getSku()),
-            'Item title' => ($product->getName()),
-            'Final URL' => Mage::app()->getStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$product->getUrlPath(),
-            'Image URL' => Mage::app()->getStore()->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'media/catalog/product'.$product->getImage(),
+          'ID' => ($product->getSku()), 
+          'Item title' => ($product->getName()),
+          'Final URL' => $store->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).$product->getUrlPath(),
+          'Image URL' => $store->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'media/catalog/product'.$product->getImage(),
           //'Price' => $product->getFinalPrice().' '.	Mage::app()->getStore()->getCurrentCurrencyCode()
-            'Price' => $priceInclTax.' '.	Mage::app()->getStore()->getCurrentCurrencyCode()
+            'Price' => $priceInclTax.' '.	$store->getCurrentCurrencyCode()
 
         )
       );
