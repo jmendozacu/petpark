@@ -47,40 +47,14 @@ class Zebu_Export_ExportCreator {
      * @param <array> $product
      */
     protected static function eval_node_tree(&$node, &$product) {
-    //  if ($node->nodeName=='#text') return;
-       /* //<___EXPORTER_LIST___>
-        if ($node->nodeName == self::EXPORTER_LIST){
-            if($node->hasChildNodes()){
-                $child = $node->childNodes[0];
-                $values = $node->nodeValue = self::eval_node_value($node->nodeValue, $product);
-                
-                $parent = $node->parentNode;
-                foreach($values as $value){
-                    $new_child = $node->cloneNode();
-                    $new_child->nodeValue = $value;
-                    $parent->insertBefore($new_child, $node);
-                }
-                $parent->removeChild($node);
-                return;
-                //$child = $parent->insertBefore($child_nodes->item($j)->cloneNode(true), $template_node);
-            }
-        }*/
 
         if($node->hasChildNodes()) {
             $children = $node->childNodes;
             $subelement_exists = false;
-            //for($i=0;$i<$children->length;$i++) {
-           /* foreach($children as $child) {
-                //$child = $children->item($i);
-                //if ($child->nodeName=='#text') continue;
-                if ($child->nodeName!='#text') {
-                    self::eval_node_tree($child, $product);
-                    $subelement_exists = true;
-                }
-            }*/
+
             $i=0;
             while($i<$children->length){
-                //Zebu_Auxiliary::info_message($i.'/'.$children->length);
+
                 $child = $children->item($i);
                 if ($child->nodeName!='#text') {
                     $i += self::eval_node_tree($child, $product);
@@ -221,17 +195,18 @@ class Zebu_Export_ExportCreator {
         return self::transform_exports(array($input_xml_sheet_file_name), $xml_teplate_file_name, $output_xml_file_name);
 
     }
-    
-    public static function export($export_file_name, $template, $fields, $root_element_name = 'SHOP', $filters = array(), $batch_number=null, $limit=null, $type = null){
-        if($type == 'rss2') {
-            file_put_contents($export_file_name, 
-'<?xml version="1.0" encoding="utf-8"?>
+
+    public static function export($export_file_name, $template, $fields, $root_element_name = 'SHOP', $filters = array(), $batch_number = null, $limit = null, $type = null)
+    {
+        if ($type == 'rss2') {
+            file_put_contents($export_file_name,
+                '<?xml version="1.0" encoding="utf-8"?>
   <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
     <channel>
       <title>Product export</title>
-      <link>' . Mage::getBaseUrl() . ltrim($export_file_name , './') . '</link>
+      <link>' . Mage::getBaseUrl() . ltrim($export_file_name, './') . '</link>
       <description>Product export</description>'
-      );
+            );
 
             self::batch_export($export_file_name, $template, $fields, $filters, $batch_number, $limit);
 
@@ -239,12 +214,12 @@ class Zebu_Export_ExportCreator {
     </channel>
   </rss>', FILE_APPEND);
 
-        }else{
-       file_put_contents($export_file_name, '<?xml version="1.0" encoding="utf-8"?'.'>
-<'.$root_element_name.'>');
-       self::batch_export($export_file_name, $template, $fields, $filters, $batch_number, $limit);
-       file_put_contents($export_file_name, '
-</'.$root_element_name.'>', FILE_APPEND);
+        } else {
+            file_put_contents($export_file_name, '<?xml version="1.0" encoding="utf-8"?' . '>
+<' . $root_element_name . '>');
+            self::batch_export($export_file_name, $template, $fields, $filters, $batch_number, $limit);
+            file_put_contents($export_file_name, '
+</' . $root_element_name . '>', FILE_APPEND);
 
         }
 
@@ -252,24 +227,13 @@ class Zebu_Export_ExportCreator {
     }
     
     public static function batch_export($export_file_name, $template, $fields, $filters = array(), $batch_number=null, $limit=null){
-        //Zebu_Auxiliary::start_timer();
-	//Mage::unregister('_resource_singleton/catalog/product_flat')‌​;
 
-        //$products = Mage::getResourceModel('catalog/product_collection');
-//	$products = Mage::getModel('catalog/product')->getCollection();
-
-//vypnu FLAT
 $process = Mage::helper('catalog/product_flat')->getProcess();
 $status = $process->getStatus();
 $process->setStatus(Mage_Index_Model_Process::STATUS_RUNNING);
 /** @var $collection Mage_Catalog_Model_Resource_Product_Collection */
 $products  = Mage::getResourceModel('catalog/product_collection'); // Use EAV tables
-// ... custom stuff
-//$process->setStatus($status);
 
-
-        //$websiteId = Mage::app()->getStore()->getWebsiteId();
-        //$products->addWebsiteFilter($websiteId);
         foreach($filters as $field => $condition){
             $products->addAttributeToFilter($field, $condition);
         }
@@ -277,12 +241,8 @@ $products  = Mage::getResourceModel('catalog/product_collection'); // Use EAV ta
         if ($batch_number && $limit)
             $products->setPage($batch_number, $limit);
         
-            //$_productCollection->addAttributeToFilter('prefer',get_option_id('novinka'));
-            //$_productCollection->getSelect()->order('rand()');
-            //$_productCollection->addStoreFilter();
-            //$numProducts = $this->getNumProducts() ? $this->getNumProducts() : $count_limit;
-            //$_productCollection->setPage(1, $numProducts);
-        echo 'SEL: '.$products->getSelect().'<br/>';
+
+        //echo 'SEL: '.$products->getSelect().'<br/>';
         foreach($products as $product){
           ob_start();
           include $template;
