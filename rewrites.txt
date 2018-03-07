@@ -56,7 +56,7 @@ becohoop-s-lanom-eko-ruzova-l.html	becohoop-s-lanom-eko.html
 becohoop-s-lanom-eko-modra-s.html	becohoop-s-lanom-eko.html
 becohoop-s-lanom-eko-ruzova-s.html	becohoop-s-lanom-eko.html
 gps-obojok-kippy-vita.html	gps-obojok-kippy-vita-2017.html
-home	/
+home	vypredaj.html
 index.php	/
 http://www.pet-park.sk	https://www.pet-park.sk
 a	/
@@ -1390,10 +1390,10 @@ index.php/predajne-miesta/luenec	contacts
 index.php/predajne-miesta/michalovce	contacts
 index.php/predajne-miesta/nitra	contacts
 index.php/predajne-miesta/zvolen	contacts
-index2.php?page=shop.product_details&flypage=flypage.tpl&product_id=115&category_id=28&option=com_virtuemart&Itemid=49&pop=1&tmpl=component	/
-index2.php?page=shop.product_details&product_id=18&flypage=flypage.tpl&pop=1&option=com_virtuemart&Itemid=43	/
-index2.php?page=shop.product_details&product_id=599&flypage=flypage.tpl&pop=1&option=com_virtuemart&Itemid=43	/
-index2.php?page=shop.recommend&product_id=75&pop=1&tmpl=component&option=com_virtuemart&Itemid=1	/
+index2.php?page=shop.product_details&flypage=flypage.tpl&product_id=115&category_id=28&option=com_virtuemart&Itemid=49&pop=1&tmpl=component	vypredaj.html
+index2.php?page=shop.product_details&product_id=18&flypage=flypage.tpl&pop=1&option=com_virtuemart&Itemid=43	vypredaj.html
+index2.php?page=shop.product_details&product_id=599&flypage=flypage.tpl&pop=1&option=com_virtuemart&Itemid=43	vypredaj.html
+index2.php?page=shop.recommend&product_id=75&pop=1&tmpl=component&option=com_virtuemart&Itemid=1	vypredaj.html
 keks-ky-jogurt-vla-sk-orechy-a-med.html	/
 kontakty	contacts
 kontakty/kontakty/blue-gray-s-r-o	contacts
@@ -1765,7 +1765,7 @@ zakladna-sucha-hmota--jedina-ferova-metoda-porovnavania-krmiv-pre-psov	chovatels
 zarnovica	contacts
 ziar-nad-hronom	contacts
 zilina	contacts
-zoo-active-products-nina-ottosson	/
+zoo-active-products-nina-ottosson	vypredaj.html
 zoodom-bratislava	contacts
 zoznam-salonov-pre-psov-v-sr	contacts
 zvolen	contacts
