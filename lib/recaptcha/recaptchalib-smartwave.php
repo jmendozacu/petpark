@@ -2,10 +2,9 @@
 /**
  * The reCAPTCHA server URL's
  */
-define("RECAPTCHA_API_SERVER", "http://api.recaptcha.net");
-//define("RECAPTCHA_API_SECURE_SERVER", "https://api-secure.recaptcha.net");
-define("RECAPTCHA_API_SECURE_SERVER", "https://www.google.com/recaptcha/api");
-define("RECAPTCHA_VERIFY_SERVER", "api-verify.recaptcha.net");
+define("RECAPTCHA_API_SERVER", "https://www.google.com/recaptcha/api");
+define("RECAPTCHA_API_SECURE_SERVER", "https://www.google.com/recaptcha/api.js");
+define("RECAPTCHA_VERIFY_SERVER", "https://www.google.com/recaptcha/api");
 
 /**
  * Encodes the given data into a query string format
@@ -83,23 +82,12 @@ function recaptcha_get_html($pubkey, $error = null, $use_ssl = true)
         return "To use reCAPTCHA you must get an API key from <a href='http://recaptcha.net/api/getkey'>http://recaptcha.net/api/getkey</a>";
     }
 
-    if ($use_ssl) {
-        $server = RECAPTCHA_API_SECURE_SERVER;
-    } else {
-        $server = RECAPTCHA_API_SERVER;
-    }
+    $server = RECAPTCHA_API_SECURE_SERVER;
 
-    $errorpart = "";
-    if ($error) {
-        $errorpart = "&amp;error=" . $error;
-    }
-    return '<script type="text/javascript" src="' . $server . '/challenge?k=' . $pubkey . $errorpart . '"></script>
+    return '<script type="text/javascript" src="' . $server . '"></script>
 
-    <noscript>
-        <iframe src="' . $server . '/noscript?k=' . $pubkey . $errorpart . '" height="300" width="500" frameborder="0"></iframe><br/>
-        <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
-        <input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>
-    </noscript>';
+    <div class="g-recaptcha" data-sitekey="'. $pubkey .'"></div>
+';
 }
 
 
@@ -113,6 +101,33 @@ class ReCaptchaResponse {
         var $error;
 }
 
+function verify($host, $privkey, $remoteIp, $response)
+{
+    $params = array(
+        'secret'   => $privkey,
+        'response' => Mage::app()->getRequest()->getPost('g-recaptcha-response'),
+        'remoteip' => $remoteIp,
+    );
+
+    $client = new Zend_Http_Client();
+    $client->setUri($host);
+    $client->setParameterPost($params);
+    $errors = array();
+
+    try {
+        $response = $client->request('POST');
+        $body = $response->getBody();
+        $data = Mage::helper('core')->jsonDecode($body);
+        if (array_key_exists('error-codes', $data)) {
+            $errors = $data['error-codes'];
+        }
+    } catch (Exception $e) {
+        Mage::logException($e);
+        $data = array('success' => false);
+    }
+
+    return $data;
+}
 
 /**
   * Calls an HTTP POST function to verify if the user's guess was correct
@@ -132,30 +147,19 @@ function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $ex
     if ($remoteip == null || $remoteip == '') {
         die ("For security reasons, you must pass the remote ip to reCAPTCHA");
     }
+        $response = verify(RECAPTCHA_VERIFY_SERVER. "/siteverify", $privkey, $remoteip, $response);
 
-
-
-        //discard spam submissions
-        if ($challenge == null || strlen($challenge) == 0 || $response == null || strlen($response) == 0) {
+        if ($response['challenge_ts'] == null || strlen($response['challenge_ts']) == 0) {
                 $recaptcha_response = new ReCaptchaResponse();
                 $recaptcha_response->is_valid = false;
                 $recaptcha_response->error = 'incorrect-captcha-sol';
                 return $recaptcha_response;
         }
 
-        $response = _recaptcha_http_post (RECAPTCHA_VERIFY_SERVER, "/verify",
-                                          array (
-                                                 'privatekey' => $privkey,
-                                                 'remoteip' => $remoteip,
-                                                 'challenge' => $challenge,
-                                                 'response' => $response
-                                                 ) + $extra_params
-                                          );
-
         $answers = explode ("\n", $response [1]);
         $recaptcha_response = new ReCaptchaResponse();
 
-        if (trim ($answers [0]) == 'true') {
+        if ($response['success'] == 'true') {
                 $recaptcha_response->is_valid = true;
         }
         else {
