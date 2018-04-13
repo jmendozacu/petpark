@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_Catalog>
+            <version>1.0.0</version>
+        </Virtua_Catalog>
+    </modules>
+    <adminhtml>
+        <events>
+            <catalog_category_prepare_save>
+                <observers>
+                    <virtua_catalog>
+                        <class>Virtua_Catalog_Model_Observer</class>
+                        <method>clearMenuCache</method>
+                    </virtua_catalog>
+                </observers>
+            </catalog_category_prepare_save>
+        </events>
+    </adminhtml>
+</config>
