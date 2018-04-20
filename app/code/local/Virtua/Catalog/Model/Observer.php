@@ -8,9 +8,16 @@ class Virtua_Catalog_Model_Observer
 
             foreach (Mage::app()->getStores(false, true) as $storeCode => $store) {
                 $file = 'cat-' . $storeCode . '.cache';
+                $fileCz = '../../pet-park.cz/html/cat-' . $storeCode . '.cache';
+
                 if (file_exists($file)) {
                     unlink($file);
                 }
+
+                if (file_exists($fileCz)) {
+                    unlink($fileCz);
+                }
+
             }
         }
     }
