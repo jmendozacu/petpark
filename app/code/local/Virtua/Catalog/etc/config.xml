@@ -15,6 +15,14 @@
                     </virtua_catalog>
                 </observers>
             </catalog_category_prepare_save>
+            <catalog_category_save_commit_after>
+                <observers>
+                    <virtua_catalog>
+                        <class>Virtua_Catalog_Model_Observer</class>
+                        <method>clearMenuCache</method>
+                    </virtua_catalog>
+                </observers>
+            </catalog_category_save_commit_after>
         </events>
     </adminhtml>
 </config>
