@@ -8,7 +8,7 @@ $code  = $store->getCode();
         $_center_lat = Mage::getStoreConfig('porto_settings/contacts/latitude', $code);
         $_center_lng = Mage::getStoreConfig('porto_settings/contacts/longitude', $code);
 ?>
-        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBNKrVpgANBZiDzkaB6kj1_FHtfnXNhuOU"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBNKrVpgANBZiDzkaB6kj1_FHtfnXNhuOU"></script>
 <script type="text/javascript">
     function initialize() {
         var pos = new google.maps.LatLng(<?php echo $_center_lat; ?>, <?php echo $_center_lng; ?>);
