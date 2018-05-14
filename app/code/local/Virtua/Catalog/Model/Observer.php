@@ -12,10 +12,12 @@ class Virtua_Catalog_Model_Observer
 
                 if (file_exists($file)) {
                     unlink($file);
+                    Mage::app()->getCacheInstance()->flush();
                 }
 
                 if (file_exists($fileCz)) {
                     unlink($fileCz);
+                    Mage::app()->getCacheInstance()->flush();
                 }
 
             }
