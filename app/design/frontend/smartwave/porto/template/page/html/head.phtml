@@ -15,20 +15,22 @@
 	if(!isset($s['general']['disable_responsive']) || (isset($s['general']['disable_responsive']) && !$s['general']['disable_responsive'])){
 ?>	
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <?php /* Open Graph Protocol for Facebook and SEO START */ ?>
-        <?php if(Mage::registry('current_product')): ?>
-            <?php $product = Mage::registry('current_product'); ?>
-            <meta property="og:title" content="<?php echo ($product->getName()); ?>" />
-            <meta property="og:type" content="product" />
-            <meta property="og:image" content="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(200,200);?>" />
-            <meta property="og:url" content="<?php echo Mage::registry('product')->getProductUrl(); ?>" />
-            <meta property="og:description" content="<?php echo strip_tags(($product->getShortDescription())); ?>" />
-            <meta property="og:locale" content="<?php echo Mage::app()->getStore()->getName(); ?>" />
-        <?php endif; ?>
-        <?php /* Open Graph Protocol for Facebook and SEO END */ ?>
 <?php
 	}
 ?>
+
+<?php /* Open Graph Protocol for Facebook and SEO START */ ?>
+    <?php if(Mage::registry('current_product')): ?>
+        <?php $product = Mage::registry('current_product'); ?>
+        <meta property="og:title" content="<?php echo ($product->getName()); ?>" />
+        <meta property="og:type" content="product" />
+        <meta property="og:image" content="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(200,200);?>" />
+        <meta property="og:url" content="<?php echo Mage::registry('product')->getProductUrl(); ?>" />
+        <meta property="og:description" content="<?php echo strip_tags(($product->getShortDescription())); ?>" />
+        <meta property="og:locale" content="<?php echo Mage::app()->getStore()->getName(); ?>" />
+    <?php endif; ?>
+<?php /* Open Graph Protocol for Facebook and SEO END */ ?>
+
 <link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
 <link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
 <?php
