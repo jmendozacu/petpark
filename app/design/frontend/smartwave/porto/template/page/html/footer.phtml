@@ -175,35 +175,38 @@
     });
 </script>
 
-<?php if (!empty($product)){ ?>
-    
-<!-- Kód spoločnosti Google pre remarketingovú značku -->
-<!--------------------------------------------------
-Remarketingové značky nemôžu byť priradené k informáciám umožňujúcim identifikáciu osôb ani umiestnené na stránkach súvisiacich s citlivými kategóriami. Ďalšie informácie a pokyny k nastaveniu značky nájdete na nasledujúcich stránkach: http://google.com/ads/remarketingsetup
---------------------------------------------------->
-<script type="text/javascript">
-var google_tag_params = {
-dynx_itemid: '<?php echo $product->getSku() ?>',
-dynx_pagetype: 'other',
-dynx_totalvalue: '<?php echo $product->getFinalPrice() ?>',
-};
-</script>
-<script type="text/javascript">
-/* <![CDATA[ */
-var google_conversion_id = 1002820226;
-var google_custom_params = window.google_tag_params;
-var google_remarketing_only = true;
-/* ]]> */
-</script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-<div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1002820226/?value=0&amp;guid=ON&amp;script=0"/>
-</div>
-</noscript>
-  
-<?php  } ?>
+<?php if(Mage::registry('current_product')): ?>
+    <!-- Google Code for Remarketing Tag -->
+    <!--------------------------------------------------
+    Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+    --------------------------------------------------->
+    <script type="text/javascript">
+        var google_tag_params =
+            {
+                dynx_itemid: '<?php echo $product->getSku() ?>',
+                dynx_pagetype: 'offerdetail',
+                dynx_totalvalue: <?php echo $product->getFinalPrice() ?>,
+                ecomm_prodid: '<?php echo $product->getSku() ?>',
+                ecomm_pagetype: 'product',
+                ecomm_totalvalue: <?php echo $product->getFinalPrice() ?>,
+            }
+        ;
+    </script>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 1036701238;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1036701238/?guid=ON&script=0"/>
+        </div>
+    </noscript>
+<? endif; ?>
 
 <!-- Structured company data -->
 <?php

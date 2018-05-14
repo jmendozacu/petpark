@@ -1,42 +1,36 @@
 <?php
-
-$_conversionId = $this->getConversionId();
-
 $_product = $this->getProduct();
-$_prodName = null;
-$_prodSku = null;
-$_prodId = null;
-$_prodPrice = null;
-
-if ($_product) {
-    $_prodName = $_product->getName();
-    $_prodSku = $_product->getSku();
-    $_prodId = "mag_".$_product->getId();
-    $_prodPrice = $_product->getFinalPrice();
-    // Regular price without discount
-    // $_prodPrice = $_product->getPriceInfo()->getPrice('regular_price')->getAmount()->getValue();
-}
 ?>
 
-<!-- Google Code for Remarketing Tag -->
-<!--------------------------------------------------
-Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
---------------------------------------------------->
-<script type="text/javascript">
-    /* <![CDATA[ */
-    var google_conversion_id = <?php echo $_conversionId ?>;
-    var google_custom_params = {
-        ecomm_prodid: '<?php echo $_prodId ?>',
-        ecomm_pagetype: 'product',
-        ecomm_totalvalue: <?php echo $_prodPrice ?>,
-    };;
-    var google_remarketing_only = true;
-    /* ]]> */
-</script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-    <div style="display:inline;">
-        <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/<?php echo $_conversionId ?>/?value=0&amp;guid=ON&amp;script=0"/>
-    </div>
-</noscript>
+<?php if(Mage::registry('current_product')): ?>
+    <!-- Google Code for Remarketing Tag -->
+    <!--------------------------------------------------
+    Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+    --------------------------------------------------->
+    <script type="text/javascript">
+        var google_tag_params =
+            {
+                dynx_itemid: '<?php echo $_product->getSku() ?>',
+                dynx_pagetype: 'offerdetail',
+                dynx_totalvalue: <?php echo $_product->getFinalPrice() ?>,
+                ecomm_prodid: '<?php echo $_product->getSku() ?>',
+                ecomm_pagetype: 'product',
+                ecomm_totalvalue: <?php echo $_product->getFinalPrice() ?>,
+            }
+        ;
+    </script>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 1036701238;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1036701238/?guid=ON&script=0"/>
+        </div>
+    </noscript>
+<? endif; ?>
