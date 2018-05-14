@@ -23,14 +23,6 @@
                     </virtua_catalog>
                 </observers>
             </catalog_category_save_commit_after>
-            <catalog_category_save_commit_after>
-                <observers>
-                    <virtua_turpentine_varnish_catalog_category_save_commit_after>
-                        <class>Nexcessnet_Turpentine_Model_Observer_Ban</class>
-                        <method>banAllCache</method>
-                    </virtua_turpentine_varnish_catalog_category_save_commit_after>
-                </observers>
-            </catalog_category_save_commit_after>
         </events>
     </adminhtml>
 </config>
