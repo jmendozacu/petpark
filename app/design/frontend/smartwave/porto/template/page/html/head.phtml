@@ -22,8 +22,10 @@
 <?php /* Open Graph Protocol for Facebook and SEO START */ ?>
     <?php if(Mage::registry('current_product')): ?>
         <?php $product = Mage::registry('current_product'); ?>
+        <meta property="fb:app_id" content="1841598379475200" />
         <meta property="og:title" content="<?php echo ($product->getName()); ?>" />
         <meta property="og:type" content="product" />
+        <meta property="og:image" content="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(200,200);?>" />
         <meta property="og:image:url" content="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(200,200);?>" />
         <meta property="og:image:secure_url" content="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(200,200);?>" />
         <meta property="og:image:width" content="200" />
