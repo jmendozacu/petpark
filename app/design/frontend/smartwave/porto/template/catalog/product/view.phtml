@@ -456,10 +456,10 @@ if($enable_addtocart_sticky){
             {
                 dynx_itemid: '<?php echo $_product->getSku() ?>',
                 dynx_pagetype: 'offerdetail',
-                dynx_totalvalue: <?php echo $_product->getFinalPrice() ?>,
+                dynx_totalvalue: <?php echo Mage::helper('tax')->getPrice($_product, $_product->getFinalPrice(), true) ?>,
                 ecomm_prodid: '<?php echo $_product->getSku() ?>',
                 ecomm_pagetype: 'product',
-                ecomm_totalvalue: <?php echo $_product->getFinalPrice() ?>,
+                ecomm_totalvalue: <?php echo Mage::helper('tax')->getPrice($_product, $_product->getFinalPrice(), true) ?>,
             }
         ;
     </script>
