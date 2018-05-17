@@ -29,7 +29,7 @@
         <meta property="og:image:height" content="200" />
         <meta property="og:url" content="<?php echo Mage::registry('product')->getProductUrl(); ?>" />
         <meta property="og:description" content="<?php echo strip_tags(($product->getShortDescription())); ?>" />
-        <meta property="og:locale" content="<?php echo Mage::app()->getStore()->getName(); ?>" />
+        <meta property="og:locale" content="<?php echo strtolower(Mage::app()->getStore()->getName()) .'_'. Mage::app()->getStore()->getName(); ?>" />
     <?php endif; ?>
 <?php /* Open Graph Protocol for Facebook and SEO END */ ?>
 
