@@ -8,7 +8,7 @@ class Virtua_Catalog_Model_Observer
     {
         foreach (Mage::app()->getStores(false, true) as $storeCode => $store) {
 
-            if ($storeCode === self::CZ_STORE_CODE) {
+            if ($storeCode === self::CZ_STORE_CODE && strpos(Mage::getBaseUrl(), 'onlydev.net') === false) {
                 $file = '../../pet-park.cz/html/cat-' . $storeCode . '.cache';
             } else {
                 $file = 'cat-' . $storeCode . '.cache';
