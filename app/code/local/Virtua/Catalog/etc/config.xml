@@ -1,4 +1,5 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8" ?>
+
 <config>
     <modules>
         <Virtua_Catalog>
@@ -15,14 +16,14 @@
                     </virtua_catalog>
                 </observers>
             </catalog_category_prepare_save>
-            <catalog_category_save_commit_after>
+            <catalog_category_delete_after>
                 <observers>
                     <virtua_catalog>
                         <class>Virtua_Catalog_Model_Observer</class>
                         <method>clearMenuCache</method>
                     </virtua_catalog>
                 </observers>
-            </catalog_category_save_commit_after>
+            </catalog_category_delete_after>
         </events>
     </adminhtml>
 </config>
