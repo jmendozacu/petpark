@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_UrlRewritesMap>
+            <version>0.0.1</version>
+        </Virtua_UrlRewritesMap>
+    </modules>
+    <global>
+        <models>
+            <urlrewritesmap>
+                <class>Virtua_UrlRewritesMap_Model</class>
+            </urlrewritesmap>
+        </models>
+        <helpers>
+            <urlrewritesmap>
+                <class>Virtua_UrlRewritesMap_Helper</class>
+            </urlrewritesmap>
+        </helpers>
+    </global>
+    <crontab>
+        <jobs>
+            <urlrewritesmap>
+                <schedule><cron_expr>30 00 * * *</cron_expr></schedule>
+                <run><model>urlrewritesmap/cron::generateUrlRewritesMap</model></run>
+            </urlrewritesmap>
+        </jobs>
+    </crontab>
+</config>
