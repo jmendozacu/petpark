@@ -15,3 +15,5 @@ var/heurekask-overeno.log
 /imagemap_cz.xml
 
 rewrites.dbm
+rewrites.txt
+/rewrite

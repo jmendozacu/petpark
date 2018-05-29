@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_UrlRewritesMap>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Virtua_UrlRewritesMap>
+    </modules>
+</config>
