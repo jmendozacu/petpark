@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_Dotdigitalgroup>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Core />
+                <Dotdigitalgroup_Email />
+            </depends>
+        </Virtua_Dotdigitalgroup>
+    </modules>
+</config>
