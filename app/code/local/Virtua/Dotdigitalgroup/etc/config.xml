@@ -5,18 +5,18 @@
             <version>1.0.0</version>
         </Virtua_Dotdigitalgroup>
     </modules>
-    <!--<global>-->
-        <!--<models>-->
-            <!--<adminhtml>-->
-                <!--<rewrite>-->
-                    <!--<email_template>Virtua_Dotdigitalgroup_Model_Adminhtml_Email_Template</email_template>-->
-                <!--</rewrite>-->
-            <!--</adminhtml>-->
-            <!--<core>-->
-                <!--<rewrite>-->
-                    <!--<email_template>Virtua_Dotdigitalgroup_Model_Email_Template</email_template>-->
-                <!--</rewrite>-->
-            <!--</core>-->
-        <!--</models>-->
-    <!--</global>-->
+    <global>
+        <models>
+            <adminhtml>
+                <rewrite>
+                    <email_template>Virtua_Dotdigitalgroup_Model_Adminhtml_Email_Template</email_template>
+                </rewrite>
+            </adminhtml>
+            <core>
+                <rewrite>
+                    <email_template>Virtua_Dotdigitalgroup_Model_Email_Template</email_template>
+                </rewrite>
+            </core>
+        </models>
+    </global>
 </config>
