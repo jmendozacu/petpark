@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_Inteo>
+            <version>1.0.0</version>
+        </Virtua_Inteo>
+    </modules>
+    <global>
+        <models>
+            <virtua_inteo>
+                <class>Virtua_Inteo_Model</class>
+            </virtua_inteo>
+        </models>
+        <helpers>
+            <virtua_inteo>
+                <class>Virtua_Inteo_Helper</class>
+            </virtua_inteo>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <inteo>
+                <use>standard</use>
+                <args>
+                    <module>Virtua_Inteo</module>
+                    <frontName>inteo</frontName>
+                </args>
+            </inteo>
+        </routers>
+    </frontend>
+</config>
