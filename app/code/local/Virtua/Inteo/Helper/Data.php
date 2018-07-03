@@ -46,12 +46,11 @@ class Virtua_Inteo_Helper_Data extends Mage_Core_Helper_Abstract
 
         $response = json_decode($response, true);
 
-        // save response in the log file
-        $this->logOmegaResponse($response);
         if (isset($response['result']) && $response['result']) {
             return true;
         }
-
+        // save response in the log file if result is not true
+        $this->logOmegaResponse($response);
         return false;
     }
 
