@@ -3,10 +3,28 @@
 class Virtua_Inteo_Helper_Data extends Mage_Core_Helper_Abstract
 {
     const INTEO_ORDERS_API_URL = 'https://eshops.inteo.sk/api/v1/incomingorders/';
-    const API_TOKEN = '7cc990c4-76c5-4195-8e60-4a2420d8a87d';
+    const URL_PATH_API_TOKEN = 'general/virtua/inteo_api_token';
+    const OMEGA_RESPONSE_LOG_FILE = 'omega_response.log';
 
-    public function createApiConnection()
+    /**
+     * @return mixed
+     */
+    public function getApiToken()
     {
+        return Mage::getStoreConfig(self::URL_PATH_API_TOKEN);
+    }
+
+    /**
+     * Transfer orders to Omega app
+     * @return bool
+     */
+    public function transferData()
+    {
+        $apiToken = $this->getApiToken();
+        if (!$apiToken) {
+            $this->logOmegaResponse('No API Token found.');
+            return false;
+        }
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, "https://eshops.inteo.sk/api/v1/incomingorders/");
@@ -18,11 +36,9 @@ class Virtua_Inteo_Helper_Data extends Mage_Core_Helper_Abstract
         $data = Mage::getModel('virtua_inteo/inteo')->getJsonData();
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
-
-        //TODO get authorization token from dbase
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             "Content-Type: application/json",
-            "Authorization: Bearer " . self::API_TOKEN
+            "Authorization: Bearer " . $this->getApiToken()
         ));
 
         $response = curl_exec($ch);
@@ -30,6 +46,17 @@ class Virtua_Inteo_Helper_Data extends Mage_Core_Helper_Abstract
 
         $response = json_decode($response, true);
 
-        \Zend_Debug::dump($response);
+        // save response in the log file
+        $this->logOmegaResponse($response);
+        if (isset($response['result']) && $response['result']) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function logOmegaResponse($response)
+    {
+        Mage::log($response, null, self::OMEGA_RESPONSE_LOG_FILE);
     }
 }

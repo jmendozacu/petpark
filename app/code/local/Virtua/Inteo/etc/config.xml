@@ -17,15 +17,28 @@
             </virtua_inteo>
         </helpers>
     </global>
-    <frontend>
+    <adminhtml>
+        <events>
+            <adminhtml_widget_container_html_before>
+                <observers>
+                    <virtua_add_order_grid_button>
+                        <type>singleton</type>
+                        <class>Virtua_Inteo_Model_Observer</class>
+                        <method>addNewButton</method>
+                    </virtua_add_order_grid_button>
+                </observers>
+            </adminhtml_widget_container_html_before>
+        </events>
+    </adminhtml>
+    <admin>
         <routers>
-            <inteo>
-                <use>standard</use>
+            <adminhtml>
                 <args>
-                    <module>Virtua_Inteo</module>
-                    <frontName>inteo</frontName>
+                    <modules>
+                        <virtua_inteo before="Mage_Adminhtml">Virtua_Inteo_Adminhtml</virtua_inteo>
+                    </modules>
                 </args>
-            </inteo>
+            </adminhtml>
         </routers>
-    </frontend>
+    </admin>
 </config>

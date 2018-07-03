@@ -5,39 +5,42 @@ class Virtua_Inteo_Model_Inteo extends Mage_Core_Model_Abstract
     const TYPE_ID_ITEM = 1;
     const TYPE_ID_DELIVERY = 2;
 
+    /**
+     * Retrieves orders collection
+     * @return mixed
+     */
     public function getOrderCollection()
     {
-        $lastWeek = date(DATE_ISO8601, strtotime("-1 week +1 day"));
+        $lastWeek = date(DATE_ISO8601, strtotime("-1 week + 1 day"));
         $collection = Mage::getModel('sales/order')->getCollection()
-            ->addFieldToFilter('created_at', ['gteq' => $lastWeek])
+            ->addFieldToFilter('updated_at', ['gteq' => $lastWeek])
             ->addFieldToFilter('status', ['neq' => 'canceled'])
             ->setOrder('entity_id', 'desc');
 
         return $collection;
-            //->addFieldToFilter('created_at', ['gteq' => $previousWeek]);
     }
 
+    /**
+     * Retrieves full json data to transfer
+     * @return string
+     */
     public function getJsonData()
     {
         $out = [];
         $orderCollection = $this->getOrderCollection();
         foreach ($orderCollection as $key => $order) {
-            //\Zend_Debug::dump($order->getData());
             $out[] = $this->prepareSingleOrder($order);
         }
-        //\Zend_Debug::dump($out);
-        //exit;
         return json_encode($out);
     }
 
-    private function getDiscountPercentByOrder(Mage_Sales_Model_Order $order)
-    {
-        $discount = ($order->getDiscountAmount()) ?
-            $order->getDiscountAmount() / $order->getGrandTotal() *  100 :
-            0;
-        return $this->getNumberFormat($discount);
-    }
-
+    /**
+     * Parses to float number format
+     * @param $price
+     * @param int $decimals
+     * @param bool $onlyPositive
+     * @return float
+     */
     private function getNumberFormat($price, $decimals = 2, $onlyPositive = true)
     {
         if ($onlyPositive) {
@@ -47,14 +50,22 @@ class Virtua_Inteo_Model_Inteo extends Mage_Core_Model_Abstract
         return ($number !== 'nan') ? $number : 0.00;
     }
 
+    /**
+     * Preparing data of single order
+     * @param Mage_Sales_Model_Order $order
+     * @return array
+     */
     private function prepareSingleOrder(Mage_Sales_Model_Order $order)
     {
-        $discountPercent = $this->getDiscountPercentByOrder($order);
+        $clientName = $order->getBillingAddress()->getCompany() ?
+            $order->getBillingAddress()->getCompany() :
+            $order->getCustomerName();
+
         $orderArray = [
             'documentNumber' => $order->getIncrementId(),
             'totalPriceWithVat' => $this->getNumberFormat($order->getGrandTotal()),
             'createDate' => date(DATE_ISO8601, strtotime($order->getCreatedAt())),
-            'clientName' => $order->getCustomerName(),
+            'clientName' => $clientName,
             'clientContactName' => $order->getCustomerFirstname(),
             'clientContactSurname' => $order->getCustomerLastname(),
             'clientStreet' => $order->getBillingAddress()->getStreetFull(),
@@ -63,7 +74,7 @@ class Virtua_Inteo_Model_Inteo extends Mage_Core_Model_Abstract
             'clientCountry' => $order->getBillingAddress()->getCountry(),
             'clientPhone' => $order->getBillingAddress()->getTelephone(),
             'clientEmail' => $order->getBillingAddress()->getEmail(),
-            'clientRegistrationId' => $order->getBillingAddress()->getData('vat_id'),
+            'clientRegistrationId' => $order->getData('customer_taxvat'),
             'clientTaxId' => $order->getCustomerId(),
             'clientVatId' => $order->getBillingAddress()->getData('vat_id'),
             'clientInternalId' => '',
@@ -82,7 +93,7 @@ class Virtua_Inteo_Model_Inteo extends Mage_Core_Model_Abstract
             'clientHasDifferentPostalAddress' => false,
             'currency' => $order->getBaseCurrencyCode(),
             'exchangeRate' => '',
-            'discountPercent' => $discountPercent,
+            'discountPercent' => null,
             'discountValueWithVat' => $this->getNumberFormat($order->getDiscountAmount()),
             'priceDecimalPlaces' => '',
             'clientNote' => $order->getCustomerNote(),
@@ -98,12 +109,16 @@ class Virtua_Inteo_Model_Inteo extends Mage_Core_Model_Abstract
         return $orderArray;
     }
 
+    /**
+     * Preparing data of single item
+     * @param Mage_Sales_Model_Order_Item $item
+     * @return array
+     */
     private function prepareSingleItem(Mage_Sales_Model_Order_Item $item)
     {
-        //\Zend_Debug::dump($item->getData());
-        $product = Mage::getModel('catalog/product')->load($item->getProductId());
+        $product = $this->getProductBySku($item->getSku());
         $itemArray = [
-            'name' => $item->getName(),
+            'name' => $product->getData('name'),
             'count' => (int) $item->getQtyOrdered(),
             'measureType' => '',
             'totalPriceWithVat' => $this->getNumberFormat($item->getRowTotalInclTax()),
@@ -122,6 +137,22 @@ class Virtua_Inteo_Model_Inteo extends Mage_Core_Model_Abstract
         return $itemArray;
     }
 
+    /**
+     * Get product model by its sku
+     * @param $sku
+     * @return mixed
+     */
+    public function getProductBySku($sku)
+    {
+        return Mage::getModel('catalog/product')
+            ->loadByAttribute('sku', $sku);
+    }
+
+    /**
+     * @param $string
+     * @param $maxLength
+     * @return bool|string
+     */
     private function stringLength($string, $maxLength)
     {
         if (strlen($string) > $maxLength) {

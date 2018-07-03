@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <general>
+            <groups>
+                <virtua translate="label">
+                    <label>Virtua</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <inteo_api_token translate="label">
+                            <label>Inteo Omega API Token</label>
+                            <comment>Inteo Omega API Token</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </inteo_api_token>
+                    </fields>
+                </virtua>
+            </groups>
+        </general>
+    </sections>
+</config>
