@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_Inteo>
+            <version>1.0.0</version>
+        </Virtua_Inteo>
+    </modules>
+    <global>
+        <models>
+            <virtua_inteo>
+                <class>Virtua_Inteo_Model</class>
+            </virtua_inteo>
+        </models>
+        <helpers>
+            <virtua_inteo>
+                <class>Virtua_Inteo_Helper</class>
+            </virtua_inteo>
+        </helpers>
+    </global>
+    <adminhtml>
+        <events>
+            <adminhtml_widget_container_html_before>
+                <observers>
+                    <virtua_add_order_grid_button>
+                        <type>singleton</type>
+                        <class>Virtua_Inteo_Model_Observer</class>
+                        <method>addNewButton</method>
+                    </virtua_add_order_grid_button>
+                </observers>
+            </adminhtml_widget_container_html_before>
+        </events>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <virtua_inteo before="Mage_Adminhtml">Virtua_Inteo_Adminhtml</virtua_inteo>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>
