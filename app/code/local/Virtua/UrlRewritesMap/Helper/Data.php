@@ -30,4 +30,12 @@ class Virtua_UrlRewritesMap_Helper_Data extends Mage_Core_Helper_Abstract
             Mage::getStoreConfig(self::XML_PATH_URL_REWRITES_MAP_SK) :
             Mage::getStoreConfig(self::XML_PATH_URL_REWRITES_MAP_CZ);
     }
+
+    public function getDownloadRewritesMapFileUrl($store = 'sk')
+    {
+        if (!$this->getUrlRewritesMapFilePath($store)) {
+            return '';
+        }
+        return Mage::getBaseUrl('media') . 'rewrite' . DS . $this->getUrlRewritesMapFilePath($store);
+    }
 }

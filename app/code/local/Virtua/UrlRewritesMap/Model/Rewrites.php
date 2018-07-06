@@ -29,8 +29,8 @@ class Virtua_UrlRewritesMap_Model_Rewrites
                 echo "Skipping the row \n";
                 continue;
             }
-            $redirectFrom = rtrim($rowArray[0], Helper::SLASH);
-            $redirectTo = $this->prepareDestinationUrl($rowArray[1]);
+            $redirectFrom = rtrim($this->removeUrlBase($rowArray[0]), Helper::SLASH);
+            $redirectTo = $this->prepareDestinationUrl($this->removeUrlBase($rowArray[1]));
             echo $redirectTo . PHP_EOL;
             $fileContent .= "$redirectFrom $redirectTo\n";
         }
@@ -41,9 +41,9 @@ class Virtua_UrlRewritesMap_Model_Rewrites
         }
 
         try {
-            $txtFileHandler = fopen($destinationFile, "w");
-            fwrite($txtFileHandler, $fileContent);
-            fclose($txtFileHandler);
+//            $txtFileHandler = fopen($destinationFile, "w");
+//            fwrite($txtFileHandler, $fileContent);
+//            fclose($txtFileHandler);
             echo "Rewrites have been saved to " . $destinationFile;
         } catch (Exception $exception) {
             echo "Error occured: \n";
@@ -51,6 +51,12 @@ class Virtua_UrlRewritesMap_Model_Rewrites
         }
 
         echo PHP_EOL;
+    }
+
+    private function removeUrlBase($url)
+    {
+        $base = 'https://www.petpark.sk/';
+        return str_replace($base, '', $url);
     }
 
     private function prepareDestinationUrl($url)

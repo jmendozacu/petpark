@@ -16,6 +16,11 @@
                 <class>Virtua_UrlRewritesMap_Helper</class>
             </urlrewritesmap>
         </helpers>
+        <blocks>
+            <urlrewritesmap>
+                <class>Virtua_UrlRewritesMap_Block</class>
+            </urlrewritesmap>
+        </blocks>
     </global>
     <crontab>
         <jobs>
