@@ -11,9 +11,13 @@ class Virtua_Inteo_Model_Inteo extends Mage_Core_Model_Abstract
      */
     public function getOrderCollection()
     {
-        $lastWeek = date(DATE_ISO8601, strtotime("-1 week + 1 day"));
+        $lastTransferredOrderDate = Mage::helper('virtua_inteo')->getLastTransferredOrderDate();
+        if (!$lastTransferredOrderDate) {
+            $lastTransferredOrderDate = '2018-07-12T00:00:00+0000';
+        }
+
         $collection = Mage::getModel('sales/order')->getCollection()
-            ->addFieldToFilter('updated_at', ['gteq' => $lastWeek])
+            ->addFieldToFilter('created_at', ['gteq' => $lastTransferredOrderDate])
             ->addFieldToFilter('status', ['neq' => 'canceled'])
             ->setOrder('entity_id', 'desc');
 
@@ -31,6 +35,7 @@ class Virtua_Inteo_Model_Inteo extends Mage_Core_Model_Abstract
         foreach ($orderCollection as $key => $order) {
             $out[] = $this->prepareSingleOrder($order);
         }
+
         return json_encode($out);
     }
 
