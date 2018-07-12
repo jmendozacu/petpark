@@ -29,6 +29,11 @@ class Virtua_Inteo_Helper_Data extends Mage_Core_Helper_Abstract
 
         $data = Mage::getModel('virtua_inteo/inteo')->getJsonData();
 
+        if (empty(json_decode($data, true))) {
+            Mage::getSingleton('core/session')->addError('No new orders found from ' . $this->getLastTransferredOrderDate());
+            return false;
+        }
+
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, "https://eshops.inteo.sk/api/v1/incomingorders/");
@@ -45,6 +50,7 @@ class Virtua_Inteo_Helper_Data extends Mage_Core_Helper_Abstract
         ));
 
         $response = curl_exec($ch);
+
         curl_close($ch);
 
         $response = json_decode($response, true);

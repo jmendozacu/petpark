@@ -17,7 +17,7 @@ class Virtua_Inteo_Model_Inteo extends Mage_Core_Model_Abstract
         }
 
         $collection = Mage::getModel('sales/order')->getCollection()
-            ->addFieldToFilter('updated_at', ['gteq' => $lastTransferredOrderDate])
+            ->addFieldToFilter('created_at', ['gteq' => $lastTransferredOrderDate])
             ->addFieldToFilter('status', ['neq' => 'canceled'])
             ->setOrder('entity_id', 'desc');
 
