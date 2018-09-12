@@ -120,38 +120,19 @@ class Mage_Adminhtml_Helper_Sales extends Mage_Core_Helper_Abstract
      */
     public function escapeHtmlWithLinks($data, $allowedTags = null)
     {
-        if (!empty($data) && is_array($allowedTags) && in_array('a', $allowedTags)) {
+        if (is_string($data) && is_array($allowedTags) && in_array('a', $allowedTags)) {
             $links = array();
             $i = 1;
             $data = str_replace('%', '%%', $data);
-            $regexp = "/<a\s[^>]*href\s*?=\s*?([\"\']??)([^\" >]*?)\\1[^>]*>(.*)<\/a>/siU";
+            $regexp = '@(<a[^>]*>(?:[^<]|<[^/]|</[^a]|</a[^>])*</a>)@';
             while (preg_match($regexp, $data, $matches)) {
-                //Revert the sprintf escaping
-                $url = str_replace('%%', '%', $matches[2]);
-                $text = str_replace('%%', '%', $matches[3]);
-                //Check for an valid url
-                if ($url) {
-                    $urlScheme = strtolower(parse_url($url, PHP_URL_SCHEME));
-                    if ($urlScheme !== 'http' && $urlScheme !== 'https') {
-                        $url = null;
-                    }
-                }
-                //Use hash tag as fallback
-                if (!$url) {
-                    $url = '#';
-                }
-                //Recreate a minimalistic secure a tag
-                $links[] = sprintf(
-                    '<a href="%s">%s</a>',
-                    htmlspecialchars($url, ENT_QUOTES, 'UTF-8', false),
-                    parent::escapeHtml($text)
-                );
-                $data = str_replace($matches[0], '%' . $i . '$s', $data);
+                $links[] = $matches[1];
+                $data = str_replace($matches[1], '%' . $i . '$s', $data);
                 ++$i;
             }
-            $data = parent::escapeHtml($data, $allowedTags);
+            $data = Mage::helper('core')->escapeHtml($data, $allowedTags);
             return vsprintf($data, $links);
         }
-        return parent::escapeHtml($data, $allowedTags);
+        return Mage::helper('core')->escapeHtml($data, $allowedTags);
     }
 }

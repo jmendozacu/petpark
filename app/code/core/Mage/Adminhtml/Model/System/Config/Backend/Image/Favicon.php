@@ -77,7 +77,7 @@ class Mage_Adminhtml_Model_System_Config_Backend_Image_Favicon extends Mage_Admi
      */
     protected function _getAllowedExtensions()
     {
-        return array('ico', 'png', 'gif', 'jpg', 'jpeg', 'apng');
+        return array('ico', 'png', 'gif', 'jpg', 'jpeg', 'apng', 'svg');
     }
 
     /**
@@ -86,8 +86,7 @@ class Mage_Adminhtml_Model_System_Config_Backend_Image_Favicon extends Mage_Admi
      * @param  $token
      * @return string
      */
-    protected function _getUploadRoot($token)
-    {
+    protected function _getUploadRoot($token) {
         return Mage::getBaseDir($token);
     }
 }

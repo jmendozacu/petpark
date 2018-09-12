@@ -50,7 +50,7 @@ class Mage_Review_ProductController extends Mage_Core_Controller_Front_Action
             return;
         }
 
-        $action = strtolower($this->getRequest()->getActionName());
+        $action = $this->getRequest()->getActionName();
         if (!$allowGuest && $action == 'post' && $this->getRequest()->isPost()) {
             if (!Mage::getSingleton('customer/session')->isLoggedIn()) {
                 $this->setFlag('', self::FLAG_NO_DISPATCH, true);
@@ -172,9 +172,9 @@ class Mage_Review_ProductController extends Mage_Core_Controller_Front_Action
         }
 
         if (($product = $this->_initProduct()) && !empty($data)) {
-            $session = Mage::getSingleton('core/session');
+            $session    = Mage::getSingleton('core/session');
             /* @var $session Mage_Core_Model_Session */
-            $review = Mage::getModel('review/review')->setData($this->_cropReviewData($data));
+            $review     = Mage::getModel('review/review')->setData($data);
             /* @var $review Mage_Review_Model_Review */
 
             $validate = $review->validate();
@@ -306,24 +306,5 @@ class Mage_Review_ProductController extends Mage_Core_Controller_Front_Action
         }
         $update->addUpdate($product->getCustomLayoutUpdate());
         $this->generateLayoutXml()->generateLayoutBlocks();
-    }
-
-    /**
-     * Crops POST values
-     * @param array $reviewData
-     * @return array
-     */
-    protected function _cropReviewData(array $reviewData)
-    {
-        $croppedValues = array();
-        $allowedKeys = array_fill_keys(array('detail', 'title', 'nickname'), true);
-
-        foreach ($reviewData as $key => $value) {
-            if (isset($allowedKeys[$key])) {
-                $croppedValues[$key] = $value;
-            }
-        }
-
-        return $croppedValues;
     }
 }

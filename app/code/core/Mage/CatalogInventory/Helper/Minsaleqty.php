@@ -80,11 +80,7 @@ class Mage_CatalogInventory_Helper_Minsaleqty
                 Mage_Customer_Model_Group::CUST_GROUP_ALL => $this->_fixQty($value)
             );
         } else if (is_string($value) && !empty($value)) {
-            try {
-                return Mage::helper('core/unserializeArray')->unserialize($value);
-            } catch (Exception $e) {
-                return array();
-            }
+            return unserialize($value);
         } else {
             return array();
         }
