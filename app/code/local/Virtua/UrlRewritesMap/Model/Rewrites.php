@@ -20,30 +20,32 @@ class Virtua_UrlRewritesMap_Model_Rewrites
         $fileContent = '';
 
         foreach ($csv as $row) {
+
             if (!isset($row[0])) {
                 echo "Row is not set \n";
                 continue;
             }
+
             $rowArray = explode(Helper::CSV_DELIMETER, $row[0]);
             if (!isset($rowArray[0]) || !isset($rowArray[1])) {
                 echo "Skipping the row \n";
                 continue;
             }
+
             $redirectFrom = rtrim($this->removeUrlBase($rowArray[0]), Helper::SLASH);
             $redirectTo = $this->prepareDestinationUrl($this->removeUrlBase($rowArray[1]));
-            echo $redirectTo . PHP_EOL;
             $fileContent .= "$redirectFrom $redirectTo\n";
         }
 
         $destinationFile = $this->getFilePath(Helper::REWRITES_TXT_FILE);
         if (file_exists($destinationFile)) {
-            //unlink($destinationFile);
+            unlink($destinationFile);
         }
 
         try {
-//            $txtFileHandler = fopen($destinationFile, "w");
-//            fwrite($txtFileHandler, $fileContent);
-//            fclose($txtFileHandler);
+            $txtFileHandler = fopen($destinationFile, "w");
+            fwrite($txtFileHandler, $fileContent);
+            fclose($txtFileHandler);
             echo "Rewrites have been saved to " . $destinationFile;
         } catch (Exception $exception) {
             echo "Error occured: \n";
@@ -53,14 +55,30 @@ class Virtua_UrlRewritesMap_Model_Rewrites
         echo PHP_EOL;
     }
 
+    /**
+     * Remove hardcoded base url from given url
+     *
+     * @param $url
+     * @return mixed
+     */
     private function removeUrlBase($url)
     {
         $base = 'https://www.petpark.sk/';
         return str_replace($base, '', $url);
     }
 
+    /**
+     * Return final url - without redirections
+     *
+     * @param $url
+     * @return string
+     */
     private function prepareDestinationUrl($url)
     {
+        if (!$url || trim($url) === Helper::SLASH) {
+            return Helper::SLASH;
+        }
+
         $handle = curl_init();
 
         curl_setopt($handle, CURLOPT_URL, 'https://www.petpark.sk/' . $url);
@@ -81,12 +99,22 @@ class Virtua_UrlRewritesMap_Model_Rewrites
 
         if (preg_match('~Location: (.*)~i', $response, $match)) {
             $location = trim($match[1]);
+            if ($location === Helper::SLASH) {
+                return Helper::SLASH;
+            }
             return ltrim($location, Helper::SLASH);
         }
 
         return $url;
     }
 
+    /**
+     * Get file path of given filename
+     *
+     * @param $filename
+     * @param string $type
+     * @return string
+     */
     private function getFilePath($filename, $type = 'base')
     {
         return Mage::getBaseDir($type) . DIRECTORY_SEPARATOR . Helper::MEDIA_MAIN_DIR . DIRECTORY_SEPARATOR . $filename;
