@@ -54,7 +54,7 @@ class Mage_Api_Model_Wsdl_Config_Base extends Varien_Simplexml_Config
         $this->_wsdlVariables = new Varien_Object(
             array(
                 'name' => 'Magento',
-                'url'  => Mage::helper('api')->getServiceUrl('*/*/*', array('_query' => $queryParams), true)
+                'url'  => htmlspecialchars(Mage::getUrl('*/*/*', array('_query' => $queryParams)))
             )
         );
         parent::__construct($sourceData);

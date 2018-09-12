@@ -37,7 +37,7 @@ class Mage_Api_Model_Wsdl_Config extends Mage_Api_Model_Wsdl_Config_Base
 
     public function __construct($sourceData=null)
     {
-        $this->setCacheId(Mage::helper('api')->getCacheId());
+        $this->setCacheId('wsdl_config_global');
         parent::__construct($sourceData);
     }
 

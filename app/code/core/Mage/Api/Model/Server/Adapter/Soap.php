@@ -70,7 +70,7 @@ class Mage_Api_Model_Server_Adapter_Soap
             unset($queryParams['wsdl']);
         }
 
-        $wsdlConfig->setUrl(Mage::helper('api')->getServiceUrl('*/*/*', array('_query' => $queryParams), true));
+        $wsdlConfig->setUrl(htmlspecialchars(Mage::getUrl('*/*/*', array('_query'=>$queryParams))));
         $wsdlConfig->setName('Magento');
         $wsdlConfig->setHandler($this->getHandler());
         return $wsdlConfig;
@@ -229,8 +229,8 @@ class Mage_Api_Model_Server_Adapter_Soap
             ->setUseSession(false);
 
         $wsdlUrl = $params !== null
-            ? Mage::helper('api')->getServiceUrl('*/*/*', array('_current' => true, '_query' => $params))
-            : Mage::helper('api')->getServiceUrl('*/*/*');
+            ? $urlModel->getUrl('*/*/*', array('_current' => true, '_query' => $params))
+            : $urlModel->getUrl('*/*/*');
 
         if ( $withAuth ) {
             $phpAuthUser = rawurlencode($this->getController()->getRequest()->getServer('PHP_AUTH_USER', false));
