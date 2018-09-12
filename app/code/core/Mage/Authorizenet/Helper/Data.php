@@ -72,23 +72,51 @@ class Mage_Authorizenet_Helper_Data extends Mage_Core_Helper_Abstract
     public function getSaveOrderUrlParams($controller)
     {
         $route = array();
-        if ($controller === "onepage") {
-            $route['action'] = 'saveOrder';
-            $route['controller'] = 'onepage';
-            $route['module'] = 'checkout';
+        switch ($controller) {
+            case 'onepage':
+                $route['action'] = 'saveOrder';
+                $route['controller'] = 'onepage';
+                $route['module'] = 'checkout';
+                break;
+
+            case 'sales_order_create':
+            case 'sales_order_edit':
+                $route['action'] = 'save';
+                $route['controller'] = 'sales_order_create';
+                $route['module'] = 'admin';
+                break;
+
+            default:
+                break;
         }
 
         return $route;
     }
 
     /**
-     * Retrieve redirect iframe url
-     * @param $params
+     * Retrieve redirect ifrmae url
+     *
+     * @param array params
      * @return string
      */
     public function getRedirectIframeUrl($params)
     {
-        return $this->_getUrl('authorizenet/directpost_payment/redirect', $params);
+        switch ($params['controller_action_name']) {
+            case 'onepage':
+                $route = 'authorizenet/directpost_payment/redirect';
+                break;
+
+            case 'sales_order_create':
+            case 'sales_order_edit':
+                $route = 'adminhtml/authorizenet_directpost_payment/redirect';
+                break;
+
+            default:
+                $route = 'authorizenet/directpost_payment/redirect';
+                break;
+        }
+
+        return $this->_getUrl($route, $params);
     }
 
     /**
@@ -120,7 +148,25 @@ class Mage_Authorizenet_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getSuccessOrderUrl($params)
     {
-        return $this->_getUrl('checkout/onepage/success', array());
+        $param = array();
+        switch ($params['controller_action_name']) {
+            case 'onepage':
+                $route = 'checkout/onepage/success';
+                break;
+
+            case 'sales_order_create':
+            case 'sales_order_edit':
+                $route = 'adminhtml/sales_order/view';
+                $order = Mage::getModel('sales/order')->loadByIncrementId($params['x_invoice_num']);
+                $param['order_id'] = $order->getId();
+                return $this->getAdminUrl($route, $param);
+
+            default :
+                $route = 'checkout/onepage/success';
+                break;
+        }
+
+        return $this->_getUrl($route, $param);
     }
 
     /**

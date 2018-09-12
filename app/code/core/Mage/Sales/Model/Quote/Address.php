@@ -1090,12 +1090,7 @@ class Mage_Sales_Model_Quote_Address extends Mage_Customer_Model_Address_Abstrac
      */
     public function getAppliedTaxes()
     {
-        try {
-            $return = Mage::helper('core/unserializeArray')->unserialize($this->getData('applied_taxes'));
-        } catch (Exception $e) {
-            $return = array();
-        }
-        return $return;
+        return unserialize($this->getData('applied_taxes'));
     }
 
     /**
