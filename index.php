@@ -65,7 +65,7 @@ require MAGENTO_ROOT . '/app/bootstrap.php';
 require_once $mageFilename;
 
 if (isset($_GET['dbg'])){
-  Varien_Profiler::enable();
+    Varien_Profiler::enable();
 }
 
 if (isset($_SERVER['MAGE_IS_DEVELOPER_MODE'])) {
@@ -85,15 +85,15 @@ $mageRunType = isset($_SERVER['MAGE_RUN_TYPE']) ? $_SERVER['MAGE_RUN_TYPE'] : 's
 $devHosts = array('dev.petpark.cz', 'www.cz.petpark.onlydev.net');
 
 if ($_SERVER['HTTP_HOST']=='www.pet-park.cz' || in_array($_SERVER['HTTP_HOST'], $devHosts)){
-	$mageRunCode = 'cz';
+    $mageRunCode = 'cz';
 }
 
 if ($_SERVER['HTTP_HOST']=='www.multibio.sk'){
-        $mageRunCode = 'multibio_sk';
+    $mageRunCode = 'multibio_sk';
 }
 
 if (isset($_GET['dbg'])){
-  var_dump($_SERVER);
+    var_dump($_SERVER);
 }
 
 Mage::run($mageRunCode, $mageRunType);

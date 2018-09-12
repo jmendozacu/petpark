@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Optimiseweb_Redirects>
-            <active>true</active>
+            <active>false</active>
             <codePool>community</codePool>
         </Optimiseweb_Redirects>
     </modules>

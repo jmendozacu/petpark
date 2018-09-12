@@ -56,15 +56,16 @@
 <link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
 <link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
 <?php
+// VIRTUA_SEO
 $seoHelper = Mage::helper('virtua_seo/data');
+$currentUrl = $this->helper('core/url')->getCurrentUrl();
+$lang = (Mage::app()->getStore()->getCode()=='cz') ? 'cs' : 'sk';
 $currentRoute = $this->getRequest()->getRouteName();
 $currentAction = $this->getRequest()->getActionName();
 if ($seoHelper->isBlogListPage($currentRoute, $currentAction)) {
     $params = $this->getRequest()->getParams();
     echo $seoHelper->getRelLink($params, $currentRoute);
 }
-?>
-<?php
 $request = $this->getRequest();
 // generating alternative url (SEO)
 $alternateTag = $seoHelper->getAlternateTag($request);

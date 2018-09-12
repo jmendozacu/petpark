@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<config>
-    <modules>
-        <Businessfactory_Roihuntereasy>
-            <active>false</active>
-            <codePool>community</codePool>
-        </Businessfactory_Roihuntereasy>
-    </modules>
-</config>
