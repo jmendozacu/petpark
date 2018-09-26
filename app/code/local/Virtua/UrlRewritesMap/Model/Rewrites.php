@@ -2,11 +2,13 @@
 
 use Virtua_UrlRewritesMap_Helper_Data as Helper;
 
+/**
+ * Class Virtua_UrlRewritesMap_Model_Rewrites
+ */
 class Virtua_UrlRewritesMap_Model_Rewrites
 {
     /**
      * Run script
-     *
      */
     public function run()
     {
@@ -58,7 +60,8 @@ class Virtua_UrlRewritesMap_Model_Rewrites
     /**
      * Remove hardcoded base url from given url
      *
-     * @param $url
+     * @param string $url
+     *
      * @return mixed
      */
     private function removeUrlBase($url)
@@ -70,7 +73,8 @@ class Virtua_UrlRewritesMap_Model_Rewrites
     /**
      * Return final url - without redirections
      *
-     * @param $url
+     * @param string $path
+     *
      * @return string
      */
     private function prepareDestinationUrl($url)
@@ -79,9 +83,11 @@ class Virtua_UrlRewritesMap_Model_Rewrites
             return Helper::SLASH;
         }
 
+        $fullUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . ltrim($url, Helper::SLASH);
+
         $handle = curl_init();
 
-        curl_setopt($handle, CURLOPT_URL, 'https://www.petpark.sk/' . $url);
+        curl_setopt($handle, CURLOPT_URL, $fullUrl);
         curl_setopt($handle, CURLOPT_HEADER, true);
         curl_setopt($handle,  CURLOPT_RETURNTRANSFER, true);
         curl_setopt($handle,  CURLOPT_FOLLOWLOCATION, true);
@@ -113,6 +119,7 @@ class Virtua_UrlRewritesMap_Model_Rewrites
      *
      * @param $filename
      * @param string $type
+     *
      * @return string
      */
     private function getFilePath($filename, $type = 'base')
