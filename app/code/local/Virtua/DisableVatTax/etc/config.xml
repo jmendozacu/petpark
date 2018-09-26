@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_DisableVatTax>
+            <version>1.0.0</version>
+        </Virtua_DisableVatTax>
+    </modules>
+
+    <global>
+        <models>
+            <virtua_disablevattax>
+                <class>Virtua_DisableVatTax_Model</class>
+            </virtua_disablevattax>
+
+            <tax>
+                <rewrite>
+                    <calculation>Virtua_DisableVatTax_Model_Tax_Calculation</calculation>
+                </rewrite>
+            </tax>
+        </models>
+
+        <helpers>
+            <virtua_disablevattax>
+                <class>Virtua_DisableVatTax_Helper</class>
+            </virtua_disablevattax>
+        </helpers>
+
+        <events>
+            <sales_quote_collect_totals_before>
+                <observers>
+                    <virtua_disablevattax>
+                        <type>singleton</type>
+                        <class>Virtua_DisableVatTax_Model_Observer</class>
+                        <method>disableVatTaxForQuote</method>
+                    </virtua_disablevattax>
+                </observers>
+            </sales_quote_collect_totals_before>
+        </events>
+    </global>
+</config>
