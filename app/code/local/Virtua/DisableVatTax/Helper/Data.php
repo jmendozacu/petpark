@@ -16,12 +16,19 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         $customer = $customerSession->getCustomer();
 
         /** @var string $countryCode */
-        $countryCode = $customer->getDefaultBillingAddress()->getCountry();
+        $countryCode = "";
+        if ($customer->getDefaultBillingAddress()) {
+            $countryCode = $customer->getDefaultBillingAddress()->getCountry();
+        }
 
         $defaultCountry = Mage::getStoreConfig('general/country/default');
         $isCustomerOutsideDefaultCountry = $countryCode !== $defaultCountry;
         $vatNumber = $customer->getData('taxvat');
         $euCountries = $this->getEUCountries();
+        if (!$euCountries) {
+            return false;
+        }
+
         $isEUCustomer = in_array($countryCode, $euCountries);
         if ($vatNumber && $isEUCustomer && $isCustomerOutsideDefaultCountry) {
             return true;
