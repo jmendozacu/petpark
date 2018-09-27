@@ -8,7 +8,7 @@
     $aspect_ratio = Mage::getStoreConfig("porto_settings/category/aspect_ratio",$code);
     $ratio_width = Mage::getStoreConfig("porto_settings/category/ratio_width",$code);
     $ratio_height = Mage::getStoreConfig("porto_settings/category/ratio_height",$code);
-    
+
     if(!$ratio_width)
         $ratio_width = 300;
     if(!$ratio_height)
@@ -57,10 +57,10 @@
                     ?>
                     <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
                     <?php
-                        if(Mage::getStoreConfig("porto_settings/category/alternative_image", $code)){
+                        if(Mage::getStoreConfig("porto_settings/category/alternative_image", $code) && $product->getThumbnail()){
                     ?>
                         <img class="defaultImage" src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
-                        <img class="hoverImage" src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'small_image')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'small_image')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
+                        <img class="hoverImage" src="<?php if($aspect_ratio):?><?php echo $_image_helper->init($_product, 'thumbnail')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize($ratio_width);?><?php else: ?><?php echo $_image_helper->init($_product, 'thumbnail')->resize($ratio_width,$ratio_height); ?><?php endif; ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>"/>
                     <?php
                         } else {
                     ?>
