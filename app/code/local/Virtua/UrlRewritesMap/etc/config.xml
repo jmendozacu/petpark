@@ -22,12 +22,12 @@
             </urlrewritesmap>
         </blocks>
     </global>
-    <crontab>
-        <jobs>
-            <urlrewritesmap>
-                <schedule><cron_expr>30 00 * * *</cron_expr></schedule>
-                <run><model>urlrewritesmap/cron::generateUrlRewritesMap</model></run>
-            </urlrewritesmap>
-        </jobs>
-    </crontab>
+    <!--<crontab>-->
+        <!--<jobs>-->
+            <!--<urlrewritesmap>-->
+                <!--<schedule><cron_expr>30 00 * * *</cron_expr></schedule>-->
+                <!--<run><model>urlrewritesmap/cron::generateUrlRewritesMap</model></run>-->
+            <!--</urlrewritesmap>-->
+        <!--</jobs>-->
+    <!--</crontab>-->
 </config>

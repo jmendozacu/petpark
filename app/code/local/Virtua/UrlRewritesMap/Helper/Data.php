@@ -11,19 +11,15 @@ class Virtua_UrlRewritesMap_Helper_Data extends Mage_Core_Helper_Abstract
     const SLASH = '/';
     const HTTP_CODE_SUCCESS = 200;
 
-    const STORE_DOMAIN_SK = 'www.petpark.sk/';
-    const STORE_DOMAIN_CZ = 'www.pet-park.cz/';
-
     const MEDIA_MAIN_DIR = 'rewrite';
 
-    private $currentStore;
-
-    private $stores = [
-        self::STORE_DOMAIN_SK,
-        self::STORE_DOMAIN_CZ,
-    ];
-
-
+    /**
+     * Get path to URL rewrite map file
+     *
+     * @param string $store
+     *
+     * @return null|string
+     */
     public function getUrlRewritesMapFilePath($store = 'sk')
     {
         return ($store === 'sk') ?
@@ -31,6 +27,14 @@ class Virtua_UrlRewritesMap_Helper_Data extends Mage_Core_Helper_Abstract
             Mage::getStoreConfig(self::XML_PATH_URL_REWRITES_MAP_CZ);
     }
 
+
+    /**
+     * Get URL of download rewrite map file
+     *
+     * @param string $store
+     *
+     * @return string
+     */
     public function getDownloadRewritesMapFileUrl($store = 'sk')
     {
         if (!$this->getUrlRewritesMapFilePath($store)) {
