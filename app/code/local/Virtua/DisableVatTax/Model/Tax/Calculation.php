@@ -13,10 +13,13 @@ class Virtua_DisableVatTax_Model_Tax_Calculation extends Mage_Tax_Model_Calculat
         /** @var Virtua_DisableVatTax_Helper_Data $disableVatHelper */
         $disableVatHelper = Mage::helper('virtua_disablevattax');
 
+        if ($disableVatHelper->shouldDisableVatTax()) {
+            return 0;
+        }
+
         if (!$request->getCountryId()
             || !$request->getCustomerClassId()
             || !$request->getProductClassId()
-            || $disableVatHelper->shouldDisableVatTax()
         ) {
             return 0;
         }

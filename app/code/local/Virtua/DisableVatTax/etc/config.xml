@@ -35,6 +35,36 @@
                     </virtua_disablevattax>
                 </observers>
             </sales_quote_collect_totals_before>
+
+            <customer_address_save_after>
+                <observers>
+                    <virtua_disablevattax>
+                        <type>singleton</type>
+                        <class>Virtua_DisableVatTax_Model_Observer</class>
+                        <method>removeShouldDisableVatTaxVariableFromSession</method>
+                    </virtua_disablevattax>
+                </observers>
+            </customer_address_save_after>
+
+            <customer_login>
+                <observers>
+                    <virtua_disablevattax>
+                        <type>singleton</type>
+                        <class>Virtua_DisableVatTax_Model_Observer</class>
+                        <method>removeShouldDisableVatTaxVariableFromSession</method>
+                    </virtua_disablevattax>
+                </observers>
+            </customer_login>
+
+            <customer_logout>
+                <observers>
+                    <virtua_disablevattax>
+                        <type>singleton</type>
+                        <class>Virtua_DisableVatTax_Model_Observer</class>
+                        <method>removeShouldDisableVatTaxVariableFromSession</method>
+                    </virtua_disablevattax>
+                </observers>
+            </customer_logout>
         </events>
     </global>
 </config>

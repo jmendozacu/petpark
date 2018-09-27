@@ -3,6 +3,13 @@
 class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
 {
     /**
+     * Observe sales_quote_collect_totals_before
+     *
+     * Disable tax if it is required
+     *
+     * Important! Don`t save this products.
+     * We want change tax class only for collect totals calculation
+     *
      * @param Varien_Event_Observer $observer
     */
     public function disableVatTaxForQuote($observer)
@@ -24,5 +31,20 @@ class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
                 $product->setTaxClassId(-1);
             }
         }
+    }
+
+    /**
+     * Observe:
+     *  customer_login
+     *  customer_logout
+     *  customer_address_save_after
+     *
+     * Unset shouldDisableVatTax variable from session
+     */
+    public function removeShouldDisableVatTaxVariableFromSession()
+    {
+        /** @var Mage_Customer_Model_Session $customerSession */
+        $customerSession = Mage::getSingleton('customer/session');
+        $customerSession->unsetData('shouldDisableVatTax');
     }
 }
