@@ -10,10 +10,9 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     public function shouldDisableVatTax()
     {
         /** @var Mage_Customer_Model_Session $customerSession */
-        $customerSession = Mage::getSingleton('customer/session');
+        $customerSession = $customerSession = Mage::getSingleton('customer/session');;
 
-        Zend_Debug::dump($customerSession->getData('shouldDisableVatTax'));
-        if ($customerSession->getData('shouldDisableVatTax') !== null) {
+        if ($customerSession->getData('shouldDisableVatTax') !== null && !Mage::app()->getRequest()->isAjax()) {
             return $customerSession->getData('shouldDisableVatTax');
         }
 
