@@ -28,7 +28,7 @@ class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
             /** @var Mage_Sales_Model_Quote_Item $item */
             foreach ($items as $item) {
                 $product = $item->getProduct();
-                $product->setTaxClassId(-1);
+                $this->_set0PercentTax($product);
             }
         }
     }
@@ -46,5 +46,18 @@ class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
         /** @var Mage_Customer_Model_Session $customerSession */
         $customerSession = Mage::getSingleton('customer/session');
         $customerSession->unsetData('shouldDisableVatTax');
+    }
+
+    /**
+     * Set tax class id = -1 (not exist class),
+     * because without tax class tax cannot be added,
+     * (in other words with taxClassId tax percent
+     * is always equal zero)
+     *
+     * @param Mage_Catalog_Model_Product $product
+    */
+    protected function _set0PercentTax($product)
+    {
+        $product->setTaxClassId(-1);
     }
 }
