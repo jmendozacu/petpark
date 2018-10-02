@@ -18,5 +18,3 @@ var/heurekask-overeno.log
 rewrites.dbm
 rewrites.txt
 /rewrite
-
-/js/*
