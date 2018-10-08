@@ -15,7 +15,7 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
             return parent::getRecent();
         }
         $collection = $this->getBlogCollection();
-        $collection->addFieldToFilter('tags', $this->getTagsFromUrl());
+        $collection->addFieldToFilter('tags', $this->getTagsFromUrl())->getSelect()->limit(6);
         $size = $collection->getSize();
 
         if ($size === 0) {
@@ -27,8 +27,6 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
                 ->addFilterToMap('post_id', 'main_table.post_id')
                 ->addFieldToFilter('post_id', $mergedIds);
         }
-
-        $collection->setPageSize(6);
 
         if ($collection && $this->getData('categories')) {
             $collection->addCatsFilter($this->getData('categories'));
