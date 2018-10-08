@@ -18,8 +18,9 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
         $collection->addFieldToFilter('tags', $this->getTagsFromUrl())->getSelect()->limit(6);
         $size = $collection->getSize();
 
-        if ($size === 0) {
+        if ($size == 0) {
             $collection = $this->getBlogCollection();
+            $collection->getSelect()->limit(6);
         } elseif ($size < 6) {
             $mergedIds = array_merge($collection->getAllIds(), $this->getRecentPostsIds($size, $collection->getAllIds()));
             $collection = $this->getBlogCollection();
@@ -82,15 +83,12 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
     public function getRecentPostsIds($size, $tagIds = null)
     {
         $numberOfPosts = 6 - $size;
-        $counter = 0;
+        $collection = $this->getBlogCollection();
+        $collection->getSelect()->limit($numberOfPosts);
 
-        foreach ($this->getBlogCollection() as $recentPost) {
-            if ($counter == $numberOfPosts) {
-                break;
-            }
+        foreach ($collection as $recentPost) {
             $id = $recentPost->getId();
             if (!in_array($id, $tagIds)) {
-                $counter++;
                 $ids[] = $id;
             }
         }
