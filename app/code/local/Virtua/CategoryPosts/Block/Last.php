@@ -19,9 +19,11 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
         $size = $collection->getSize();
 
         if ($size == 0) {
+            /** If there are 0 category posts, selects last recent*/
             $collection = $this->getBlogCollection();
             $collection->getSelect()->limit(6);
         } elseif ($size < 6) {
+            /** If there are not 6 category posts, selects the next ones */
             $mergedIds = array_merge($collection->getAllIds(), $this->getRecentPostsIds($size, $collection->getAllIds()));
             $collection = $this->getBlogCollection();
             $collection
@@ -75,7 +77,7 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
     }
 
     /**
-     * Gets some recent posts
+     * Gets some recent posts if there are less than 6 posts in category
      * @param $size
      * @param array|null $tagIds
      * @return array
