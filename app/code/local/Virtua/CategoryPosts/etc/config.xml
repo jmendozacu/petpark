@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_CategoryPosts>
+            <version>0.1.0</version>
+        </Virtua_CategoryPosts>
+    </modules>
+    <global>
+        <blocks>
+            <blog>
+                <rewrite>
+                    <last>Virtua_CategoryPosts_Block_Last</last>
+                </rewrite>
+            </blog>
+        </blocks>
+    </global>
+</config>
