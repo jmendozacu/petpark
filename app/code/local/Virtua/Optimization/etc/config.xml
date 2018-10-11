@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_Optimization>
+            <version>1.0.0</version>
+        </Virtua_Optimization>
+    </modules>
+    <global>
+        <models>
+            <catalog>
+                <rewrite>
+                    <product_type_configurable>Virtua_Optimization_Model_Product_Type_Configurable</product_type_configurable>
+                </rewrite>
+            </catalog>
+            <catalog_resource>
+                <rewrite>
+                    <product_type_configurable_attribute_collection>Virtua_Optimization_Model_Resource_Product_Type_Configurable_Attribute_Collection</product_type_configurable_attribute_collection>
+                </rewrite>
+            </catalog_resource>
+        </models>
+        <helpers>
+            <configurableswatches>
+                <rewrite>
+                    <mediafallback>Virtua_Optimization_Helper_Mediafallback</mediafallback>
+                </rewrite>
+            </configurableswatches>
+        </helpers>
+    </global>
+</config>
