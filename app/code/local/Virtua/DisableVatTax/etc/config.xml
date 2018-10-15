@@ -11,12 +11,6 @@
             <virtua_disablevattax>
                 <class>Virtua_DisableVatTax_Model</class>
             </virtua_disablevattax>
-
-            <tax>
-                <rewrite>
-                    <calculation>Virtua_DisableVatTax_Model_Tax_Calculation</calculation>
-                </rewrite>
-            </tax>
         </models>
 
         <helpers>
