@@ -31,7 +31,7 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         'LU' => '\d{8}',                                 # Luxembourg
         'LV' => '\d{11}',                                # Latvia
         'MT' => '\d{8}',                                 # Malta
-        'NL' => '\d{9}B\d{2}',                           # Neherlands
+        'NL' => '\d{9}B\d{2}',                           # Netherlands
         'PL' => '\d{10}',                                # Poland
         'PT' => '\d{9}',                                 # Portugal
         'RO' => '\d{2,10}',                              # Romania
@@ -107,17 +107,16 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     public function isVatNumberValid($vatNumber, $countryCode)
     {
         $patterns = self::$patterns;
-        Mage::log('START', false, 'testvatid62.log', true);
+        $isValid = false;
+
         if (strpos($vatNumber, $countryCode) === 0) {
-            Mage::log('1 IF OK', false, 'testvatid62.log', true);
             $vatNumber = substr($vatNumber, strlen($countryCode));
             if (preg_match('/^'.$patterns[$countryCode].'$/', $vatNumber) > 0) {
-                Mage::log('2 IF OK', false, 'testvatid62.log', true);
                 $viesClient = new SoapClient('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl');
                 $isValid = $viesClient->checkVat(['countryCode' => $countryCode, 'vatNumber' => $vatNumber])->valid;
             }
         }
-        Mage::log('IS VALID: '.$isValid, false, 'testvatid62.log', true);
+
         if ($isValid) {
             return true;
         } else {
