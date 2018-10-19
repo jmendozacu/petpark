@@ -6,7 +6,23 @@
         </Virtua_DisableVatTax>
     </modules>
 
+    <frontend>
+        <layout>
+            <updates>
+                <virtua_disablevattax module="Virtua_DisableVatTax">
+                    <file>disablevattax.xml</file>
+                </virtua_disablevattax>
+            </updates>
+        </layout>
+    </frontend>
+
     <global>
+        <blocks>
+            <virtua_disablevattax>
+                <class>Virtua_DisableVatTax_Block</class>
+            </virtua_disablevattax>
+        </blocks>
+
         <models>
             <virtua_disablevattax>
                 <class>Virtua_DisableVatTax_Model</class>

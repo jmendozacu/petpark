@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <customer_account_edit translate="label">
+        <reference name="my.account.wrapper">
+            <block type="virtua_disablevattax/vatnumber" name="disablevattax_vatnumber" template="disablevattax/vatvalidation.phtml" before="customer_edit"/>
+        </reference>
+    </customer_account_edit>
+</layout>
