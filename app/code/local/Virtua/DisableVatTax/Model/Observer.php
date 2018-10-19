@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Virtua_DisableVatTax_Model_Observer
+ */
 class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
 {
     /**
