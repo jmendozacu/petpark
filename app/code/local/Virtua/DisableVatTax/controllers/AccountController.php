@@ -1,9 +1,19 @@
 <?php
 
+/**
+ * Mage_Customer_AccountController
+ */
 require_once Mage::getModuleDir('controllers', 'Mage_Customer') . DS . 'AccountController.php';
 
+/**
+ * Class Virtua_DisableVatTax_AccountController
+ */
 class Virtua_DisableVatTax_AccountController extends Mage_Customer_AccountController
 {
+    /**
+     * Rewrite customer controller method
+     * @return Mage_Core_Controller_Varien_Action|void
+     */
     public function editPostAction()
     {
         if (!$this->_validateFormKey()) {
@@ -21,22 +31,25 @@ class Virtua_DisableVatTax_AccountController extends Mage_Customer_AccountContro
 
             $customerData = $customerForm->extractData($this->getRequest());
 
-            if ($customer->getTaxvat() != $customerData['taxvat']) {
-                $customerCountryCode = $customer->getDefaultBillingAddress()->getCountry();
-                $vatIdValidation = Mage::helper('virtua_disablevattax')->isVatNumberValid($customerData['taxvat'], $customerCountryCode);
-                $customer->setIsVatIdValid($vatIdValidation);
-                if (!$vatIdValidation) {
-                    $this->_getSession()
-                        ->addError($this->__('Invalid Vat ID.'));
-                }
-                Mage::log($customer->getIsVatIdValid(), null, 'isvatvalid.log', true);
-            }
-
             $errors = array();
             $customerErrors = $customerForm->validateData($customerData);
             if ($customerErrors !== true) {
                 $errors = array_merge($customerErrors, $errors);
             } else {
+                /**
+                 * Checks is new taxvat equals current.
+                 * If not, it checks is taxvat valid and saves 1 (if it is) or 0 (if it is not) to customer attribute.
+                 */
+                if ($customer->getTaxvat() != $customerData['taxvat']) {
+                    $customerCountryCode = $customer->getDefaultBillingAddress()->getCountry();
+                    $vatIdValidation = Mage::helper('virtua_disablevattax')->isVatNumberValid($customerData['taxvat'], $customerCountryCode);
+                    $customer->setIsVatIdValid($vatIdValidation);
+                    if (!$vatIdValidation) {
+                        $this->_getSession()
+                            ->addError($this->__('Invalid Vat ID.'));
+                    }
+                }
+
                 $customerForm->compactData($customerData);
                 $errors = array();
 
@@ -104,6 +117,4 @@ class Virtua_DisableVatTax_AccountController extends Mage_Customer_AccountContro
 
         $this->_redirect('*/*/edit');
     }
-
-
 }
