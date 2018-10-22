@@ -7,27 +7,46 @@
     </modules>
 
     <frontend>
-        <layout>
-            <updates>
-                <virtua_disablevattax module="Virtua_DisableVatTax">
-                    <file>disablevattax.xml</file>
-                </virtua_disablevattax>
-            </updates>
-        </layout>
+        <routers>
+            <customer>
+                <args>
+                    <modules>
+                        <Virtua_DisableVatTax before="Mage_Customer">Virtua_DisableVatTax</Virtua_DisableVatTax>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
     </frontend>
 
     <global>
-        <blocks>
-            <virtua_disablevattax>
-                <class>Virtua_DisableVatTax_Block</class>
-            </virtua_disablevattax>
-        </blocks>
 
         <models>
             <virtua_disablevattax>
                 <class>Virtua_DisableVatTax_Model</class>
             </virtua_disablevattax>
         </models>
+
+        <resources>
+            <virtua_disablevattax_setup>
+                <setup>
+                    <module>Virtua_DisableVatTax</module>
+                    <class>Mage_Customer_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </virtua_disablevattax_setup>
+            <virtua_disablevattax_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </virtua_disablevattax_write>
+            <virtua_disablevattax_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </virtua_disablevattax_read>
+        </resources>
 
         <helpers>
             <virtua_disablevattax>

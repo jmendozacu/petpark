@@ -70,8 +70,7 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
 
         $defaultCountry = Mage::getStoreConfig('general/country/default');
         $isCustomerOutsideDefaultCountry = $countryCode !== $defaultCountry;
-        $vatNumber = $customer->getData('taxvat');
-        $vatNumber = $this->isVatNumberValid($vatNumber, $countryCode);
+        $vatNumber = $customer->getIsVatIdValid();
         $euCountries = $this->getEUCountries();
         if (!$euCountries) {
             $customerSession->setData('shouldDisableVatTax', false);
@@ -79,7 +78,7 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         }
 
         $isEUCustomer = in_array($countryCode, $euCountries);
-        if ($vatNumber && $isEUCustomer && $isCustomerOutsideDefaultCountry) {
+        if ($vatNumber == 1 && $isEUCustomer && $isCustomerOutsideDefaultCountry) {
             $customerSession->setData('shouldDisableVatTax', true);
             return true;
         }
@@ -118,9 +117,9 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         }
 
         if ($isValid) {
-            return true;
+            return 1;
         } else {
-            return false;
+            return 0;
         }
     }
 }
