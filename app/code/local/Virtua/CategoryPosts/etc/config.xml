@@ -5,25 +5,16 @@
             <version>0.1.1</version>
         </Virtua_CategoryPosts>
     </modules>
-    <frontend>
-        <layout>
-            <updates>
-                <categoryposts module="Virtua_CategoryPosts">
-                    <file>categoryposts.xml</file>
-                </categoryposts>
-            </updates>
-        </layout>
-    </frontend>
     <global>
         <blocks>
-            <categoryposts>
-                <class>Virtua_CategoryPosts_Block</class>
-            </categoryposts>
             <blog>
                 <rewrite>
                     <last>Virtua_CategoryPosts_Block_Last</last>
                 </rewrite>
             </blog>
+            <categoryposts>
+                <class>Virtua_CategoryPosts_Block</class>
+            </categoryposts>
         </blocks>
         <resources>
             <virtua_categoryposts_setup>
@@ -33,4 +24,13 @@
             </virtua_categoryposts_setup>
         </resources>
     </global>
+    <frontend>
+        <layout>
+            <updates>
+                <categoryposts module="Virtua_CategoryPosts">
+                    <file>categoryposts.xml</file>
+                </categoryposts>
+            </updates>
+        </layout>
+    </frontend>
 </config>
