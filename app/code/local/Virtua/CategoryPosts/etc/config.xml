@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Virtua_CategoryPosts>
-            <version>0.1.0</version>
+            <version>0.1.1</version>
         </Virtua_CategoryPosts>
     </modules>
     <global>
@@ -12,6 +12,25 @@
                     <last>Virtua_CategoryPosts_Block_Last</last>
                 </rewrite>
             </blog>
+            <categoryposts>
+                <class>Virtua_CategoryPosts_Block</class>
+            </categoryposts>
         </blocks>
+        <resources>
+            <virtua_categoryposts_setup>
+                <setup>
+                    <module>Virtua_CategoryPosts</module>
+                </setup>
+            </virtua_categoryposts_setup>
+        </resources>
     </global>
+    <frontend>
+        <layout>
+            <updates>
+                <categoryposts module="Virtua_CategoryPosts">
+                    <file>categoryposts.xml</file>
+                </categoryposts>
+            </updates>
+        </layout>
+    </frontend>
 </config>
