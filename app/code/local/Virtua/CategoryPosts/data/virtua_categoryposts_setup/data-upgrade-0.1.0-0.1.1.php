@@ -12,11 +12,6 @@ $cmsBlocks = $cmsBlocksModel
 
 if ($cmsBlocks->getSize() > 0) {
 
-    $toReplace =
-        '<style type="text/css">
-#latest_news{margin: -30px -10px;}
-</style>';
-
     foreach ($cmsBlocks as $cmsBlock) {
 
         $data = [
@@ -34,7 +29,10 @@ if ($cmsBlocks->getSize() > 0) {
         $storeId = $cmsBlock->getResource()->lookupStoreIds($cmsBlock->getBlockId());
         $cmsBlock
             ->setStores($storeId)
-            ->setContent(str_replace($filter, $toReplace, $cmsBlock->getContent()))
+            /**
+             * Set new content with replaced filtered text to empty string
+             */
+            ->setContent(str_replace($filter, "", $cmsBlock->getContent()))
             ->save();
     }
 }
