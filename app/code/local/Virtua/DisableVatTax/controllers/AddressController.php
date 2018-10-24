@@ -3,7 +3,7 @@
 /**
  * Mage_Customer_AddressController
  */
-require_once (Mage::getModuleDir('controllers', 'Mage_Customer') . DS . 'AddressController.php');
+require_once Mage::getModuleDir('controllers', 'Mage_Customer') . DS . 'AddressController.php';
 
 /**
  * Class Virtua_DisableVatTax_AddressController
@@ -11,6 +11,8 @@ require_once (Mage::getModuleDir('controllers', 'Mage_Customer') . DS . 'Address
 class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressController
 {
     /**
+     * Rewrites formPostAction from AddressController
+     *
      * @return Mage_Core_Controller_Varien_Action
      */
     public function formPostAction()
