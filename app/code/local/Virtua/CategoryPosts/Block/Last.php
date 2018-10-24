@@ -15,7 +15,14 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
             return parent::getRecent();
         }
         $collection = $this->getBlogCollection();
-        $collection->addFieldToFilter('tags', $this->getTagsFromUrl())->getSelect()->limit(6);
+        $collection
+            ->addFieldToFilter(
+                'tags',
+                $this->getTagsFromUrl()
+            )
+            ->getSelect()
+            ->limit(6);
+        
         $size = $collection->getSize();
 
         if ($size == 0) {
