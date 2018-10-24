@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_DisableVatTax>
+            <version>1.0.0</version>
+        </Virtua_DisableVatTax>
+    </modules>
+
+    <frontend>
+        <routers>
+            <customer>
+                <args>
+                    <modules>
+                        <Virtua_DisableVatTax before="Mage_Customer">Virtua_DisableVatTax</Virtua_DisableVatTax>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+    </frontend>
+
+    <global>
+
+        <models>
+            <virtua_disablevattax>
+                <class>Virtua_DisableVatTax_Model</class>
+            </virtua_disablevattax>
+        </models>
+
+        <resources>
+            <virtua_disablevattax_setup>
+                <setup>
+                    <module>Virtua_DisableVatTax</module>
+                    <class>Mage_Customer_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </virtua_disablevattax_setup>
+            <virtua_disablevattax_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </virtua_disablevattax_write>
+            <virtua_disablevattax_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </virtua_disablevattax_read>
+        </resources>
+
+        <helpers>
+            <virtua_disablevattax>
+                <class>Virtua_DisableVatTax_Helper</class>
+            </virtua_disablevattax>
+        </helpers>
+
+        <events>
+            <sales_quote_collect_totals_before>
+                <observers>
+                    <virtua_disablevattax>
+                        <type>singleton</type>
+                        <class>Virtua_DisableVatTax_Model_Observer</class>
+                        <method>disableVatTaxForQuote</method>
+                    </virtua_disablevattax>
+                </observers>
+            </sales_quote_collect_totals_before>
+
+            <customer_address_save_after>
+                <observers>
+                    <virtua_disablevattax>
+                        <type>singleton</type>
+                        <class>Virtua_DisableVatTax_Model_Observer</class>
+                        <method>removeShouldDisableVatTaxVariableFromSession</method>
+                    </virtua_disablevattax>
+                </observers>
+            </customer_address_save_after>
+
+            <customer_login>
+                <observers>
+                    <virtua_disablevattax>
+                        <type>singleton</type>
+                        <class>Virtua_DisableVatTax_Model_Observer</class>
+                        <method>removeShouldDisableVatTaxVariableFromSession</method>
+                    </virtua_disablevattax>
+                </observers>
+            </customer_login>
+
+            <customer_logout>
+                <observers>
+                    <virtua_disablevattax>
+                        <type>singleton</type>
+                        <class>Virtua_DisableVatTax_Model_Observer</class>
+                        <method>removeShouldDisableVatTaxVariableFromSession</method>
+                    </virtua_disablevattax>
+                </observers>
+            </customer_logout>
+        </events>
+    </global>
+</config>
