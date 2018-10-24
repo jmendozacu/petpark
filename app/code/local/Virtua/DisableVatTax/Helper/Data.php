@@ -62,39 +62,20 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         /** @var Mage_Customer_Model_Customer $customer */
         $customer = $customerSession->getCustomer();
 
-        /** @var string $countryCode */
-        $countryCode = "";
         if ($customer->getDefaultBillingAddress()) {
+            /** @var string $countryCode */
             $countryCode = $customer->getDefaultBillingAddress()->getCountry();
         }
 
-        $defaultCountry = Mage::getStoreConfig('general/country/default');
-        $isCustomerOutsideDefaultCountry = $countryCode !== $defaultCountry;
         $vatNumber = $customer->getIsVatIdValid();
-        $euCountries = $this->getEUCountries();
-        if (!$euCountries) {
-            $customerSession->setData('shouldDisableVatTax', false);
-            return false;
-        }
 
-        $isEUCustomer = in_array($countryCode, $euCountries);
-        if ($vatNumber == 1 && $isEUCustomer && $isCustomerOutsideDefaultCountry) {
+        if ($vatNumber == 1 && !$this->isDomesticCountry($countryCode)) {
             $customerSession->setData('shouldDisableVatTax', true);
             return true;
         }
 
         $customerSession->setData('shouldDisableVatTax', false);
         return false;
-    }
-
-    /**
-     * Get EU countries from config as array
-     *
-     * @return array
-     */
-    public function getEUCountries()
-    {
-        return explode(",", Mage::getStoreConfig('general/country/eu_countries'));
     }
 
     /**
@@ -120,6 +101,17 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
             return 1;
         } else {
             return 0;
+        }
+    }
+
+    public function isDomesticCountry($country)
+    {
+        $domesticCountry = Mage::getStoreConfig('general/country/default');
+
+        if ($domesticCountry == $country) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
