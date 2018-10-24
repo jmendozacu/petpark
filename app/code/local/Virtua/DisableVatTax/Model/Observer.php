@@ -39,7 +39,7 @@ class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
              */
             foreach ($items as $item) {
                 $product = $item->getProduct();
-                $this->_set0PercentTax($product);
+                $this->set0PercentTax($product);
             }
         }
     }
