@@ -90,14 +90,15 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
     {
         $numberOfPosts = 6 - $size;
         $collection = $this->getBlogCollection();
-        $collection->getSelect()->limit($numberOfPosts);
+        $collection
+            ->addFieldToFilter('main_table.post_id', array('nin' => $tagIds))
+            ->getSelect()
+            ->limit($numberOfPosts);
 
         foreach ($collection as $recentPost) {
-            $id = $recentPost->getId();
-            if (!in_array($id, $tagIds)) {
-                $ids[] = $id;
-            }
+            $ids[] = $recentPost->getId();
         }
+
         return $ids;
     }
 }
