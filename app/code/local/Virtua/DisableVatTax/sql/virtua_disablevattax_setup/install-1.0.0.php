@@ -17,4 +17,18 @@ $installer->addAttribute(
     ]
 );
 
+$customers = Mage::getModel('customer/customer')->getCollection();
+
+foreach ($customers as $customer) {
+    $address = $customer->getDefaultBillingAddress();
+    $countrycode = $address->getCountry();
+    $vatnumber = $address->getVatId();
+    if(!empty($vatnumber) && !empty($countrycode)) {
+        $vatNumberValidation = Mage::helper('virtua_disablevattax')->isVatNumberValid($vatnumber, $countrycode);
+        if ($vatNumberValidation) {
+            $customer->setIsVatIdValid($vatNumberValidation)->save();
+        }
+    }
+}
+
 $installer->endSetup();
