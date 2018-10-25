@@ -8,11 +8,13 @@ $installer = $this;
 $installer->startSetup();
 
 $attr = Mage::getResourceModel('catalog/eav_attribute')
-    ->loadByCode('customer','is_vat_id_valid')->getId();
+    ->loadByCode('customer', 'is_vat_id_valid')
+    ->getId();
 
 if (!$attr) {
     $installer->addAttribute(
-        'customer', 'is_vat_id_valid',
+        'customer',
+        'is_vat_id_valid',
         [
             'label' => 'Is vat id valid',
             'visible' => 1,
@@ -24,6 +26,10 @@ if (!$attr) {
 
 $customers = Mage::getModel('customer/customer')->getCollection();
 
+/**
+ * Checks for every customer is vat number is valid,
+ * sets 'is_vat_id_valid' attribute value.
+ */
 foreach ($customers as $customer) {
     $address = $customer->getDefaultBillingAddress();
     if ($address) {
@@ -32,7 +38,9 @@ foreach ($customers as $customer) {
         if (!empty($vatnumber) && !empty($countrycode)) {
             $vatNumberValidation = Mage::helper('virtua_disablevattax')->isVatNumberValid($vatnumber, $countrycode);
             if ($vatNumberValidation) {
-                $customer->setIsVatIdValid($vatNumberValidation)->save();
+                $customer
+                    ->setIsVatIdValid($vatNumberValidation)
+                    ->save();
             }
         }
     }
