@@ -46,31 +46,7 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
             }
 
             try {
-                $helper = Mage::helper('virtua_disablevattax');
-                $currentVatNumber = $customer->getDefaultBillingAddress()->getVatId();
-                $newVatNumber = $addressData['vat_id'];
-
-                if ($currentVatNumber != $newVatNumber) {
-                    $vatNumberValidation = $helper->isVatNumberValid($newVatNumber, $addressData['country_id']);
-                    $customer->setIsVatIdValid($vatNumberValidation)->save();
-
-                    if ($vatNumberValidation) {
-                        if ($helper->isDomesticCountry($addressData['country_id'])) {
-                            $this
-                                ->_getSession()
-                                ->addSuccess($this->__('Your VAT ID was successfully validated. You will be charged tax.'));
-                        } else {
-                            $this
-                                ->_getSession()
-                                ->addSuccess('Your VAT ID was successfully validated. You will not be charged tax.');
-                        }
-                    } else {
-                        $this
-                            ->_getSession()
-                            ->addError($this->__('The VAT ID entered ('.$newVatNumber.') is not a valid VAT ID. You will be charged tax.'));
-                    }
-                }
-
+                $this->disablingTaxByVatNumber($customer, $addressData);
                 $addressForm->compactData($addressData);
                 $address->setCustomerId($customer->getId())
                     ->setIsDefaultBilling($this->getRequest()->getParam('default_billing', false))
@@ -101,5 +77,37 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
             }
         }
         return $this->_redirectError(Mage::getUrl('*/*/edit', array('id' => $address->getId())));
+    }
+
+    /**
+     * Checks is customer should charged tax
+     * @param Mage_Customer $customer
+     * @param array $addressData
+     */
+    public function disablingTaxByVatNumber($customer, $addressData)
+    {
+        $helper = Mage::helper('virtua_disablevattax');
+        $currentVatNumber = $customer->getDefaultBillingAddress()->getVatId();
+        $currentCountry = $customer->getDefaultBillingAddress()->getCountry();
+        $newVatNumber = $addressData['vat_id'];
+        $newCountry = $addressData['country_id'];
+
+        if ($currentVatNumber != $newVatNumber || $currentCountry != $newCountry) {
+            $vatNumberValidation = $helper->isVatNumberValid($newVatNumber, $addressData['country_id']);
+            $customer->setIsVatIdValid($vatNumberValidation)->save();
+            $session = $this->_getSession();
+            if ($vatNumberValidation) {
+                if ($helper->isDomesticCountry($addressData['country_id'])) {
+                    $session
+                        ->addSuccess($this->__('Your VAT ID was successfully validated. You will be charged tax.'));
+                } else {
+                    $session
+                        ->addSuccess('Your VAT ID was successfully validated. You will not be charged tax.');
+                }
+            } else {
+                $session
+                    ->addError($this->__('The VAT ID entered ('.$newVatNumber.') is not a valid VAT ID. You will be charged tax.'));
+            }
+        }
     }
 }
