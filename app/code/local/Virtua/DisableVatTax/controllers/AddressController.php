@@ -60,8 +60,6 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
                     $this->saveValidationResultsToAttr($customer, $addressData['vat_id'], $addressData['country_id']);
                     $this->addSessionVatInfo($customer->getIsVatIdValid(), $addressData['country_id']);
                 }
-
-                //$this->disablingTaxByVatNumber($customer, $addressData);
                 $addressForm->compactData($addressData);
                 $address->setCustomerId($customer->getId())
                     ->setIsDefaultBilling($this->getRequest()->getParam('default_billing', false))
@@ -93,28 +91,36 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
         return $this->_redirectError(Mage::getUrl('*/*/edit', array('id' => $address->getId())));
     }
 
-    public function areValuesChanged($customer, $addressData)
+    /**
+     * Checks have customer values been changed in form request.
+     * @param string[] $addressData
+     * @param $customer
+     */
+    public function areValuesChanged($customer, array $addressData) : bool
     {
         $currentVatNumber = $customer->getDefaultBillingAddress()->getVatId();
         $currentCountry = $customer->getDefaultBillingAddress()->getCountry();
         $newVatNumber = $addressData['vat_id'];
         $newCountry = $addressData['country_id'];
 
-        if ($currentVatNumber != $newVatNumber || $currentCountry != $newCountry) {
-            return true;
-        }
-
-        return false;
+        return $currentVatNumber != $newVatNumber || $currentCountry != $newCountry;
     }
 
-    public function saveValidationResultsToAttr($customer, $vatNumber, $countryId)
+    /**
+     * Save vat number validation results to customer attribute.
+     * @param $customer
+     */
+    public function saveValidationResultsToAttr($customer, string $vatNumber, string $countryId)
     {
         $helper = Mage::helper('virtua_disablevattax');
         $vatNumberValidation = $helper->isVatNumberValid($vatNumber, $countryId);
         $customer->setIsVatIdValid($vatNumberValidation)->save();
     }
-    
-    public function addSessionVatInfo($vatNumberValidation, $countryId)
+
+    /**
+     * Adding info about vat validation to session.
+     */
+    public function addSessionVatInfo(bool $vatNumberValidation, string $countryId)
     {
         $helper = Mage::helper('virtua_disablevattax');
 
