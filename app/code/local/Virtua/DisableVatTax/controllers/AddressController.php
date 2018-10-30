@@ -56,7 +56,12 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
             }
 
             try {
-                $this->disablingTaxByVatNumber($customer, $addressData);
+                if ($this->areValuesChanged($customer, $addressData)) {
+                    $this->saveValidationResultsToAttr($customer, $addressData['vat_id'], $addressData['country_id']);
+                    $this->addSessionVatInfo($customer->getIsVatIdValid(), $addressData['country_id']);
+                }
+
+                //$this->disablingTaxByVatNumber($customer, $addressData);
                 $addressForm->compactData($addressData);
                 $address->setCustomerId($customer->getId())
                     ->setIsDefaultBilling($this->getRequest()->getParam('default_billing', false))
@@ -72,11 +77,10 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
                     $this->_getSession()->addSuccess($this->__('The address has been saved.'));
                     $this->_redirectSuccess(Mage::getUrl('*/*/index', array('_secure'=>true)));
                     return;
-                } else {
-                    $this->_getSession()->setAddressFormData($this->getRequest()->getPost());
-                    foreach ($errors as $errorMessage) {
-                        $this->_getSession()->addError($errorMessage);
-                    }
+                }
+                $this->_getSession()->setAddressFormData($this->getRequest()->getPost());
+                foreach ($errors as $errorMessage) {
+                    $this->_getSession()->addError($errorMessage);
                 }
             } catch (Mage_Core_Exception $e) {
                 $this->_getSession()->setAddressFormData($this->getRequest()->getPost())
@@ -89,35 +93,43 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
         return $this->_redirectError(Mage::getUrl('*/*/edit', array('id' => $address->getId())));
     }
 
-    /**
-     * Checks is customer should charged tax
-     * @param Mage_Customer $customer
-     * @param array $addressData
-     */
-    public function disablingTaxByVatNumber($customer, $addressData)
+    public function areValuesChanged($customer, $addressData)
     {
-        $helper = Mage::helper('virtua_disablevattax');
         $currentVatNumber = $customer->getDefaultBillingAddress()->getVatId();
         $currentCountry = $customer->getDefaultBillingAddress()->getCountry();
         $newVatNumber = $addressData['vat_id'];
         $newCountry = $addressData['country_id'];
 
         if ($currentVatNumber != $newVatNumber || $currentCountry != $newCountry) {
-            $vatNumberValidation = $helper->isVatNumberValid($newVatNumber, $addressData['country_id']);
-            $customer->setIsVatIdValid($vatNumberValidation)->save();
-            $session = $this->_getSession();
-            if ($vatNumberValidation) {
-                if ($helper->isDomesticCountry($addressData['country_id'])) {
-                    $session
-                        ->addSuccess($this->__('Your VAT ID was successfully validated. You will be charged tax.'));
-                } else {
-                    $session
-                        ->addSuccess('Your VAT ID was successfully validated. You will not be charged tax.');
-                }
+            return true;
+        }
+
+        return false;
+    }
+
+    public function saveValidationResultsToAttr($customer, $vatNumber, $countryId)
+    {
+        $helper = Mage::helper('virtua_disablevattax');
+        $vatNumberValidation = $helper->isVatNumberValid($vatNumber, $countryId);
+        $customer->setIsVatIdValid($vatNumberValidation)->save();
+    }
+    
+    public function addSessionVatInfo($vatNumberValidation, $countryId)
+    {
+        $helper = Mage::helper('virtua_disablevattax');
+
+        $session = $this->_getSession();
+        if ($vatNumberValidation) {
+            if ($helper->isDomesticCountry($countryId)) {
+                $session
+                    ->addSuccess($this->__('Your VAT ID was successfully validated. You will be charged tax.'));
             } else {
                 $session
-                    ->addError($this->__('The VAT ID entered ('.$newVatNumber.') is not a valid VAT ID. You will be charged tax.'));
+                    ->addSuccess('Your VAT ID was successfully validated. You will not be charged tax.');
             }
+        } else {
+            $session
+                ->addError($this->__('Entered VAT ID is not a valid VAT ID. You will be charged tax.'));
         }
     }
 }

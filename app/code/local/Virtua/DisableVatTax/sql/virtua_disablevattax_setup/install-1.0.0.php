@@ -1,11 +1,11 @@
 <?php
 /**
- * Installing customer attribute for vat number validation'
+ * Installing customer attribute for vat number validation
  *
  * PHP version 7.1.21
  *
  * @category  Controller
- * @package   Virtua\DisableVatTax\controllers\AddressController
+ * @package   Virtua\DisableVatTax\sql\virtua_disablevattax_setup\install-1.0.0.php
  * @author    Maciej Skalny <m.skalny@wearevirtua.com>
  * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
  */
@@ -35,7 +35,7 @@ if (!$attr) {
 }
 
 $customers = Mage::getModel('customer/customer')->getCollection();
-
+$helper = Mage::helper('virtua_disablevattax');
 /**
  * Checks for every customer is vat number is valid,
  * sets 'is_vat_id_valid' attribute value.
@@ -46,7 +46,7 @@ foreach ($customers as $customer) {
         $countrycode = $address->getCountry();
         $vatnumber = $address->getVatId();
         if (!empty($vatnumber) && !empty($countrycode)) {
-            $vatNumberValidation = Mage::helper('virtua_disablevattax')->isVatNumberValid($vatnumber, $countrycode);
+            $vatNumberValidation = $helper->isVatNumberValid($vatnumber, $countrycode);
             if ($vatNumberValidation) {
                 $customer
                     ->setIsVatIdValid($vatNumberValidation)
