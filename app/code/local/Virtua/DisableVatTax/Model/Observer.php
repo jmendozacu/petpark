@@ -1,4 +1,14 @@
 <?php
+/**
+ * Event observer.
+ *
+ * PHP version 7.1.21
+ *
+ * @category  Observer
+ * @package   Virtua\DisableVatTax\Model\Observer
+ * @author    Maciej Skalny <m.skalny@wearevirtua.com>
+ * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
+ */
 
 /**
  * Class Virtua_DisableVatTax_Model_Observer
@@ -6,16 +16,9 @@
 class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
 {
     /**
-     * Observe sales_quote_collect_totals_before
-     *
-     * Disable tax if it is required
-     *
-     * Important! Don`t save this products.
-     * We want change tax class only for collect totals calculation
-     *
-     * @param Varien_Event_Observer $observer
+     * Disable tax for collect totals calculation if it is required
      */
-    public function disableVatTaxForQuote($observer)
+    public function disableVatTaxForQuote(Varien_Event_Observer $observer) : void
     {
         /**
          * @var Virtua_DisableVatTax_Helper_Data $disableVatHelper
@@ -39,20 +42,15 @@ class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
              */
             foreach ($items as $item) {
                 $product = $item->getProduct();
-                $this->set0PercentTax($product);
+                $this->setZeroPercentTax($product);
             }
         }
     }
 
     /**
-     * Observe:
-     *  customer_login
-     *  customer_logout
-     *  customer_address_save_after
-     *
      * Unset shouldDisableVatTax variable from session
      */
-    public function removeShouldDisableVatTaxVariableFromSession()
+    public function removeShouldDisableVatTaxVariableFromSession() : void
     {
         /**
          * @var Mage_Customer_Model_Session $customerSession
@@ -62,14 +60,9 @@ class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
     }
 
     /**
-     * Set tax class id = -1 (not exist class),
-     * because without tax class tax cannot be added,
-     * (in other words with taxClassId tax percent
-     * is always equal zero)
-     *
-     * @param Mage_Catalog_Model_Product $product
+     * Sets tax class id to nonexistent.
      */
-    protected function set0PercentTax($product)
+    protected function setZeroPercentTax(Mage_Catalog_Model_Product $product) : void
     {
         $product->setTaxClassId(-1);
     }

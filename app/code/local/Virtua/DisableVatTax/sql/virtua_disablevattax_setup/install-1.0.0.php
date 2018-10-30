@@ -1,9 +1,19 @@
 <?php
+/**
+ * Installing customer attribute for vat number validation'
+ *
+ * PHP version 7.1.21
+ *
+ * @category  Controller
+ * @package   Virtua\DisableVatTax\controllers\AddressController
+ * @author    Maciej Skalny <m.skalny@wearevirtua.com>
+ * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
+ */
 
 /**
  * Adding new attribute to customer which holds result of vat number validation.
  */
-$installer = $this;
+$installer = new Mage_Customer_Model_Entity_Setup();
 
 $installer->startSetup();
 

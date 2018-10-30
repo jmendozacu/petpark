@@ -5,27 +5,12 @@
             <version>1.0.0</version>
         </Virtua_DisableVatTax>
     </modules>
-
-    <frontend>
-        <routers>
-            <customer>
-                <args>
-                    <modules>
-                        <Virtua_DisableVatTax before="Mage_Customer">Virtua_DisableVatTax</Virtua_DisableVatTax>
-                    </modules>
-                </args>
-            </customer>
-        </routers>
-    </frontend>
-
     <global>
-
         <models>
             <virtua_disablevattax>
                 <class>Virtua_DisableVatTax_Model</class>
             </virtua_disablevattax>
         </models>
-
         <resources>
             <virtua_disablevattax_setup>
                 <setup>
@@ -47,13 +32,11 @@
                 </connection>
             </virtua_disablevattax_read>
         </resources>
-
         <helpers>
             <virtua_disablevattax>
                 <class>Virtua_DisableVatTax_Helper</class>
             </virtua_disablevattax>
         </helpers>
-
         <events>
             <sales_quote_collect_totals_before>
                 <observers>
@@ -64,7 +47,6 @@
                     </virtua_disablevattax>
                 </observers>
             </sales_quote_collect_totals_before>
-
             <customer_address_save_after>
                 <observers>
                     <virtua_disablevattax>
@@ -74,7 +56,6 @@
                     </virtua_disablevattax>
                 </observers>
             </customer_address_save_after>
-
             <customer_login>
                 <observers>
                     <virtua_disablevattax>
@@ -84,7 +65,6 @@
                     </virtua_disablevattax>
                 </observers>
             </customer_login>
-
             <customer_logout>
                 <observers>
                     <virtua_disablevattax>
@@ -96,4 +76,15 @@
             </customer_logout>
         </events>
     </global>
+    <frontend>
+        <routers>
+            <customer>
+                <args>
+                    <modules>
+                        <Virtua_DisableVatTax before="Mage_Customer">Virtua_DisableVatTax</Virtua_DisableVatTax>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+    </frontend>
 </config>

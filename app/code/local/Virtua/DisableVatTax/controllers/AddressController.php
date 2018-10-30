@@ -1,4 +1,14 @@
 <?php
+/**
+ * Overwrited Mage_Customer_AddressController.
+ *
+ * PHP version 7.1.21
+ *
+ * @category  Controller
+ * @package   Virtua\DisableVatTax\controllers\AddressController
+ * @author    Maciej Skalny <m.skalny@wearevirtua.com>
+ * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
+ */
 
 /**
  * Mage_Customer_AddressController
@@ -20,7 +30,7 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
         if (!$this->_validateFormKey()) {
             return $this->_redirect('*/*/');
         }
-        // Save data
+
         if ($this->getRequest()->isPost()) {
             $customer = $this->_getSession()->getCustomer();
             /* @var $address Mage_Customer_Model_Address */
