@@ -4,9 +4,9 @@
  *
  * PHP version 7.1.21
  *
- * @category  Helper
- * @package   Virtua\DisableVatTax\Helper\Data
- * @author    Maciej Skalny <m.skalny@wearevirtua.com>
+ * @category  DisableVatTax
+ * @package   Virtua_DisableVatTax
+ * @author    Maciej Skalny <contact@wearevirtua.com>
  * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
  */
 
@@ -59,7 +59,7 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Virtua_DisableVatTax_Helper_Data constructor
      */
-    protected function construct() : void
+    public function __construct()
     {
         $this->viesClient = new SoapClient('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl');
     }
@@ -122,17 +122,14 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         if (strpos($vatNumber, $countryCode) === 0) {
             $vatNumber = substr($vatNumber, strlen($countryCode));
             if ($this->checkVatNumberPattern($vatNumber, $countryCode)) {
-                $viesClient = new SoapClient('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl');
+                $viesClient = $this->viesClient;
                 $isValid = $viesClient
                     ->checkVat(['countryCode' => $countryCode, 'vatNumber' => $vatNumber])
                     ->valid;
             }
         }
 
-        if ($isValid) {
-            return 1;
-        }
-        return 0;
+        return $isValid;
     }
 
     /**

@@ -4,8 +4,8 @@
  *
  * PHP version 7.1.21
  *
- * @category  Controller
- * @package   Virtua\DisableVatTax\sql\virtua_disablevattax_setup\install-1.0.0.php
+ * @category  DisableVatTax
+ * @package   Virtua_DisableVatTax
  * @author    Maciej Skalny <m.skalny@wearevirtua.com>
  * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
  */
