@@ -1,9 +1,5 @@
 <?php
 /**
- * DisableVatTax module helper.
- *
- * PHP version 7.1.21
- *
  * @category  DisableVatTax
  * @package   Virtua_DisableVatTax
  * @author    Maciej Skalny <contact@wearevirtua.com>
@@ -50,8 +46,10 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         'SI' => '\d{8}',                                 // Slovenia
         'SK' => '\d{10}'                                 // Slovakia
     ];
+
     /**
      * Soap connection with VIES.
+     *
      * @var Zend_Soap_Client
      */
     protected $viesClient;
@@ -66,6 +64,7 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
 
     /**
      * Check if customer must pay tax
+     *
      * @return bool
      */
     public function shouldDisableVatTax()
@@ -133,7 +132,7 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * Checks is country code equals domestic country code.
+     * Checks is it domestic country.
      */
     public function isDomesticCountry(string $country) : bool
     {

@@ -1,12 +1,8 @@
 <?php
 /**
- * Overwrited Mage_Customer_AddressController.
- *
- * PHP version 7.1.21
- *
  * @category  DisableVatTax
  * @package   Virtua_DisableVatTax
- * @author    Maciej Skalny <m.skalny@wearevirtua.com>
+ * @author    Maciej Skalny <contact@wearevirtua.com>
  * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
  */
 

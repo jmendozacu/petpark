@@ -1,17 +1,13 @@
 <?php
 /**
- * Installing customer attribute for vat number validation
- *
- * PHP version 7.1.21
- *
  * @category  DisableVatTax
  * @package   Virtua_DisableVatTax
- * @author    Maciej Skalny <m.skalny@wearevirtua.com>
+ * @author    Maciej Skalny <contact@wearevirtua.com>
  * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
  */
 
 /**
- * Adding new attribute to customer which holds result of vat number validation.
+ * @var Mage_Customer_Model_Entity_Setup
  */
 $installer = new Mage_Customer_Model_Entity_Setup();
 
@@ -36,6 +32,7 @@ if (!$attr) {
 
 $customers = Mage::getModel('customer/customer')->getCollection();
 $helper = Mage::helper('virtua_disablevattax');
+
 /**
  * Checks for every customer is vat number is valid,
  * sets 'is_vat_id_valid' attribute value.

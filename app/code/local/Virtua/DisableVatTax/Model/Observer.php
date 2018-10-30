@@ -1,12 +1,8 @@
 <?php
 /**
- * Event observer.
- *
- * PHP version 7.1.21
- *
  * @category  DisableVatTax
  * @package   Virtua_DisableVatTax
- * @author    Maciej Skalny <m.skalny@wearevirtua.com>
+ * @author    Maciej Skalny <contact@wearevirtua.com>
  * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
  */
 
@@ -60,7 +56,7 @@ class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
     }
 
     /**
-     * Sets tax class id to nonexistent.
+     * Sets nonexistent tax class id.
      */
     protected function setZeroPercentTax(Mage_Catalog_Model_Product $product) : void
     {
