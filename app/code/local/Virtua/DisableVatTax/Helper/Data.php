@@ -137,7 +137,6 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     public function isDomesticCountry(string $country) : bool
     {
         $domesticCountry = Mage::getStoreConfig('general/country/default');
-
         return $domesticCountry == $country;
     }
 
@@ -147,11 +146,6 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     public function checkVatNumberPattern(string $vatNumber, string $countryCode) : bool
     {
         $patterns = self::$patterns;
-
-        if (preg_match('/^'.$patterns[$countryCode].'$/', $vatNumber) > 0) {
-            return true;
-        }
-
-        return false;
+        return preg_match('/^'.$patterns[$countryCode].'$/', $vatNumber) > 0;
     }
 }
