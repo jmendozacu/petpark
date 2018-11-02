@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_TLSoft>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <TLSoft_BarionPayment />
+            </depends>
+        </Virtua_TLSoft>
+    </modules>
+</config>

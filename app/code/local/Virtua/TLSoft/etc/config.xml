@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_TLSoft>
+            <version>0.1.0</version>
+        </Virtua_TLSoft>
+    </modules>
+    <global>
+        <models>
+            <tlbarion>
+                <rewrite>
+                    <paymentmethod>Virtua_TLSoft_Model_Paymentmethod</paymentmethod>
+                </rewrite>
+            </tlbarion>
+        </models>
+        <blocks>
+            <tlbarion>
+                <rewrite>
+                    <form>Virtua_TLSoft_Block_Form</form>
+                </rewrite>
+            </tlbarion>
+        </blocks>
+    </global>
+</config>
