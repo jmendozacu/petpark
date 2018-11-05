@@ -5,6 +5,13 @@
             <version>0.1.0</version>
         </Virtua_TLSoft>
     </modules>
+    <default>
+        <payment>
+            <tlbarion>
+                <virtua_tlsoft_reservation_period>1.00:00:00</virtua_tlsoft_reservation_period>
+            </tlbarion>
+        </payment>
+    </default>
     <global>
         <models>
             <tlbarion>

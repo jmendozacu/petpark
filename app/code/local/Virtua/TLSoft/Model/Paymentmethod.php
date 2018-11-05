@@ -74,6 +74,12 @@ class Virtua_TLSoft_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Payme
             ]]
         ];
 
+        $paymentType = Mage::getStoreConfig('payment/tlbarion/virtua_tlsoft_paymenttype', Mage::app()->getStore());
+        if ($paymentType == 'reservation') {
+            $header['PaymentType'] = 'Reservation';
+            $header['ReservationPeriod'] = Mage::getStoreConfig('payment/tlbarion/virtua_tlsoft_reservation_period', Mage::app()->getStore());
+        }
+
         $products = '';
 
         $json = json_encode($header);
@@ -99,6 +105,7 @@ class Virtua_TLSoft_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Payme
 
         if ($result != false) {
             $resultarray = json_decode($result, true);
+            Mage::log($resultarray, null, 'resultarray.log', true);
             if (array_key_exists('PaymentId', $resultarray)) {
                 $this->updateTrans(
                     [
