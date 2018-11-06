@@ -27,6 +27,7 @@
             <tlbarion>
                 <rewrite>
                     <form>Virtua_TLSoft_Block_Form</form>
+                    <adminhtml_barionpayment_grid>Virtua_TLSoft_Block_Grid</adminhtml_barionpayment_grid>
                 </rewrite>
             </tlbarion>
         </blocks>
