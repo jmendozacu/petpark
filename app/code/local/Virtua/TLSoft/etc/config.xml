@@ -62,4 +62,15 @@
             </controller_action_layout_render_before_adminhtml_sales_order_view>
         </events>
     </adminhtml>
+    <frontend>
+        <routers>
+            <tlbarion>
+                <args>
+                    <modules>
+                        <Virtua_TLSoft before="TLSoft_BarionPayments">Virtua_TLSoft</Virtua_TLSoft>
+                    </modules>
+                </args>
+            </tlbarion>
+        </routers>
+    </frontend>
 </config>

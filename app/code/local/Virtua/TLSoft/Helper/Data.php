@@ -105,6 +105,7 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         $result = $this->callBarionToRefund($json, $storeid);
 
         if ($result != false) {
+            $this->refundInAdmin($order);
             $order->setState(Mage_Sales_Model_Order::STATE_CANCELED, true)->save();
             $transaction
                 ->setData('payment_status', '02')
@@ -221,6 +222,66 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         } catch (Exception $e) {
             Mage::log($e);
             return false;
+        }
+    }
+
+    /**
+     * @param $order
+     * @return bool
+     */
+    public function refundInAdmin($order)
+    {
+        if (!$order->getId()) {
+            return false;
+        }
+        $data = [];
+        $service = Mage::getModel('sales/service_order', $order);
+        $creditmemo = $service->prepareCreditmemo($data);
+
+        if ($refundToStoreCreditAmount) {
+            $refundToStoreCreditAmount = max(
+                0,
+                min(
+                    $creditmemo->getBaseCustomerBalanceReturnMax(),
+                    $refundToStoreCreditAmount
+                )
+            );
+            if ($refundToStoreCreditAmount) {
+                $refundToStoreCreditAmount = $creditmemo->getStore()->roundPrice($refundToStoreCreditAmount);
+                $creditmemo->setBaseCustomerBalanceTotalRefunded($refundToStoreCreditAmount);
+                $refundToStoreCreditAmount = $creditmemo->getStore()->roundPrice(
+                    $refundToStoreCreditAmount * $order->getStoreToOrderRate()
+                );
+                $creditmemo->setBsCustomerBalTotalRefunded($refundToStoreCreditAmount);
+                $creditmemo->setCustomerBalanceRefundFlag(true);
+            }
+        }
+        $creditmemo->setPaymentRefundDisallowed(true)->register();
+        try {
+            Mage::getModel('core/resource_transaction')
+                ->addObject($creditmemo)
+                ->addObject($order)
+                ->save();
+        } catch (Mage_Core_Exception $e) {
+            return false;
+        }
+    }
+
+    public function processOrderSuccess($order)
+    {
+        if ($order) {
+            $invoice = $order->prepareInvoice();
+            $invoice->register()->capture();
+            Mage::getModel('core/resource_transaction')
+                ->addObject($invoice)
+                ->addObject($invoice->getOrder())
+                ->save();
+        }
+
+        if ($order->getState() != Mage_Sales_Model_Order::STATE_PROCESSING) {
+            $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING);
+            $order->setStatus('processing');
+            $order->save();
         }
     }
 }
