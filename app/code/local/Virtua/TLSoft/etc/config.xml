@@ -14,6 +14,9 @@
     </default>
     <global>
         <models>
+            <virtua_tlsoft>
+                <class>Virtua_TLSoft_Model</class>
+            </virtua_tlsoft>
             <tlbarion>
                 <rewrite>
                     <paymentmethod>Virtua_TLSoft_Model_Paymentmethod</paymentmethod>
@@ -27,5 +30,35 @@
                 </rewrite>
             </tlbarion>
         </blocks>
+        <helpers>
+            <tlbarion>
+                <rewrite>
+                    <data>Virtua_TLSoft_Helper_Data</data>
+                </rewrite>
+            </tlbarion>
+        </helpers>
     </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Virtua_TLSoft before="Virtua_TLSoft_Adminhtml">Virtua_TLSoft_Adminhtml</Virtua_TLSoft>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <events>
+            <controller_action_layout_render_before_adminhtml_sales_order_view>
+                <observers>
+                    <ctp_tcs>
+                        <class>Virtua_TLSoft_Model_Adminhtml_Observer</class>
+                        <method>loadButtons</method>
+                    </ctp_tcs>
+                </observers>
+            </controller_action_layout_render_before_adminhtml_sales_order_view>
+        </events>
+    </adminhtml>
 </config>
