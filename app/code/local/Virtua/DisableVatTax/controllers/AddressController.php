@@ -29,6 +29,7 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
 
         if ($this->getRequest()->isPost()) {
             $customer = $this->_getSession()->getCustomer();
+            Mage::log($customer, null, 'czymjestcustomer.log', true);
             /* @var $address Mage_Customer_Model_Address */
             $address  = Mage::getModel('customer/address');
             $addressId = $this->getRequest()->getParam('id');
@@ -89,8 +90,8 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
 
     /**
      * Checks have customer values been changed in form request.
-     * @param string[] $addressData
      * @param $customer
+     * @param string[] $addressData
      */
     public function areValuesChanged($customer, array $addressData) : bool
     {
