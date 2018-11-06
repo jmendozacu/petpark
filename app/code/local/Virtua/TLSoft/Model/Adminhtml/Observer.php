@@ -21,8 +21,17 @@ class Virtua_TLSoft_Model_Adminhtml_Observer
             return $this;
         }
         $orderId = Mage::app()->getRequest()->getParam('order_id');
-        $this->createRefundButton($block, $orderId);
-        $this->createFinishReservationButton($block, $orderId);
+        $state = Mage::getModel('sales/order')->load($orderId)->getState();
+        $isBarion = Mage::getModel('tlbarion/paymentmethod')
+            ->getTransModel()
+            ->loadByOrderId($orderId)
+            ->getData('real_orderid');
+
+        if (($state == 'processing' || $state == 'complete') && $isBarion) {
+            $this->createRefundButton($block, $orderId);
+        } elseif ($state == 'pending_payment' && $isBarion) {
+            $this->createFinishReservationButton($block, $orderId);
+        }
 
         return $this;
     }

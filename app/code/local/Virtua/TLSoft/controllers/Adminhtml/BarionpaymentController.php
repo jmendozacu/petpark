@@ -20,6 +20,8 @@ class Virtua_TLSoft_Adminhtml_BarionpaymentController extends TLSoft_BarionPayme
     {
         $helper = Mage::helper('tlbarion')->refundPayment($this->getOrderIdParameter());
         $this->redirectToOrderView();
+        //Mage::getSingleton('adminhtml/session')->addSuccess('Success!');
+        //->addError('Something goes wrong. All emails were to customers that received emails before.');
     }
 
     public function finishReservationAction()

@@ -29,7 +29,7 @@ class Virtua_TLSoft_RedirectionController extends TLSoft_BarionPayment_Redirecti
                 $this->_redirect('tlbarion/redirection/success', array('_secure'=>true));
             } elseif ($otpdata == 'fail') {
                 $this->_redirect('tlbarion/redirection/cancel', array('_secure'=>true));
-            } elseif ($otpdata == 'reserved') {
+            } elseif ($otpdata == 'pending') {
                 $this->_redirect('tlbarion/redirection/success', array('_secure'=>true));
             } else {
                 $this->_redirect('tlbarion/redirection/cancel', array('_secure'=>true));

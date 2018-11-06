@@ -171,8 +171,6 @@ class Virtua_TLSoft_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Payme
 
         $result = $helper->refundPayment($json, $storeid);
 
-        //$resultarray = json_decode($result, true);
-        //Mage::log($resultarray, null, 'reinuiasndisaud.log', true);
         $transid = $this->saveTrans([
             'real_orderid'   => $lastorderid,
             'order_id'       => $order->getId(),
@@ -195,7 +193,6 @@ class Virtua_TLSoft_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Payme
         if ($result != false) {
             $resultarray = json_decode($result, true);
             if (array_key_exists('PaymentId', $resultarray)) {
-                // Mage::log($resultarray["PaymentId"], null, 'PAYMENTID.log', true);
                 $this->updateTrans(
                     [
                         'bariontransactionid' => $resultarray['Transactions'][0]['TransactionId']

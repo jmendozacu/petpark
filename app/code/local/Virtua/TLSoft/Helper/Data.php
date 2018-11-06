@@ -11,10 +11,10 @@
  */
 class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
 {
-    protected $_testrefund      = "https://api.test.barion.com/v2/Payment/Refund";
-    protected $_refund          = "https://api.barion.com/v2/Payment/Refund";
-    protected $_testreservation = "https://api.test.barion.com/v2/Payment/FinishReservation";
-    protected $_reservation     = "https://api.barion.com/v2/Payment/FinishReservation";
+    protected $_testrefund      = 'https://api.test.barion.com/v2/Payment/Refund';
+    protected $_refund          = 'https://api.barion.com/v2/Payment/Refund';
+    protected $_testreservation = 'https://api.test.barion.com/v2/Payment/FinishReservation';
+    protected $_reservation     = 'https://api.barion.com/v2/Payment/FinishReservation';
 
     /**
      * @param string $order
@@ -105,6 +105,7 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         $result = $this->callBarionToRefund($json, $storeid);
 
         if ($result != false) {
+            $resultarray = json_decode($result, true);
             $this->refundInAdmin($order);
             $order->setState(Mage_Sales_Model_Order::STATE_CANCELED, true)->save();
             $transaction
@@ -137,9 +138,12 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         $result = $this->callBarionToFinishReservation($json, $storeid);
 
         if ($result != false) {
+            $resultarray = json_decode($result, true);
             $this->processOrderSuccess($order);
             $transaction
+                ->setData('bariontransactionid', $this->getSucceededTransaction($resultarray['Transactions']))
                 ->setData('payment_status', '02')
+                ->setData('real_orderid', $resultarray['PaymentId'])
                 ->save();
         }
     }
@@ -215,10 +219,9 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             if (!$err) {
                 curl_close($ch);
                 return $content;
-            } else {
-                Mage::log("Barion curl error: ".$err);
-                return false;
             }
+            Mage::log('Barion curl error: '.$err);
+            return false;
         } catch (Exception $e) {
             Mage::log($e);
             return false;
@@ -283,5 +286,15 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             $order->setStatus('processing');
             $order->save();
         }
+    }
+
+    /**
+     * @param $transactions
+     * @return string
+     */
+    public function getSucceededTransaction($transactions)
+    {
+        $transaction = end($transactions);
+        return $transaction['TransactionId'];
     }
 }
