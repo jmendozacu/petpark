@@ -87,12 +87,9 @@ class Virtua_TLSoft_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Payme
 
         if ($initiateRecurrence == false) {
             unset($header['RedirectUrl']);
+            $header['CallbackUrl'] = Mage::getBaseUrl().'tlbarion/redirection/respond/';
         }
-
-        //sprawdzic czy jest token w sesji i czy chcemy go obslugiwac
-        //wywalac index z tablicy
-        //zapisywac do sesji token
-
+        
         $paymentType = Mage::getStoreConfig('payment/tlbarion/virtua_tlsoft_paymenttype', Mage::app()->getStore());
         if ($paymentType == 'reservation') {
             $header['PaymentType'] = 'Reservation';
@@ -138,6 +135,11 @@ class Virtua_TLSoft_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Payme
                     ],
                     $transid
                 );
+
+                if ($resultarray['']) {
+                    $url = 'http://www.dev.petpark.cz/checkout/onepage/success';
+                    return $url.'?paymentId='.$resultarray['PaymentId'];
+                }
                 $url = $helper->getRedirectUrl($storeid);
                 return $url.'?id='.$resultarray['PaymentId'];
             }
