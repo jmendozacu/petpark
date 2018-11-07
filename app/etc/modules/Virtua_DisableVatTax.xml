@@ -7,6 +7,7 @@
             <version>1.0.0</version>
             <depends>
                 <Mage_Customer/>
+                <Dotdigitalgroup_Email/>
             </depends>
         </Virtua_DisableVatTax>
     </modules>

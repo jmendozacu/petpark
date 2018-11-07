@@ -14,7 +14,7 @@ class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
     /**
      * Disable tax for collect totals calculation if it is required
      */
-    public function disableVatTaxForQuote(Varien_Event_Observer $observer) : void
+    public function disableVatTaxForQuote(Varien_Event_Observer $observer)
     {
         /**
          * @var Virtua_DisableVatTax_Helper_Data $disableVatHelper
@@ -46,7 +46,7 @@ class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
     /**
      * Unset shouldDisableVatTax variable from session
      */
-    public function removeShouldDisableVatTaxVariableFromSession() : void
+    public function removeShouldDisableVatTaxVariableFromSession()
     {
         /**
          * @var Mage_Customer_Model_Session $customerSession
@@ -57,8 +57,9 @@ class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
 
     /**
      * Sets nonexistent tax class id.
+     * @param $product
      */
-    protected function setZeroPercentTax(Mage_Catalog_Model_Product $product) : void
+    protected function setZeroPercentTax($product)
     {
         $product->setTaxClassId(-1);
     }
