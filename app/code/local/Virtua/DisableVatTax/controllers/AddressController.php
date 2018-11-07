@@ -96,7 +96,7 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
      *
      * @return bool
      */
-    public function areValuesChanged($customer, $addressData) : bool
+    public function areValuesChanged($customer, $addressData)
     {
         $currentVatNumber = $customer->getDefaultBillingAddress()->getVatId();
         $currentCountry = $customer->getDefaultBillingAddress()->getCountry();
@@ -109,7 +109,7 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
     /**
      * Save vat number validation results to customer attribute.
      *
-     * @param $customer
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
      * @param string $vatNumber
      * @param string $countryId
      */
@@ -121,9 +121,10 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
     }
 
     /**
-     * Adding info about vat validation to session.
+     * @param bool $vatNumberValidation
+     * @param string $countryId
      */
-    public function addSessionVatInfo(bool $vatNumberValidation, string $countryId)
+    public function addSessionVatInfo($vatNumberValidation, $countryId)
     {
         $helper = Mage::helper('virtua_disablevattax');
 
