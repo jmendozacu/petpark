@@ -113,8 +113,13 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
 
     /**
      * Checks is customer has a valid vat id with European Commission VAT validation.
+     *
+     * @param $vatNumber
+     * @param $countryCode
+     *
+     * @return bool
      */
-    public function isVatNumberValid(string $vatNumber, string $countryCode) : bool
+    public function isVatNumberValid($vatNumber, $countryCode)
     {
         $isValid = false;
 
@@ -133,8 +138,12 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
 
     /**
      * Checks is it domestic country.
+     *
+     * @param $country
+     *
+     * @return bool
      */
-    public function isDomesticCountry(string $country) : bool
+    public function isDomesticCountry($country)
     {
         $domesticCountry = Mage::getStoreConfig('general/country/default');
         return $domesticCountry == $country;
@@ -142,8 +151,13 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
 
     /**
      * Checks is vat number pattern valid.
+     *
+     * @param $vatNumber
+     * @param $countryCode
+     *
+     * @return bool
      */
-    public function checkVatNumberPattern(string $vatNumber, string $countryCode) : bool
+    public function checkVatNumberPattern($vatNumber, $countryCode)
     {
         $patterns = self::$patterns;
         return preg_match('/^'.$patterns[$countryCode].'$/', $vatNumber) > 0;
