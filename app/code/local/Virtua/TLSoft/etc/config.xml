@@ -72,5 +72,25 @@
                 </args>
             </tlbarion>
         </routers>
+        <events>
+            <customer_login>
+                <observers>
+                    <virtua_tlsoft_model_observer>
+                        <type>model</type>
+                        <class>Virtua_TLSoft_Model_Observer</class>
+                        <method>removeToken</method>
+                    </virtua_tlsoft_model_observer>
+                </observers>
+            </customer_login>
+            <customer_logout>
+                <observers>
+                    <virtua_tlsoft_model_observer>
+                        <type>model</type>
+                        <class>Virtua_TLSoft_Model_Observer</class>
+                        <method>removeToken</method>
+                    </virtua_tlsoft_model_observer>
+                </observers>
+            </customer_logout>
+        </events>
     </frontend>
 </config>

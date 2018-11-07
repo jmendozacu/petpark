@@ -56,15 +56,6 @@ class Virtua_TLSoft_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Payme
             $products[$i]['ItemTotal']   = $shipping;
         }
 
-
-        if (Mage::getSingleton('core/session')->getBarionToken() != null) {
-            $recurrenceId = Mage::getSingleton('core/session')->getBarionToken();
-            $initiateRecurrence = false;
-        } else {
-            $recurrenceId = $this->prepareToken();
-            $initiateRecurrence = true;
-        }
-
         $header = [
             'POSKey'           => $helper->getShopId($storeid),
             'PaymentType'      => 'Immediate',
@@ -72,8 +63,6 @@ class Virtua_TLSoft_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Payme
             'GuestCheckOut'    => true,
             'FundingSources'   => ['All'],
             'PaymentRequestId' => $lastorderid,
-            'InitiateRecurrence' => $initiateRecurrence,
-            'RecurrenceId' => $recurrenceId,
             'RedirectUrl'      => Mage::getBaseUrl().'tlbarion/redirection/respond/',
             'currency'         => $currency,
             'locale'           => 'sk-SK',
@@ -85,11 +74,21 @@ class Virtua_TLSoft_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Payme
             ]]
         ];
 
+        if ($this->isTokenPaymentEnabled()) {
+            if (Mage::getSingleton('core/session')->getBarionToken() != null) {
+                $header['RecurrenceId'] = Mage::getSingleton('core/session')->getBarionToken();
+                $header['InitiateRecurrence'] = false;
+            } else {
+                $header['RecurrenceId'] = $this->prepareToken();
+                $header['InitiateRecurrence'] = true;
+            }
+        }
+
         if ($initiateRecurrence == false) {
             unset($header['RedirectUrl']);
             $header['CallbackUrl'] = Mage::getBaseUrl().'tlbarion/redirection/respond/';
         }
-        
+
         $paymentType = Mage::getStoreConfig('payment/tlbarion/virtua_tlsoft_paymenttype', Mage::app()->getStore());
         if ($paymentType == 'reservation') {
             $header['PaymentType'] = 'Reservation';
@@ -97,15 +96,10 @@ class Virtua_TLSoft_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Payme
         }
 
         $products = '';
-
         $json = json_encode($header);
-
         $result = $helper->callCurl($json, $storeid);
-
-
-
         $resultarray = '';
-        Mage::log(json_decode($result, true), null, 'TESTTOKENA2.log', true);
+
         if ($result != false) {
             if (Mage::getSingleton('core/session')->getBarionToken() == null) {
                 Mage::getSingleton('core/session')->setBarionToken($recurrenceId);
@@ -173,6 +167,10 @@ class Virtua_TLSoft_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Payme
         return $tablesave->getEntityId();
     }
 
+    /**
+     * @param $orderId
+     * @return bool|string
+     */
     public function prepareRefundData($orderId)
     {
         $order = Mage::getModel('sales/order')->load($orderId);
@@ -241,9 +239,27 @@ class Virtua_TLSoft_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Payme
         return false;
     }
 
+    /**
+     * @return string
+     */
     public function prepareToken()
     {
         $customerId = Mage::getSingleton('customer/session')->getCustomer()->getId();
-        return 'PETPARK-XMLP-TOKEN-BARION-'.$customerId;
+        $uniqueCode = mt_rand(100000, 999999);
+
+        return 'PETPARK-XMLP-TOKEN-'.$uniqueCode.'-'.$customerId;
+    }
+
+    /**
+     * @return mixed
+     * @throws Mage_Core_Model_Store_Exception
+     */
+    public function isTokenPaymentEnabled()
+    {
+        $isTokenEnabled = Mage::getStoreConfig('payment/tlbarion/virtua_tlsoft_token', Mage::app()->getStore());
+        if ($isTokenEnabled && Mage::getSingleton('customer/session')->isLoggedIn()) {
+            return true;
+        }
+        return false;
     }
 }

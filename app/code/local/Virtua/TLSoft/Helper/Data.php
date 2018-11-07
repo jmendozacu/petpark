@@ -23,7 +23,6 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      */
     public function processTransResult($order = '', $transaction = array())
     {
-        $helper = $this;
         $otppayment = Mage::getModel('tlbarion/paymentmethod');
 
         if (empty($order)) {
@@ -41,7 +40,7 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
 
         $real_orderid = $transaction->getRealOrderid();
 
-        $params = '?POSKey='.$helper->getShopId($storeid).'&TransactionId='.$transaction->getBariontransactionid();
+        $params = '?POSKey='.$this->getShopId($storeid).'&TransactionId='.$transaction->getBariontransactionid();
 
         $result = $this->callCurl2($params, $storeId);
 
@@ -276,6 +275,9 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         }
     }
 
+    /**
+     * @param $order
+     */
     public function processOrderSuccess($order)
     {
         if ($order) {

@@ -28,11 +28,14 @@ class Virtua_TLSoft_Adminhtml_BarionpaymentController extends TLSoft_BarionPayme
         $this->redirectToOrderView();
     }
 
+    /**
+     * @return int
+     */
     public function getOrderIdParameter()
     {
         return $this->getRequest()->getParam('orderId');
     }
-    
+
     public function redirectToOrderView()
     {
         $this->_redirectUrl(Mage::helper('adminhtml')->getUrl(
