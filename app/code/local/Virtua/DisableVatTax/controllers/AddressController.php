@@ -121,6 +121,8 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
     }
 
     /**
+     * Adding info about vat validation to session.
+     * 
      * @param bool $vatNumberValidation
      * @param string $countryId
      */
