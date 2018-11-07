@@ -111,6 +111,9 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             $transaction
                 ->setData('payment_status', '02')
                 ->save();
+            Mage::getSingleton('adminhtml/session')->addSuccess('You have successfully refunded.');
+        } else {
+            Mage::getSingleton('adminhtml/session')->addError('Something went wrong. Payment has not refunded.');
         }
     }
 
@@ -145,6 +148,9 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 ->setData('payment_status', '02')
                 ->setData('real_orderid', $resultarray['PaymentId'])
                 ->save();
+            Mage::getSingleton('adminhtml/session')->addSuccess('You have successfully finished a reservation.');
+        } else {
+            Mage::getSingleton('adminhtml/session')->addError('Something went wrong. Reservation has not finished.');
         }
     }
 

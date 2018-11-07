@@ -48,7 +48,7 @@ class Virtua_TLSoft_Model_Adminhtml_Observer
         );
 
         $block->addButton('barion_refund', array(
-            'label'     => Mage::helper('sales')->__('REFUND'),
+            'label'     => Mage::helper('sales')->__('Refund Barion Payment'),
             'onclick'   => 'setLocation(\'' . $url . '\')',
             'class'     => 'go'
         ));
@@ -66,7 +66,7 @@ class Virtua_TLSoft_Model_Adminhtml_Observer
         );
 
         $block->addButton('barion_finish_reservation', array(
-            'label'     => Mage::helper('sales')->__('FINISH RESERVATION'),
+            'label'     => Mage::helper('sales')->__('Finish reservation'),
             'onclick'   => 'setLocation(\'' . $url . '\')',
             'class'     => 'go'
         ));
