@@ -1,40 +1,33 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <Virtua_TLSoft>
+        <Virtua_BarionPayment>
             <version>0.1.0</version>
-        </Virtua_TLSoft>
+        </Virtua_BarionPayment>
     </modules>
-    <default>
-        <payment>
-            <tlbarion>
-                <virtua_tlsoft_reservation_period>1.00:00:00</virtua_tlsoft_reservation_period>
-            </tlbarion>
-        </payment>
-    </default>
     <global>
         <models>
-            <virtua_tlsoft>
-                <class>Virtua_TLSoft_Model</class>
-            </virtua_tlsoft>
+            <virtua_barionpayment>
+                <class>Virtua_BarionPayment_Model</class>
+            </virtua_barionpayment>
             <tlbarion>
                 <rewrite>
-                    <paymentmethod>Virtua_TLSoft_Model_Paymentmethod</paymentmethod>
+                    <paymentmethod>Virtua_BarionPayment_Model_Paymentmethod</paymentmethod>
                 </rewrite>
             </tlbarion>
         </models>
         <blocks>
             <tlbarion>
                 <rewrite>
-                    <form>Virtua_TLSoft_Block_Form</form>
-                    <adminhtml_barionpayment_grid>Virtua_TLSoft_Block_Grid</adminhtml_barionpayment_grid>
+                    <form>Virtua_BarionPayment_Block_Form</form>
+                    <adminhtml_barionpayment_grid>Virtua_BarionPayment_Block_Grid</adminhtml_barionpayment_grid>
                 </rewrite>
             </tlbarion>
         </blocks>
         <helpers>
             <tlbarion>
                 <rewrite>
-                    <data>Virtua_TLSoft_Helper_Data</data>
+                    <data>Virtua_BarionPayment_Helper_Data</data>
                 </rewrite>
             </tlbarion>
         </helpers>
@@ -44,7 +37,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <Virtua_TLSoft before="Virtua_TLSoft_Adminhtml">Virtua_TLSoft_Adminhtml</Virtua_TLSoft>
+                        <Virtua_BarionPayment before="Virtua_BarionPayment_Adminhtml">Virtua_BarionPayment_Adminhtml</Virtua_BarionPayment>
                     </modules>
                 </args>
             </adminhtml>
@@ -55,7 +48,7 @@
             <controller_action_layout_render_before_adminhtml_sales_order_view>
                 <observers>
                     <ctp_tcs>
-                        <class>Virtua_TLSoft_Model_Adminhtml_Observer</class>
+                        <class>Virtua_BarionPayment_Model_Adminhtml_Observer</class>
                         <method>loadButtons</method>
                     </ctp_tcs>
                 </observers>
@@ -67,7 +60,7 @@
             <tlbarion>
                 <args>
                     <modules>
-                        <Virtua_TLSoft before="TLSoft_BarionPayments">Virtua_TLSoft</Virtua_TLSoft>
+                        <Virtua_BarionPayment before="TLSoft_BarionPayments">Virtua_BarionPayment</Virtua_BarionPayment>
                     </modules>
                 </args>
             </tlbarion>
@@ -75,22 +68,29 @@
         <events>
             <customer_login>
                 <observers>
-                    <virtua_tlsoft_model_observer>
+                    <virtua_barionpayment_model_observer>
                         <type>model</type>
-                        <class>Virtua_TLSoft_Model_Observer</class>
+                        <class>Virtua_BarionPayment_Model_Observer</class>
                         <method>removeToken</method>
-                    </virtua_tlsoft_model_observer>
+                    </virtua_barionpayment_model_observer>
                 </observers>
             </customer_login>
             <customer_logout>
                 <observers>
-                    <virtua_tlsoft_model_observer>
+                    <virtua_barionpayment_model_observer>
                         <type>model</type>
-                        <class>Virtua_TLSoft_Model_Observer</class>
+                        <class>Virtua_BarionPayment_Model_Observer</class>
                         <method>removeToken</method>
-                    </virtua_tlsoft_model_observer>
+                    </virtua_barionpayment_model_observer>
                 </observers>
             </customer_logout>
         </events>
     </frontend>
+    <default>
+        <payment>
+            <tlbarion>
+                <virtua_barionpayment_reservation_period>1.00:00:00</virtua_barionpayment_reservation_period>
+            </tlbarion>
+        </payment>
+    </default>
 </config>

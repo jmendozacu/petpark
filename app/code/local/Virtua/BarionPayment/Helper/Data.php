@@ -1,24 +1,27 @@
 <?php
 /**
- * @category  TlSoft
- * @package   Virtua_TlSoft
+ * @category  BarionPayment
+ * @package   Virtua_BarionPayment
  * @author    Maciej Skalny <contact@wearevirtua.com>
  * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
  */
 
 /**
- * Class Virtua_TLSoft_Helper_Data
+ * Class Virtua_BarionPayment_Helper_Data
  */
-class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
+class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
 {
-    protected $_testrefund      = 'https://api.test.barion.com/v2/Payment/Refund';
-    protected $_refund          = 'https://api.barion.com/v2/Payment/Refund';
-    protected $_testreservation = 'https://api.test.barion.com/v2/Payment/FinishReservation';
-    protected $_reservation     = 'https://api.barion.com/v2/Payment/FinishReservation';
+    const TESTREFUND      = 'https://api.test.barion.com/v2/Payment/Refund';
+    const REFUND          = 'https://api.barion.com/v2/Payment/Refund';
+    const TESTRESERVATION = 'https://api.test.barion.com/v2/Payment/FinishReservation';
+    const RESERVATION     = 'https://api.barion.com/v2/Payment/FinishReservation';
 
     /**
+     * Handling results of transaction process.
+     *
      * @param string $order
      * @param array $transaction
+     *
      * @return string
      */
     public function processTransResult($order = '', $transaction = array())
@@ -74,11 +77,14 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             $return = 'fail';
         }
         $otppayment->updateTrans(['payment_status' => $status], $transid);
+
         return $return;
     }
 
     /**
-     * @param $orderId
+     * Refund payment.
+     *
+     * @param int $orderId
      */
     public function refundPayment($orderId)
     {
@@ -112,12 +118,14 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 ->save();
             Mage::getSingleton('adminhtml/session')->addSuccess('You have successfully refunded.');
         } else {
-            Mage::getSingleton('adminhtml/session')->addError('Something went wrong. Payment has not refunded.');
+            Mage::getSingleton('adminhtml/session')->addError('Something went wrong. Payment has not been refunded.');
         }
     }
 
     /**
-     * @param $orderId
+     * Finishing reserved payment.
+     *
+     * @param int $orderId
      */
     public function finishReservation($orderId)
     {
@@ -149,35 +157,28 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 ->save();
             Mage::getSingleton('adminhtml/session')->addSuccess('You have successfully finished a reservation.');
         } else {
-            Mage::getSingleton('adminhtml/session')->addError('Something went wrong. Reservation has not finished.');
+            Mage::getSingleton('adminhtml/session')->addError('Something went wrong. Reservation has not been finished.');
         }
     }
 
     /**
+     * Use barion api to refund payment
+     *
      * @param $json
      * @param $storeId
+     *
      * @return bool|mixed
      */
     public function callBarionToRefund($json, $storeId)
     {
         if ($this->isTest($storeId) == 1) {
-            $url = $this->_testrefund;
+            $url = self::TESTREFUND;
         } else {
-            $url = $this->_refund;
+            $url = self::REFUND;
         }
 
         try {
-            $options = [
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_SSL_VERIFYPEER => false,
-                CURLOPT_URL            => $url,
-                CURLOPT_POST           => 1,
-                CURLOPT_TIMEOUT        => 30,
-                CURLOPT_CONNECTTIMEOUT => 20,
-                CURLOPT_POSTFIELDS     => $json,
-                CURLOPT_HTTPHEADER     => ['Content-Type: application/json','Content-Length: ' . strlen($json)]
-            ];
-
+            $options = $this->getCurlOptions($json, $url);
             $ch = curl_init();
             curl_setopt_array($ch, $options);
             $content = curl_exec($ch);
@@ -194,29 +195,23 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
     }
 
     /**
+     * Use barion api to finish reservation
+     *
      * @param $json
      * @param $storeId
+     *
      * @return bool|mixed
      */
     public function callBarionToFinishReservation($json, $storeId)
     {
         if ($this->isTest($storeId) == 1) {
-            $url = $this->_testreservation;
+            $url = self::TESTRESERVATION;
         } else {
-            $url = $this->_reservation;
+            $url = self::RESERVATION;
         }
 
         try {
-            $options = [
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_SSL_VERIFYPEER => false,
-                CURLOPT_URL            => $url,
-                CURLOPT_POST           => 1,
-                CURLOPT_TIMEOUT        => 30,
-                CURLOPT_CONNECTTIMEOUT => 20,
-                CURLOPT_POSTFIELDS     => $json,
-                CURLOPT_HTTPHEADER     => ['Content-Type: application/json','Content-Length: ' . strlen($json)]
-            ];
+            $options = $this->getCurlOptions($json, $url);
             $ch = curl_init();
             curl_setopt_array($ch, $options);
             $content = curl_exec($ch);
@@ -234,7 +229,10 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
     }
 
     /**
-     * @param $order
+     * Refund payment in admin panel
+     *
+     * @param Nostress_Gpwebpay_Model_Order $order
+     *
      * @return bool
      */
     public function refundInAdmin($order)
@@ -245,25 +243,6 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         $data = [];
         $service = Mage::getModel('sales/service_order', $order);
         $creditmemo = $service->prepareCreditmemo($data);
-
-        if ($refundToStoreCreditAmount) {
-            $refundToStoreCreditAmount = max(
-                0,
-                min(
-                    $creditmemo->getBaseCustomerBalanceReturnMax(),
-                    $refundToStoreCreditAmount
-                )
-            );
-            if ($refundToStoreCreditAmount) {
-                $refundToStoreCreditAmount = $creditmemo->getStore()->roundPrice($refundToStoreCreditAmount);
-                $creditmemo->setBaseCustomerBalanceTotalRefunded($refundToStoreCreditAmount);
-                $refundToStoreCreditAmount = $creditmemo->getStore()->roundPrice(
-                    $refundToStoreCreditAmount * $order->getStoreToOrderRate()
-                );
-                $creditmemo->setBsCustomerBalTotalRefunded($refundToStoreCreditAmount);
-                $creditmemo->setCustomerBalanceRefundFlag(true);
-            }
-        }
         $creditmemo->setPaymentRefundDisallowed(true)->register();
         try {
             Mage::getModel('core/resource_transaction')
@@ -276,33 +255,68 @@ class Virtua_TLSoft_Helper_Data extends TLSoft_BarionPayment_Helper_Data
     }
 
     /**
+     * Preparing invoice and setting new status to order.
+     *
      * @param $order
      */
     public function processOrderSuccess($order)
     {
-        if ($order) {
-            $invoice = $order->prepareInvoice();
-            $invoice->register()->capture();
-            Mage::getModel('core/resource_transaction')
-                ->addObject($invoice)
-                ->addObject($invoice->getOrder())
-                ->save();
-        }
+        try {
+            if ($order) {
+                $invoice = $order->prepareInvoice();
+                $invoice->register()->capture();
+                Mage::getModel('core/resource_transaction')
+                    ->addObject($invoice)
+                    ->addObject($invoice->getOrder())
+                    ->save();
+            }
 
-        if ($order->getState() != Mage_Sales_Model_Order::STATE_PROCESSING) {
-            $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING);
-            $order->setStatus('processing');
-            $order->save();
+            if ($order->getState() != Mage_Sales_Model_Order::STATE_PROCESSING) {
+                $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING);
+                $order->setStatus('processing');
+                $order->save();
+            }
+        } catch (Exception $e) {
+            Mage::log($e);
+            return false;
         }
     }
 
     /**
-     * @param $transactions
+     * Gets Id of successfull transaction.
+     *
+     * @param array $transactions
+     *
      * @return string
      */
     public function getSucceededTransaction($transactions)
     {
         $transaction = end($transactions);
-        return $transaction['TransactionId'];
+        if (array_key_exists('TransactionId', $transaction)) {
+            return $transaction['TransactionId'];
+        }
+    }
+
+    /**
+     * Prepares array for connect with api.
+     *
+     * @param $json
+     * @param string $url
+     *
+     * @return array
+     */
+    protected function getCurlOptions($json, $url)
+    {
+        Mage::log($json, null, 'JSON.log', true);
+        return [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_URL            => $url,
+            CURLOPT_POST           => 1,
+            CURLOPT_TIMEOUT        => 30,
+            CURLOPT_CONNECTTIMEOUT => 20,
+            CURLOPT_POSTFIELDS     => $json,
+            CURLOPT_HTTPHEADER     => ['Content-Type: application/json','Content-Length: ' . strlen($json)]
+        ];
     }
 }

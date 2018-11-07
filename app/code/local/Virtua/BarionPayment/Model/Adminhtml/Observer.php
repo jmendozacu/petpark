@@ -1,20 +1,22 @@
 <?php
 /**
- * @category  TlSoft
- * @package   Virtua_TlSoft
+ * @category  BarionPayment
+ * @package   Virtua_BarionPayment
  * @author    Maciej Skalny <contact@wearevirtua.com>
  * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
  */
 
 /**
- * Class Virtua_TLSoft_Model_Adminhtml_Observer
+ * Class Virtua_BarionPayment_Model_Adminhtml_Observer
  */
-class Virtua_TLSoft_Model_Adminhtml_Observer
+class Virtua_BarionPayment_Model_Adminhtml_Observer
 {
     /**
+     * @param Varien_Event_Observer $observer
+     *
      * @return $this
      */
-    public function loadButtons()
+    public function loadButtons($observer)
     {
         $block = Mage::app()->getLayout()->getBlock('sales_order_edit');
         if (!$block) {

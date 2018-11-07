@@ -1,7 +1,7 @@
 <?php
 /**
- * @category  TlSoft
- * @package   Virtua_TlSoft
+ * @category  BarionPayment
+ * @package   Virtua_BarionPayment
  * @author    Maciej Skalny <contact@wearevirtua.com>
  * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
  */
@@ -12,9 +12,9 @@
 require 'TLSoft/BarionPayment/controllers/RedirectionController.php';
 
 /**
- * Class Virtua_TLSoft_RedirectionController
+ * Class Virtua_BarionPayment_RedirectionController
  */
-class Virtua_TLSoft_RedirectionController extends TLSoft_BarionPayment_RedirectionController
+class Virtua_BarionPayment_RedirectionController extends TLSoft_BarionPayment_RedirectionController
 {
     public function respondAction()
     {
@@ -26,16 +26,27 @@ class Virtua_TLSoft_RedirectionController extends TLSoft_BarionPayment_Redirecti
             $otpdata=$otphelper->processTransResult();
             if ($otpdata == 'success') {
                 $otphelper->processOrderSuccess($order);
-                $this->_redirect('tlbarion/redirection/success', array('_secure'=>true));
+                $this->barionRedirect('success');
             } elseif ($otpdata == 'fail') {
-                $this->_redirect('tlbarion/redirection/cancel', array('_secure'=>true));
+                $this->barionRedirect('cancel');
             } elseif ($otpdata == 'pending') {
-                $this->_redirect('tlbarion/redirection/success', array('_secure'=>true));
+                $this->barionRedirect('success');
             } else {
-                $this->_redirect('tlbarion/redirection/cancel', array('_secure'=>true));
+                $this->barionRedirect('cancel');
             }
         } else {
-            $this->_redirect('tlbarion/redirection/cancel', array('_secure'=>true));
+            $this->barionRedirect('cancel');
+        }
+    }
+
+    /**
+     * Redirect to url
+     * @param string $redirect
+     */
+    public function barionRedirect($redirect)
+    {
+        if ($redirect == 'success' || $redirect == 'cancel') {
+            $this->_redirect('tlbarion/redirection/' . $redirect, array('_secure' => true));
         }
     }
 }
