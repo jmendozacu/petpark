@@ -14,5 +14,6 @@ class Virtua_BarionPayment_Model_Observer
     public function removeToken()
     {
         Mage::getSingleton('core/session')->unsetData('barion_token');
+        Mage::getSingleton('core/session')->unsetData('prepared_barion_token');
     }
 }

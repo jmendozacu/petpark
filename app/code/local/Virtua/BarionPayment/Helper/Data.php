@@ -295,6 +295,11 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      */
     public function processOrderReserved($order)
     {
+        if (!Mage::getSingleton('core/session')->getBarionToken()) {
+            $preparedBarionToken = Mage::getSingleton('core/session')->getPreparedBarionToken();
+            Mage::getSingleton('core/session')->setBarionToken($preparedBarionToken);
+        }
+
         try {
             if ($order) {
                 $invoice = $order->prepareInvoice();

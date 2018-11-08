@@ -111,9 +111,8 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
 
         if ($result != false) {
             if (!Mage::getSingleton('core/session')->getBarionToken()) {
-                Mage::getSingleton('core/session')->setBarionToken($header['RecurrenceId']);
+                Mage::getSingleton('core/session')->setPreparedBarionToken($header['RecurrenceId']);
             }
-
             if (array_key_exists('PaymentId', $resultarray)) {
                 $transid = $this->saveTrans([
                     'real_orderid'   => $resultarray['PaymentId'],
@@ -139,8 +138,8 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
                 );
 
                 if ($header['InitiateRecurrence'] == false) {
-                    $url = Mage::getUrl('checkout/onepage/success');
-                    return $url.'?paymentId='.$resultarray['PaymentId'];
+                    $url = Mage::getUrl('tlbarion/redirection/respond');
+                    return $url;
                 }
                 $url = $helper->getRedirectUrl($storeid);
                 return $url.'?id='.$resultarray['PaymentId'];

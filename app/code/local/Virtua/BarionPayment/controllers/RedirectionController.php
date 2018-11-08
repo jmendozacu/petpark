@@ -29,7 +29,7 @@ class Virtua_BarionPayment_RedirectionController extends TLSoft_BarionPayment_Re
                 $this->barionRedirect('success');
             } elseif ($otpdata == 'fail') {
                 $this->barionRedirect('cancel');
-            } elseif ($otpdata == 'reserved') {
+            } elseif ($otpdata == 'reserved' || $otpdata == 'pending') {
                 $otphelper->processOrderReserved($order);
                 $this->barionRedirect('success');
             } else {
