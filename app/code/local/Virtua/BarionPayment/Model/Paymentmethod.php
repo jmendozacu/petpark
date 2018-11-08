@@ -110,7 +110,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
         }
 
         if ($result != false) {
-            if (!Mage::getSingleton('core/session')->getBarionToken()) {
+            if (!Mage::getSingleton('core/session')->getBarionToken() && $this->isTokenPaymentEnabled()) {
                 Mage::getSingleton('core/session')->setPreparedBarionToken($header['RecurrenceId']);
             }
             if (array_key_exists('PaymentId', $resultarray)) {
