@@ -44,7 +44,6 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
      */
     public function createRefundButton($block, $orderId)
     {
-        Mage::log($block, null, 'BLOCK.log', true);
         $url = Mage::helper('adminhtml')->getUrl(
             '*/barionpayment/refund',
             ['orderId' => $orderId]

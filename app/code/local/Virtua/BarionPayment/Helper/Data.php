@@ -193,7 +193,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             Mage::log('Barion curl error: '.$err, null, 'barion-curl-refund-error.log', true);
             return false;
         } catch (Exception $e) {
-            Mage::log($e, null, 'barion-curl-refund-error.log', true);
+            Mage::logException($e);
             return false;
         }
     }
@@ -227,7 +227,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             Mage::log('Barion curl error: '.$err, null, 'barion-curl-reservation-error.log', true);
             return false;
         } catch (Exception $e) {
-            Mage::log($e, null, 'barion-curl-reservation-error.log', true);
+            Mage::logException($e);
             return false;
         }
     }
