@@ -101,9 +101,16 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
 
         $products = '';
         $json = json_encode($header);
-
         $result = $helper->callCurl($json, $storeid);
-        $resultarray = '';
+        $resultarray = json_decode($result, true);
+
+        if ($header['InitiateRecurrence'] == false && $this->areFundsInsufficient($resultarray)) {
+            $header = $this->dontUseExsistingToken($header);
+            $json = json_encode($header);
+            $result = $helper->callCurl($json, $storeid);
+            $resultarray = json_decode($result, true);
+        }
+
         if ($result != false) {
             if (!Mage::getSingleton('core/session')->getBarionToken()) {
                 Mage::getSingleton('core/session')->setBarionToken($header['RecurrenceId']);
@@ -112,7 +119,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
             if ($paymentStatus == '02') {
                 $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, true)->save();
             }
-            $resultarray = json_decode($result, true);
+
             if (array_key_exists('PaymentId', $resultarray)) {
                 $transid = $this->saveTrans([
                     'real_orderid'   => $resultarray['PaymentId'],
@@ -196,5 +203,34 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
             return true;
         }
         return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function areFundsInsufficient($resultarray)
+    {
+        if (array_key_exists('Errors', $resultarray)) {
+            foreach ($resultarray['Errors'] as $error) {
+                if ($error['ErrorCode'] == 'InsufficientFunds') {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $header
+     * @return array
+     */
+    public function dontUseExsistingToken($header)
+    {
+        $header['InitiateRecurrence'] = true;
+        $header['RedirectUrl'] = Mage::getUrl('tlbarion/redirection/respond/');
+        unset($header['CallbackUrl']);
+
+        return $header;
     }
 }
