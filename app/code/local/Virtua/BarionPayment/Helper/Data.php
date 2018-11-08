@@ -34,7 +34,6 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
 
         $storeid = $order->getStoreId();
 
-        $storeId = $order->getStoreId();
         if (is_array($transaction)) {
             $transaction = $otppayment->getTransModel()->loadByOrderId($order->getId());
         }
