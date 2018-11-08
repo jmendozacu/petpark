@@ -56,8 +56,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 $return = 'success';
                 $status = '02';
             } elseif ($resultarray['Status'] == 'Prepared'
-                || $resultarray['Status'] == 'Started'
-                || $resultarray['Status'] == 'Reserved') {
+                || $resultarray['Status'] == 'Started') {
                 $return = 'pending';
                 $status = '01';
             } elseif ($resultarray['Status'] == 'Failed'
@@ -66,6 +65,9 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 ||$resultarray['Status'] == 'Rejected') {
                 $return = 'fail';
                 $status = '00';
+            } elseif ($resultarray['Status'] == 'Reserved') {
+                $return = 'reserved';
+                $status = '01';
             }
         }
         if (!empty($resultarray['Errors'])) {
@@ -258,6 +260,8 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      * Preparing invoice and setting new status to order.
      *
      * @param $order
+     *
+     * @return bool
      */
     public function processOrderSuccess($order)
     {
@@ -274,6 +278,36 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             if ($order->getState() != Mage_Sales_Model_Order::STATE_PROCESSING) {
                 $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING);
                 $order->setStatus('processing');
+                $order->save();
+            }
+        } catch (Exception $e) {
+            Mage::log($e);
+            return false;
+        }
+    }
+
+    /**
+     * Prepares invoice and sets new status to reserved order.
+     *
+     * @param $order
+     *
+     * @return bool
+     */
+    public function processOrderReserved($order)
+    {
+        try {
+            if ($order) {
+                $invoice = $order->prepareInvoice();
+                $invoice->register()->capture();
+                Mage::getModel('core/resource_transaction')
+                    ->addObject($invoice)
+                    ->addObject($invoice->getOrder())
+                    ->save();
+            }
+
+            if ($order->getState() != Mage_Sales_Model_Order::STATE_PAYMENT_REVIEW) {
+                $order->setState(Mage_Sales_Model_Order::STATE_PAYMENT_REVIEW);
+                $order->setStatus('payment_review');
                 $order->save();
             }
         } catch (Exception $e) {

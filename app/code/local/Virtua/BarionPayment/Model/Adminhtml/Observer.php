@@ -31,7 +31,7 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
 
         if (($state == 'processing' || $state == 'complete') && $isBarion) {
             $this->createRefundButton($block, $orderId);
-        } elseif ($state == 'pending_payment' && $isBarion) {
+        } elseif ($state == 'payment_review' && $isBarion) {
             $this->createFinishReservationButton($block, $orderId);
         }
 

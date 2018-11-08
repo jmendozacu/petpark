@@ -86,7 +86,6 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
             }
         }
 
-        $paymentStatus = '02';
         $paymentType = Mage::getStoreConfig('payment/tlbarion/virtua_barionpayment_paymenttype', Mage::app()->getStore());
         if ($paymentType == 'reservation') {
             $header['PaymentType'] = 'Reservation';
@@ -96,7 +95,6 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
             } else {
                 $header['ReservationPeriod'] = '1.00:00:00';
             }
-            $paymentStatus = '01';
         }
 
         $products = '';
@@ -116,10 +114,6 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
                 Mage::getSingleton('core/session')->setBarionToken($header['RecurrenceId']);
             }
 
-            if ($paymentStatus == '02') {
-                $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, true)->save();
-            }
-
             if (array_key_exists('PaymentId', $resultarray)) {
                 $transid = $this->saveTrans([
                     'real_orderid'   => $resultarray['PaymentId'],
@@ -128,7 +122,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
                     'amount'         => $ordertotal,
                     'ccy'            => $currency,
                     'store_id'       => $storeid,
-                    'payment_status' => $paymentStatus,
+                    'payment_status' => '01',
                     'created_at'     => now()
                 ]);
 
