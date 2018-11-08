@@ -59,9 +59,7 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function __construct()
     {
-        if (extension_loaded('soap')) {
-            $this->viesClient = new SoapClient('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl');
-        }
+        $this->viesClient = new SoapClient('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl');
     }
 
     /**
