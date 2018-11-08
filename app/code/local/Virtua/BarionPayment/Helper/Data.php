@@ -167,7 +167,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      * Use barion api to refund payment
      *
      * @param $json
-     * @param $storeId
+     * @param int $storeId
      *
      * @return bool|mixed
      */
@@ -190,8 +190,10 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 curl_close($ch);
                 return $content;
             }
+            Mage::log('Barion curl error: '.$err, null, 'barion-curl-refund-error.log', true);
             return false;
         } catch (Exception $e) {
+            Mage::log($e, null, 'barion-curl-refund-error.log', true);
             return false;
         }
     }
@@ -200,7 +202,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      * Use barion api to finish reservation
      *
      * @param $json
-     * @param $storeId
+     * @param int $storeId
      *
      * @return bool|mixed
      */
@@ -222,10 +224,10 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 curl_close($ch);
                 return $content;
             }
-            Mage::log('Barion curl error: '.$err);
+            Mage::log('Barion curl error: '.$err, null, 'barion-curl-reservation-error.log', true);
             return false;
         } catch (Exception $e) {
-            Mage::log($e);
+            Mage::log($e, null, 'barion-curl-reservation-error.log', true);
             return false;
         }
     }
@@ -259,7 +261,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
     /**
      * Preparing invoice and setting new status to order.
      *
-     * @param $order
+     * @param Nostress_Gpwebpay_Model_Order $order
      *
      * @return bool
      */
@@ -281,7 +283,6 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 $order->save();
             }
         } catch (Exception $e) {
-            Mage::log($e);
             return false;
         }
     }
@@ -289,7 +290,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
     /**
      * Prepares invoice and sets new status to reserved order.
      *
-     * @param $order
+     * @param Nostress_Gpwebpay_Model_Order $order
      *
      * @return bool
      */
@@ -316,7 +317,6 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 $order->save();
             }
         } catch (Exception $e) {
-            Mage::log($e);
             return false;
         }
     }
@@ -346,7 +346,6 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      */
     protected function getCurlOptions($json, $url)
     {
-        Mage::log($json, null, 'JSON.log', true);
         return [
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,

@@ -165,7 +165,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
     }
 
     /**
-     * @param $transaction
+     * @param array $transaction
      * @return int
      */
     private function saveTrans($transaction)
@@ -215,7 +215,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
     }
 
     /**
-     * @param $header
+     * @param array $header
      * @return array
      */
     public function dontUseExsistingToken($header)

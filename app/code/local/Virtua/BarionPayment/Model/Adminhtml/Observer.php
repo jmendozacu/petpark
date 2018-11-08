@@ -40,10 +40,11 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
 
     /**
      * @param $block
-     * @param $orderId
+     * @param int $orderId
      */
     public function createRefundButton($block, $orderId)
     {
+        Mage::log($block, null, 'BLOCK.log', true);
         $url = Mage::helper('adminhtml')->getUrl(
             '*/barionpayment/refund',
             ['orderId' => $orderId]
@@ -58,7 +59,7 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
 
     /**
      * @param $block
-     * @param $orderId
+     * @param int $orderId
      */
     public function createFinishReservationButton($block, $orderId)
     {
