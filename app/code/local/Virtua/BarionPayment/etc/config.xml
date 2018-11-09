@@ -85,6 +85,13 @@
                 </observers>
             </customer_logout>
         </events>
+        <layout>
+            <updates>
+                <virtuabarionpayment>
+                    <file>virtua_barionpayment.xml</file>
+                </virtuabarionpayment>
+            </updates>
+        </layout>
     </frontend>
     <default>
         <payment>
