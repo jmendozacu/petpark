@@ -1,12 +1,19 @@
 <?php
+/**
+ * @category  CategoriesPosts
+ * @package   Virtua_CategoriesPosts
+ * @author    Maciej Skalny <contact@wearevirtua.com>
+ * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
+ */
 
 /**
- * Class Virtua_CategoryPosts_Block_Last
+ * Class Virtua_CategoriesPosts_Block_Last
  */
-class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implements Mage_Widget_Block_Interface
+class Virtua_CategoriesPosts_Block_Last extends Smartwave_Blog_Block_Last implements Mage_Widget_Block_Interface
 {
     /**
      * Modified Smartwave/Blog function.
+     *
      * @return array
      */
     public function getRecent()
@@ -14,6 +21,7 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
         if (!Mage::registry('current_category')) {
             return parent::getRecent();
         }
+
         $collection = $this->getBlogCollection();
         $collection
             ->addFieldToFilter('tags', $this->getTagsFromUrl())
@@ -28,7 +36,10 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
             $collection->getSelect()->limit(6);
         } elseif ($size < 6) {
             /** If there are not 6 category posts, selects the next ones */
-            $mergedIds = array_merge($collection->getAllIds(), $this->getRecentPostsIds($size, $collection->getAllIds()));
+            $mergedIds = array_merge(
+                $collection->getAllIds(),
+                $this->getRecentPostsIds($size, $collection->getAllIds())
+            );
             $collection = $this->getBlogCollection();
             $collection
                 ->addFilterToMap('post_id', 'main_table.post_id')
@@ -38,14 +49,17 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
         if ($collection && $this->getData('categories')) {
             $collection->addCatsFilter($this->getData('categories'));
         }
+
         foreach ($collection as $item) {
             $item->setAddress($this->getBlogUrl($item->getIdentifier()));
         }
+
         return $collection;
     }
 
     /**
      * Gets blog collection
+     *
      * @return array
      */
     public function getBlogCollection()
@@ -61,6 +75,7 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
 
     /**
      * Gets tags from category url
+     *
      * @return array
      */
     public function getTagsFromUrl()
@@ -70,7 +85,7 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
             $currentUrl = $currentUrl[0];
         }
         $currentUrl = str_replace('-', ' ', $currentUrl);
-        $tags = explode('/',$currentUrl);
+        $tags = explode('/', $currentUrl);
         $tags = array_reverse($tags);
 
         foreach ($tags as $tag) {
@@ -82,8 +97,10 @@ class Virtua_CategoryPosts_Block_Last extends Smartwave_Blog_Block_Last implemen
 
     /**
      * Gets some recent posts if there are less than 6 posts in category
-     * @param $size
+     *
+     * @param int $size
      * @param array|null $tagIds
+     *
      * @return array
      */
     public function getRecentPostsIds($size, $tagIds = null)

@@ -7,7 +7,7 @@
             </action>
         </reference>
         <reference name="left">
-            <block type="categoryposts/last" name="categoryposts.last" template="categoryposts/category_latest_posts.phtml" after="custom_side_block"/>
+            <block type="categoriesposts/last" name="categoriesposts.last" template="categoriesposts/category_latest_posts.phtml" after="custom_side_block"/>
         </reference>
     </catalog_category_layered>
 </layout>

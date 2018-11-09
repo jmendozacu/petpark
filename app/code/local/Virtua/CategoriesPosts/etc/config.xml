@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_CategoriesPosts>
+            <version>0.1.0</version>
+        </Virtua_CategoriesPosts>
+    </modules>
+    <global>
+        <blocks>
+            <blog>
+                <rewrite>
+                    <last>Virtua_CategoriesPosts_Block_Last</last>
+                </rewrite>
+            </blog>
+            <categoriesposts>
+                <class>Virtua_CategoriesPosts_Block</class>
+            </categoriesposts>
+        </blocks>
+        <resources>
+            <virtua_categoriesposts_setup>
+                <setup>
+                    <module>Virtua_CategoriesPosts</module>
+                </setup>
+            </virtua_categoriesposts_setup>
+        </resources>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <categoriesposts module="Virtua_CategoriesPosts">
+                    <file>categoriesposts.xml</file>
+                </categoriesposts>
+            </updates>
+        </layout>
+    </frontend>
+</config>

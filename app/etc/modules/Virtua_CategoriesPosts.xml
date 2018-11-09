@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <Virtua_CategoryPosts>
+        <Virtua_CategoriesPosts>
             <active>true</active>
             <codePool>local</codePool>
             <depends>
                 <Smartwave_Blog/>
             </depends>
-        </Virtua_CategoryPosts>
+        </Virtua_CategoriesPosts>
     </modules>
 </config>
