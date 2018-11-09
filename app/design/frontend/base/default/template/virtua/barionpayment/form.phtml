@@ -8,8 +8,8 @@
     <img src="<?php echo Mage::getUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>virtua/barionpayment/payments.png" alt="Barion" />
     <?php if (Mage::getSingleton('core/session')->getBarionToken()) { ?>
     <div class="reset-token">
-        You are using token already. <br>
-        <a href="tlbarion/redirection/removeToken">Reset token</a>
+        <?php echo $this->__('You are using token already.'); ?><br>
+        <a href="<?php echo Mage::getUrl('tlbarion/redirection/removeToken'); ?>"><?php echo $this->__('Reset token'); ?></a>
     </div>
     <?php } ?>
 </ul>
