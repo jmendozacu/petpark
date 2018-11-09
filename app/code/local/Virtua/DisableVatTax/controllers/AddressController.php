@@ -29,7 +29,6 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
 
         if ($this->getRequest()->isPost()) {
             $customer = $this->_getSession()->getCustomer();
-            Mage::log($customer, null, 'czymjestcustomer.log', true);
             /* @var $address Mage_Customer_Model_Address */
             $address  = Mage::getModel('customer/address');
             $addressId = $this->getRequest()->getParam('id');
@@ -98,8 +97,10 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
      */
     public function areValuesChanged($customer, $addressData)
     {
-        $currentVatNumber = $customer->getDefaultBillingAddress()->getVatId();
-        $currentCountry = $customer->getDefaultBillingAddress()->getCountry();
+        if ($customer->getDefaultBillingAddress()) {
+            $currentVatNumber = $customer->getDefaultBillingAddress()->getVatId();
+            $currentCountry = $customer->getDefaultBillingAddress()->getCountry();
+        }
         $newVatNumber = $addressData['vat_id'];
         $newCountry = $addressData['country_id'];
 
