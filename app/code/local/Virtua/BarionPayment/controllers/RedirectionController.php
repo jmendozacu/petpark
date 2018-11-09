@@ -50,4 +50,10 @@ class Virtua_BarionPayment_RedirectionController extends TLSoft_BarionPayment_Re
             $this->_redirect('tlbarion/redirection/' . $redirect, array('_secure' => true));
         }
     }
+
+    public function removeTokenAction()
+    {
+        Mage::getSingleton('core/session')->unsetData('barion_token');
+        $this->_redirect('checkout/onepage');
+    }
 }

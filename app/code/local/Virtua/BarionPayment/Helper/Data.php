@@ -271,6 +271,8 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
     public function processOrderSuccess($order)
     {
         try {
+            $this->usePreparedTokenAsBarionToken();
+
             if ($order) {
                 $invoice = $order->prepareInvoice();
                 $invoice->register()->capture();
@@ -299,13 +301,9 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      */
     public function processOrderReserved($order)
     {
-        if (!Mage::getSingleton('core/session')->getBarionToken()
-            && Mage::getModel('tlbarion/paymentmethod')->isTokenPaymentEnabled()) {
-            $preparedBarionToken = Mage::getSingleton('core/session')->getPreparedBarionToken();
-            Mage::getSingleton('core/session')->setBarionToken($preparedBarionToken);
-        }
-
         try {
+            $this->usePreparedTokenAsBarionToken();
+
             if ($order) {
                 $invoice = $order->prepareInvoice();
                 $invoice->register()->capture();
@@ -360,5 +358,17 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             CURLOPT_POSTFIELDS     => $json,
             CURLOPT_HTTPHEADER     => ['Content-Type: application/json','Content-Length: ' . strlen($json)]
         ];
+    }
+
+    /**
+     * Use prepared token as barion token.
+     */
+    public function usePreparedTokenAsBarionToken()
+    {
+        if (!Mage::getSingleton('core/session')->getBarionToken()
+            && Mage::getModel('tlbarion/paymentmethod')->isTokenPaymentEnabled()) {
+            $preparedBarionToken = Mage::getSingleton('core/session')->getPreparedBarionToken();
+            Mage::getSingleton('core/session')->setBarionToken($preparedBarionToken);
+        }
     }
 }
