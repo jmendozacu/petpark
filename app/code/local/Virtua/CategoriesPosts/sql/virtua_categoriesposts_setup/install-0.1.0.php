@@ -11,9 +11,7 @@ $cmsBlocks = $cmsBlocksModel
     ->addFieldToFilter('content', array('like' => '%'.$filter.'%'));
 
 if ($cmsBlocks->getSize() > 0) {
-
     foreach ($cmsBlocks as $cmsBlock) {
-
         $data = [
             'title' => $cmsBlock->getTitle().'_old',
             'identifier' => $cmsBlock->getIdentifier().'_old',
@@ -32,7 +30,7 @@ if ($cmsBlocks->getSize() > 0) {
             /**
              * Set new content with replaced filtered text to empty string
              */
-            ->setContent(str_replace($filter, "", $cmsBlock->getContent()))
+            ->setContent(str_replace($filter, '', $cmsBlock->getContent()))
             ->save();
     }
 }
