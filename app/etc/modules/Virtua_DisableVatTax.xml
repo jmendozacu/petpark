@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Virtua_DisableVatTax>
-            <active>false</active>
+            <active>true</active>
             <codePool>local</codePool>
             <version>1.0.0</version>
             <depends>
