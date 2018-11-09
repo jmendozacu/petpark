@@ -97,6 +97,9 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
      */
     public function areValuesChanged($customer, $addressData)
     {
+        $currentVatNumber = null;
+        $currentCountry = null;
+
         if ($customer->getDefaultBillingAddress()) {
             $currentVatNumber = $customer->getDefaultBillingAddress()->getVatId();
             $currentCountry = $customer->getDefaultBillingAddress()->getCountry();
