@@ -257,6 +257,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 ->addObject($order)
                 ->save();
         } catch (Mage_Core_Exception $e) {
+            Mage::logException($e);
             return false;
         }
     }
@@ -288,6 +289,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 $order->save();
             }
         } catch (Exception $e) {
+            Mage::logException($e);
             return false;
         }
     }
@@ -319,6 +321,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 $order->save();
             }
         } catch (Exception $e) {
+            Mage::logException($e);
             return false;
         }
     }
