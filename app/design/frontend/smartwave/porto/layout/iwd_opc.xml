@@ -77,10 +77,10 @@
 			<block type="opc/lipp" name="opc.lipp.js" as="">
 				<action method="setTemplate" ifconfig="opc/paypal/status"><template>opc/lipp-js.phtml</template></action>
 			</block>
-            <block type="braintree_payments/datajs" name="braintree_payments_data_js" template="braintree/data_js.phtml" />
-            <block type="braintree_payments/form" name="payment.form.braintree" template="braintree/review_js.phtml">
-                <action method="setMethodInfo"></action>
-            </block>
+            <!--<block type="braintree_payments/datajs" name="braintree_payments_data_js" template="braintree/data_js.phtml" />-->
+            <!--<block type="braintree_payments/form" name="payment.form.braintree" template="braintree/review_js.phtml">-->
+                <!--<action method="setMethodInfo"></action>-->
+            <!--</block>-->
 		</reference>
 	</opc_index_index>		
 	
