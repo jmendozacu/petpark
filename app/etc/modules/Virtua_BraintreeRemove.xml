@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_BraintreeRemove>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Virtua_BraintreeRemove>
+    </modules>
+</config>
