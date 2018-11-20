@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_BraintreeRemove>
+            <version>0.1.0</version>
+        </Virtua_BraintreeRemove>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <braintreeremove module="Virtua_BraintreeRemove">
+                    <file>braintreeremove.xml</file>
+                </braintreeremove>
+            </updates>
+        </layout>
+    </frontend>
+</config>

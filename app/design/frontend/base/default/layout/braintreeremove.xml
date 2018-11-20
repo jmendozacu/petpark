@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <opc_index_index>
+        <remove name="braintree_payments_data_js"/>
+        <remove name="payment.form.braintree"/>
+    </opc_index_index>
+</layout>
