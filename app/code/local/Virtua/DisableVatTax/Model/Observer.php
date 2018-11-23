@@ -44,15 +44,12 @@ class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
     }
 
     /**
-     * Unset shouldDisableVatTax variable from session
+     * Clear shouldDisableVatTax attribute
      */
-    public function removeShouldDisableVatTaxVariableFromSession()
+    public function clearShouldDisableVatTaxAttribute()
     {
-        /**
-         * @var Mage_Customer_Model_Session $customerSession
-         */
-        $customerSession = Mage::getSingleton('customer/session');
-        $customerSession->unsetData('shouldDisableVatTax');
+        $customer = Mage::getSingleton('customer/session')->getCustomer();
+        $customer->setShouldDisableVatTax(0);
     }
 
     /**

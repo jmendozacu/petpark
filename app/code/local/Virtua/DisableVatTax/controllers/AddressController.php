@@ -52,8 +52,9 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
             }
 
             try {
-                if ($this->areValuesChanged($customer, $addressData)) {
-                    $this->saveValidationResultsToAttr($customer, $addressData['vat_id'], $addressData['country_id']);
+                $disableVatTaxHelper = Mage::helper('virtua_disablevattax');
+                if ($disableVatTaxHelper->areValuesChanged($customer, $addressData)) {
+                    $disableVatTaxHelper->saveValidationResultsToAttr($customer, $addressData['vat_id'], $addressData['country_id']);
                     $this->addSessionVatInfo($customer->getIsVatIdValid(), $addressData['country_id']);
                 }
                 $addressForm->compactData($addressData);
@@ -88,45 +89,8 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
     }
 
     /**
-     * Checks have customer values been changed in form request.
-     *
-     * @param $customer
-     * @param array $addressData
-     *
-     * @return bool
-     */
-    public function areValuesChanged($customer, $addressData)
-    {
-        $currentVatNumber = null;
-        $currentCountry = null;
-
-        if ($customer->getDefaultBillingAddress()) {
-            $currentVatNumber = $customer->getDefaultBillingAddress()->getVatId();
-            $currentCountry = $customer->getDefaultBillingAddress()->getCountry();
-        }
-        $newVatNumber = $addressData['vat_id'];
-        $newCountry = $addressData['country_id'];
-
-        return $currentVatNumber != $newVatNumber || $currentCountry != $newCountry;
-    }
-
-    /**
-     * Save vat number validation results to customer attribute.
-     *
-     * @param Dotdigitalgroup_Email_Model_Customer $customer
-     * @param string $vatNumber
-     * @param string $countryId
-     */
-    public function saveValidationResultsToAttr($customer, $vatNumber, $countryId)
-    {
-        $helper = Mage::helper('virtua_disablevattax');
-        $vatNumberValidation = $helper->isVatNumberValid($vatNumber, $countryId);
-        $customer->setIsVatIdValid($vatNumberValidation)->save();
-    }
-
-    /**
      * Adding info about vat validation to session.
-     * 
+     *
      * @param bool $vatNumberValidation
      * @param string $countryId
      */

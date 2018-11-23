@@ -6,10 +6,7 @@
  * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
  */
 
-/**
- * @var Mage_Customer_Model_Entity_Setup
- */
-$installer = new Mage_Customer_Model_Entity_Setup();
+$installer = $this;
 
 $installer->startSetup();
 
@@ -23,6 +20,16 @@ if (!$attr) {
         'is_vat_id_valid',
         [
             'label' => 'Is vat id valid',
+            'visible' => 1,
+            'required' => 0,
+            'default' => 0,
+        ]
+    );
+    $installer->addAttribute(
+        'customer',
+        'should_disable_vat_tax',
+        [
+            'label' => 'Should disable vat tax',
             'visible' => 1,
             'required' => 0,
             'default' => 0,
