@@ -84,6 +84,9 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
                 $header['RecurrenceId'] = $this->prepareToken();
                 $header['InitiateRecurrence'] = true;
             }
+        } elseif (Mage::getSingleton('core/session')->getBarionToken()) {
+            Mage::getSingleton('core/session')->unsetData('barion_token');
+            Mage::getSingleton('core/session')->unsetData('prepared_barion_token');
         }
 
         $paymentType = Mage::getStoreConfig('payment/tlbarion/virtua_barionpayment_paymenttype', Mage::app()->getStore());
@@ -110,6 +113,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
         }
 
         if ($result != false) {
+            Mage::log($resultarray, null, 'barion_payment_results.log', true);
             if (!Mage::getSingleton('core/session')->getBarionToken() && $this->isTokenPaymentEnabled()) {
                 Mage::getSingleton('core/session')->setPreparedBarionToken($header['RecurrenceId']);
             }
@@ -137,7 +141,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
                     $transid
                 );
 
-                if ($header['InitiateRecurrence'] == false) {
+                if (array_key_exists('InitiateRecurrence', $header) && $header['InitiateRecurrence'] == false) {
                     $url = Mage::getUrl('tlbarion/redirection/respond');
                     return $url;
                 }
