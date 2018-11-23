@@ -11,6 +11,8 @@
  */
 class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Model_Paymentmethod
 {
+    const REDIRECT_URL                  = 'tlbarion/redirection/respond';
+
     protected $_canAuthorize            = true;
     protected $_canRefund               = true;
     protected $_canRefundInvoicePartial = true;
@@ -63,7 +65,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
             'GuestCheckOut'    => true,
             'FundingSources'   => ['All'],
             'PaymentRequestId' => $lastorderid,
-            'RedirectUrl'      => Mage::getUrl('tlbarion/redirection/respond/'),
+            'RedirectUrl'      => Mage::getUrl(self::REDIRECT_URL),
             'currency'         => $currency,
             'locale'           => 'sk-SK',
             'Transactions'     => [[
@@ -79,7 +81,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
                 $header['RecurrenceId'] = Mage::getSingleton('core/session')->getBarionToken();
                 $header['InitiateRecurrence'] = false;
                 unset($header['RedirectUrl']);
-                $header['CallbackUrl'] = Mage::getUrl('tlbarion/redirection/respond/');
+                $header['CallbackUrl'] = Mage::getUrl(self::REDIRECT_URL);
             } else {
                 $header['RecurrenceId'] = $this->prepareToken();
                 $header['InitiateRecurrence'] = true;
@@ -142,7 +144,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
                 );
 
                 if (array_key_exists('InitiateRecurrence', $header) && $header['InitiateRecurrence'] == false) {
-                    $url = Mage::getUrl('tlbarion/redirection/respond');
+                    $url = Mage::getUrl(self::REDIRECT_URL);
                     return $url;
                 }
                 $url = $helper->getRedirectUrl($storeid);
@@ -225,7 +227,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
     public function dontUseExsistingToken($header)
     {
         $header['InitiateRecurrence'] = true;
-        $header['RedirectUrl'] = Mage::getUrl('tlbarion/redirection/respond/');
+        $header['RedirectUrl'] = Mage::getUrl(self::REDIRECT_URL);
         unset($header['CallbackUrl']);
 
         return $header;
