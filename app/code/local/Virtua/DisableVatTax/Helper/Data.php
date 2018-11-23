@@ -69,32 +69,22 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function shouldDisableVatTax()
     {
-        /**
-         * @var Mage_Customer_Model_Session $customerSession
-         */
         $customerSession = Mage::getSingleton('customer/session');
+        $customer = $customerSession->getCustomer();
 
-        if ($customerSession->getData('shouldDisableVatTax') !== null
+        if ($customer->getShouldDisableVatTax() != 0
             && !Mage::app()->getRequest()->isAjax()
         ) {
-            return $customerSession->getData('shouldDisableVatTax');
+            return $customer->getShouldDisableVatTax();
         }
 
         if (!$customerSession->isLoggedIn()) {
-            $customerSession->setData('shouldDisableVatTax', false);
+            $customer->setShouldDisableVatTax(0);
             return false;
         }
 
-        /**
-         * @var Mage_Customer_Model_Customer $customer
-         */
-        $customer = $customerSession->getCustomer();
-
         $countryCode = null;
         if ($customer->getDefaultBillingAddress()) {
-            /**
-             * @var string $countryCode
-             */
             $countryCode = $customer->getDefaultBillingAddress()->getCountry();
         }
 
@@ -103,19 +93,18 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         if ($vatNumber == 1
             && $countryCode != null
             && !$this->isDomesticCountry($countryCode)) {
-            $customerSession->setData('shouldDisableVatTax', true);
+            $customer->setShouldDisableVatTax(1)->save();
             return true;
         }
-
-        $customerSession->setData('shouldDisableVatTax', false);
+        $customer->setShouldDisableVatTax(0)->save();
         return false;
     }
 
     /**
      * Checks is customer has a valid vat id with European Commission VAT validation.
      *
-     * @param $vatNumber
-     * @param $countryCode
+     * @param string $vatNumber
+     * @param string $countryCode
      *
      * @return bool
      */
@@ -139,7 +128,7 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Checks is it domestic country.
      *
-     * @param $country
+     * @param string $country
      *
      * @return bool
      */
@@ -152,8 +141,8 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Checks is vat number pattern valid.
      *
-     * @param $vatNumber
-     * @param $countryCode
+     * @param string $vatNumber
+     * @param string $countryCode
      *
      * @return bool
      */
@@ -161,5 +150,42 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     {
         $patterns = self::$patterns;
         return preg_match('/^'.$patterns[$countryCode].'$/', $vatNumber) > 0;
+    }
+
+    /**
+     * Checks have customer values been changed in form request.
+     *
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     * @param array $addressData
+     *
+     * @return bool
+     */
+    public function areValuesChanged($customer, $addressData)
+    {
+        $currentVatNumber = null;
+        $currentCountry = null;
+
+        if ($customer->getDefaultBillingAddress()) {
+            $currentVatNumber = $customer->getDefaultBillingAddress()->getVatId();
+            $currentCountry = $customer->getDefaultBillingAddress()->getCountry();
+        }
+        $newVatNumber = $addressData['vat_id'];
+        $newCountry = $addressData['country_id'];
+
+        return $currentVatNumber != $newVatNumber || $currentCountry != $newCountry;
+    }
+
+    /**
+     * Save vat number validation results to customer attribute.
+     *
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     * @param string $vatNumber
+     * @param string $countryId
+     */
+    public function saveValidationResultsToAttr($customer, $vatNumber, $countryId)
+    {
+        $vatNumberValidation = $this->isVatNumberValid($vatNumber, $countryId);
+        $customer->setIsVatIdValid($vatNumberValidation)->save();
+        $customer->setShouldDisableVatTax($vatNumberValidation)->save();
     }
 }

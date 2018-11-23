@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Virtua_DisableVatTax>
-            <version>1.0.0</version>
+            <version>2.0.0</version>
         </Virtua_DisableVatTax>
     </modules>
     <global>
@@ -52,7 +52,7 @@
                     <virtua_disablevattax>
                         <type>singleton</type>
                         <class>Virtua_DisableVatTax_Model_Observer</class>
-                        <method>removeShouldDisableVatTaxVariableFromSession</method>
+                        <method>clearShouldDisableVatTaxAttribute</method>
                     </virtua_disablevattax>
                 </observers>
             </customer_address_save_after>
@@ -61,7 +61,7 @@
                     <virtua_disablevattax>
                         <type>singleton</type>
                         <class>Virtua_DisableVatTax_Model_Observer</class>
-                        <method>removeShouldDisableVatTaxVariableFromSession</method>
+                        <method>clearShouldDisableVatTaxAttribute</method>
                     </virtua_disablevattax>
                 </observers>
             </customer_login>
@@ -70,7 +70,7 @@
                     <virtua_disablevattax>
                         <type>singleton</type>
                         <class>Virtua_DisableVatTax_Model_Observer</class>
-                        <method>removeShouldDisableVatTaxVariableFromSession</method>
+                        <method>clearShouldDisableVatTaxAttribute</method>
                     </virtua_disablevattax>
                 </observers>
             </customer_logout>
@@ -87,4 +87,15 @@
             </customer>
         </routers>
     </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Virtua_DisableVatTax before="Mage_Adminhtml">Virtua_DisableVatTax_Adminhtml</Virtua_DisableVatTax>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
 </config>
