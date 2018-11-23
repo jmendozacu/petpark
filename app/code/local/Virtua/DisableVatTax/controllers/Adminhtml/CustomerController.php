@@ -38,7 +38,6 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
 
             $formData = $customerForm->extractData($this->getRequest(), 'account');
 
-            // Handle 'disable auto_group_change' attribute
             if (isset($formData['disable_auto_group_change'])) {
                 $formData['disable_auto_group_change'] = empty($formData['disable_auto_group_change']) ? '0' : '1';
             }
@@ -47,7 +46,6 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
             if ($customer->getId()&& !empty($data['account']['new_password'])
                 && Mage::helper('customer')->getIsRequireAdminUserToChangeUserPassword()
             ) {
-                //Validate current admin password
                 if (isset($data['account']['current_password'])) {
                     $currentPassword = $data['account']['current_password'];
                 } else {
@@ -72,7 +70,6 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
 
             $customerForm->compactData($formData);
 
-            // Unset template data
             if (isset($data['address']['_template_'])) {
                 unset($data['address']['_template_']);
             }
@@ -101,8 +98,6 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
                     $requestScope = sprintf('address/%s', $index);
                     $formData = $addressForm->setEntity($address)
                         ->extractData($this->getRequest(), $requestScope);
-
-                    // Set default billing and shipping flags to address
                     $isDefaultBilling = isset($data['account']['default_billing'])
                         && $data['account']['default_billing'] == $index;
                     $address->setIsDefaultBilling($isDefaultBilling);
@@ -124,7 +119,6 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
 
                     $addressForm->compactData($formData);
 
-                    // Set post_index for detect default billing and shipping addresses
                     $address->setPostIndex($index);
 
                     if ($address->getId()) {
@@ -135,7 +129,6 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
                 }
             }
 
-            // Default billing and shipping
             if (isset($data['account']['default_billing'])) {
                 $customer->setData('default_billing', $data['account']['default_billing']);
             }
@@ -146,7 +139,6 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
                 $customer->setData('confirmation', $data['account']['confirmation']);
             }
 
-            // Mark not modified customer addresses for delete
             foreach ($customer->getAddressesCollection() as $customerAddress) {
                 if ($customerAddress->getId() && !in_array($customerAddress->getId(), $modifiedAddresses)) {
                     $customerAddress->setData('_deleted', true);
@@ -166,7 +158,6 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
             $isNewCustomer = $customer->isObjectNew();
             try {
                 $sendPassToEmail = false;
-                // Force new customer confirmation
                 if ($isNewCustomer) {
                     $customer->setPassword($data['account']['password']);
                     $customer->setForceConfirmed(true);
@@ -183,13 +174,11 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
 
                 $customer->save();
 
-                // Send welcome email
                 if ($customer->getWebsiteId() && (isset($data['account']['sendemail']) || $sendPassToEmail)) {
                     $storeId = $customer->getSendemailStoreId();
                     if ($isNewCustomer) {
                         $customer->sendNewAccountEmail('registered', '', $storeId);
                     } elseif ((!$customer->getConfirmation())) {
-                        // Confirm not confirmed customer
                         $customer->sendNewAccountEmail('confirmed', '', $storeId);
                     }
                 }
