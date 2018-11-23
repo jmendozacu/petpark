@@ -153,7 +153,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         if ($result != false) {
             $resultarray = json_decode($result, true);
             if (empty($resultarray['Errors'])) {
-                $this->processOrderSuccess($order);
+                $this->processOrderSuccess($order, false);
                 $transaction
                     ->setData('bariontransactionid', $this->getSucceededTransaction($resultarray['Transactions']))
                     ->setData('payment_status', '02')
@@ -269,12 +269,12 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      *
      * @return bool
      */
-    public function processOrderSuccess($order)
+    public function processOrderSuccess($order, $isItNotFinishingReservation = true)
     {
         try {
             $this->usePreparedTokenAsBarionToken();
 
-            if ($order) {
+            if ($order && $isItNotFinishingReservation) {
                 $invoice = $order->prepareInvoice();
                 $invoice->register()->capture();
                 Mage::getModel('core/resource_transaction')
