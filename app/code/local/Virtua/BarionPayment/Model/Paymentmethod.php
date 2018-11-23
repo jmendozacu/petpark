@@ -63,7 +63,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
             'GuestCheckOut'    => true,
             'FundingSources'   => ['All'],
             'PaymentRequestId' => $lastorderid,
-            'RedirectUrl'      => Mage::getUrl('tlbarion/redirection/respond/'),
+            'RedirectUrl'      => Mage::getUrl('tlbarion/redirection/respond'),
             'currency'         => $currency,
             'locale'           => 'sk-SK',
             'Transactions'     => [[
@@ -79,7 +79,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
                 $header['RecurrenceId'] = Mage::getSingleton('core/session')->getBarionToken();
                 $header['InitiateRecurrence'] = false;
                 unset($header['RedirectUrl']);
-                $header['CallbackUrl'] = Mage::getUrl('tlbarion/redirection/respond/');
+                $header['CallbackUrl'] = Mage::getUrl('tlbarion/redirection/respond');
             } else {
                 $header['RecurrenceId'] = $this->prepareToken();
                 $header['InitiateRecurrence'] = true;
@@ -225,7 +225,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
     public function dontUseExsistingToken($header)
     {
         $header['InitiateRecurrence'] = true;
-        $header['RedirectUrl'] = Mage::getUrl('tlbarion/redirection/respond/');
+        $header['RedirectUrl'] = Mage::getUrl('tlbarion/redirection/respond');
         unset($header['CallbackUrl']);
 
         return $header;
