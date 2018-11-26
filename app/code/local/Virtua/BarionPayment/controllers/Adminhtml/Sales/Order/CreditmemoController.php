@@ -25,7 +25,6 @@ class Virtua_BarionPayment_Adminhtml_Sales_Order_CreditmemoController extends Ma
         }
 
         try {
-            $barionHelper = Mage::helper('tlbarion');
             $creditmemo = $this->_initCreditmemo();
             if ($creditmemo) {
                 if (($creditmemo->getGrandTotal() <=0) && (!$creditmemo->getAllowZeroGrandTotal())) {
@@ -52,7 +51,10 @@ class Virtua_BarionPayment_Adminhtml_Sales_Order_CreditmemoController extends Ma
                     ->getData('real_orderid');
                 if ($isBarion) {
                     $total = $creditmemo->getData('base_grand_total');
-                    $barionHelper->refundPayment($orderId, $total);
+                    $total = bcdiv($total, 1, 2);
+                    Mage::helper('tlbarion')->refundPayment($orderId, $total);
+                } else {
+                    throw new Exception();
                 }
 
                 if (isset($data['do_refund'])) {

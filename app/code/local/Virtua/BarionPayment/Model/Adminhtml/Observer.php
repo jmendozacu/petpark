@@ -23,7 +23,10 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
             return $this;
         }
         $orderId = Mage::app()->getRequest()->getParam('order_id');
-        $state = Mage::getModel('sales/order')->load($orderId)->getState();
+        $order = Mage::getModel('sales/order')->load($orderId);
+        $state = $order->getState();
+        $status = $order->getStatus();
+
         $isBarion = Mage::getModel('tlbarion/paymentmethod')
             ->getTransModel()
             ->loadByOrderId($orderId)
@@ -31,7 +34,7 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
 
         if (($state == 'processing' || $state == 'complete') && $isBarion) {
             $this->createRefundButton($block, $orderId);
-        } elseif ($state == 'payment_review' && $isBarion) {
+        } elseif ($status == 'reservation' && $isBarion) {
             $this->createFinishReservationButton($block, $orderId);
         }
 

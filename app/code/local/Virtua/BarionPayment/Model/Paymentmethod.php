@@ -16,6 +16,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
     protected $_canAuthorize            = true;
     protected $_canRefund               = true;
     protected $_canRefundInvoicePartial = true;
+    protected $_canCapture              = false;
 
     /**
      * @return bool|string
