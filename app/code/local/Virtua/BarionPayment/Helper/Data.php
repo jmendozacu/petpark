@@ -86,8 +86,9 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      * Refund payment.
      *
      * @param int $orderId
+     * @param float $total
      */
-    public function refundPayment($orderId)
+    public function refundPayment($orderId, $total)
     {
         $order = Mage::getModel('sales/order')->load($orderId);
         $storeid = $order->getStoreId();
@@ -103,7 +104,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             'TransactionsToRefund' => [[
                 'TransactionId'    => $transactionId,
                 'POSTransactionId' => $posTransactionId,
-                'AmountToRefund'   => $order->getGrandTotal()
+                'AmountToRefund'   => $total
             ]]
         ];
 
@@ -113,13 +114,12 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         if ($result != false) {
             $resultarray = json_decode($result, true);
             if (empty($resultarray['Errors'])) {
-                $this->refundInAdmin($order);
-                $order->setState(Mage_Sales_Model_Order::STATE_CANCELED, true)->save();
                 $transaction
                     ->setData('payment_status', '02')
                     ->save();
                 Mage::getSingleton('adminhtml/session')->addSuccess('Payment has been successfully refunded.');
             } else {
+                Mage:log($resultarray, null, 'barion_refund_errors.log', true);
                 Mage::getSingleton('adminhtml/session')->addError('Something went wrong. Payment has not been refunded.');
             }
         }
@@ -230,33 +230,6 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             Mage::log('Barion curl error: '.$err, null, 'barion-curl-reservation-error.log', true);
             return false;
         } catch (Exception $e) {
-            Mage::logException($e);
-            return false;
-        }
-    }
-
-    /**
-     * Refund payment in admin panel
-     *
-     * @param Nostress_Gpwebpay_Model_Order $order
-     *
-     * @return bool
-     */
-    public function refundInAdmin($order)
-    {
-        if (!$order->getId()) {
-            return false;
-        }
-        $data = [];
-        $service = Mage::getModel('sales/service_order', $order);
-        $creditmemo = $service->prepareCreditmemo($data);
-        $creditmemo->setPaymentRefundDisallowed(true)->register();
-        try {
-            Mage::getModel('core/resource_transaction')
-                ->addObject($creditmemo)
-                ->addObject($order)
-                ->save();
-        } catch (Mage_Core_Exception $e) {
             Mage::logException($e);
             return false;
         }

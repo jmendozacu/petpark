@@ -37,7 +37,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <Virtua_BarionPayment before="Virtua_BarionPayment_Adminhtml">Virtua_BarionPayment_Adminhtml</Virtua_BarionPayment>
+                        <Virtua_BarionPayment before="Mage_Adminhtml">Virtua_BarionPayment_Adminhtml</Virtua_BarionPayment>
                     </modules>
                 </args>
             </adminhtml>
