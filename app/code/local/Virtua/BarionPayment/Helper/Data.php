@@ -134,7 +134,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      *
      * @param int $orderId
      */
-    public function finishReservation($orderId, $total = null, $isFinishedByInvoice = null)
+    public function finishReservation($orderId, $total = null, $isFinishedByInvoice = null, $items = null)
     {
         $order = Mage::getModel('sales/order')->load($orderId);
         $storeid = $order->getStoreId();
@@ -154,6 +154,21 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                 'Total'         => $total
             ]]
         ];
+
+        if ($items) {
+            $products = array();
+            $i = 0;
+            foreach ($items as $item) {
+                $products[$i]['Name']        = $item->getName();
+                $products[$i]['Description'] = $item->getName();
+                $products[$i]['Quantity']    = $item->getQty();
+                $products[$i]['Unit']        = 'db';
+                $products[$i]['UnitPrice']   = $item->getPriceInclTax();
+                $products[$i]['ItemTotal']   = $item->getRowTotalInclTax();
+                $i++;
+            }
+            $header['Transactions'][0]['Items'] = $products;
+        }
 
         $json = json_encode($header);
         $result = $this->callBarionToFinishReservation($json, $storeid);

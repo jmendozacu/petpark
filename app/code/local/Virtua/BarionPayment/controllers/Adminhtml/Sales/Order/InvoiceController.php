@@ -47,11 +47,14 @@ class Virtua_BarionPayment_Adminhtml_Sales_Order_InvoiceController extends Mage_
                     ->loadByOrderId($orderId)
                     ->getData('real_orderid');
                 if ($isBarion) {
+                    $items = $invoice->getAllItems();
                     $total = $invoice->getData('base_grand_total');
                     $total = bcdiv($total, 1, 2);
-                    Mage::helper('tlbarion')->finishReservation($orderId, $total, true);
-                } else {
-                    throw new Exception();
+                    try {
+                        Mage::helper('tlbarion')->finishReservation($orderId, $total, true, $items);
+                    } catch (Exception $e) {
+                        throw new Exception();
+                    }
                 }
 
                 $invoice->register();
