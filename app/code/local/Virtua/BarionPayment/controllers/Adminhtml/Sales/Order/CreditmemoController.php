@@ -7,16 +7,12 @@
  */
 
 /**
- * Mage_Adminhtml_Sales_Order_CreditmemoControlle
+ * Mage_Adminhtml_Sales_Order_CreditmemoController
  */
 require 'Mage/Adminhtml/controllers/Sales/Order/CreditmemoController.php';
 
 class Virtua_BarionPayment_Adminhtml_Sales_Order_CreditmemoController extends Mage_Adminhtml_Sales_Order_CreditmemoController
 {
-    /**
-     * Save creditmemo
-     * We can save only new creditmemo. Existing creditmemos are not editable
-     */
     public function saveAction()
     {
         $data = $this->getRequest()->getPost('creditmemo');
@@ -27,7 +23,7 @@ class Virtua_BarionPayment_Adminhtml_Sales_Order_CreditmemoController extends Ma
         try {
             $creditmemo = $this->_initCreditmemo();
             if ($creditmemo) {
-                if (($creditmemo->getGrandTotal() <=0) && (!$creditmemo->getAllowZeroGrandTotal())) {
+                if (($creditmemo->getGrandTotal() <= 0) && (!$creditmemo->getAllowZeroGrandTotal())) {
                     Mage::throwException(
                         $this->__('Credit memo\'s total must be positive.')
                     );
@@ -52,9 +48,9 @@ class Virtua_BarionPayment_Adminhtml_Sales_Order_CreditmemoController extends Ma
                 if ($isBarion) {
                     $total = $creditmemo->getData('base_grand_total');
                     $total = bcdiv($total, 1, 2);
-                    Mage::helper('tlbarion')->refundPayment($orderId, $total);
-                } else {
-                    throw new Exception();
+                    if (!Mage::helper('tlbarion')->refundPayment($orderId, $total)) {
+                        throw new Exception();
+                    }
                 }
 
                 if (isset($data['do_refund'])) {

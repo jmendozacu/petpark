@@ -19,12 +19,12 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
     public function loadButtons($observer)
     {
         $block = Mage::app()->getLayout()->getBlock('sales_order_edit');
+
         if (!$block) {
             return $this;
         }
         $orderId = Mage::app()->getRequest()->getParam('order_id');
         $order = Mage::getModel('sales/order')->load($orderId);
-        $state = $order->getState();
         $status = $order->getStatus();
 
         $isBarion = Mage::getModel('tlbarion/paymentmethod')
@@ -32,31 +32,15 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
             ->loadByOrderId($orderId)
             ->getData('real_orderid');
 
-        if (($state == 'processing' || $state == 'complete') && $isBarion) {
-            $this->createRefundButton($block, $orderId);
-        } elseif ($status == 'reservation' && $isBarion) {
+        if ($status == 'reservation' && $isBarion) {
             $this->createFinishReservationButton($block, $orderId);
         }
 
+        if ($status != 'reservation' && $isBarion) {
+            $block->removeButton('order_invoice');
+        }
+
         return $this;
-    }
-
-    /**
-     * @param $block
-     * @param int $orderId
-     */
-    public function createRefundButton($block, $orderId)
-    {
-        $url = Mage::helper('adminhtml')->getUrl(
-            '*/barionpayment/refund',
-            ['orderId' => $orderId]
-        );
-
-        $block->addButton('barion_refund', array(
-            'label'     => Mage::helper('sales')->__('Refund Barion Payment'),
-            'onclick'   => 'setLocation(\'' . $url . '\')',
-            'class'     => 'go'
-        ));
     }
 
     /**

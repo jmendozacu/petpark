@@ -38,20 +38,16 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             $transaction = $otppayment->getTransModel()->loadByOrderId($order->getId());
         }
 
-        $transid = $transaction->getEntityId();
-
+        $transid      = $transaction->getEntityId();
         $real_orderid = $transaction->getRealOrderid();
+        $params       = '?POSKey='.$this->getShopId($storeid).'&TransactionId='.$transaction->getBariontransactionid();
+        $result       = $this->callCurl2($params, $storeid);
+        $resultarray  = [];
+        $return       = 'pending';
 
-        $params = '?POSKey='.$this->getShopId($storeid).'&TransactionId='.$transaction->getBariontransactionid();
-
-        $result = $this->callCurl2($params, $storeid);
-
-        $resultarray = array();
-
-        $return = 'pending';
         if ($result != false) {
             $resultarray = json_decode($result, true);
-            if ($resultarray['Status']=='Succeeded') {
+            if ($resultarray['Status'] == 'Succeeded') {
                 $return = 'success';
                 $status = '02';
             } elseif ($resultarray['Status'] == 'Prepared'
@@ -86,20 +82,23 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      * Refund payment.
      *
      * @param int $orderId
-     * @param float $total
+     * @param float|null $total
+     *
+     * @return bool
      */
     public function refundPayment($orderId, $total = null)
     {
-        $order = Mage::getModel('sales/order')->load($orderId);
-        $storeid = $order->getStoreId();
-        $lastorderId = $order->getIncrementId();
-        $transaction = Mage::getModel('tlbarion/paymentmethod')->getTransModel()->loadByOrderId($orderId);
+        $order            = Mage::getModel('sales/order')->load($orderId);
+        $storeid          = $order->getStoreId();
+        $lastorderId      = $order->getIncrementId();
+        $transaction      = Mage::getModel('tlbarion/paymentmethod')->getTransModel()->loadByOrderId($orderId);
         $posTransactionId = $transaction->getEntityId();
-        $transactionId = $transaction->getBariontransactionid();
-        $paymentId = $transaction->getData('real_orderid');
+        $transactionId    = $transaction->getBariontransactionid();
+        $paymentId        = $transaction->getData('real_orderid');
 
         if (!$total) {
-            $total = $order->getGrandTotal();
+            $total = $order->getTotalPaid() - $order->getTotalRefunded();
+            $total = bcdiv($total, 1, 2);
         }
 
         $header = [
@@ -112,7 +111,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             ]]
         ];
 
-        $json = json_encode($header);
+        $json   = json_encode($header);
         $result = $this->callBarionToRefund($json, $storeid);
 
         if ($result != false) {
@@ -122,10 +121,12 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                     ->setData('payment_status', '02')
                     ->save();
                 Mage::getSingleton('adminhtml/session')->addSuccess('Payment has been successfully refunded.');
-            } else {
-                Mage::log($resultarray, null, 'barion_refund_errors.log', true);
-                Mage::getSingleton('adminhtml/session')->addError('Something went wrong. Payment has not been refunded.');
+                return true;
             }
+            Mage::log($resultarray, null, 'barion_refund_errors.log', true);
+            Mage::getSingleton('adminhtml/session')
+                ->addError('Something went wrong. Payment has not been refunded.');
+            return false;
         }
     }
 
@@ -133,14 +134,20 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      * Finishing reserved payment.
      *
      * @param int $orderId
+     *
+     * @param float|null $total
+     * @param bool|null $isFinishedByInvoice
+     * @param array|null $items
+     *
+     * @return bool
      */
     public function finishReservation($orderId, $total = null, $isFinishedByInvoice = null, $items = null)
     {
-        $order = Mage::getModel('sales/order')->load($orderId);
-        $storeid = $order->getStoreId();
-        $transaction = Mage::getModel('tlbarion/paymentmethod')->getTransModel()->loadByOrderId($orderId);
+        $order         = Mage::getModel('sales/order')->load($orderId);
+        $storeid       = $order->getStoreId();
+        $transaction   = Mage::getModel('tlbarion/paymentmethod')->getTransModel()->loadByOrderId($orderId);
         $transactionId = $transaction->getBariontransactionid();
-        $paymentId = $transaction->getData('real_orderid');
+        $paymentId     = $transaction->getData('real_orderid');
 
         if (!$total) {
             $total = $order->getGrandTotal();
@@ -170,14 +177,14 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             $header['Transactions'][0]['Items'] = $products;
         }
 
-        $json = json_encode($header);
+        $json   = json_encode($header);
         $result = $this->callBarionToFinishReservation($json, $storeid);
 
         if ($result != false) {
             $resultarray = json_decode($result, true);
             if (empty($resultarray['Errors'])) {
                 if (!$isFinishedByInvoice) {
-                    $this->processOrderSuccess($order, false);
+                    $this->processOrderSuccess($order);
                 }
                 $transaction
                     ->setData('bariontransactionid', $this->getSucceededTransaction($resultarray['Transactions']))
@@ -185,10 +192,12 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
                     ->setData('real_orderid', $resultarray['PaymentId'])
                     ->save();
                 Mage::getSingleton('adminhtml/session')->addSuccess('You have successfully finished a reservation.');
-            } else {
-                Mage::log($resultarray, null, 'barion_reservation_errors.log', true);
-                Mage::getSingleton('adminhtml/session')->addError('Something went wrong. Reservation has not been finished.');
+                return true;
             }
+            Mage::log($resultarray, null, 'barion_reservation_errors.log', true);
+            Mage::getSingleton('adminhtml/session')
+                ->addError('Something went wrong. Reservation has not been finished.');
+            return false;
         }
     }
 
@@ -210,7 +219,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
 
         try {
             $options = $this->getCurlOptions($json, $url);
-            $ch = curl_init();
+            $ch      = curl_init();
             curl_setopt_array($ch, $options);
             $content = curl_exec($ch);
             $err     = curl_errno($ch);
@@ -245,10 +254,10 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
 
         try {
             $options = $this->getCurlOptions($json, $url);
-            $ch = curl_init();
+            $ch      = curl_init();
             curl_setopt_array($ch, $options);
             $content = curl_exec($ch);
-            $err = curl_errno($ch);
+            $err     = curl_errno($ch);
             if (!$err) {
                 curl_close($ch);
                 return $content;
@@ -268,7 +277,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      *
      * @return bool
      */
-    public function processOrderSuccess($order, $isItNotFinishingReservation = true)
+    public function processOrderSuccess($order)
     {
         try {
             $this->usePreparedTokenAsBarionToken();

@@ -7,16 +7,12 @@
  */
 
 /**
- * Mage_Adminhtml_Sales_Order_CreditmemoControlle
+ * Mage_Adminhtml_Sales_Order_InvoiceController
  */
 require 'Mage/Adminhtml/controllers/Sales/Order/InvoiceController.php';
 
 class Virtua_BarionPayment_Adminhtml_Sales_Order_InvoiceController extends Mage_Adminhtml_Sales_Order_InvoiceController
 {
-    /**
-     * Save invoice
-     * We can save only new invoice. Existing invoices are not editable
-     */
     public function saveAction()
     {
         $data = $this->getRequest()->getPost('invoice');
@@ -50,9 +46,7 @@ class Virtua_BarionPayment_Adminhtml_Sales_Order_InvoiceController extends Mage_
                     $items = $invoice->getAllItems();
                     $total = $invoice->getData('base_grand_total');
                     $total = bcdiv($total, 1, 2);
-                    try {
-                        Mage::helper('tlbarion')->finishReservation($orderId, $total, true, $items);
-                    } catch (Exception $e) {
+                    if (!Mage::helper('tlbarion')->finishReservation($orderId, $total, true, $items)) {
                         throw new Exception();
                     }
                 }
@@ -87,7 +81,6 @@ class Virtua_BarionPayment_Adminhtml_Sales_Order_InvoiceController extends Mage_
                     $this->_getSession()->addSuccess($this->__('The invoice has been created.'));
                 }
 
-                // send invoice/shipment emails
                 $comment = '';
                 if (isset($data['comment_customer_notify'])) {
                     $comment = $data['comment_text'];
