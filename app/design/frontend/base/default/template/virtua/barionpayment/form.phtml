@@ -8,8 +8,9 @@
     <img src="<?php echo Mage::getUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>virtua/barionpayment/payments.png" alt="Barion" />
     <?php if (Mage::getSingleton('core/session')->getBarionToken() && Mage::getModel('tlbarion/paymentmethod')->isTokenPaymentEnabled()) { ?>
     <div class="reset-token">
-        <?php echo $this->__('The payment will proceed with the next click. You will not be redirected and the payment will proceed immediately.'); ?><br>
-        <a href="<?php echo Mage::getUrl('tlbarion/redirection/removeToken'); ?>"><?php echo $this->__('Reset token'); ?></a>
+        <?php echo $this->__('You have been automatically approved to 1 click payment. If you push the "Pay and order in 1 click" button, you will not be redirected and the payment will be proceeded immediately.'); ?><br>
+        <?php echo $this->__('If you want to reset the 1 click payment please click on "Reset the 1 click payment".'); ?><br>
+        <a href="<?php echo Mage::getUrl('tlbarion/redirection/removeToken'); ?>"><?php echo $this->__('Reset the 1 click payment'); ?></a>
     </div>
     <?php } ?>
 </ul>

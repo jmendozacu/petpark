@@ -1,1 +1,10 @@
+<<<<<<< HEAD
 "Pay And Order In 1 Click", "Objednať a zaplatiť na 1 klik"
+||||||| merged common ancestors
+"Pay And Order", "Objednať a zaplatiť na 1 klik"
+=======
+"Pay And Order In 1 Click", "Objednať a zaplatiť na 1 klik"
+"You have been automatically approved to 1 click payment. If you push the ""Pay and order in 1 click"" button, you will not be redirected and the payment will be proceeded immediately.", "Na základe vašej predošlej platby kartou vám bola spoločnosťou Barion automaticky sprístupnená službu ""Zaplatiť na 1klik"". Stlačením tlačidla ""Objednať a zaplatiť na 1 klik"" nebudete presmerovaný na platobnú bránu a nemusíte opätovne vypĺňať údaje o platobnej karte. Platba bude zrealizovaná okamžite a z účtovaná z vašej naposledy použitej karty."
+"If you want to reset the 1 click payment please click on ""Reset the 1 click payment"".", "Ak nechcete využiť službu ""zaplatiť na 1 klik"", kliknite na linku ""Reset služby zaplatiť na 1 klik"". Platbu následne dokončíte presmerovaním na platobnú bránu, kde si vyplníte údaje o platobnej karte."
+"Reset the 1 click payment", "Reset služby zaplatiť na 1 klik"
+>>>>>>> feature/PET-67
