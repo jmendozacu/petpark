@@ -16,6 +16,9 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
     protected $_canAuthorize            = true;
     protected $_canRefund               = true;
     protected $_canRefundInvoicePartial = true;
+    protected $_canCapture              = false;
+    protected $_canUseInternal          = true;
+    protected $_canUseForMultishipping  = true;
 
     /**
      * @return bool|string
@@ -27,18 +30,17 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
         if (!$order->getId()) {
             return false;
         }
-        $storeid    = $order->getStoreId();
-        $email      = $helper->getEmail($storeid);
-        $session    = Mage::getSingleton('checkout/session');
-        $currency   = $order->getOrderCurrencyCode();
-        $ordertotal = $order->getGrandTotal();
-
-        $locale = $helper->checkLocalCode();
+        $storeid     = $order->getStoreId();
+        $email       = $helper->getEmail($storeid);
+        $session     = Mage::getSingleton('checkout/session');
+        $currency    = $order->getOrderCurrencyCode();
+        $ordertotal  = $order->getGrandTotal();
+        $locale      = $helper->checkLocalCode();
         $lastorderid = $order->getIncrementId();
+        $products    = [];
+        $items       = $order->getAllVisibleItems();
+        $i           = 0;
 
-        $products = array();
-        $items = $order->getAllVisibleItems();
-        $i = 0;
         foreach ($items as $item) {
             $products[$i]['Name']        = $item->getName();
             $products[$i]['Description'] = $item->getName();
@@ -94,7 +96,10 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
         $paymentType = Mage::getStoreConfig('payment/tlbarion/virtua_barionpayment_paymenttype', Mage::app()->getStore());
         if ($paymentType == 'reservation') {
             $header['PaymentType'] = 'Reservation';
-            $reservationPeriod = Mage::getStoreConfig('payment/tlbarion/virtua_barionpayment_reservation_period', Mage::app()->getStore());
+            $reservationPeriod = Mage::getStoreConfig(
+                'payment/tlbarion/virtua_barionpayment_reservation_period',
+                Mage::app()->getStore()
+            );
             if ($reservationPeriod) {
                 $header['ReservationPeriod'] = $reservationPeriod;
             } else {
@@ -198,10 +203,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
     public function isTokenPaymentEnabled()
     {
         $isTokenEnabled = Mage::getStoreConfig('payment/tlbarion/virtua_barionpayment_token', Mage::app()->getStore());
-        if ($isTokenEnabled && Mage::getSingleton('customer/session')->isLoggedIn()) {
-            return true;
-        }
-        return false;
+        return $isTokenEnabled && Mage::getSingleton('customer/session')->isLoggedIn();
     }
 
     /**

@@ -7,14 +7,9 @@
  */
 
 /**
- * TLSoft_BarionPayment_Adminhtml_BarionpaymentController
- */
-require 'TLSoft/BarionPayment/controllers/Adminhtml/BarionpaymentController.php';
-
-/**
  * Class Virtua_BarionPayment_Adminhtml_BarionpaymentController
  */
-class Virtua_BarionPayment_Adminhtml_BarionpaymentController extends TLSoft_BarionPayment_Adminhtml_BarionpaymentController
+class Virtua_BarionPayment_Adminhtml_BarionpaymentController extends Mage_Adminhtml_Controller_Action
 {
     public function refundAction()
     {
