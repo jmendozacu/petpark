@@ -7,7 +7,7 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
 $placeOrderButtonText = 'Place Order Now';
 
 if (Mage::getSingleton('core/session')->getBarionToken() && Mage::getModel('tlbarion/paymentmethod')->isTokenPaymentEnabled()) {
-    $placeOrderButtonText = 'Pay And Order';
+    $placeOrderButtonText = 'Pay And Order In 1 Click';
 }
 ?>
 <div class="opc-wrapper-opc design_package_<?php echo $package;?> design_theme_<?php echo $theme;?>">
