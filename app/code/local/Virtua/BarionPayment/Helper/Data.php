@@ -331,7 +331,16 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      */
     public function getSucceededTransaction($transactions)
     {
-        $transaction = end($transactions);
+        /**
+         * Count of transactions for payment with wallet will be 4,
+         * but for payment with card it will be 3.
+         */
+        if (count($transactions) > 3) {
+            $transaction = end($transactions);
+        } else {
+            $transaction = $transactions[0];
+        }
+        
         if (array_key_exists('TransactionId', $transaction)) {
             return $transaction['TransactionId'];
         }
