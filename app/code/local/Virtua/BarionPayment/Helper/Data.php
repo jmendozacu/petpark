@@ -373,10 +373,12 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      */
     public function usePreparedTokenAsBarionToken()
     {
-        if (!Mage::getSingleton('core/session')->getBarionToken()
+        $customer = Mage::getSingleton('customer/session')->getCustomer();
+
+        if (!$customer->getBarionToken()
             && Mage::getModel('tlbarion/paymentmethod')->isTokenPaymentEnabled()) {
-            $preparedBarionToken = Mage::getSingleton('core/session')->getPreparedBarionToken();
-            Mage::getSingleton('core/session')->setBarionToken($preparedBarionToken);
+            $preparedBarionToken = $customer->getPreparedBarionToken();
+            $customer->setBarionToken($preparedBarionToken)->save();
         }
     }
 }

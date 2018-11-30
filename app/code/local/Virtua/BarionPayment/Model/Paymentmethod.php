@@ -25,6 +25,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
      */
     public function getOtpUrl()
     {
+        $customer = Mage::getSingleton('customer/session')->getCustomer();
         $helper = $this->otpHelper();
         $order  = $helper->getCurrentOrder();
         if (!$order->getId()) {
@@ -79,8 +80,8 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
         ];
 
         if ($this->isTokenPaymentEnabled()) {
-            if (Mage::getSingleton('core/session')->getBarionToken()) {
-                $header['RecurrenceId'] = Mage::getSingleton('core/session')->getBarionToken();
+            if ($customer->getBarionToken() != null) {
+                $header['RecurrenceId'] = $customer->getBarionToken();
                 $header['InitiateRecurrence'] = false;
                 unset($header['RedirectUrl']);
                 $header['CallbackUrl'] = Mage::getUrl(self::REDIRECT_URL);
@@ -88,9 +89,9 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
                 $header['RecurrenceId'] = $this->prepareToken();
                 $header['InitiateRecurrence'] = true;
             }
-        } elseif (Mage::getSingleton('core/session')->getBarionToken()) {
-            Mage::getSingleton('core/session')->unsetData('barion_token');
-            Mage::getSingleton('core/session')->unsetData('prepared_barion_token');
+        } elseif ($customer->getBarionToken()) {
+            $customer->setBarionToken(null)->save();
+            $customer->setPreparedBarionToken(null)->save();
         }
 
         $paymentType = Mage::getStoreConfig('payment/tlbarion/virtua_barionpayment_paymenttype', Mage::app()->getStore());
@@ -121,8 +122,8 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
 
         if ($result != false) {
             Mage::log($resultarray, null, 'barion_payment_results.log', true);
-            if (!Mage::getSingleton('core/session')->getBarionToken() && $this->isTokenPaymentEnabled()) {
-                Mage::getSingleton('core/session')->setPreparedBarionToken($header['RecurrenceId']);
+            if ($customer->getBarionToken() == null && $this->isTokenPaymentEnabled()) {
+                $customer->setPreparedBarionToken($header['RecurrenceId'])->save();
             }
             if (array_key_exists('PaymentId', $resultarray)) {
                 $transid = $this->saveTrans([

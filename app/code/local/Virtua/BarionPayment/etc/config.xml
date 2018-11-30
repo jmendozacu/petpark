@@ -16,6 +16,27 @@
                 </rewrite>
             </tlbarion>
         </models>
+        <resources>
+            <virtua_barionpayment_setup>
+                <setup>
+                    <module>Virtua_BarionPayment</module>
+                    <class>Mage_Customer_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </virtua_barionpayment_setup>
+            <virtua_barionpayment_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </virtua_barionpayment_write>
+            <virtua_barionpayment_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </virtua_barionpayment_read>
+        </resources>
         <blocks>
             <tlbarion>
                 <rewrite>
@@ -65,26 +86,6 @@
                 </args>
             </tlbarion>
         </routers>
-        <events>
-            <customer_login>
-                <observers>
-                    <virtua_barionpayment_model_observer>
-                        <type>model</type>
-                        <class>Virtua_BarionPayment_Model_Observer</class>
-                        <method>removeToken</method>
-                    </virtua_barionpayment_model_observer>
-                </observers>
-            </customer_login>
-            <customer_logout>
-                <observers>
-                    <virtua_barionpayment_model_observer>
-                        <type>model</type>
-                        <class>Virtua_BarionPayment_Model_Observer</class>
-                        <method>removeToken</method>
-                    </virtua_barionpayment_model_observer>
-                </observers>
-            </customer_logout>
-        </events>
         <layout>
             <updates>
                 <virtuabarionpayment>

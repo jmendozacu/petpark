@@ -1,3 +1,6 @@
+<?php
+    $customer = Mage::getSingleton('customer/session')->getCustomer();
+?>
 <ul class="form-list checkout-agreements" id="payment_form_tlbarion" style="display:none;">
     <li>
         <div class="agreement-content">
@@ -6,7 +9,7 @@
     </li>
 
     <img src="<?php echo Mage::getUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>virtua/barionpayment/payments.png" alt="Barion" />
-    <?php if (Mage::getSingleton('core/session')->getBarionToken() && Mage::getModel('tlbarion/paymentmethod')->isTokenPaymentEnabled()) { ?>
+    <?php if ($customer->getBarionToken() && Mage::getModel('tlbarion/paymentmethod')->isTokenPaymentEnabled()) { ?>
     <div class="reset-token">
         <?php echo $this->__('The payment will proceed with the next click. You will not be redirected and the payment will proceed immediately.'); ?><br>
         <a href="<?php echo Mage::getUrl('tlbarion/redirection/removeToken'); ?>"><?php echo $this->__('Reset token'); ?></a>
