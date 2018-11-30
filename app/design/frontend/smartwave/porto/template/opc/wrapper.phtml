@@ -5,8 +5,9 @@ $package = Mage::getDesign()->getPackageName();
 $theme = Mage::getDesign()->getTheme('frontend');
 $is_persistent = Mage::helper('opc')->isPersistentMember();
 $placeOrderButtonText = 'Place Order Now';
+$customer = Mage::getSingleton('customer/session')->getCustomer();
 
-if (Mage::getSingleton('core/session')->getBarionToken() && Mage::getModel('tlbarion/paymentmethod')->isTokenPaymentEnabled()) {
+if ($customer->getBarionToken() && Mage::getModel('tlbarion/paymentmethod')->isTokenPaymentEnabled()) {
     $placeOrderButtonText = 'Pay And Order In 1 Click';
 }
 ?>
