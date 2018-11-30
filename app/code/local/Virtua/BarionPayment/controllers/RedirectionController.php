@@ -53,7 +53,8 @@ class Virtua_BarionPayment_RedirectionController extends TLSoft_BarionPayment_Re
 
     public function removeTokenAction()
     {
-        Mage::getSingleton('core/session')->unsetData('barion_token');
+        $customer = Mage::getSingleton('customer/session')->getCustomer();
+        $customer->setBarionToken(null)->save();
         $this->_redirect('checkout/onepage');
     }
 }
