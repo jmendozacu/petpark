@@ -335,10 +335,9 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
          * Count of transactions for payment with wallet will be 4,
          * but for payment with card it will be 3.
          */
-        if (count($transactions) > 3) {
+        $transaction = $transactions[0];
+        if (count($transactions) > 3 && end($transactions)['POSTransactionId'] != null) {
             $transaction = end($transactions);
-        } else {
-            $transaction = $transactions[0];
         }
         
         if (array_key_exists('TransactionId', $transaction)) {
