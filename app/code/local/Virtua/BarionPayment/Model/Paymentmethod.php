@@ -248,7 +248,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
         }
 
         foreach ($resultarray['Errors'] as $error) {
-            if (array_key_exists('ErrorCode', $resultarray)
+            if (array_key_exists('ErrorCode', $error)
                 && $error['ErrorCode'] === 'OriginalPaymentWasntSuccessful') {
                 return true;
             }
