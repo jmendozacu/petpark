@@ -243,12 +243,14 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
      */
     public function wasOriginalPaymentUnsuccessful($resultarray)
     {
-        if (array_key_exists('Errors', $resultarray)) {
-            foreach ($resultarray['Errors'] as $error) {
-                if (array_key_exists('ErrorCode', $resultarray)
-                    && $error['ErrorCode'] === 'OriginalPaymentWasntSuccessful') {
-                    return true;
-                }
+        if (!array_key_exists('Errors', $resultarray)) {
+            return false;
+        }
+
+        foreach ($resultarray['Errors'] as $error) {
+            if (array_key_exists('ErrorCode', $resultarray)
+                && $error['ErrorCode'] === 'OriginalPaymentWasntSuccessful') {
+                return true;
             }
         }
 
