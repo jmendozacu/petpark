@@ -113,7 +113,9 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
         $result = $helper->callCurl($json, $storeid);
         $resultarray = json_decode($result, true);
 
-        if ($header['InitiateRecurrence'] == false && $this->areFundsInsufficient($resultarray)) {
+        if ($header['InitiateRecurrence'] == false
+            && ($this->areFundsInsufficient($resultarray)
+                || $this->wasOriginalPaymentUnsuccessful($resultarray))) {
             $header = $this->dontUseExsistingToken($header);
             $json = json_encode($header);
             $result = $helper->callCurl($json, $storeid);
@@ -234,5 +236,21 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
         unset($header['CallbackUrl']);
 
         return $header;
+    }
+
+    /**
+     * @return bool
+     */
+    public function wasOriginalPaymentUnsuccessful($resultarray)
+    {
+        if (array_key_exists('Errors', $resultarray)) {
+            foreach ($resultarray['Errors'] as $error) {
+                if ($error['ErrorCode'] == 'OriginalPaymentWasntSuccessful') {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
