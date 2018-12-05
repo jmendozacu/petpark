@@ -18,7 +18,6 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
      */
     public function loadButtons($observer)
     {
-        //$order->getAllVisibleItems();
         $block = Mage::app()->getLayout()->getBlock('sales_order_edit');
 
         if (!$block) {
@@ -35,11 +34,15 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
 
         $qtyInvoiced = $this->getQtyInvoiced($order->getAllVisibleItems());
 
-        if ($qtyInvoiced == 0 && $isBarion && $status !== 'pending_payment') {
+        if ($qtyInvoiced == 0
+            && $isBarion
+            && $status !== 'pending_payment') {
             $this->createFinishReservationButton($block, $orderId);
         }
 
-        if (($qtyInvoiced > 0 || $status === 'pending_payment') && $isBarion) {
+        if (($qtyInvoiced > 0
+                || $status === 'pending_payment')
+            && $isBarion) {
             $block->removeButton('order_invoice');
         }
 
