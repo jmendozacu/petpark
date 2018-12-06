@@ -23,9 +23,29 @@ class Virtua_UrlRewritesMap_Model_Cleaner
             throw new \Exception($rewritesFile . " not exists!");
         }
 
-        $requestPaths = [];
         $txtLines = \file($rewritesFile, FILE_IGNORE_NEW_LINES);
-        foreach ($txtLines as $line) {
+        if (false === $txtLines) {
+            throw new \Exception($rewritesFile . " is invalid!");
+        }
+
+        $requestPaths = $this->getRequestPathsFromFileContent($txtLines);
+        unset($txtLines);
+
+        $this->lookForConflictingRequestPathsAndRemoveThem($requestPaths);
+    }
+
+    /**
+     * Parse file content and return an array of request paths from its content
+     *
+     * @param array $fileContent
+     *
+     * @return array
+     */
+    private function getRequestPathsFromFileContent(array $fileContent)
+    {
+        $requestPaths = [];
+
+        foreach ($fileContent as $line) {
 
             $lineAsArray = \explode(self::SPACE_BREAK, $line);
             if (\count($lineAsArray) !== 2 || false === \is_string($lineAsArray[0])) {
@@ -36,8 +56,18 @@ class Virtua_UrlRewritesMap_Model_Cleaner
             $requestPaths[] = $requestPath;
         }
 
-        unset($txtLines);
+        return $requestPaths;
+    }
 
+    /**
+     * Loop through an array of request paths and remove conflicting ones
+     *
+     * @param array $requestPaths
+     *
+     * @return void
+     */
+    private function lookForConflictingRequestPathsAndRemoveThem(array $requestPaths)
+    {
         do {
             $requestPathsPart = \array_splice(
                 $requestPaths, 0, self::ITEMS_PER_PAGE

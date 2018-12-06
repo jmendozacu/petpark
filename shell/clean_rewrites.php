@@ -14,14 +14,12 @@ class Virtua_Shell_Clean_Rewrites extends Mage_Shell_Abstract
      */
     public function run()
     {
-        $model = Mage::getModel('urlrewritesmap/cleaner');
-        if ($model) {
-            try {
-                $model->run();
-            } catch (\Exception $exception) {
-                echo $exception->getMessage() . PHP_EOL;
-            }
-
+        try {
+            /** @var \Virtua_UrlRewritesMap_Model_Cleaner $model */
+            $model = Mage::getModel('urlrewritesmap/cleaner');
+            $model->run();
+        } catch (\Exception $exception) {
+            echo $exception->getMessage() . PHP_EOL;
         }
     }
 
@@ -31,7 +29,7 @@ class Virtua_Shell_Clean_Rewrites extends Mage_Shell_Abstract
     public function usageHelp()
     {
         return <<<USAGE
-Usage:  php -f prepare_rewrites.php
+Usage:  php -f clean_rewrites.php
 USAGE;
     }
 }
