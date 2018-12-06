@@ -1,0 +1,4 @@
+"Your VAT ID was successfully validated. You will not be charged tax.", "Zadané IČ DPH (VAT) bolo úspešne overené. DPH vám nebude účtovaná."
+"Your VAT ID was successfully validated. You will be charged tax.", "Zadané IČ DPH (VAT) bolo úspešne overené. Bude Vám účtovaná DPH."
+"Entered VAT ID is not a valid VAT ID. You will be charged tax.", "Zadané IČ DPH (VAT) nieje platné. Bude Vám účtovaná DPH."
+"Your prices were changed based on your chosen billing address. Please, remember that your VAT and total sum was changed.", "Upozornenie: Výška DPH a celková suma objednávky bola upravená na základe zvolenej fakturačnej adresy."

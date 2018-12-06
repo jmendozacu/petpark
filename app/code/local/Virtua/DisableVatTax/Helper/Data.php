@@ -63,44 +63,6 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * Check if customer must pay tax
-     *
-     * @return bool
-     */
-    public function shouldDisableVatTax()
-    {
-        $customerSession = Mage::getSingleton('customer/session');
-        $customer = $customerSession->getCustomer();
-
-        if ($customer->getShouldDisableVatTax() != 0
-            && !Mage::app()->getRequest()->isAjax()
-        ) {
-            return $customer->getShouldDisableVatTax();
-        }
-
-        if (!$customerSession->isLoggedIn()) {
-            $customer->setShouldDisableVatTax(0);
-            return false;
-        }
-
-        $countryCode = null;
-        if ($customer->getDefaultBillingAddress()) {
-            $countryCode = $customer->getDefaultBillingAddress()->getCountry();
-        }
-
-        $vatNumber = $customer->getIsVatIdValid();
-
-        if ($vatNumber == 1
-            && $countryCode != null
-            && !$this->isDomesticCountry($countryCode)) {
-            $customer->setShouldDisableVatTax(1)->save();
-            return true;
-        }
-        $customer->setShouldDisableVatTax(0)->save();
-        return false;
-    }
-
-    /**
      * Checks is customer has a valid vat id with European Commission VAT validation.
      *
      * @param string $vatNumber
@@ -185,7 +147,15 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     public function saveValidationResultsToAttr($customer, $vatNumber, $countryId)
     {
         $vatNumberValidation = $this->isVatNumberValid($vatNumber, $countryId);
+
+        if ($vatNumberValidation) {
+            if ($this->isDomesticCountry($countryId)) {
+                $vatNumberValidation = 2;
+            } elseif ($this->isDomesticCountry($customer->getDefaultShippingAddress()->getCountry())) {
+                $vatNumberValidation = 3;
+            }
+        }
+
         $customer->setIsVatIdValid($vatNumberValidation)->save();
-        $customer->setShouldDisableVatTax($vatNumberValidation)->save();
     }
 }
