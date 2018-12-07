@@ -25,7 +25,9 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
 
         if ($isBarion) {
             $this->loadButtons($orderId);
-            $this->completeOrder($orderId);
+            if ($this->completeOrder($orderId)) {
+                $this->reloadPage();
+            }
         }
     }
 
@@ -110,7 +112,7 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
     /**
      * @param int $orderId
      */
-    public function completeOrderAndReloadPage($orderId)
+    public function completeOrder($orderId)
     {
         $order = Mage::getModel('sales/order')->load($orderId);
 
@@ -121,8 +123,10 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
             $order->addStatusToHistory(Mage_Sales_Model_Order::STATE_COMPLETE);
             $order->setData('state', Mage_Sales_Model_Order::STATE_COMPLETE);
             $order->save();
-            $this->reloadPage();
+            return true;
         }
+
+        return false;
     }
 
     public function reloadPage()
