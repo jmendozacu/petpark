@@ -70,7 +70,7 @@
                 <observers>
                     <ctp_tcs>
                         <class>Virtua_BarionPayment_Model_Adminhtml_Observer</class>
-                        <method>loadButtons</method>
+                        <method>manageBarionOrder</method>
                     </ctp_tcs>
                 </observers>
             </controller_action_layout_render_before_adminhtml_sales_order_view>
