@@ -27,7 +27,6 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
             $this->loadButtons($orderId);
             $this->completeOrder($orderId);
         }
-        Mage::log(Mage_Sales_Model_Order::STATE_PROCESSING, null, 'testString.log', true);
     }
 
     /**
