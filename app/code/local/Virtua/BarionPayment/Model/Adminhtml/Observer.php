@@ -18,8 +18,15 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
     {
         $orderId = Mage::app()->getRequest()->getParam('order_id');
 
-        $this->loadButtons($orderId);
-        $this->completeOrder($orderId);
+        $isBarion = Mage::getModel('tlbarion/paymentmethod')
+            ->getTransModel()
+            ->loadByOrderId($orderId)
+            ->getData('real_orderid');
+
+        if ($isBarion) {
+            $this->loadButtons($orderId);
+            $this->completeOrder($orderId);
+        }
     }
 
     /**
@@ -37,23 +44,13 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
 
         $order = Mage::getModel('sales/order')->load($orderId);
         $status = $order->getStatus();
-
-        $isBarion = Mage::getModel('tlbarion/paymentmethod')
-            ->getTransModel()
-            ->loadByOrderId($orderId)
-            ->getData('real_orderid');
-
         $qtyInvoiced = $this->getQtyInvoiced($order->getAllVisibleItems());
 
-        if ($qtyInvoiced == 0
-            && $isBarion
-            && $status !== 'pending_payment') {
+        if ($qtyInvoiced == 0 && $status !== 'pending_payment') {
             $this->createFinishReservationButton($block, $orderId);
         }
 
-        if (($qtyInvoiced > 0
-                || $status === 'pending_payment')
-            && $isBarion) {
+        if ($qtyInvoiced > 0 || $status === 'pending_payment') {
             $block->removeButton('order_invoice');
         }
 
@@ -116,19 +113,17 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
     public function completeOrder($orderId)
     {
         $order = Mage::getModel('sales/order')->load($orderId);
-        $isBarion = Mage::getModel('tlbarion/paymentmethod')
-            ->getTransModel()
-            ->loadByOrderId($orderId)
-            ->getData('real_orderid');
 
-        if ($isBarion
-            && $order->getState() == Mage_Sales_Model_Order::STATE_PROCESSING
+        if ($order->getState() == Mage_Sales_Model_Order::STATE_PROCESSING
             && $this->getQtyInvoiced($order->getAllVisibleItems())
             && $this->getQtyShipped($order->getAllVisibleItems())) {
             $order->addStatusToHistory(Mage_Sales_Model_Order::STATE_COMPLETE);
             $order->setData('state', Mage_Sales_Model_Order::STATE_COMPLETE);
             $order->save();
-            Mage::app()->getFrontController()->getResponse()->setRedirect(Mage::helper('core/url')->getCurrentUrl());
+            Mage::app()
+                ->getFrontController()
+                ->getResponse()
+                ->setRedirect(Mage::helper('core/url')->getCurrentUrl());
         }
     }
 }
