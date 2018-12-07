@@ -110,7 +110,7 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
     /**
      * @param int $orderId
      */
-    public function completeOrder($orderId)
+    public function completeOrderAndReloadPage($orderId)
     {
         $order = Mage::getModel('sales/order')->load($orderId);
 
