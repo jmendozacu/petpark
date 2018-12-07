@@ -27,6 +27,7 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
             $this->loadButtons($orderId);
             $this->completeOrder($orderId);
         }
+        Mage::log(Mage_Sales_Model_Order::STATE_PROCESSING, null, 'testString.log', true);
     }
 
     /**
@@ -46,11 +47,11 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
         $status = $order->getStatus();
         $qtyInvoiced = $this->getQtyInvoiced($order->getAllVisibleItems());
 
-        if ($qtyInvoiced == 0 && $status !== 'pending_payment') {
+        if ($qtyInvoiced == 0 && $status !== Mage_Sales_Model_Order::STATE_PENDING_PAYMENT) {
             $this->createFinishReservationButton($block, $orderId);
         }
 
-        if ($qtyInvoiced > 0 || $status === 'pending_payment') {
+        if ($qtyInvoiced > 0 || $status === Mage_Sales_Model_Order::STATE_PENDING_PAYMENT) {
             $block->removeButton('order_invoice');
         }
 
@@ -114,16 +115,22 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
     {
         $order = Mage::getModel('sales/order')->load($orderId);
 
-        if ($order->getState() == Mage_Sales_Model_Order::STATE_PROCESSING
+        if ($order->getState() === Mage_Sales_Model_Order::STATE_PROCESSING
             && $this->getQtyInvoiced($order->getAllVisibleItems())
-            && $this->getQtyShipped($order->getAllVisibleItems())) {
+            && $this->getQtyShipped($order->getAllVisibleItems()))
+        {
             $order->addStatusToHistory(Mage_Sales_Model_Order::STATE_COMPLETE);
             $order->setData('state', Mage_Sales_Model_Order::STATE_COMPLETE);
             $order->save();
-            Mage::app()
-                ->getFrontController()
-                ->getResponse()
-                ->setRedirect(Mage::helper('core/url')->getCurrentUrl());
+            $this->reloadPage();
         }
+    }
+
+    public function reloadPage()
+    {
+        Mage::app()
+            ->getFrontController()
+            ->getResponse()
+            ->setRedirect(Mage::helper('core/url')->getCurrentUrl());
     }
 }
