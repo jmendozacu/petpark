@@ -186,7 +186,7 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
                         $this->_getSession()->addSuccess($this->__('Your VAT ID was successfully validated. You will not be charged tax.'));
                         $customer->setIsVatIdValid(1);
                         $customer->setIsShippingOutsideDomestic(1);
-                    } elseif ($defaultShippingCountry === 'SK') {
+                    } elseif ($disableVatTaxHelper->isDomesticCountry($defaultShippingCountry)) {
                         $customer->setIsVatIdValid(3);
                         $customer->setIsShippingOutsideDomestic(0);
                     }
