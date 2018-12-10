@@ -183,7 +183,7 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
 
                 if ($isCustomerVatIdValid == 1 || $isCustomerVatIdValid == 3) {
                     if ($customer->getIsShippingOutsideDomestic() == 0 && !$disableVatTaxHelper->isDomesticCountry($defaultShippingCountry)) {
-                        $this->_getSession()->addSuccess($this->__('Your VAT ID was successfully validated. You will not be charged tax.'));
+                        $this->_getSession()->addSuccess($this->__('Entered VAT ID was successfully validated. Customer will not be charged tax.'));
                         $customer->setIsVatIdValid(1);
                         $customer->setIsShippingOutsideDomestic(1);
                     } elseif ($disableVatTaxHelper->isDomesticCountry($defaultShippingCountry)) {
@@ -259,17 +259,17 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
 
         if ($vatNumberValidation == 1) {
             $session
-                ->addSuccess($this->__('Your VAT ID was successfully validated. You will not be charged tax.'));
+                ->addSuccess($this->__('Entered VAT ID was successfully validated. Customer will not be charged tax.'));
         } elseif ($vatNumberValidation == 2) {
             $session
-                ->addSuccess($this->__('Your VAT ID was successfully validated. You will be charged tax.'));
+                ->addSuccess($this->__('Entered VAT ID was successfully validated. Customer will be charged tax.'));
         } elseif ($vatNumberValidation == 3) {
             $session
-                ->addSuccess($this->__('Your VAT ID was successfully validated, but your shipping address is in domestic country. You will be charged tax.'));
+                ->addSuccess($this->__('Entered VAT ID was successfully validated, but shipping address is in domestic country. Customer will be charged tax.'));
             $customer->setIsShippingOutsideDomestic(0)->save();
         } else {
             $session
-                ->addError($this->__('Entered VAT ID is not a valid VAT ID. You will be charged tax.'));
+                ->addError($this->__('Entered VAT ID is not a valid VAT ID. Customer will be charged tax.'));
         }
     }
 }

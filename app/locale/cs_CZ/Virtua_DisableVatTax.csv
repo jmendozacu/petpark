@@ -2,3 +2,4 @@
 "Your VAT ID was successfully validated. You will be charged tax.", "Zadané DIČ (VAT) bylo úspěšně ověřeno. Bude Vám účtována DPH."
 "Entered VAT ID is not a valid VAT ID. You will be charged tax.", "Zadané DIČ (VAT) není platné. Bude Vám účtována DPH."
 "Your prices were changed based on your chosen billing address. Please, remember that your VAT and total sum was changed.", "Upozornění: hodnota DPH a celková suma objednávky byla upravena na základě zvolené fakturační adresy."
+"Your VAT ID was successfully validated, but your shipping address is in domestic country. You will be charged tax.", "Zadané DIČ (VAT) bylo úspěšně ověřeno, ale dodací adresa je v domácí zemi (Slovensko). Bude Vám účtována DPH."
