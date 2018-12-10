@@ -52,54 +52,28 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
             }
 
             try {
-                /**
-                 * Checks which address is already edited.
-                 */
-                if ($addressId === $customer->getDefaultBillingAddress()->getId()) {
-                    $isItBillingAddress = 1;
-                } else {
-                    $isItBillingAddress = $this->getRequest()->getParam('default_billing');
-                }
-
-                if ($addressId === $customer->getDefaultShippingAddress()->getId()) {
-                    $isItShippingAddress = 1;
-                } else {
-                    $isItShippingAddress = $this->getRequest()->getParam('default_shipping');
-                }
-
                 $disableVatTaxHelper = Mage::helper('virtua_disablevattax');
 
-                if ($isItBillingAddress && $disableVatTaxHelper->areValuesChanged($customer, $addressData)) {
-                    $disableVatTaxHelper->saveValidationResultsToAttr(
-                        $customer,
-                        $addressData['vat_id'],
-                        $addressData['country_id']
-                    );
+                $isItBillingAddress = $disableVatTaxHelper->isAddressIsBilling(
+                    $addressId,
+                    (bool)$this->getRequest()->getParam('default_billing'),
+                    $customer
+                );
 
-                    $this->addSessionVatInfo(
-                        $customer->getIsVatIdValid(),
-                        $addressData['country_id'],
-                        $customer->getDefaultShippingAddress()->getCountry()
-                    );
-                }
+                $isItShippingAddress = $disableVatTaxHelper->isAddressIsShipping(
+                    $addressId,
+                    (bool)$this->getRequest()->getParam('default_shipping'),
+                    $customer
+                );
 
-                if (!$isItBillingAddress && $isItShippingAddress) {
-                    $isCustomerVatIdValid = $customer->getIsVatIdValid();
-                    if ($isCustomerVatIdValid == 1 || $isCustomerVatIdValid == 3) {
-                        if ($customer->getIsShippingOutsideDomestic() == 0
-                            && !$disableVatTaxHelper->isDomesticCountry($addressData['country_id'])
-                            && $disableVatTaxHelper->isDomesticCountry($customer->getDefaultShippingAddress()->getCountry())) {
-                            $this->_getSession()->addSuccess($this->__('Your VAT ID was successfully validated. You will not be charged tax.'));
-                            $customer->setIsVatIdValid(1);
-                            $customer->setIsShippingOutsideDomestic(1);
-                        } else {
-                            $this->_getSession()->addSuccess($this->__('Your VAT ID was successfully validated, but your shipping address is in domestic country. You will be charged tax.'));
-                            $customer->setIsVatIdValid(3);
-                            $customer->setIsShippingOutsideDomestic(0);
-                        }
-                        $customer->save();
-                    }
-                }
+                $disableVatTaxHelper->setCustomerVatAttributes($isItBillingAddress, $customer, $addressData);
+                $disableVatTaxHelper->manageAttributesAccordingToShipping($isItBillingAddress, $isItShippingAddress, $customer);
+
+                $this->addSessionVatInfo(
+                    $customer->getIsVatIdValid(),
+                    $addressData['country_id'],
+                    $customer->getDefaultShippingAddress()->getCountry()
+                );
 
                 $addressForm->compactData($addressData);
                 $address->setCustomerId($customer->getId())
