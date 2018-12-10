@@ -81,7 +81,6 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
                 if ($totals_before != $totals_after) {
                     $result['reload_totals'] = true;
                 }
-
             } else {
                 $responseData['error'] = true;
                 $responseData['message'] = $result['message'];
@@ -173,6 +172,9 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
         Mage::getSingleton('core/session')->setIsCheckoutVatIdValid($vatNumberValidation);
     }
 
+    /**
+     * Prepares tax in percent.
+     */
     public function getQuoteTaxAction()
     {
         $quote = $this->getOnepage()->getQuote();
@@ -186,6 +188,9 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
         $this->getResponse()->setBody($taxAmount);
     }
 
+    /**
+     * Checks is address used on checkout is the same as default customer address.
+     */
     public function checkIsDefaultAddressUsedAction()
     {
         $customer = Mage::getSingleton('customer/session')->getCustomer();
