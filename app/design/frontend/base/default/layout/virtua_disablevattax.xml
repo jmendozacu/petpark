@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <opc_index_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/virtua/disablevattax.css</name>
+            </action>
+        </reference>
+    </opc_index_index>
+</layout>

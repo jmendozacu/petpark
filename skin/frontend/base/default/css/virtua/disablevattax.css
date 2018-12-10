@@ -1,0 +1,16 @@
+#tax-info {
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+#calculate-tax {
+    color: #79a939;
+    margin-left: 5px;
+}
+
+#calculate-tax-info {
+    font-size: 13px;
+    color: #6e6e6e;
+    font-style: italic;
+    margin-top: 10px;
+}

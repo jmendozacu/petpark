@@ -172,4 +172,37 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
 
         Mage::getSingleton('core/session')->setIsCheckoutVatIdValid($vatNumberValidation);
     }
+
+    public function getQuoteTaxAction()
+    {
+        $quote = $this->getOnepage()->getQuote();
+        $taxAmount = $quote->getShippingAddress()->getTaxAmount();
+
+        if ($taxAmount > 0) {
+            $taxAmount = ($taxAmount/$quote->getSubtotal())*100;
+        }
+
+        $taxAmount = floor($taxAmount);
+        $this->getResponse()->setBody($taxAmount);
+    }
+
+    public function checkIsDefaultAddressUsedAction()
+    {
+        $customer = Mage::getSingleton('customer/session')->getCustomer();
+        $quote = $this->getOnepage()->getQuote();
+        $response = false;
+
+        $defaultBillingAddressId = $customer->getDefaultBillingAddress()->getId();
+        $defaultShippingAddressId = $customer->getDefaultShippingAddress()->getId();
+
+        $checkoutBillingAddressId = $quote->getBillingAddress()->getCustomerAddressId();
+        $checkoutShippingAddressId = $quote->getShippingAddress()->getCustomerAddressId();
+
+        if ($defaultBillingAddressId == $checkoutBillingAddressId
+            && $defaultShippingAddressId == $checkoutBillingAddressId) {
+            $response = true;
+        }
+
+        $this->getResponse()->setBody($response);
+    }
 }
