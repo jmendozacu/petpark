@@ -199,7 +199,7 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
         $checkoutShippingAddressId = $quote->getShippingAddress()->getCustomerAddressId();
 
         if ($defaultBillingAddressId == $checkoutBillingAddressId
-            && $defaultShippingAddressId == $checkoutBillingAddressId) {
+            && $defaultShippingAddressId == $checkoutShippingAddressId) {
             $response = true;
         }
 

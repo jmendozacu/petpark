@@ -1,6 +1,7 @@
 #tax-info {
     font-size: 14px;
     margin-top: 30px;
+    display: none;
 }
 
 #calculate-tax {
