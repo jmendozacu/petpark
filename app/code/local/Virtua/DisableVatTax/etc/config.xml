@@ -94,4 +94,15 @@
             </adminhtml>
         </routers>
     </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <virtua_disablevattax>
+                    <files>
+                        <default>Virtua_DisableVatTax.csv</default>
+                    </files>
+                </virtua_disablevattax>
+            </modules>
+        </translate>
+    </adminhtml>
 </config>
