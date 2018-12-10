@@ -156,6 +156,12 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
             }
         }
 
+        /**
+         * IsVatIdValid is:
+         * 1: when validation passed correctly
+         * 2: when billing address country is domestic country
+         * 3: when shipping address country is domestic country
+         */
         $customer->setIsVatIdValid($vatNumberValidation)->save();
     }
 }

@@ -49,17 +49,23 @@ $disableVatTaxHelper = Mage::helper('virtua_disablevattax');
 
 /**
  * Checks for every customer is vat number is valid,
- * sets 'is_vat_id_valid' attribute value.
+ * sets 'is_vat_id_valid' and 'is_shipping_outside_domestic' attribute value.
  */
 foreach ($customers as $customer) {
     $billingAddress = $customer->getDefaultBillingAddress();
-    if ($address) {
+    if ($billingAddress) {
         $countryId = $billingAddress->getCountry();
         $vatNumber = $billingAaddress->getVatId();
         if (!empty($vatNumber) && !empty($countryId)) {
             $vatNumberValidation = $disableVatTaxHelper->saveValidationResultsToAttr($customer, $vatNumber, $countryId);
         }
+        $customer->setIsShippingOutsideDomestic(
+            $disableVatTaxHelper->isDomesticCountry(
+                $customer->getDefaultShippingAddress()->getCountry()
+            )
+        );
     }
+    $customer->save();
 }
 
 $installer->endSetup();
