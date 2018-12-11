@@ -382,4 +382,12 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             $customer->setBarionToken($preparedBarionToken)->save();
         }
     }
+
+    public function isBarion(int $orderId): bool
+    {
+        return (bool)Mage::getModel('tlbarion/paymentmethod')
+            ->getTransModel()
+            ->loadByOrderId($orderId)
+            ->getData('real_orderid');
+    }
 }

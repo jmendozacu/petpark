@@ -38,11 +38,7 @@ class Virtua_BarionPayment_Adminhtml_Sales_Order_InvoiceController extends Mage_
                 }
 
                 $orderId = $invoice->getData('order_id');
-                $isBarion = Mage::getModel('tlbarion/paymentmethod')
-                    ->getTransModel()
-                    ->loadByOrderId($orderId)
-                    ->getData('real_orderid');
-                if ($isBarion) {
+                if (Mage::helper('tlbarion')->isBarion($orderId)) {
                     $items = $invoice->getAllItems();
                     $total = $invoice->getData('base_grand_total');
                     $total = bcdiv($total, 1, 2);

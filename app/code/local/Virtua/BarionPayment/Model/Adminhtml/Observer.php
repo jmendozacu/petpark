@@ -18,12 +18,7 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
     {
         $orderId = Mage::app()->getRequest()->getParam('order_id');
 
-        $isBarion = (bool)Mage::getModel('tlbarion/paymentmethod')
-            ->getTransModel()
-            ->loadByOrderId($orderId)
-            ->getData('real_orderid');
-
-        if ($isBarion) {
+        if (Mage::helper('tlbarion')->isBarion($orderId)) {
             $this->loadButtons($orderId);
             if ($this->completeOrder($orderId)) {
                 $this->reloadPage();

@@ -41,11 +41,7 @@ class Virtua_BarionPayment_Adminhtml_Sales_Order_CreditmemoController extends Ma
                 }
 
                 $orderId = $creditmemo->getData('order_id');
-                $isBarion = Mage::getModel('tlbarion/paymentmethod')
-                    ->getTransModel()
-                    ->loadByOrderId($orderId)
-                    ->getData('real_orderid');
-                if ($isBarion) {
+                if (Mage::helper('tlbarion')->isBarion($orderId)) {
                     $total = $creditmemo->getData('base_grand_total');
                     $total = bcdiv($total, 1, 2);
                     if (!Mage::helper('tlbarion')->refundPayment($orderId, $total)) {
