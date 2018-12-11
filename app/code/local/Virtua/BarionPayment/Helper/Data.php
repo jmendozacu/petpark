@@ -29,56 +29,41 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      */
     public function processTransResult($order = '', $transaction = array())
     {
-        $otppayment = Mage::getModel('tlbarion/paymentmethod');
+        $otpPayment = Mage::getModel('tlbarion/paymentmethod');
 
         if (empty($order)) {
             $order = $this->getCurrentOrder();
         }
 
-        $storeid = $order->getStoreId();
+        $storeId = $order->getStoreId();
 
         if (is_array($transaction)) {
-            $transaction = $otppayment->getTransModel()->loadByOrderId($order->getId());
+            $transaction = $otpPayment->getTransModel()->loadByOrderId($order->getId());
         }
 
-        $transid      = $transaction->getEntityId();
-        $real_orderid = $transaction->getRealOrderid();
-        $params       = '?POSKey='.$this->getShopId($storeid).'&TransactionId='.$transaction->getBariontransactionid();
-        $result       = $this->callCurl2($params, $storeid);
-        $resultarray  = [];
-        $return       = 'pending';
+        $transId             = $transaction->getEntityId();
+        $params              = '?POSKey='.$this->getShopId($storeId).'&TransactionId='.$transaction->getBariontransactionid();
+        $result              = $this->callCurl2($params, $storeId);
+        $resultArray         = [];
+        $transactionStatus   = 'pending';
+        $transactionStatusId = self::PENDING_TRANSACTION_STATUS;
 
         if ($result != false) {
-            $resultarray = json_decode($result, true);
-            if ($resultarray['Status'] == 'Succeeded') {
-                $return = 'success';
-                $status = self::SUCCESS_TRANSACTION_STATUS;
-            } elseif ($resultarray['Status'] == 'Prepared'
-                || $resultarray['Status'] == 'Started') {
-                $return = 'pending';
-                $status = self::PENDING_TRANSACTION_STATUS;
-            } elseif ($resultarray['Status'] == 'Failed'
-                ||$resultarray['Status'] == 'Expired'
-                ||$resultarray['Status'] == 'Canceled'
-                ||$resultarray['Status'] == 'Rejected') {
-                $return = 'fail';
-                $status = self::FAILED_TRANSACTION_STATUS;
-            } elseif ($resultarray['Status'] == 'Reserved') {
-                $return = 'reserved';
-                $status = self::PENDING_TRANSACTION_STATUS;
-            }
+            $resultArray = json_decode($result, true);
+            $this->setStatusToTransaction($resultArray['Status'], $transactionStatus, $transactionStatusId);
         }
-        if (!empty($resultarray['Errors'])) {
-            $status = '00';
-            $otppayment->saveTransHistory([
-                'transaction_id' => $transid,
-                'error_message'  => $resultarray['Errors']['Description'],
-                'error_number'   => $resultarray['Errors']['ErrorCode']]);
-            $return = 'fail';
-        }
-        $otppayment->updateTrans(['payment_status' => $status], $transid);
 
-        return $return;
+        if (!empty($resultArray['Errors'])) {
+            $transactionStatusId = self::FAILED_TRANSACTION_STATUS;
+            $otppayment->saveTransHistory([
+                'transaction_id' => $transId,
+                'error_message'  => $resultArray['Errors']['Description'],
+                'error_number'   => $resultArray['Errors']['ErrorCode']]);
+            $transactionStatus = 'fail';
+        }
+        $otpPayment->updateTrans(['payment_status' => $transactionStatusId], $transId);
+
+        return $transactionStatus;
     }
 
     /**
@@ -119,17 +104,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
 
         if ($result != false) {
             $resultarray = json_decode($result, true);
-            if (empty($resultarray['Errors'])) {
-                $transaction
-                    ->setData('payment_status', '02')
-                    ->save();
-                Mage::getSingleton('adminhtml/session')->addSuccess('Payment has been successfully refunded.');
-                return true;
-            }
-            Mage::log($resultarray, null, 'barion_refund_errors.log', true);
-            Mage::getSingleton('adminhtml/session')
-                ->addError('Something went wrong. Payment has not been refunded.');
-            return false;
+            return $this->proccessRefundResponse($resultarray, $transaction);
         }
     }
 
@@ -146,7 +121,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
     public function finishReservation($orderId, $total = null, $isFinishedByInvoice = null, $items = null)
     {
         $order         = Mage::getModel('sales/order')->load($orderId);
-        $storeid       = $order->getStoreId();
+        $storeId       = $order->getStoreId();
         $transaction   = Mage::getModel('tlbarion/paymentmethod')->getTransModel()->loadByOrderId($orderId);
         $transactionId = $transaction->getBariontransactionid();
         $paymentId     = $transaction->getData('real_orderid');
@@ -156,7 +131,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         }
 
         $header = [
-            'POSKey'    => $this->getShopId($storeid),
+            'POSKey'    => $this->getShopId($storeId),
             'PaymentId' =>  $paymentId,
             'Transactions'      => [[
                 'TransactionId' => $transactionId,
@@ -180,26 +155,11 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         }
 
         $json   = json_encode($header);
-        $result = $this->callBarionToFinishReservation($json, $storeid);
+        $result = $this->callBarionToFinishReservation($json, $storeId);
 
         if ($result != false) {
-            $resultarray = json_decode($result, true);
-            if (empty($resultarray['Errors'])) {
-                if (!$isFinishedByInvoice) {
-                    $this->processOrderSuccess($order);
-                }
-                $transaction
-                    ->setData('bariontransactionid', $this->getSucceededTransaction($resultarray['Transactions']))
-                    ->setData('payment_status', '02')
-                    ->setData('real_orderid', $resultarray['PaymentId'])
-                    ->save();
-                Mage::getSingleton('adminhtml/session')->addSuccess('You have successfully finished a reservation.');
-                return true;
-            }
-            Mage::log($resultarray, null, 'barion_reservation_errors.log', true);
-            Mage::getSingleton('adminhtml/session')
-                ->addError('Something went wrong. Reservation has not been finished.');
-            return false;
+            $resultArray = json_decode($result, true);
+            return $this->processFinishReservationResponse($order, (bool)$isFinishedByInvoice, $resultArray, $transaction);
         }
     }
 
@@ -389,5 +349,108 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             ->getTransModel()
             ->loadByOrderId($orderId)
             ->getData('real_orderid');
+    }
+
+    /**
+     * @param array $apiResult
+     */
+    public function setStatusToTransaction($apiResultStatus, string $transactionStatus, string $transactionStatusId)
+    {
+        $failedStatuses = ['Expired', 'Canceled', 'Rejected'];
+        $pendingStatuses = ['Prepared', 'Started'];
+
+        if ($apiResultStatus == 'Succeeded') {
+            $transactionStatus = 'success';
+            $transactionStatusId = self::SUCCESS_TRANSACTION_STATUS;
+        }
+
+        elseif ($apiResultStatus == 'Reserved') {
+            $transactionStatus = 'reserved';
+            $transactionStatusId = self::PENDING_TRANSACTION_STATUS;
+        }
+
+        elseif (in_array($apiResultStatus, $pendingStatuses)) {
+            $transactionStatus = 'pending';
+            $transactionStatusId = self::PENDING_TRANSACTION_STATUS;
+        }
+
+        elseif (in_array($apiResultStatus, $failedStatuses)) {
+            $transactionStatus = 'fail';
+            $transactionStatusId = self::FAILED_TRANSACTION_STATUS;
+        }
+    }
+
+    /**
+     * @param array $response
+     */
+    public function processFinishReservationResponse(Nostress_Gpwebpay_Model_Order $order, bool $isFinishedByInvoice, $response, TLSoft_BarionPayment_Model_Transactions $transaction): bool
+    {
+        if (empty($response['Errors'])) {
+            $this->proccessSuccessFinishReservationResponse($order, $isFinishedByInvoice, $response, $transaction);
+            return true;
+        }
+
+        $this->proccessFailedFinishReservationResponse($response);
+        return false;
+    }
+
+    /**
+     * @param array $response
+     */
+    public function proccessSuccessFinishReservationResponse(Nostress_Gpwebpay_Model_Order $order, bool $isFinishedByInvoice, $response, TLSoft_BarionPayment_Model_Transactions $transaction)
+    {
+        if (!$isFinishedByInvoice) {
+            $this->processOrderSuccess($order);
+        }
+
+        $transaction
+            ->setData('bariontransactionid', $this->getSucceededTransaction($response['Transactions']))
+            ->setData('payment_status', self::SUCCESS_TRANSACTION_STATUS)
+            ->setData('real_orderid', $response['PaymentId'])
+            ->save();
+
+        Mage::getSingleton('adminhtml/session')->addSuccess('You have successfully finished a reservation.');
+    }
+
+    /**
+     * @param array $response
+     */
+    public function proccessFailedFinishReservationResponse($response)
+    {
+        Mage::log($response, null, 'barion_reservation_errors.log', true);
+        Mage::getSingleton('adminhtml/session')
+            ->addError('Something went wrong. Reservation has not been finished.');
+    }
+
+    /**
+     * @param array $response
+     */
+    public function proccessRefundResponse($response, TLSoft_BarionPayment_Model_Transactions $transaction): bool
+    {
+        if (empty($response['Errors'])) {
+            $this->proccessSuccessRefundResponse($transaction);
+            return true;
+        }
+
+        $this->proccessFailedRefundResponse($response);
+        return false;
+    }
+
+    public function proccessSuccessRefundResponse(TLSoft_BarionPayment_Model_Transactions $transaction)
+    {
+        $transaction
+            ->setData('payment_status', self::SUCCESS_TRANSACTION_STATUS)
+            ->save();
+        Mage::getSingleton('adminhtml/session')->addSuccess('Payment has been successfully refunded.');
+    }
+
+    /**
+     * @param array $response
+     */
+    public function proccessFailedRefundResponse($response)
+    {
+        Mage::log($response, null, 'barion_refund_errors.log', true);
+        Mage::getSingleton('adminhtml/session')
+            ->addError('Something went wrong. Payment has not been refunded.');
     }
 }
