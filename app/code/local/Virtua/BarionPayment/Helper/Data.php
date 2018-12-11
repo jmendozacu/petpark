@@ -103,8 +103,8 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         $result = $this->callBarionToRefund($json, $storeid);
 
         if ($result != false) {
-            $resultarray = json_decode($result, true);
-            return $this->proccessRefundResponse($resultarray, $transaction);
+            $resultArray = json_decode($result, true);
+            return $this->proccessRefundResponse($resultArray, $transaction);
         }
     }
 
