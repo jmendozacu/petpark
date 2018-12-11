@@ -15,6 +15,9 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
     const REFUND          = 'https://api.barion.com/v2/Payment/Refund';
     const TESTRESERVATION = 'https://api.test.barion.com/v2/Payment/FinishReservation';
     const RESERVATION     = 'https://api.barion.com/v2/Payment/FinishReservation';
+    const PENDING_TRANSACTION_STATUS = '01';
+    const SUCCESS_TRANSACTION_STATUS = '02';
+    const FAILED_TRANSACTION_STATUS = '00';
 
     /**
      * Handling results of transaction process.
@@ -49,20 +52,20 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
             $resultarray = json_decode($result, true);
             if ($resultarray['Status'] == 'Succeeded') {
                 $return = 'success';
-                $status = '02';
+                $status = self::SUCCESS_TRANSACTION_STATUS;
             } elseif ($resultarray['Status'] == 'Prepared'
                 || $resultarray['Status'] == 'Started') {
                 $return = 'pending';
-                $status = '01';
+                $status = self::PENDING_TRANSACTION_STATUS;
             } elseif ($resultarray['Status'] == 'Failed'
                 ||$resultarray['Status'] == 'Expired'
                 ||$resultarray['Status'] == 'Canceled'
                 ||$resultarray['Status'] == 'Rejected') {
                 $return = 'fail';
-                $status = '00';
+                $status = self::FAILED_TRANSACTION_STATUS;
             } elseif ($resultarray['Status'] == 'Reserved') {
                 $return = 'reserved';
-                $status = '01';
+                $status = self::PENDING_TRANSACTION_STATUS;
             }
         }
         if (!empty($resultarray['Errors'])) {
@@ -134,7 +137,6 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      * Finishing reserved payment.
      *
      * @param int $orderId
-     *
      * @param float|null $total
      * @param bool|null $isFinishedByInvoice
      * @param array|null $items
