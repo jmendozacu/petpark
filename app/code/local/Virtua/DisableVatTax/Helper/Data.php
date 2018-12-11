@@ -14,6 +14,7 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     const PASSED_VAT_VALIDATION_RESULT = 1;
     const VAT_VALIDATION_RESULT_WHEN_BILLING_COUNTRY_IS_DOMESTIC = 2;
     const VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC = 3;
+    const NONEXISTENT_TAX_CLASS_ID = -1;
 
     /**
      * Regex patterns of vat id for EU countries.
