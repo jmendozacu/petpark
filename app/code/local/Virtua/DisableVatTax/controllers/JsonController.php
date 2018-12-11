@@ -46,7 +46,7 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
                     'quote' => $this->getOnepage()->getQuote(),
                 ));
 
-                $this->setShippingToResult($data, $result);
+                $result['shipping'] = $this->setShippingToResult($data);
                 $methods_after = Mage::helper('opc')->getAvailablePaymentMethods();
                 $this->setPreparedPaymentDataToResult(Mage::helper('opc')->checkUpdatedPaymentMethods($methods_before, $methods_after), $result);
                 $totals_after = $this->_getSession()->getQuote()->getGrandTotal();
@@ -272,12 +272,13 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
 
     /**
      * @param array $request
-     * @param array $result
+     *
+     * @return string|null
      */
-    public function setShippingToResult($request, $result)
+    public function setShippingToResult($request)
     {
         if (isset($request['use_for_shipping']) && $request['use_for_shipping'] == 1) {
-            $result['shipping'] = $this->_getShippingMethodsHtml();
+            return $this->_getShippingMethodsHtml();
         }
     }
 }
