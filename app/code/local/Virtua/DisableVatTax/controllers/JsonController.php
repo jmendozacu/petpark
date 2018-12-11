@@ -27,34 +27,18 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
 
         if ($this->getRequest()->isPost()) {
             $data = $this->getRequest()->getPost('billing', array());
-
-            if (!Mage::getSingleton('customer/session')->isLoggedIn()) {
-                if (isset($data['create_account']) && $data['create_account'] == 1) {
-                    $this->getOnepage()->saveCheckoutMethod(Mage_Checkout_Model_Type_Onepage::METHOD_REGISTER);
-                } else {
-                    $this->getOnepage()->saveCheckoutMethod(Mage_Checkout_Model_Type_Onepage::METHOD_GUEST);
-                    unset($data['customer_password']);
-                    unset($data['confirm_password']);
-                }
-            } else {
-                $this->getOnepage()->saveCheckoutMethod(Mage_Checkout_Model_Type_Onepage::METHOD_CUSTOMER);
-            }
+            $this->manageCustomerCheckoutMethod((bool)Mage::getSingleton('customer/session')->isLoggedIn(), $data);
 
             $this->checkNewslatter();
             $customerAddressId = $this->getRequest()->getPost('billing_address_id', false);
-
-            if (isset($data['email'])) {
-                $data['email'] = trim($data['email']);
-            }
+            $this->setPreparedEmailToRequest($data);
 
             $totals_before = $this->_getSession()->getQuote()->getGrandTotal();
             $methods_before = Mage::helper('opc')->getAvailablePaymentMethods();
             $result = $this->getOnepage()->saveBilling($data, $customerAddressId);
 
             if (!isset($result['error'])) {
-                if ($this->getOnepage()->getQuote()->isVirtual()) {
-                    $result['isVirtual'] = true;
-                }
+                $this->setIsVirtualKeyToResult($result);
 
                 $data = $this->getRequest()->getPost('billing', array());
                 Mage::dispatchEvent('opc_saveGiftMessage', array(
@@ -62,32 +46,16 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
                     'quote' => $this->getOnepage()->getQuote(),
                 ));
 
-                if (isset($data['use_for_shipping']) && $data['use_for_shipping'] == 1) {
-                    $result['shipping'] = $this->_getShippingMethodsHtml();
-                }
-
+                $this->setShippingToResult($data, $result);
                 $methods_after = Mage::helper('opc')->getAvailablePaymentMethods();
-                $use_method = Mage::helper('opc')->checkUpdatedPaymentMethods($methods_before, $methods_after);
-
-                if ($use_method != -1) {
-                    if (empty($use_method)) {
-                        $use_method = -1;
-                    }
-                    $result['payments'] = $this->_getPaymentMethodsHtml($use_method, true);
-                    $result['reload_payments'] = true;
-                }
+                $this->setPreparedPaymentDataToResult(Mage::helper('opc')->checkUpdatedPaymentMethods($methods_before, $methods_after), $result);
                 $totals_after = $this->_getSession()->getQuote()->getGrandTotal();
-
-                if ($totals_before != $totals_after) {
-                    $result['reload_totals'] = true;
-                }
+                $this->setReloadTotalsToResult($totals_before, $totals_after, $result);
             } else {
-                $responseData['error'] = true;
-                $responseData['message'] = $result['message'];
+                $this->setErrorToResponse($responseData, $result);
             }
 
             $this->checkVatNumberForOnepageCheckout($this->getOnepage()->getQuote());
-
             $this->getResponse()->setHeader('Content-type', 'application/json', true);
             $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
         }
@@ -209,5 +177,107 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
         }
 
         $this->getResponse()->setBody($response);
+    }
+
+    public function isQuoteVirtual(): bool
+    {
+        return (bool)$this->getOnepage()->getQuote()->isVirtual();
+    }
+
+    /**
+     * @param array $result
+     */
+    public function setIsVirtualKeyToResult($result)
+    {
+        if ($this->isQuoteVirtual()) {
+            $result['isVirtual'] = true;
+        }
+    }
+
+    /**
+     * @param array $request
+     */
+    public function manageCustomerCheckoutMethod(bool $isLoggedIn, $request)
+    {
+        if (!$isLoggedIn) {
+            $this->manageLoggedOutCustomerRequest($request);
+        } else {
+            $this->getOnepage()->saveCheckoutMethod(Mage_Checkout_Model_Type_Onepage::METHOD_CUSTOMER);
+        }
+    }
+
+    /**
+     * @param array $request
+     */
+    public function manageLoggedOutCustomerRequest($request)
+    {
+        if (isset($request['create_account']) && $request['create_account'] == 1) {
+            $this->getOnepage()->saveCheckoutMethod(Mage_Checkout_Model_Type_Onepage::METHOD_REGISTER);
+        } else {
+            $this->getOnepage()->saveCheckoutMethod(Mage_Checkout_Model_Type_Onepage::METHOD_GUEST);
+            unset($request['customer_password']);
+            unset($request['confirm_password']);
+        }
+    }
+
+    /**
+     * @param array $request
+     */
+    public function setPreparedEmailToRequest($request)
+    {
+        if (isset($request['email'])) {
+            $request['email'] = trim($request['email']);
+        }
+    }
+
+    /**
+     * @param string|int $updatedPaymentMethod
+     * @param array $result
+     */
+    public function setPreparedPaymentDataToResult($updatedPaymentMethod, $result)
+    {
+        if ($updatedPaymentMethod != -1) {
+            if (empty($updatedPaymentMethod)) {
+                $updatedPaymentMethod = -1;
+            }
+            $result['payments'] = $this->_getPaymentMethodsHtml($updatedPaymentMethod, true);
+            $result['reload_payments'] = true;
+        }
+    }
+
+    /**
+     * @param array $response
+     * @param array $result
+     */
+    public function setErrorToResponse($response, $result)
+    {
+        $response['error'] = true;
+        $response['message'] = $result['message'];
+    }
+
+    /**
+     * @param array $result
+     */
+    public function setReloadTotalsToResult(float $totalsBefore, float $totalsAfter, $result)
+    {
+        if ($this->shouldReloadTotals($totalsBefore, $totalsAfter)) {
+            $result['reload_totals'] = true;
+        }
+    }
+
+    public function shouldReloadTotals(float $totalsBefore, float $totalsAfter): bool
+    {
+        return $totalsBefore != $totalsAfter;
+    }
+
+    /**
+     * @param array $request
+     * @param array $result
+     */
+    public function setShippingToResult($request, $result)
+    {
+        if (isset($request['use_for_shipping']) && $request['use_for_shipping'] == 1) {
+            $result['shipping'] = $this->_getShippingMethodsHtml();
+        }
     }
 }

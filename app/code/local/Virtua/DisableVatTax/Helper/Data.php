@@ -11,6 +11,7 @@
  */
 class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
 {
+    const PASSED_VAT_VALIDATION_RESULT = 1;
     const VAT_VALIDATION_RESULT_WHEN_BILLING_COUNTRY_IS_DOMESTIC = 2;
     const VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC = 3;
 
@@ -228,7 +229,7 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         }
 
         if ($hasCustomerChangedShippingOutsideDomestic) {
-            $customer->setIsVatIdValid(1);
+            $customer->setIsVatIdValid(self::PASSED_VAT_VALIDATION_RESULT);
             $customer->setIsShippingOutsideDomestic(true);
         } else {
             $customer->setIsVatIdValid(self::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC);
@@ -253,7 +254,7 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
 
         if (!$isItBillingAddress && $isItShippingAddress) {
             $isCustomerVatIdValid = $customer->getIsVatIdValid();
-            return $isCustomerVatIdValid == 1
+            return $isCustomerVatIdValid == self::PASSED_VAT_VALIDATION_RESULT
                 || $isCustomerVatIdValid == self::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC;
         }
 

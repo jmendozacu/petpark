@@ -118,13 +118,13 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
         $session = $this->_getSession();
         $customer = $session->getCustomer();
 
-        if ($vatNumberValidation == 1) {
+        if ($vatNumberValidation == $helper::PASSED_VAT_VALIDATION_RESULT) {
             $session
                 ->addSuccess($this->__('Your VAT ID was successfully validated. You will not be charged tax.'));
-        } elseif ($vatNumberValidation == 2) {
+        } elseif ($vatNumberValidation == $helper::VAT_VALIDATION_RESULT_WHEN_BILLING_COUNTRY_IS_DOMESTIC) {
             $session
                 ->addSuccess($this->__('Your VAT ID was successfully validated. You will be charged tax.'));
-        } elseif ($vatNumberValidation == 3) {
+        } elseif ($vatNumberValidation == $helper::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC) {
             $session
                 ->addSuccess($this->__('Your VAT ID was successfully validated, but your shipping address is in domestic country. You will be charged tax.'));
             $customer->setIsShippingOutsideDomestic(0)->save();

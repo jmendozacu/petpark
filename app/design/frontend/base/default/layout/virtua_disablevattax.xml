@@ -6,6 +6,10 @@
                 <type>skin_css</type>
                 <name>css/virtua/disablevattax/taxInfo.css</name>
             </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/virtua/opc/checkout.js</name>
+            </action>
         </reference>
     </opc_index_index>
 </layout>
