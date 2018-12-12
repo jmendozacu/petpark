@@ -312,7 +312,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
             'amount'         => $order->getGrandTotal(),
             'ccy'            => $order->getOrderCurrencyCode(),
             'store_id'       => $order->getStoreId(),
-            'payment_status' => $this->otpHelper()::PENDING_TRANSACTION_STATUS,
+            'payment_status' => Virtua_BarionPayment_Helper_Data::PENDING_TRANSACTION_STATUS,
             'created_at'     => now()
         ]);
 
