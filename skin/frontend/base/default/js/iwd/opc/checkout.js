@@ -1763,5 +1763,5 @@ $j_opc(document).ready(function(){
 	IWD.OPC.Decorator.initReviewBlock();
 	IWD.OPC.Decorator.setActivePayment();
 	IWD.OPC.Decorator.decorateSelect();
-	
+
 });

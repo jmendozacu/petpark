@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Virtua_DisableVatTax>
-            <version>2.0.0</version>
+            <version>3.0.0</version>
         </Virtua_DisableVatTax>
     </modules>
     <global>
@@ -47,33 +47,6 @@
                     </virtua_disablevattax>
                 </observers>
             </sales_quote_collect_totals_before>
-            <customer_address_save_after>
-                <observers>
-                    <virtua_disablevattax>
-                        <type>singleton</type>
-                        <class>Virtua_DisableVatTax_Model_Observer</class>
-                        <method>clearShouldDisableVatTaxAttribute</method>
-                    </virtua_disablevattax>
-                </observers>
-            </customer_address_save_after>
-            <customer_login>
-                <observers>
-                    <virtua_disablevattax>
-                        <type>singleton</type>
-                        <class>Virtua_DisableVatTax_Model_Observer</class>
-                        <method>clearShouldDisableVatTaxAttribute</method>
-                    </virtua_disablevattax>
-                </observers>
-            </customer_login>
-            <customer_logout>
-                <observers>
-                    <virtua_disablevattax>
-                        <type>singleton</type>
-                        <class>Virtua_DisableVatTax_Model_Observer</class>
-                        <method>clearShouldDisableVatTaxAttribute</method>
-                    </virtua_disablevattax>
-                </observers>
-            </customer_logout>
         </events>
     </global>
     <frontend>
@@ -85,7 +58,30 @@
                     </modules>
                 </args>
             </customer>
+            <opc>
+                <args>
+                    <modules>
+                        <Virtua_DisableVatTax before="IWD_Opc">Virtua_DisableVatTax</Virtua_DisableVatTax>
+                    </modules>
+                </args>
+            </opc>
         </routers>
+        <layout>
+            <updates>
+                <virtua_disablevattax>
+                    <file>virtua_disablevattax.xml</file>
+                </virtua_disablevattax>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <virtua_disablevattax>
+                    <files>
+                        <default>Virtua_DisableVatTax.csv</default>
+                    </files>
+                </virtua_disablevattax>
+            </modules>
+        </translate>
     </frontend>
     <admin>
         <routers>
@@ -98,4 +94,15 @@
             </adminhtml>
         </routers>
     </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <virtua_disablevattax>
+                    <files>
+                        <default>Virtua_DisableVatTax.csv</default>
+                    </files>
+                </virtua_disablevattax>
+            </modules>
+        </translate>
+    </adminhtml>
 </config>

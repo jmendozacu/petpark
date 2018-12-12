@@ -12,52 +12,49 @@
 class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
 {
     /**
-     * Disable tax for collect totals calculation if it is required
+     * Disable tax for each product in quote if customer vat number is valid.
      */
     public function disableVatTaxForQuote(Varien_Event_Observer $observer)
     {
-        /**
-         * @var Virtua_DisableVatTax_Helper_Data $disableVatHelper
-         */
-        $disableVatHelper = Mage::helper('virtua_disablevattax');
+        $event = $observer->getEvent();
+        $quote = $event->getQuote();
+        $isVatIdValid = $this->getCorrectVatNumberValidationResult();
 
-        if ($disableVatHelper->shouldDisableVatTax()) {
-            /**
-             * @var Varien_Event $event
-             */
-            $event = $observer->getEvent();
-
-            /**
-             * @var Mage_Sales_Model_Quote $quote
-             */
-            $quote = $event->getQuote();
+        if ($isVatIdValid == 1) {
             $items = $quote->getAllVisibleItems();
 
-            /**
-             * @var Mage_Sales_Model_Quote_Item $item
-             */
             foreach ($items as $item) {
                 $product = $item->getProduct();
-                $this->setZeroPercentTax($product);
+                $product->setTaxClassId(Mage::helper('virtua_disablevattax')::NONEXISTENT_TAX_CLASS_ID);
             }
         }
     }
 
     /**
-     * Clear shouldDisableVatTax attribute
+     * Checks is observer running on checkout page.
+     *
+     * @return bool
      */
-    public function clearShouldDisableVatTaxAttribute()
+    public function isItCheckoutPage()
     {
-        $customer = Mage::getSingleton('customer/session')->getCustomer();
-        $customer->setShouldDisableVatTax(0);
+        return strpos(Mage::helper('core/url')->getCurrentUrl(), 'onepage') !== false;
     }
 
     /**
-     * Sets nonexistent tax class id.
-     * @param $product
+     * Get vat number validation results in dependence of location in shop.
+     *
+     * @return integer
      */
-    protected function setZeroPercentTax($product)
+    public function getCorrectVatNumberValidationResult()
     {
-        $product->setTaxClassId(-1);
+        $customer = Mage::getSingleton('customer/session')->getCustomer();
+
+        if ($this->isItCheckoutPage()) {
+            $isVatIdValid = Mage::getSingleton('core/session')->getIsCheckoutVatIdValid();
+        } else {
+            $isVatIdValid = $customer->getIsVatIdValid();
+        }
+
+        return $isVatIdValid;
     }
 }

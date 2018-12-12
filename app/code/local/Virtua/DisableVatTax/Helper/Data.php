@@ -11,6 +11,11 @@
  */
 class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
 {
+    const PASSED_VAT_VALIDATION_RESULT = 1;
+    const VAT_VALIDATION_RESULT_WHEN_BILLING_COUNTRY_IS_DOMESTIC = 2;
+    const VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC = 3;
+    const NONEXISTENT_TAX_CLASS_ID = -1;
+
     /**
      * Regex patterns of vat id for EU countries.
      *
@@ -60,44 +65,6 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     public function __construct()
     {
         $this->viesClient = new SoapClient('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl');
-    }
-
-    /**
-     * Check if customer must pay tax
-     *
-     * @return bool
-     */
-    public function shouldDisableVatTax()
-    {
-        $customerSession = Mage::getSingleton('customer/session');
-        $customer = $customerSession->getCustomer();
-
-        if ($customer->getShouldDisableVatTax() != 0
-            && !Mage::app()->getRequest()->isAjax()
-        ) {
-            return $customer->getShouldDisableVatTax();
-        }
-
-        if (!$customerSession->isLoggedIn()) {
-            $customer->setShouldDisableVatTax(0);
-            return false;
-        }
-
-        $countryCode = null;
-        if ($customer->getDefaultBillingAddress()) {
-            $countryCode = $customer->getDefaultBillingAddress()->getCountry();
-        }
-
-        $vatNumber = $customer->getIsVatIdValid();
-
-        if ($vatNumber == 1
-            && $countryCode != null
-            && !$this->isDomesticCountry($countryCode)) {
-            $customer->setShouldDisableVatTax(1)->save();
-            return true;
-        }
-        $customer->setShouldDisableVatTax(0)->save();
-        return false;
     }
 
     /**
@@ -185,7 +152,155 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     public function saveValidationResultsToAttr($customer, $vatNumber, $countryId)
     {
         $vatNumberValidation = $this->isVatNumberValid($vatNumber, $countryId);
+
+        if ($vatNumberValidation) {
+            if ($this->isDomesticCountry($countryId)) {
+                $vatNumberValidation = self::VAT_VALIDATION_RESULT_WHEN_BILLING_COUNTRY_IS_DOMESTIC;
+            } elseif ($this->isDomesticCountry($customer->getDefaultShippingAddress()->getCountry())) {
+                $vatNumberValidation = self::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC;
+            }
+        }
+
         $customer->setIsVatIdValid($vatNumberValidation)->save();
-        $customer->setShouldDisableVatTax($vatNumberValidation)->save();
+    }
+
+    /**
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     * @param int $addressId
+     *
+     * @return bool
+     */
+    public function isAddressIsDefaultBilling($customer, $addressId)
+    {
+        return $addressId == $customer->getDefaultBillingAddress()->getId();
+    }
+
+    public function isAddressIsDefaultShipping($customer, $addressId)
+    {
+        return $addressId == $customer->getDefaultShippingAddress()->getId();
+    }
+
+    /**
+     * @param int $addressId
+     * @param bool $defaultBillingParam
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     *
+     * @return bool
+     */
+    public function isAddressIsBilling($addressId, $defaultBillingParam, $customer)
+    {
+        if ($defaultBillingParam) {
+            return true;
+        }
+
+        if ($this->isAddressIsDefaultBilling($customer, $addressId)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param int $addressId
+     * @param bool $defaultShippingParam
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     *
+     * @return bool
+     */
+    public function isAddressIsShipping($addressId, $defaultShippingParam, $customer)
+    {
+        if ($defaultShippingParam) {
+            return true;
+        }
+
+        if ($this->isAddressIsDefaultShipping($customer, $addressId)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param bool $isItBillingAddress
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     * @param array $addressData
+     */
+    public function setCustomerVatAttributes($isItBillingAddress, $customer, $addressData)
+    {
+        if ($isItBillingAddress && $this->areValuesChanged($customer, $addressData)) {
+            $this->saveValidationResultsToAttr(
+                $customer,
+                $addressData['vat_id'],
+                $addressData['country_id']
+            );
+        }
+    }
+
+    /**
+     * @param bool $isItBillingAddress
+     * @param bool $isItShippingAddress
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     *
+     * @return bool
+     */
+    public function manageAttributesAccordingToShipping($isItBillingAddress, $isItShippingAddress, $customer)
+    {
+        $isCustomerOutsideDomestic = null;
+
+        if ($this->canManageAttributesAccordingToShipping($isItBillingAddress, $isItShippingAddress, $customer)) {
+            $hasCustomerChangedShippingOutsideDomestic = $this->hasCustomerChangedShippingOutsideDomestic(
+                (bool)$customer->getIsShippingOutsideDomestic(),
+                (string)$addressData['country_id'],
+                (string)$customer->getDefaultShippingAddress()->getCountry()
+            );
+        } else {
+            return false;
+        }
+
+        if ($hasCustomerChangedShippingOutsideDomestic) {
+            $customer->setIsVatIdValid(self::PASSED_VAT_VALIDATION_RESULT);
+            $customer->setIsShippingOutsideDomestic(true);
+        } else {
+            $customer->setIsVatIdValid(self::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC);
+            $customer->setIsShippingOutsideDomestic(false);
+        }
+
+        $customer->save();
+        return true;
+    }
+
+    /**
+     * @param bool $isShippingOutsideDomesticAttribute
+     * @param string $addressFormCountryId
+     * @param string $defaultShippingCountry
+     *
+     * @return bool
+     */
+    public function hasCustomerChangedShippingOutsideDomestic($isShippingOutsideDomesticAttribute, $addressFormCountryId, $defaultShippingCountry)
+    {
+        return $isShippingOutsideDomesticAttribute == 0
+            && !$this->isDomesticCountry($addressFormCountryId)
+            && $this->isDomesticCountry($defaultShippingCountry);
+    }
+
+    /**
+     * @param bool $isItBillingAddress
+     * @param bool $isItShippingAddress
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     *
+     * @return bool
+     */
+    public function canManageAttributesAccordingToShipping($isItBillingAddress, $isItShippingAddress, $customer)
+    {
+        $isCustomerVatIdValid = null;
+        $isCustomerOutsideDomestic = null;
+
+        if (!$isItBillingAddress && $isItShippingAddress) {
+            $isCustomerVatIdValid = $customer->getIsVatIdValid();
+            return $isCustomerVatIdValid == self::PASSED_VAT_VALIDATION_RESULT
+                || $isCustomerVatIdValid == self::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC;
+        }
+
+        return false;
     }
 }

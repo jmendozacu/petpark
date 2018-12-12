@@ -80,15 +80,6 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
                 $addressForm = Mage::getModel('customer/form');
                 $addressForm->setFormCode('adminhtml_customer_address')->ignoreInvisible(false);
 
-                $defaultBilling = $data['account']['default_billing'];
-                $addressData = $data['address'][$defaultBilling];
-                $disableVatTaxHelper = Mage::helper('virtua_disablevattax');
-
-                if ($defaultBilling != null && $disableVatTaxHelper->areValuesChanged($customer, $addressData)) {
-                    $disableVatTaxHelper->saveValidationResultsToAttr($customer, $addressData['vat_id'], $addressData['country_id']);
-                    $this->addSessionVatInfo($customer->getIsVatIdValid(), $addressData['country_id']);
-                }
-
                 foreach (array_keys($data['address']) as $index) {
                     $address = $customer->getAddressItemById($index);
                     if (!$address) {
@@ -174,11 +165,40 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
 
                 $customer->save();
 
+                $disableVatTaxHelper = Mage::helper('virtua_disablevattax');
+                $disableVatTaxHelper->saveValidationResultsToAttr(
+                    $customer,
+                    $customer->getDefaultBillingAddress()->getVatId(),
+                    $customer->getDefaultBillingAddress()->getCountryId()
+                );
+
+                $isCustomerVatIdValid = $customer->getIsVatIdValid();
+
+                $defaultShippingCountry = $customer->getDefaultShippingAddress()->getCountry();
+                $this->addSessionVatInfo(
+                    $isCustomerVatIdValid,
+                    $addressData['country_id'],
+                    $defaultShippingCountry
+                );
+
+                if ($isCustomerVatIdValid == $disableVatTaxHelper::PASSED_VAT_VALIDATION_RESULT
+                    || $isCustomerVatIdValid == $disableVatTaxHelper::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC) {
+                    if ($customer->getIsShippingOutsideDomestic() == 0 && !$disableVatTaxHelper->isDomesticCountry($defaultShippingCountry)) {
+                        $this->_getSession()->addSuccess($this->__('Entered VAT ID was successfully validated. Customer will not be charged tax.'));
+                        $customer->setIsVatIdValid($disableVatTaxHelper::PASSED_VAT_VALIDATION_RESULT);
+                        $customer->setIsShippingOutsideDomestic(1);
+                    } elseif ($disableVatTaxHelper->isDomesticCountry($defaultShippingCountry)) {
+                        $customer->setIsVatIdValid($disableVatTaxHelper::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC);
+                        $customer->setIsShippingOutsideDomestic(0);
+                    }
+                    $customer->save();
+                }
+
                 if ($customer->getWebsiteId() && (isset($data['account']['sendemail']) || $sendPassToEmail)) {
                     $storeId = $customer->getSendemailStoreId();
                     if ($isNewCustomer) {
                         $customer->sendNewAccountEmail('registered', '', $storeId);
-                    } elseif ((!$customer->getConfirmation())) {
+                    } elseif (!$customer->getConfirmation()) {
                         $customer->sendNewAccountEmail('confirmed', '', $storeId);
                     }
                 }
@@ -230,20 +250,24 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
      *
      * @param bool $vatNumberValidation
      * @param string $countryId
+     * @param string $defaultShippingCountry
      */
-    public function addSessionVatInfo($vatNumberValidation, $countryId)
+    public function addSessionVatInfo($vatNumberValidation, $countryId, $defaultShippingCountry)
     {
         $helper = Mage::helper('virtua_disablevattax');
-
         $session = $this->_getSession();
-        if ($vatNumberValidation) {
-            if ($helper->isDomesticCountry($countryId)) {
-                $session
-                    ->addSuccess($this->__('VAT ID was successfully validated. Customer will be charged tax.'));
-            } else {
-                $session
-                    ->addSuccess($this->__('VAT ID was successfully validated. Customer will not be charged tax.'));
-            }
+        $customer = Mage::registry('current_customer');
+
+        if ($vatNumberValidation == $helper::PASSED_VAT_VALIDATION_RESULT) {
+            $session
+                ->addSuccess($this->__('Entered VAT ID was successfully validated. Customer will not be charged tax.'));
+        } elseif ($vatNumberValidation == $helper::VAT_VALIDATION_RESULT_WHEN_BILLING_COUNTRY_IS_DOMESTIC) {
+            $session
+                ->addSuccess($this->__('Entered VAT ID was successfully validated. Customer will be charged tax.'));
+        } elseif ($vatNumberValidation == $helper::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC) {
+            $session
+                ->addSuccess($this->__('Entered VAT ID was successfully validated, but shipping address is in domestic country. Customer will be charged tax.'));
+            $customer->setIsShippingOutsideDomestic(0)->save();
         } else {
             $session
                 ->addError($this->__('Entered VAT ID is not a valid VAT ID. Customer will be charged tax.'));
