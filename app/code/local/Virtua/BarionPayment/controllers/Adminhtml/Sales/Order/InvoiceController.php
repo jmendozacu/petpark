@@ -106,7 +106,7 @@ class Virtua_BarionPayment_Adminhtml_Sales_Order_InvoiceController extends Mage_
 
     /**
      * @param array $postRequest
-     * @param int $invoice
+     * @param Mage_Sales_Model_Order_Invoice $invoice
      */
     public function tryToSendInvoiceEmail($postRequest, $invoice)
     {
@@ -140,6 +140,10 @@ class Virtua_BarionPayment_Adminhtml_Sales_Order_InvoiceController extends Mage_
         }
     }
 
+    /**
+     * @param array $postRequest
+     * @param Mage_Sales_Model_Order_Invoice $invoice
+     */
     public function handleInvoice($postRequest, $invoice)
     {
         $this->manageCaptureCase($postRequest, $invoice);

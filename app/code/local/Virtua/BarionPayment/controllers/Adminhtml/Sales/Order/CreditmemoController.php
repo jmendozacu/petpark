@@ -35,8 +35,10 @@ class Virtua_BarionPayment_Adminhtml_Sales_Order_CreditmemoController extends Ma
     /**
      * @param Mage_Sales_Model_Order_Creditmemo $creditmemo
      * @param array $postRequest
+     *
+     * @return string
      */
-    public function createCreditmemoComment($creditmemo, $postRequest): string
+    public function createCreditmemoComment($creditmemo, $postRequest)
     {
         $comment = '';
         if (!empty($postRequest['comment_text'])) {

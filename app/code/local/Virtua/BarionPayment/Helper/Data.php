@@ -343,7 +343,12 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         }
     }
 
-    public function isBarion(int $orderId): bool
+    /**
+     * @param int $orderId
+     *
+     * @return bool
+     */
+    public function isBarion($orderId)
     {
         return (bool)Mage::getModel('tlbarion/paymentmethod')
             ->getTransModel()
@@ -352,9 +357,11 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
     }
 
     /**
-     * @param array $apiResult
+     * @param array $apiResultStatus
+     * @param string $transactionStatus
+     * @param string $transactionStatusId
      */
-    public function setStatusToTransaction($apiResultStatus, string $transactionStatus, string $transactionStatusId)
+    public function setStatusToTransaction($apiResultStatus, $transactionStatus, $transactionStatusId)
     {
         $failedStatuses = ['Expired', 'Canceled', 'Rejected'];
         $pendingStatuses = ['Prepared', 'Started'];
@@ -381,9 +388,14 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
     }
 
     /**
-     * @param array $response
+     * @param Nostress_Gpwebpay_Model_Order $order
+     * @param bool $isFinishedByInvoice
+     * @param array response
+     * @param TLSoft_BarionPayment_Model_Transactions $transaction
+     *
+     * @return bool
      */
-    public function processFinishReservationResponse(Nostress_Gpwebpay_Model_Order $order, bool $isFinishedByInvoice, $response, TLSoft_BarionPayment_Model_Transactions $transaction): bool
+    public function processFinishReservationResponse($order, $isFinishedByInvoice, $response, $transaction)
     {
         if (empty($response['Errors'])) {
             $this->proccessSuccessFinishReservationResponse($order, $isFinishedByInvoice, $response, $transaction);
@@ -395,9 +407,12 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
     }
 
     /**
+     * @param Nostress_Gpwebpay_Model_Order $order
+     * @param bool $isFinishedByInvoice
      * @param array $response
+     * @param TLSoft_BarionPayment_Model_Transactions $transaction
      */
-    public function proccessSuccessFinishReservationResponse(Nostress_Gpwebpay_Model_Order $order, bool $isFinishedByInvoice, $response, TLSoft_BarionPayment_Model_Transactions $transaction)
+    public function proccessSuccessFinishReservationResponse($order, $isFinishedByInvoice, $response, $transaction)
     {
         if (!$isFinishedByInvoice) {
             $this->processOrderSuccess($order);
@@ -424,8 +439,11 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
 
     /**
      * @param array $response
+     * @param TLSoft_BarionPayment_Model_Transactions $transaction
+     *
+     * @return bool
      */
-    public function proccessRefundResponse($response, TLSoft_BarionPayment_Model_Transactions $transaction): bool
+    public function proccessRefundResponse($response, $transaction)
     {
         if (empty($response['Errors'])) {
             $this->proccessSuccessRefundResponse($transaction);
@@ -436,7 +454,10 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         return false;
     }
 
-    public function proccessSuccessRefundResponse(TLSoft_BarionPayment_Model_Transactions $transaction)
+    /**
+     * @param TLSoft_BarionPayment_Model_Transactions $transaction
+     */
+    public function proccessSuccessRefundResponse($transaction)
     {
         $transaction
             ->setData('payment_status', self::SUCCESS_TRANSACTION_STATUS)

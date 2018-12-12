@@ -245,7 +245,10 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
             ->save();
     }
 
-    public function isReservedPaymentEnabled(): bool
+    /**
+     * @return bool
+     */
+    public function isReservedPaymentEnabled()
     {
         return 'reservation' === Mage::getStoreConfig('payment/tlbarion/virtua_barionpayment_paymenttype', Mage::app()->getStore());
     }
@@ -286,8 +289,10 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
 
     /**
      * @param array $request
+     *
+     * @return bool
      */
-    public function wasTokenRequestFailed($request): bool
+    public function wasTokenRequestFailed($request)
     {
         return $request['InitiateRecurrence'] == false
             && ($this->areFundsInsufficient($resultarray)
@@ -349,8 +354,10 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
 
     /**
      * @param array $errors
+     *
+     * @return bool
      */
-    public function handleErrors($errors): bool
+    public function handleErrors($errors)
     {
         foreach ($errors as $error) {
             $this->saveTransHistory([
