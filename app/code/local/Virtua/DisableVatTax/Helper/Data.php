@@ -164,18 +164,30 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         $customer->setIsVatIdValid($vatNumberValidation)->save();
     }
 
-
-    public function isAddressIsDefaultBilling(Dotdigitalgroup_Email_Model_Customer $customer, int $addressId): bool
+    /**
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     * @param int $addressId
+     *
+     * @return bool
+     */
+    public function isAddressIsDefaultBilling($customer, $addressId)
     {
         return $addressId == $customer->getDefaultBillingAddress()->getId();
     }
 
-    public function isAddressIsDefaultShipping(Dotdigitalgroup_Email_Model_Customer $customer, int $addressId): bool
+    public function isAddressIsDefaultShipping($customer, $addressId)
     {
         return $addressId == $customer->getDefaultShippingAddress()->getId();
     }
 
-    public function isAddressIsBilling(int $addressId, bool $defaultBillingParam, Dotdigitalgroup_Email_Model_Customer $customer): bool
+    /**
+     * @param int $addressId
+     * @param bool $defaultBillingParam
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     *
+     * @return bool
+     */
+    public function isAddressIsBilling($addressId, $defaultBillingParam, $customer)
     {
         if ($defaultBillingParam) {
             return true;
@@ -188,7 +200,14 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         return false;
     }
 
-    public function isAddressIsShipping(int $addressId, bool $defaultShippingParam, Dotdigitalgroup_Email_Model_Customer $customer): bool
+    /**
+     * @param int $addressId
+     * @param bool $defaultShippingParam
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     *
+     * @return bool
+     */
+    public function isAddressIsShipping($addressId, $defaultShippingParam, $customer)
     {
         if ($defaultShippingParam) {
             return true;
@@ -202,9 +221,11 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * @param bool $isItBillingAddress
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
      * @param array $addressData
      */
-    public function setCustomerVatAttributes(bool $isItBillingAddress, Dotdigitalgroup_Email_Model_Customer $customer, $addressData)
+    public function setCustomerVatAttributes($isItBillingAddress, $customer, $addressData)
     {
         if ($isItBillingAddress && $this->areValuesChanged($customer, $addressData)) {
             $this->saveValidationResultsToAttr(
@@ -215,7 +236,14 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         }
     }
 
-    public function manageAttributesAccordingToShipping(bool $isItBillingAddress, bool $isItShippingAddress, Dotdigitalgroup_Email_Model_Customer $customer): bool
+    /**
+     * @param bool $isItBillingAddress
+     * @param bool $isItShippingAddress
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     *
+     * @return bool
+     */
+    public function manageAttributesAccordingToShipping($isItBillingAddress, $isItShippingAddress, $customer)
     {
         $isCustomerOutsideDomestic = null;
 
@@ -241,14 +269,28 @@ class Virtua_DisableVatTax_Helper_Data extends Mage_Core_Helper_Abstract
         return true;
     }
 
-    public function hasCustomerChangedShippingOutsideDomestic(bool $isShippingOutsideDomesticAttribute, string $addressFormCountryId, string $defaultShippingCountry): bool
+    /**
+     * @param bool $isShippingOutsideDomesticAttribute
+     * @param string $addressFormCountryId
+     * @param string $defaultShippingCountry
+     *
+     * @return bool
+     */
+    public function hasCustomerChangedShippingOutsideDomestic($isShippingOutsideDomesticAttribute, $addressFormCountryId, $defaultShippingCountry)
     {
         return $isShippingOutsideDomesticAttribute == 0
             && !$this->isDomesticCountry($addressFormCountryId)
             && $this->isDomesticCountry($defaultShippingCountry);
     }
 
-    public function canManageAttributesAccordingToShipping(bool $isItBillingAddress, bool $isItShippingAddress, Dotdigitalgroup_Email_Model_Customer $customer): bool
+    /**
+     * @param bool $isItBillingAddress
+     * @param bool $isItShippingAddress
+     * @param Dotdigitalgroup_Email_Model_Customer $customer
+     *
+     * @return bool
+     */
+    public function canManageAttributesAccordingToShipping($isItBillingAddress, $isItShippingAddress, $customer)
     {
         $isCustomerVatIdValid = null;
         $isCustomerOutsideDomestic = null;

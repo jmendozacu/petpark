@@ -179,7 +179,10 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
         $this->getResponse()->setBody($response);
     }
 
-    public function isQuoteVirtual(): bool
+    /**
+     * @return bool
+     */
+    public function isQuoteVirtual()
     {
         return (bool)$this->getOnepage()->getQuote()->isVirtual();
     }
@@ -195,9 +198,10 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
     }
 
     /**
+     * @param bool $isLoggedIn
      * @param array $request
      */
-    public function manageCustomerCheckoutMethod(bool $isLoggedIn, $request)
+    public function manageCustomerCheckoutMethod($isLoggedIn, $request)
     {
         if (!$isLoggedIn) {
             $this->manageLoggedOutCustomerRequest($request);
@@ -256,16 +260,24 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
     }
 
     /**
+     * @param float $totalsBefore
+     * @param float $totalsAfter
      * @param array $result
      */
-    public function setReloadTotalsToResult(float $totalsBefore, float $totalsAfter, $result)
+    public function setReloadTotalsToResult($totalsBefore, $totalsAfter, $result)
     {
         if ($this->shouldReloadTotals($totalsBefore, $totalsAfter)) {
             $result['reload_totals'] = true;
         }
     }
 
-    public function shouldReloadTotals(float $totalsBefore, float $totalsAfter): bool
+    /**
+     * @param float $totalsBefore
+     * @param float $totalsAfter
+     *
+     * @return bool
+     */
+    public function shouldReloadTotals($totalsBefore, $totalsAfter)
     {
         return $totalsBefore != $totalsAfter;
     }
