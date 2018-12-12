@@ -19,11 +19,11 @@ class Virtua_BarionPayment_Model_PaymentTypes
         return [
             [
                 'value' => 'immediate',
-                'label' => $this->__('Immediate'),
+                'label' => 'Immediate',
             ],
             [
                 'value' => 'reservation',
-                'label' => $this->__('Reservation'),
+                'label' => 'Reservation',
             ]
         ];
     }
