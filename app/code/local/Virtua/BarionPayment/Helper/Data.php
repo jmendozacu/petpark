@@ -50,10 +50,9 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
 
         if ($result != false) {
             $resultArray = json_decode($result, true);
-
-            $correctTransactionStatus = $this->getCorrectTransactionStatus($resultArray['Status'], $transactionStatus, $transactionStatusId);
-            $transactionStatus = $correctTransactionStatus['transactionStatus'];
-            $transactionStatusId = $correctTransactionStatus['transactionStatusId'];
+            $barionTransactionStatus = $this->getBarionTransactionStatus($resultArray['Status'], $transactionStatus, $transactionStatusId);
+            $transactionStatus = $barionTransactionStatus['transactionStatus'];
+            $transactionStatusId = $barionTransactionStatus['transactionStatusId'];
         }
 
         if (!empty($resultArray['Errors'])) {
@@ -304,7 +303,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         if (count($transactions) > 3 && end($transactions)['POSTransactionId'] != null) {
             $transaction = end($transactions);
         }
-        
+
         if (array_key_exists('TransactionId', $transaction)) {
             return $transaction['TransactionId'];
         }
@@ -364,7 +363,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
      * @param string $transactionStatus
      * @param string $transactionStatusId
      */
-    public function getCorrectTransactionStatus($apiResultStatus, $transactionStatus, $transactionStatusId)
+    public function getBarionTransactionStatus($apiResultStatus, $transactionStatus, $transactionStatusId)
     {
         $failedStatuses = ['Expired', 'Canceled', 'Rejected'];
         $pendingStatuses = ['Prepared', 'Started'];
