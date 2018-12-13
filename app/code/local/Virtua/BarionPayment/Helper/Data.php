@@ -389,8 +389,8 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         }
 
         return [
-            'transactionStatus'   => $transactionStatus,
-            'transactionStatusId' => $transactionStatusId
+          'transactionStatus'   => $transactionStatus,
+          'transactionStatusId' => $transactionStatusId
         ];
     }
 
