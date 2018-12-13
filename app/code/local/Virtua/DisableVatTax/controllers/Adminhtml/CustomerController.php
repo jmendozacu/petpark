@@ -178,10 +178,8 @@ class Virtua_DisableVatTax_Adminhtml_CustomerController extends Mage_Adminhtml_C
                 if ($isCustomerVatIdValid == Virtua_DisableVatTax_Helper_Data::PASSED_VAT_VALIDATION_RESULT
                     || $isCustomerVatIdValid == Virtua_DisableVatTax_Helper_Data::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC) {
                     if ($customer->getIsShippingOutsideDomestic() == 0 && !$disableVatTaxHelper->isDomesticCountry($defaultShippingCountry)) {
-                        $customer->setIsVatIdValid(Virtua_DisableVatTax_Helper_Data::PASSED_VAT_VALIDATION_RESULT);
                         $customer->setIsShippingOutsideDomestic(1);
                     } elseif ($disableVatTaxHelper->isDomesticCountry($defaultShippingCountry)) {
-                        $customer->setIsVatIdValid(Virtua_DisableVatTax_Helper_Data::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC);
                         $customer->setIsShippingOutsideDomestic(0);
                     }
                     $customer->save();
