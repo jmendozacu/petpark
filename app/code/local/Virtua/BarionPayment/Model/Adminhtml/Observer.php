@@ -12,51 +12,46 @@
 class Virtua_BarionPayment_Model_Adminhtml_Observer
 {
     /**
-     * @param Varien_Event_Observer $observer
-     *
-     * @return $this
+     * @param $observer
      */
-    public function loadButtons($observer)
+    public function manageBarionOrder($observer)
     {
-        $block = Mage::app()->getLayout()->getBlock('sales_order_edit');
-        if (!$block) {
-            return $this;
-        }
         $orderId = Mage::app()->getRequest()->getParam('order_id');
-        $order = Mage::getModel('sales/order')->load($orderId);
-        $state = $order->getState();
-        $status = $order->getStatus();
 
-        $isBarion = Mage::getModel('tlbarion/paymentmethod')
-            ->getTransModel()
-            ->loadByOrderId($orderId)
-            ->getData('real_orderid');
-
-        if (($state == 'processing' || $state == 'complete') && $isBarion) {
-            $this->createRefundButton($block, $orderId);
-        } elseif ($status == 'reservation' && $isBarion) {
-            $this->createFinishReservationButton($block, $orderId);
+        if (Mage::helper('tlbarion')->isBarion($orderId)) {
+            $this->loadButtons($orderId);
+            if ($this->completeOrder($orderId)) {
+                $this->reloadPage();
+            }
         }
-
-        return $this;
     }
 
     /**
-     * @param $block
      * @param int $orderId
+     *
+     * @return $this
      */
-    public function createRefundButton($block, $orderId)
+    public function loadButtons($orderId)
     {
-        $url = Mage::helper('adminhtml')->getUrl(
-            '*/barionpayment/refund',
-            ['orderId' => $orderId]
-        );
+        $block = Mage::app()->getLayout()->getBlock('sales_order_edit');
 
-        $block->addButton('barion_refund', array(
-            'label'     => Mage::helper('sales')->__('Refund Barion Payment'),
-            'onclick'   => 'setLocation(\'' . $url . '\')',
-            'class'     => 'go'
-        ));
+        if (!$block) {
+            return $this;
+        }
+
+        $order = Mage::getModel('sales/order')->load($orderId);
+        $status = $order->getStatus();
+        $qtyInvoiced = $this->getQtyInvoiced($order->getAllVisibleItems());
+
+        if ($qtyInvoiced == 0 && $status !== Mage_Sales_Model_Order::STATE_PENDING_PAYMENT) {
+            $this->createFinishReservationButton($block, $orderId);
+        }
+
+        if ($qtyInvoiced > 0 || $status === Mage_Sales_Model_Order::STATE_PENDING_PAYMENT) {
+            $block->removeButton('order_invoice');
+        }
+
+        return $this;
     }
 
     /**
@@ -75,5 +70,65 @@ class Virtua_BarionPayment_Model_Adminhtml_Observer
             'onclick'   => 'setLocation(\'' . $url . '\')',
             'class'     => 'go'
         ));
+    }
+
+    /**
+     * @param array $items
+     *
+     * @return int
+     */
+    public function getQtyInvoiced($items)
+    {
+        $qty = 0;
+
+        foreach ($items as $item) {
+            $qty += $item->getQtyInvoiced();
+        }
+
+        return $qty;
+    }
+
+    /**
+     * @param array $items
+     *
+     * @return int
+     */
+    public function getQtyShipped($items)
+    {
+        $qty = 0;
+
+        foreach ($items as $item) {
+            $qty += $item->getQtyShipped();
+        }
+
+        return $qty;
+    }
+
+    /**
+     * @param int $orderId
+     */
+    public function completeOrder($orderId)
+    {
+        $order = Mage::getModel('sales/order')->load($orderId);
+
+        if ($order->getState() === Mage_Sales_Model_Order::STATE_PROCESSING
+            && $this->getQtyInvoiced($order->getAllVisibleItems())
+            && $this->getQtyShipped($order->getAllVisibleItems()))
+        {
+            $order->addStatusToHistory(Mage_Sales_Model_Order::STATE_COMPLETE);
+            $order->setData('state', Mage_Sales_Model_Order::STATE_COMPLETE);
+            $order->save();
+            return true;
+        }
+
+        return false;
+    }
+
+    public function reloadPage()
+    {
+        Mage::app()
+            ->getFrontController()
+            ->getResponse()
+            ->setRedirect(Mage::helper('core/url')->getCurrentUrl());
     }
 }
