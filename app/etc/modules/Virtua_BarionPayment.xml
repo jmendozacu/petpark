@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Virtua_BarionPayment>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <TLSoft_BarionPayment />
+                <Nostress_Gpwebpay />
+                <Mage_Adminhtml />
+            </depends>
+        </Virtua_BarionPayment>
+    </modules>
+</config>
