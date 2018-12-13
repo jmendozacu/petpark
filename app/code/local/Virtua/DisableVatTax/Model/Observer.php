@@ -25,7 +25,7 @@ class Virtua_DisableVatTax_Model_Observer extends Varien_Event_Observer
 
             foreach ($items as $item) {
                 $product = $item->getProduct();
-                $product->setTaxClassId(Mage::helper('virtua_disablevattax')::NONEXISTENT_TAX_CLASS_ID);
+                $product->setTaxClassId(Virtua_DisableVatTax_Helper_Data::NONEXISTENT_TAX_CLASS_ID);
             }
         }
     }
