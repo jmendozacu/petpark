@@ -114,17 +114,16 @@ class Virtua_DisableVatTax_AddressController extends Mage_Customer_AddressContro
      */
     public function addSessionVatInfo($vatNumberValidation, $countryId, $defaultShippingCountry)
     {
-        $helper = Mage::helper('virtua_disablevattax');
         $session = $this->_getSession();
         $customer = $session->getCustomer();
 
-        if ($vatNumberValidation == $helper::PASSED_VAT_VALIDATION_RESULT) {
+        if ($vatNumberValidation == Virtua_DisableVatTax_Helper_Data::PASSED_VAT_VALIDATION_RESULT) {
             $session
                 ->addSuccess($this->__('Your VAT ID was successfully validated. You will not be charged tax.'));
-        } elseif ($vatNumberValidation == $helper::VAT_VALIDATION_RESULT_WHEN_BILLING_COUNTRY_IS_DOMESTIC) {
+        } elseif ($vatNumberValidation == Virtua_DisableVatTax_Helper_Data::VAT_VALIDATION_RESULT_WHEN_BILLING_COUNTRY_IS_DOMESTIC) {
             $session
                 ->addSuccess($this->__('Your VAT ID was successfully validated. You will be charged tax.'));
-        } elseif ($vatNumberValidation == $helper::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC) {
+        } elseif ($vatNumberValidation == Virtua_DisableVatTax_Helper_Data::VAT_VALIDATION_RESULT_WHEN_SHIPPING_COUNTRY_IS_DOMESTIC) {
             $session
                 ->addSuccess($this->__('Your VAT ID was successfully validated, but your shipping address is in domestic country. You will be charged tax.'));
             $customer->setIsShippingOutsideDomestic(0)->save();
