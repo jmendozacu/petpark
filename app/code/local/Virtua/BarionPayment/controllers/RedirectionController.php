@@ -29,8 +29,10 @@ class Virtua_BarionPayment_RedirectionController extends TLSoft_BarionPayment_Re
                 $this->barionRedirect('success');
             } elseif ($otpdata == 'fail') {
                 $this->barionRedirect('cancel');
-            } elseif ($otpdata == 'reserved' || $otpdata == 'pending') {
+            } elseif ($otpdata == 'reserved') {
                 $otphelper->processOrderReserved($order);
+                $this->barionRedirect('success');
+            } elseif ($otpdata == 'pending') {
                 $this->barionRedirect('success');
             } else {
                 $this->barionRedirect('cancel');
@@ -53,7 +55,8 @@ class Virtua_BarionPayment_RedirectionController extends TLSoft_BarionPayment_Re
 
     public function removeTokenAction()
     {
-        Mage::getSingleton('core/session')->unsetData('barion_token');
+        $customer = Mage::getSingleton('customer/session')->getCustomer();
+        $customer->setBarionToken(null)->save();
         $this->_redirect('checkout/onepage');
     }
 }
