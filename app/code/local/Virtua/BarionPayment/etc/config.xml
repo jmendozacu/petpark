@@ -93,6 +93,15 @@
                 </virtuabarionpayment>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <virtua_barionpayment>
+                    <files>
+                        <default>Virtua_BarionPayment.csv</default>
+                    </files>
+                </virtua_barionpayment>
+            </modules>
+        </translate>
     </frontend>
     <default>
         <payment>
