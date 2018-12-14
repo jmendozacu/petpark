@@ -4,6 +4,12 @@ echo $this->getDesignStyles();
 $package = Mage::getDesign()->getPackageName();
 $theme = Mage::getDesign()->getTheme('frontend');
 $is_persistent = Mage::helper('opc')->isPersistentMember();
+$placeOrderButtonText = 'Place Order Now';
+$customer = Mage::getSingleton('customer/session')->getCustomer();
+
+if ($customer->getBarionToken() && Mage::getModel('tlbarion/paymentmethod')->isTokenPaymentEnabled()) {
+    $placeOrderButtonText = 'Pay And Order In 1 Click';
+}
 ?>
 <div class="opc-wrapper-opc design_package_<?php echo $package;?> design_theme_<?php echo $theme;?>">
     <div class="page-title">
@@ -83,18 +89,11 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
             </div>
         <?php endif;?>
 
-		<div class="opc-review-actions" id="checkout-review-submit">
-		      <h5 class="grand_total"><?php echo $this->__('Grand Total')?><?php echo Mage::helper('opc')->getGrandTotal()?></h5>
-		      <?php echo $this->getChildHtml('agreements')?>
-		      <?php echo $this->getChildHtml('opc.newsletters');?>
-		      <button type="button" title="<?php echo $this->__('Place Order Now') ?>" class="button btn-checkout opc-btn-checkout"><span><span>
-              <?php
-              if (Mage::getSingleton('core/session')->getBarionToken() && Mage::getModel('tlbarion/paymentmethod')->isTokenPaymentEnabled()) {
-                echo $this->__('Pay And Order');
-              } else {
-                echo $this->__('Place Order Now');
-              }?>
-              </span></span></button>
+        <div class="opc-review-actions" id="checkout-review-submit">
+            <h5 class="grand_total"><?php echo $this->__('Grand Total')?><?php echo Mage::helper('opc')->getGrandTotal()?></h5>
+            <?php echo $this->getChildHtml('agreements')?>
+            <?php echo $this->getChildHtml('opc.newsletters');?>
+            <button type="button" title="<?php echo $this->__('Place Order Now') ?>" class="button btn-checkout opc-btn-checkout"><span><span><?php echo $this->__($placeOrderButtonText) ?></span></span></button>
         </div>
     </div>
     
