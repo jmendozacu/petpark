@@ -10,6 +10,11 @@
             <urlrewritesmap>
                 <class>Virtua_UrlRewritesMap_Model</class>
             </urlrewritesmap>
+            <adminhtml>
+                <rewrite>
+                    <system_config_backend_file>Virtua_UrlRewritesMap_Adminhtml_Model_System_Config_Backend_File</system_config_backend_file>
+                </rewrite>
+            </adminhtml>
         </models>
         <helpers>
             <urlrewritesmap>
@@ -22,12 +27,12 @@
             </urlrewritesmap>
         </blocks>
     </global>
-    <!--<crontab>-->
-        <!--<jobs>-->
-            <!--<urlrewritesmap>-->
-                <!--<schedule><cron_expr>30 00 * * *</cron_expr></schedule>-->
-                <!--<run><model>urlrewritesmap/cron::generateUrlRewritesMap</model></run>-->
-            <!--</urlrewritesmap>-->
-        <!--</jobs>-->
-    <!--</crontab>-->
+    <crontab>
+        <jobs>
+            <urlrewritesmap>
+                <schedule><cron_expr>30 00 * * *</cron_expr></schedule>
+                <run><model>urlrewritesmap/cron::generateUrlRewritesMap</model></run>
+            </urlrewritesmap>
+        </jobs>
+    </crontab>
 </config>
