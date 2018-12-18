@@ -45,6 +45,7 @@ class Virtua_UrlRewritesMap_Model_Rewrites
         }
 
         try {
+            Helper::createDirectoryIfItDoesntExist($destinationFile);
             $txtFileHandler = fopen($destinationFile, "w");
             fwrite($txtFileHandler, $fileContent);
             fclose($txtFileHandler);

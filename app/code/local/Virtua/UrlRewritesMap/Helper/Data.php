@@ -85,4 +85,17 @@ class Virtua_UrlRewritesMap_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return (bool)Mage::getStoreConfig(self::FILE_CONFIG_PATH);
     }
+
+    /**
+     * Creates rewrites directory if it doesnt exist.
+     *
+     * @param string $fileName
+     */
+    public function createDirectoryIfItDoesntExist($fileName)
+    {
+        $dir = dirname($fileName);
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+    }
 }
