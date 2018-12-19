@@ -214,21 +214,9 @@ var i = 0;
                             <?php endif; ?>
                             <?php
                             if( Mage::getStoreConfig("quickview/general/enableview", $code) ){
-                                $base_url = $this->getUrl();
-                                if(strpos($base_url,'?')!==false)
-                                    $base_url = explode("?",$this->getUrl());
-                                if(is_array($base_url))
-                                    $base_url = $base_url[0];
-//                                if(strpos($base_url,'index.php')!==false){
-//                                    $base_url = str_replace('index.php/','',$base_url);
-//                                    $base_url .= "quickview/index/view/";
-//                                }else{
-//                                    $base_url .= "quickview/index/view/";
-//                                }
-                                $base_url .= "quickview/index/view/";
-                                $quickview_url = $base_url."id/".$_product->getId();
+                                $quickViewURL = Mage::getBaseUrl().'quickview/index/view/id/'.$_product->getId()
                             ?>
-                                <a href="<?php echo $quickview_url; ?>" class="quickviewlink quickview-icon" title="<?php echo $this->__("Quick View"); ?>"><i class="icon-search"></i></a>
+                                <a href="<?php echo $quickViewURL; ?>" class="quickviewlink quickview-icon" title="<?php echo $this->__("Quick View"); ?>"><i class="icon-search"></i></a>
                             <?php
                             }
                             ?>
@@ -261,21 +249,9 @@ var i = 0;
                     </div>
                     <?php
                     if( Mage::getStoreConfig("quickview/general/enableview", $code) ){
-                        $base_url = $this->getUrl();
-                        if(strpos($base_url,'?')!==false)
-                            $base_url = explode("?",$this->getUrl());
-                        if(is_array($base_url))
-                            $base_url = $base_url[0];
-//                        if(strpos($base_url,'index.php')!==false){
-//                            $base_url = str_replace('index.php/','',$base_url);
-//                            $base_url .= "index.php/quickview/index/view/";
-//                        }else{
-//                            $base_url .= "quickview/index/view/";
-//                        }
-                        $base_url .= "quickview/index/view/";
-                        $quickview_url = $base_url."id/".$_product->getId();
+                        $quickViewURL = Mage::getBaseUrl().'quickview/index/view/id/'.$_product->getId()
                         ?>
-                        <a href="<?php echo $quickview_url; ?>" class="quickview-icon"><i class="icon-export"></i><span><?php echo $this->__("Quick View"); ?></span></a>
+                        <a href="<?php echo $quickViewURL; ?>" class="quickview-icon"><i class="icon-export"></i><span><?php echo $this->__("Quick View"); ?></span></a>
                     <?php
                     }
                     ?>
