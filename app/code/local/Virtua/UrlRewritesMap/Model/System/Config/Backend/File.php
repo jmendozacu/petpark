@@ -2,8 +2,18 @@
 
 use Virtua_UrlRewritesMap_Helper_Data as Helper;
 
+/**
+ * Class Virtua_UrlRewritesMap_Model_System_Config_Backend_File
+ */
 class Virtua_UrlRewritesMap_Model_System_Config_Backend_File extends Mage_Core_Model_Config_Data
 {
+    /**
+     * Save uploaded file before saving config value
+     *
+     * @return $this|Mage_Core_Model_Abstract
+     *
+     * @throws Mage_Core_Exception
+     */
     protected function _beforeSave()
     {
         $value = $this->getValue();
@@ -15,11 +25,12 @@ class Virtua_UrlRewritesMap_Model_System_Config_Backend_File extends Mage_Core_M
             $fileName = $result['file'];
             $this->manageScopesAndSaveFieldValueIfFileExist($fileName);
         } elseif (is_array($value) && !empty($value['delete'])) {
-                $this->delete();
-                $this->_dataSaveAllowed = false;
+            $this->delete();
+            $this->_dataSaveAllowed = false;
         } else {
-                $this->unsValue();
+            $this->unsValue();
         }
+
         return $this;
     }
 
@@ -107,6 +118,7 @@ class Virtua_UrlRewritesMap_Model_System_Config_Backend_File extends Mage_Core_M
             $uploadRoot = Mage::getBaseDir('media');
             $uploadDir = $uploadRoot . '/' . $uploadDir;
         }
+
         return $uploadDir;
     }
 
@@ -122,9 +134,11 @@ class Virtua_UrlRewritesMap_Model_System_Config_Backend_File extends Mage_Core_M
     protected function prependScopeInfo($path)
     {
         $scopeInfo = $this->getScope();
+
         if ('default' !== $this->getScope()) {
             $scopeInfo .= '/' . $this->getScopeId();
         }
+
         return $scopeInfo . '/' . $path;
     }
 
@@ -140,9 +154,11 @@ class Virtua_UrlRewritesMap_Model_System_Config_Backend_File extends Mage_Core_M
     protected function appendScopeInfo($path)
     {
         $path .= '/' . $this->getScope();
+
         if ('default' !== $this->getScope()) {
             $path .= '/' . $this->getScopeId();
         }
+
         return $path;
     }
 
@@ -155,6 +171,7 @@ class Virtua_UrlRewritesMap_Model_System_Config_Backend_File extends Mage_Core_M
     {
         $fieldConfig = $this->getFieldConfig();
         $descendantOfNode = $fieldConfig->descend('upload_dir');
+
         return !empty($descendantOfNode['scope_info']);
     }
 }
