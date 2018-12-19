@@ -51,13 +51,11 @@ class Virtua_UrlRewritesMap_Helper_Data extends Mage_Core_Helper_Abstract
      *
      * @return void
      */
-    public function saveConfigIfUrlRewritesMapFileEdited($groupId, $fieldName)
+    public function saveConfigIfUrlRewritesMapFileEdited()
     {
-        if ($groupId === self::FIELD_GROUP_ID && $fieldName === self::FILE_FIELD_NAME) {
-            Mage::getConfig()
-                ->removeCache()
-                ->saveConfig(self::FILE_CONFIG_PATH, 1, 'default', 0);
-        }
+        Mage::getConfig()
+            ->removeCache()
+            ->saveConfig(self::FILE_CONFIG_PATH, 1, 'default', 0);
     }
 
     /**
