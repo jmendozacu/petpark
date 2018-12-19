@@ -15,7 +15,7 @@ class Virtua_UrlRewritesMap_Helper_Data extends Mage_Core_Helper_Abstract
 
     const FILE_FIELD_NAME = 'url_rewrites_map_file';
     const FIELD_GROUP_ID = 'virtua_urlrewritesmap';
-    const FILE_CONFIG_PATH = self::FIELD_GROUP_ID . self::SLASH . self::FILE_FIELD_NAME;
+    const FILE_CONFIG_PATH = 'virtua_urlrewritesmap/url_rewrites_map_file';
 
     /**
      * Get path to URL rewrite map file
@@ -93,9 +93,11 @@ class Virtua_UrlRewritesMap_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function createDirectoryIfItDoesntExist($fileName)
     {
-        $dir = dirname($fileName);
-        if (!is_dir($dir)) {
-            mkdir($dir, 0755, true);
+        $varienIoFile = new Varien_Io_File();
+        $dir = $varienIoFile->dirname($fileName);
+
+        if (!$varienIoFile->fileExists($dir, false)) {
+            $varienIoFile->mkdir($dir);
         }
     }
 }
