@@ -152,7 +152,7 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
             $taxAmount = ($taxAmount/$quote->getSubtotal())*100;
         }
 
-        $taxAmount = floor($taxAmount);
+        $taxAmount = round($taxAmount);
         $this->getResponse()->setBody($taxAmount);
     }
 
