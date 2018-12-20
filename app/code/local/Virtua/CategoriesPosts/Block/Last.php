@@ -40,8 +40,10 @@ class Virtua_CategoriesPosts_Block_Last extends Smartwave_Blog_Block_Last implem
                 $collection->getAllIds(),
                 $this->getRecentPostsIds($size, $collection->getAllIds())
             );
-            $collection = $this->getBlogCollection();
-            $collection
+            $collection = Mage::getModel('blog/blog')->getCollection()
+                ->addPresentFilter()
+                ->addEnableFilter(Smartwave_Blog_Model_Status::STATUS_ENABLED)
+                ->addStoreFilter()
                 ->addFilterToMap('post_id', 'main_table.post_id')
                 ->addFieldToFilter('post_id', $mergedIds);
         }
