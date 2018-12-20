@@ -15,7 +15,7 @@
                             <label>URL Rewrites Map</label>
                             <comment>Upload your csv url rewrites map file from here</comment>
                             <frontend_type>file</frontend_type>
-                            <backend_model>Virtua_UrlRewritesMap_Model_System_Config_Backend_File</backend_model>
+                            <backend_model>urlrewritesmap/system_config_backend_file</backend_model>
                             <upload_dir config="system/filesystem/media" scope_info="1">rewrite</upload_dir>
                             <base_url type="media" scope_info="1">admin-config-uploads</base_url>
                             <sort_order>10</sort_order>

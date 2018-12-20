@@ -1,4 +1,10 @@
 <?php
+/**
+ * @category  UrlRewritesMap
+ * @package   Virtua_UrlRewritesMap
+ * @author    Maciej Skalny <contact@wearevirtua.com>
+ * @copyright 2018 Copyright (c) Virtua (http://wwww.wearevirtua.com)
+ */
 
 use Virtua_UrlRewritesMap_Helper_Data as Helper;
 
@@ -23,7 +29,7 @@ class Virtua_UrlRewritesMap_Model_System_Config_Backend_File extends Mage_Core_M
             $result = $this->manageUrlRewritesMapFile($uploadDir);
 
             $fileName = $result['file'];
-            $this->manageScopesAndSaveFieldValueIfFileExist($fileName);
+            $this->saveFieldValueIfFileExist($fileName);
         } elseif (is_array($value) && !empty($value['delete'])) {
             $this->delete();
             $this->_dataSaveAllowed = false;
@@ -68,21 +74,10 @@ class Virtua_UrlRewritesMap_Model_System_Config_Backend_File extends Mage_Core_M
     /**
      * @param string $fileName
      */
-    public function manageScopesAndSaveFieldValueIfFileExist($fileName)
+    public function saveFieldValueIfFileExist($fileName)
     {
         if ($fileName) {
-            $this->prependScopeInfoIfItsPossible($fileName);
             $this->setValue($fileName);
-        }
-    }
-
-    /**
-     * @param string $fileName
-     */
-    public function prependScopeInfoIfItsPossible($fileName)
-    {
-        if ($this->addWhetherScopeInfo()) {
-            $filename = $this->prependScopeInfo($fileName);
         }
     }
 
@@ -105,13 +100,6 @@ class Virtua_UrlRewritesMap_Model_System_Config_Backend_File extends Mage_Core_M
         $descendantOfNode = $fieldConfig->descend('upload_dir');
 
         /**
-         * Add scope info
-         */
-        if (!empty($descendantOfNode['scope_info'])) {
-            $uploadDir = $this->appendScopeInfo($uploadDir);
-        }
-
-        /**
          * Take root from config
          */
         if (!empty($descendantOfNode['config'])) {
@@ -120,58 +108,5 @@ class Virtua_UrlRewritesMap_Model_System_Config_Backend_File extends Mage_Core_M
         }
 
         return $uploadDir;
-    }
-
-    /**
-     * Prepend path with scope info
-     *
-     * E.g. 'stores/2/path' , 'websites/3/path', 'default/path'
-     *
-     * @param string $path
-     *
-     * @return string
-     */
-    protected function prependScopeInfo($path)
-    {
-        $scopeInfo = $this->getScope();
-
-        if ('default' !== $this->getScope()) {
-            $scopeInfo .= '/' . $this->getScopeId();
-        }
-
-        return $scopeInfo . '/' . $path;
-    }
-
-    /**
-     * Add scope info to path
-     *
-     * E.g. 'path/stores/2' , 'path/websites/3', 'path/default'
-     *
-     * @param string $path
-     *
-     * @return string
-     */
-    protected function appendScopeInfo($path)
-    {
-        $path .= '/' . $this->getScope();
-
-        if ('default' !== $this->getScope()) {
-            $path .= '/' . $this->getScopeId();
-        }
-
-        return $path;
-    }
-
-    /**
-     * Makes a decision about whether to add info about the scope.
-     *
-     * @return bool
-     */
-    protected function addWhetherScopeInfo()
-    {
-        $fieldConfig = $this->getFieldConfig();
-        $descendantOfNode = $fieldConfig->descend('upload_dir');
-
-        return !empty($descendantOfNode['scope_info']);
     }
 }

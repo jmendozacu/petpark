@@ -13,7 +13,7 @@ class Virtua_UrlRewritesMap_Model_Cron
     public function generateUrlRewritesMap()
     {
         if (Helper::checkIfTheFileHasBeenUpdated()) {
-            Mage::getModel('Virtua_UrlRewritesMap_Model_Rewrites')->run();
+            Mage::getModel('urlrewritesmap/rewrites')->run();
             Helper::saveConfigIfUrlRewritesMapHasBeenGenerated();
         }
     }
