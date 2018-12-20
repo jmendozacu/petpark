@@ -303,7 +303,7 @@ class Virtua_BarionPayment_Helper_Data extends TLSoft_BarionPayment_Helper_Data
         if (count($transactions) > 3 && end($transactions)['POSTransactionId'] != null) {
             $transaction = end($transactions);
         }
-
+      
         if (array_key_exists('TransactionId', $transaction)) {
             return $transaction['TransactionId'];
         }
