@@ -17,7 +17,7 @@ IWD.OPC.Decorator.getCustomerVatValidationResults = function () {
         if (data == 3) {
             $j_opc('#calculate-tax-info').hide();
             $j_opc('#domestic-shipping-info').show();
-        } else if (data == 1) {
+        } else {
             $j_opc('#domestic-shipping-info').hide();
             $j_opc('#calculate-tax-info').show();
         }

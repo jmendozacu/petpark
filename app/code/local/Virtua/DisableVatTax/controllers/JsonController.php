@@ -136,6 +136,8 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
             if ($disableVatTaxHelper->isDomesticCountry(
                 $this->getOnepage()->getQuote()->getShippingAddress()->getData('country_id'))) {
                 $vatNumberValidation = 3;
+            } elseif ($disableVatTaxHelper->isDomesticCountry($checkoutCountryId)) {
+                $vatNumberValidation = 2;
             }
         }
 
