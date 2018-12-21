@@ -46,7 +46,9 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
                     'quote' => $this->getOnepage()->getQuote(),
                 ));
 
-                $result['shipping'] = $this->setShippingToResult($data);
+                if (isset($data['use_for_shipping']) && $data['use_for_shipping'] == 1) {
+                    $result['shipping'] = $this->_getShippingMethodsHtml();
+                }
                 $methods_after = Mage::helper('opc')->getAvailablePaymentMethods();
                 $this->setPreparedPaymentDataToResult(Mage::helper('opc')->checkUpdatedPaymentMethods($methods_before, $methods_after), $result);
                 $totals_after = $this->_getSession()->getQuote()->getGrandTotal();
@@ -131,9 +133,9 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
         $vatNumberValidation = $disableVatTaxHelper->isVatNumberValid($checkoutVatId, $checkoutCountryId);
 
         if ($vatNumberValidation) {
-            if ($disableVatTaxHelper->isDomesticCountry($checkoutCountryId)
-            || $disableVatTaxHelper->isDomesticCountry($this->getOnepage()->getQuote()->getShippingAddress()->getData('country_id'))) {
-                $vatNumberValidation = 0;
+            if ($disableVatTaxHelper->isDomesticCountry(
+                $this->getOnepage()->getQuote()->getShippingAddress()->getData('country_id'))) {
+                $vatNumberValidation = 3;
             }
         }
 
@@ -152,7 +154,7 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
             $taxAmount = ($taxAmount/$quote->getSubtotal())*100;
         }
 
-        $taxAmount = floor($taxAmount);
+        $taxAmount = round($taxAmount);
         $this->getResponse()->setBody($taxAmount);
     }
 
@@ -292,5 +294,12 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
         if (isset($request['use_for_shipping']) && $request['use_for_shipping'] == 1) {
             return $this->_getShippingMethodsHtml();
         }
+    }
+
+    public function getCustomerVatValidationResultsAction()
+    {
+        $response = Mage::getSingleton('core/session')->getIsCheckoutVatIdValid();
+
+        $this->getResponse()->setBody($response);
     }
 }
