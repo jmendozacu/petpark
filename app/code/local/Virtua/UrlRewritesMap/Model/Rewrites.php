@@ -12,8 +12,7 @@ class Virtua_UrlRewritesMap_Model_Rewrites
      */
     public function run()
     {
-        $helper = Mage::helper('urlrewritesmap');
-        $csvFile = $this->getFilePath($helper->getUrlRewritesMapFilePath(), Mage_Core_Model_Store::URL_TYPE_MEDIA);
+        $csvFile = $this->getFilePath(Helper::getUrlRewritesMapFilePath(), Mage_Core_Model_Store::URL_TYPE_MEDIA);
         if (!file_exists($csvFile)) {
             echo $csvFile . " not exists!";
         }
@@ -45,6 +44,7 @@ class Virtua_UrlRewritesMap_Model_Rewrites
         }
 
         try {
+            Helper::createDirectoryIfItDoesntExist($destinationFile);
             $txtFileHandler = fopen($destinationFile, "w");
             fwrite($txtFileHandler, $fileContent);
             fclose($txtFileHandler);

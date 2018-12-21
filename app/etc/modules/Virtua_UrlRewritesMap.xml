@@ -4,6 +4,9 @@
         <Virtua_UrlRewritesMap>
             <active>true</active>
             <codePool>local</codePool>
+            <depends>
+                <Mage_Adminhtml/>
+            </depends>
         </Virtua_UrlRewritesMap>
     </modules>
 </config>
