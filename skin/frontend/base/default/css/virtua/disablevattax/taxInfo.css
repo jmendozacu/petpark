@@ -9,7 +9,7 @@
     margin-left: 5px;
 }
 
-#calculate-tax-info {
+#calculate-tax-info, #domestic-shipping-info {
     font-size: 13px;
     color: #6e6e6e;
     font-style: italic;

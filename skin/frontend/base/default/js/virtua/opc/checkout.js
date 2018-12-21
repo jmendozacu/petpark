@@ -3,6 +3,7 @@ IWD.OPC.Decorator.updateGrandTotal = IWD.OPC.Decorator.updateGrandTotal.wrap(fun
     $j_opc('.review-total span').html(response.grandTotal);
     IWD.OPC.Decorator.manageVisibleOfTaxSection();
     IWD.OPC.Decorator.showQuoteTaxInfo();
+    IWD.OPC.Decorator.getCustomerVatValidationResults();
 })
 
 IWD.OPC.Decorator.showQuoteTaxInfo = function () {
@@ -17,6 +18,18 @@ IWD.OPC.Decorator.manageVisibleOfTaxSection = function () {
             $j_opc('#tax-info').hide();
         } else {
             $j_opc('#tax-info').show();
+        }
+    });
+}
+
+IWD.OPC.Decorator.getCustomerVatValidationResults = function () {
+    $j_opc.post(IWD.OPC.Checkout.config.baseUrl + 'onepage/json/getCustomerVatValidationResults', function(data) {
+        if (data == 1) {
+            $j_opc('#domestic-shipping-info').hide();
+            $j_opc('#calculate-tax-info').show();
+        } else if (data == 3) {
+            $j_opc('#calculate-tax-info').hide();
+            $j_opc('#domestic-shipping-info').show();
         }
     });
 }

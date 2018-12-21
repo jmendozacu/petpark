@@ -87,6 +87,7 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
               <div id="tax-info">
                   <p><span><?php echo $this->__('Tax')?></span><span id="calculate-tax" class="price"></span></p>
                   <p id="calculate-tax-info"><?php echo $this->__('Your prices was changed based on your chosen billing address. Please remember that your VAT and total sum was changed.') ?></p>
+                  <p id="domestic-shipping-info"><?php echo $this->__('Your VAT ID was successfully validated, but your shipping address is in domestic country. You will be charged tax.') ?></p>
               </div>
 		      <h5 class="grand_total"><?php echo $this->__('Grand Total')?><?php echo Mage::helper('opc')->getGrandTotal()?></h5>
 		      <?php echo $this->getChildHtml('agreements')?>
