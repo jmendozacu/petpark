@@ -159,29 +159,6 @@ class Virtua_DisableVatTax_JsonController extends IWD_Opc_JsonController
     }
 
     /**
-     * Checks is address used on checkout is the same as default customer address.
-     */
-    public function checkIsDefaultAddressUsedAction()
-    {
-        $customer = Mage::getSingleton('customer/session')->getCustomer();
-        $quote = $this->getOnepage()->getQuote();
-        $response = false;
-
-        $defaultBillingAddressId = $customer->getDefaultBillingAddress()->getId();
-        $defaultShippingAddressId = $customer->getDefaultShippingAddress()->getId();
-
-        $checkoutBillingAddressId = $quote->getBillingAddress()->getCustomerAddressId();
-        $checkoutShippingAddressId = $quote->getShippingAddress()->getCustomerAddressId();
-
-        if ($defaultBillingAddressId == $checkoutBillingAddressId
-            && $defaultShippingAddressId == $checkoutShippingAddressId) {
-            $response = true;
-        }
-
-        $this->getResponse()->setBody($response);
-    }
-
-    /**
      * @return bool
      */
     public function isQuoteVirtual()
