@@ -1,12 +1,12 @@
 <div id="latest_category_posts">
     <div id="latest_news">
         <div class="recent-posts">
-            <?php if ($posts = $this->getRecent()->getData()): ?>
+            <?php if ($postsIds = $this->getRecent()): ?>
                 <div class="owl-carousel">
-                    <?php foreach ($posts as $post): ?>
+                    <?php foreach ($postsIds as $postId): ?>
                         <?php
-                            $postId = $post['post_id'];
                             $post = Mage::getModel('blog/blog')->load($postId);
+                            $post->setAddress($this->getBlogUrl($post->getIdentifier()));
                         ?>
                         <div class="item">
                             <?php $post_date = Mage::helper('core')->formatDate($post->getCreatedTime(), 'long', false) ?>

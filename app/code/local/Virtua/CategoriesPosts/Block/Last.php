@@ -40,28 +40,9 @@ class Virtua_CategoriesPosts_Block_Last extends Smartwave_Blog_Block_Last implem
                 $collection->getAllIds(),
                 $this->getRecentPostsIds($size, $collection->getAllIds())
             );
-            $collection = Mage::getModel('blog/blog')->getCollection()
-                ->addPresentFilter()
-                ->addEnableFilter(Smartwave_Blog_Model_Status::STATUS_ENABLED)
-                ->addStoreFilter()
-                ->addFilterToMap('post_id', 'main_table.post_id')
-                ->addFieldToFilter('main_table.post_id', $mergedIds);
         }
 
-        if ($collection && $this->getData('categories')) {
-            $collection->addCatsFilter($this->getData('categories'));
-        }
-
-        foreach ($collection as $item) {
-            $item->setAddress($this->getBlogUrl($item->getIdentifier()));
-        }
-
-        $collection->getSelect()->reset(Zend_Db_Select::ORDER);
-        $zendExpression = $this->prepareZendExpression($mergedIds);
-        $collection->getSelect()
-            ->order([new Zend_Db_Expr($zendExpression)]);
-
-        return $collection;
+        return $mergedIds;
     }
 
     /**
@@ -124,27 +105,5 @@ class Virtua_CategoriesPosts_Block_Last extends Smartwave_Blog_Block_Last implem
         }
 
         return $ids;
-    }
-
-    /**
-     * Prepares zend expression to get posts from db.
-     *
-     * @param array $mergedIds
-     *
-     * @return bool|string
-     */
-    public function prepareZendExpression($mergedIds)
-    {
-        $preparedExpression = null;
-
-        foreach ($mergedIds as $mergedId) {
-            $preparedExpression .= 'main_table.post_id = '.$mergedId.' DESC, ';
-        }
-
-        if ($preparedExpression != null) {
-            $preparedExpression = substr($preparedExpression, 0, -2);
-        }
-
-        return $preparedExpression;
     }
 }
