@@ -4,6 +4,12 @@ echo $this->getDesignStyles();
 $package = Mage::getDesign()->getPackageName();
 $theme = Mage::getDesign()->getTheme('frontend');
 $is_persistent = Mage::helper('opc')->isPersistentMember();
+$placeOrderButtonText = 'Place Order Now';
+$customer = Mage::getSingleton('customer/session')->getCustomer();
+
+if ($customer->getBarionToken() && Mage::getModel('tlbarion/paymentmethod')->isTokenPaymentEnabled()) {
+    $placeOrderButtonText = 'Pay And Order In 1 Click';
+}
 ?>
 <div class="opc-wrapper-opc design_package_<?php echo $package;?> design_theme_<?php echo $theme;?>">
     <div class="page-title">
@@ -82,7 +88,7 @@ $is_persistent = Mage::helper('opc')->isPersistentMember();
                 </div>
             </div>
         <?php endif;?>
-
+        
 		<div class="opc-review-actions" id="checkout-review-submit">
               <div id="tax-info">
                   <p><span><?php echo $this->__('Tax')?></span><span id="calculate-tax" class="price"></span></p>
