@@ -48,7 +48,7 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
         $connect = $this->sendRequest($header, $storeId);
         $apiResult = json_decode($connect, true);
 
-        if ($this->wasTokenRequestFailed($header)) {
+        if ($this->wasTokenRequestFailed($header, $apiResult)) {
             $header  = $this->dontUseExsistingToken($header);
             $connect = $this->sendRequest($header, $storeId);
             $apiResult  = json_decode($connect, true);
@@ -102,22 +102,6 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
     }
 
     /**
-     * @return bool
-     */
-    public function areFundsInsufficient($resultarray)
-    {
-        if (array_key_exists('Errors', $resultarray)) {
-            foreach ($resultarray['Errors'] as $error) {
-                if ($error['ErrorCode'] == 'InsufficientFunds') {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * @param array $header
      * @return array
      */
@@ -128,26 +112,6 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
         unset($header['CallbackUrl']);
 
         return $header;
-    }
-
-    /**
-     * @return bool
-     */
-    public function wasOriginalPaymentUnsuccessful($resultarray)
-    {
-        if (!array_key_exists('Errors', $resultarray)) {
-            return false;
-        }
-
-        foreach ($resultarray['Errors'] as $error) {
-            if (array_key_exists('ErrorCode', $error)
-                && $error['ErrorCode'] === 'OriginalPaymentWasntSuccessful')
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**
@@ -292,11 +256,10 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
      *
      * @return bool
      */
-    public function wasTokenRequestFailed($request)
+    public function wasTokenRequestFailed($request, $apiResult)
     {
         return $request['InitiateRecurrence'] == false
-            && ($this->areFundsInsufficient($resultarray)
-                || $this->wasOriginalPaymentUnsuccessful($resultarray));
+            && $this->isThereAnyErrorWithTokenPayment($apiResult);
     }
 
     /**
@@ -378,5 +341,18 @@ class Virtua_BarionPayment_Model_Paymentmethod extends TLSoft_BarionPayment_Mode
         if ($customer->getBarionToken() == null && $this->isTokenPaymentEnabled()) {
             $customer->setPreparedBarionToken($request['RecurrenceId'])->save();
         }
+    }
+
+    /**
+     * @param array $apiResult
+     *
+     * @return bool
+     */
+    public function isThereAnyErrorWithTokenPayment($apiResult)
+    {
+        $notEmpty = new Zend_Validate_NotEmpty();
+
+        return array_key_exists('Errors', $apiResult)
+            &&  $notEmpty->isValid($apiResult['Errors']);
     }
 }
